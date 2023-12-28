@@ -1,12 +1,399 @@
-//Pg more Addon model
-1.Security deposit
-2.Description
-3.Status
-4.Floor No.
-//more checkbox aminities
-6.Refrigrator
-7.water
-8.Electricity
-9.Power Backup
-10.WashingMachine
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="/static/propApp/css/style.css">
+    
+</head>
+<body>
+    <header>
+        <ul>
+            <div class="navbar">
+                <div class="navbar-brand">
+                    Your Logo
+                </div>
+            </div>
+            <a href="/property-list/"><li>PropertyList</li></a>
+            
+                <p>Welcome, 9981234398!</p>
+                <a href="/select-type/"><button>Post_Property_new</button></a>
+                <!-- <a href="/submit-property/"><button>Post_Property</button></a> -->
+                <a href="/logout/"><button>Logout</button></a>
+            
+        </ul>
+        <!-- Your navbar structure -->
+    </header>
+    <!-- Content block where child templates will be inserted -->
+    <div class="content">
+        
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="csrfmiddlewaretoken" value="76ma4hGXfWJZ5fjjfvDJaZXcCm1lxAcltHbrMHbv73jIk4l2AbL7MfXwMZxtjoqI">
+    
+    <p><label for="id_u_property_type">U property type:</label> <select name="u_property_type" id="id_u_property_type">
+  <option value="owner" selected>Owner</option>
+
+  <option value="agent">Agent</option>
+
+  <option value="builder">Builder</option>
+
+</select></p>
+<p><label for="id_r_property_type">R property type:</label> <select name="r_property_type" id="id_r_property_type">
+  <option value="sell" selected>Sell</option>
+
+</select></p>
+<p><label for="id_project_society_name">Project society name:</label> <input type="text" name="project_society_name" maxlength="100" required id="id_project_society_name"></p>
+<p><label for="id_project_cover_img">Project cover img:</label> <input type="file" name="project_cover_img" accept="image/*" id="id_project_cover_img"></p>
+<p><label for="id_apartment_type">Apartment type:</label> <select name="apartment_type" required id="id_apartment_type">
+  <option value="" selected>---------</option>
+
+  <option value="villa">Villa</option>
+
+  <option value="plot">Plot</option>
+
+  <option value="1bhk">1 BHK</option>
+
+  <option value="2bhk">2 BHK</option>
+
+  <option value="3bhk">3 BHK</option>
+
+  <option value="4bhk">4 BHK</option>
+
+  <option value="5bhk">5 BHK</option>
+
+</select></p>
+<p><label for="id_status">Status:</label> <select name="status" required id="id_status">
+  <option value="" selected>---------</option>
+
+  <option value="ongoing">Ongoing</option>
+
+  <option value="readytomove">Ready To Move</option>
+
+  <option value="upcoming">UpComing</option>
+
+</select></p>
+<p><label for="id_super_area">Super area:</label> <input type="number" name="super_area" step="0.01" required id="id_super_area"></p>
+<p><label for="id_carpet_area">Carpet area:</label> <input type="number" name="carpet_area" step="0.01" required id="id_carpet_area"></p>
+<p><label for="id_furnished_status">Furnished status:</label> <select name="furnished_status" required id="id_furnished_status">
+  <option value="" selected>---------</option>
+
+  <option value="furnished">Furnished</option>
+
+  <option value="semi-furnished">Semi-Furnished</option>
+
+  <option value="unfurnished">Unfurnished</option>
+
+</select></p>
+<p><label for="id_approval_status">Approval status:</label> <select name="approval_status" id="id_approval_status">
+  <option value="reraapproved">RERA Approved</option>
+
+  <option value="bda_bmrda">BDA/BMRDA Approved</option>
+
+  <option value="notapproved">Not Approved</option>
+
+  <option value="others" selected>Others</option>
+
+</select></p>
+<p><label for="id_project_city">Project city:</label> <select name="project_city" id="id_project_city">
+  <option value="bengaluru">Bengaluru</option>
+
+  <option value="chennai">Chennai</option>
+
+  <option value="mumbai">Mumbai</option>
+
+  <option value="hyderabad">Hyderabad</option>
+
+  <option value="delhi">Delhi</option>
+
+  <option value="pune">Pune</option>
+
+  <option value="allindia" selected>All India</option>
+
+</select></p>
+<p><label for="id_possession_date">Possession date:</label> <input type="date" name="possession_date" required id="id_possession_date"></p>
+<p><label for="id_address">Address:</label> <input type="text" name="address" maxlength="255" required id="id_address"></p>
+<p><label for="id_landmark">Landmark:</label> <input type="text" name="landmark" maxlength="100" required id="id_landmark"></p>
+<p><label for="id_total_floors">Total floors:</label> <input type="number" name="total_floors" min="0" required id="id_total_floors"></p>
+<p><label for="id_total_units">Total units:</label> <input type="number" name="total_units" min="0" required id="id_total_units"></p>
+<p><label for="id_development_area">Development area:</label> <input type="number" name="development_area" step="0.01" id="id_development_area"></p>
+<p><label for="id_no_of_tower">No of tower:</label> <input type="number" name="no_of_tower" min="0" required id="id_no_of_tower"></p>
+<p><label for="id_project_rera_id">Project rera id:</label> <input type="text" name="project_rera_id" maxlength="100" required id="id_project_rera_id"></p>
+<p><label for="id_car_parking">Car parking:</label> <select name="car_parking" required id="id_car_parking">
+  <option value="" selected>---------</option>
+
+  <option value="yes">YES</option>
+
+  <option value="no">No</option>
+
+</select></p>
+<p><label for="id_property_price">Property price:</label> <input type="text" name="property_price" maxlength="30" required id="id_property_price"></p>
+<p><label for="id_builder_name">Builder name:</label> <input type="text" name="builder_name" maxlength="100" id="id_builder_name"></p>
+<p><label for="id_bedrooms">Bedrooms:</label> <select name="bedrooms" id="id_bedrooms">
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+  <option value="3">3</option>
+
+  <option value="4">4</option>
+
+  <option value="5">5</option>
+
+  <option value="0">Others</option>
+
+  <option value="-1">N/A</option>
+
+</select></p>
+<p><label for="id_balconies">Balconies:</label> <select name="balconies" id="id_balconies">
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+  <option value="3">3</option>
+
+  <option value="4">4</option>
+
+  <option value="5">5</option>
+
+  <option value="0">Others</option>
+
+  <option value="-1">N/A</option>
+
+</select></p>
+<p><label for="id_bathrooms">Bathrooms:</label> <select name="bathrooms" id="id_bathrooms">
+  <option value="1">1</option>
+
+  <option value="2">2</option>
+
+  <option value="3">3</option>
+
+  <option value="4">4</option>
+
+  <option value="5">5</option>
+
+  <option value="0">Others</option>
+
+  <option value="-1">N/A</option>
+
+</select></p>
+<p><label for="id_lifts">Lifts:</label> <select name="lifts" required id="id_lifts">
+  <option value="" selected>---------</option>
+
+  <option value="yes">YES</option>
+
+  <option value="no">No</option>
+
+</select></p>
+<p><label for="id_facing">Facing:</label> <input type="text" name="facing" maxlength="30" id="id_facing"></p>
+<p><label for="id_age_of_construction">Age of construction:</label> <input type="text" name="age_of_construction" maxlength="100" id="id_age_of_construction"></p>
+<p><label for="id_about_project">About project:</label> <textarea name="about_project" cols="40" rows="10" maxlength="300" required id="id_about_project">
+</textarea></p>
+    
+    <div id="image-fields-container">
+        <!-- Render formset forms -->
+        <input type="hidden" name="images-TOTAL_FORMS" value="5" id="id_images-TOTAL_FORMS"><input type="hidden" name="images-INITIAL_FORMS" value="0" id="id_images-INITIAL_FORMS"><input type="hidden" name="images-MIN_NUM_FORMS" value="0" id="id_images-MIN_NUM_FORMS"><input type="hidden" name="images-MAX_NUM_FORMS" value="5" id="id_images-MAX_NUM_FORMS">
+        
+            <div class="image-field">
+                <p><label for="id_images-0-image">Image:</label> <input type="file" name="images-0-image" accept="image/*" id="id_images-0-image"></p>
+<p><label for="id_images-0-image_type">Image type:</label> <select name="images-0-image_type" id="id_images-0-image_type">
+  <option value="property">Property Image</option>
+
+  <option value="floorplan">Floorplan Image</option>
+
+  <option value="masterplan">Masterplan Image</option>
+
+  <option value="location">Location Map Image</option>
+
+  <option value="plot">Plot Image</option>
+
+  <option value="1bhk">1 BHK Image</option>
+
+  <option value="2bhk">2 BHK Image</option>
+
+  <option value="3bhk">3 BHK Image</option>
+
+  <option value="4bhk">4 BHK Image</option>
+
+  <option value="5bhk">5 BHK Image</option>
+
+</select></p>
+<p><label for="id_images-0-DELETE">Delete:</label> <input type="checkbox" name="images-0-DELETE" id="id_images-0-DELETE"><input type="hidden" name="images-0-id" id="id_images-0-id"><input type="hidden" name="images-0-property_post" id="id_images-0-property_post"></p>
+            </div>
+        
+            <div class="image-field">
+                <p><label for="id_images-1-image">Image:</label> <input type="file" name="images-1-image" accept="image/*" id="id_images-1-image"></p>
+<p><label for="id_images-1-image_type">Image type:</label> <select name="images-1-image_type" id="id_images-1-image_type">
+  <option value="property">Property Image</option>
+
+  <option value="floorplan">Floorplan Image</option>
+
+  <option value="masterplan">Masterplan Image</option>
+
+  <option value="location">Location Map Image</option>
+
+  <option value="plot">Plot Image</option>
+
+  <option value="1bhk">1 BHK Image</option>
+
+  <option value="2bhk">2 BHK Image</option>
+
+  <option value="3bhk">3 BHK Image</option>
+
+  <option value="4bhk">4 BHK Image</option>
+
+  <option value="5bhk">5 BHK Image</option>
+
+</select></p>
+<p><label for="id_images-1-DELETE">Delete:</label> <input type="checkbox" name="images-1-DELETE" id="id_images-1-DELETE"><input type="hidden" name="images-1-id" id="id_images-1-id"><input type="hidden" name="images-1-property_post" id="id_images-1-property_post"></p>
+            </div>
+        
+            <div class="image-field">
+                <p><label for="id_images-2-image">Image:</label> <input type="file" name="images-2-image" accept="image/*" id="id_images-2-image"></p>
+<p><label for="id_images-2-image_type">Image type:</label> <select name="images-2-image_type" id="id_images-2-image_type">
+  <option value="property">Property Image</option>
+
+  <option value="floorplan">Floorplan Image</option>
+
+  <option value="masterplan">Masterplan Image</option>
+
+  <option value="location">Location Map Image</option>
+
+  <option value="plot">Plot Image</option>
+
+  <option value="1bhk">1 BHK Image</option>
+
+  <option value="2bhk">2 BHK Image</option>
+
+  <option value="3bhk">3 BHK Image</option>
+
+  <option value="4bhk">4 BHK Image</option>
+
+  <option value="5bhk">5 BHK Image</option>
+
+</select></p>
+<p><label for="id_images-2-DELETE">Delete:</label> <input type="checkbox" name="images-2-DELETE" id="id_images-2-DELETE"><input type="hidden" name="images-2-id" id="id_images-2-id"><input type="hidden" name="images-2-property_post" id="id_images-2-property_post"></p>
+            </div>
+        
+            <div class="image-field">
+                <p><label for="id_images-3-image">Image:</label> <input type="file" name="images-3-image" accept="image/*" id="id_images-3-image"></p>
+<p><label for="id_images-3-image_type">Image type:</label> <select name="images-3-image_type" id="id_images-3-image_type">
+  <option value="property">Property Image</option>
+
+  <option value="floorplan">Floorplan Image</option>
+
+  <option value="masterplan">Masterplan Image</option>
+
+  <option value="location">Location Map Image</option>
+
+  <option value="plot">Plot Image</option>
+
+  <option value="1bhk">1 BHK Image</option>
+
+  <option value="2bhk">2 BHK Image</option>
+
+  <option value="3bhk">3 BHK Image</option>
+
+  <option value="4bhk">4 BHK Image</option>
+
+  <option value="5bhk">5 BHK Image</option>
+
+</select></p>
+<p><label for="id_images-3-DELETE">Delete:</label> <input type="checkbox" name="images-3-DELETE" id="id_images-3-DELETE"><input type="hidden" name="images-3-id" id="id_images-3-id"><input type="hidden" name="images-3-property_post" id="id_images-3-property_post"></p>
+            </div>
+        
+            <div class="image-field">
+                <p><label for="id_images-4-image">Image:</label> <input type="file" name="images-4-image" accept="image/*" id="id_images-4-image"></p>
+<p><label for="id_images-4-image_type">Image type:</label> <select name="images-4-image_type" id="id_images-4-image_type">
+  <option value="property">Property Image</option>
+
+  <option value="floorplan">Floorplan Image</option>
+
+  <option value="masterplan">Masterplan Image</option>
+
+  <option value="location">Location Map Image</option>
+
+  <option value="plot">Plot Image</option>
+
+  <option value="1bhk">1 BHK Image</option>
+
+  <option value="2bhk">2 BHK Image</option>
+
+  <option value="3bhk">3 BHK Image</option>
+
+  <option value="4bhk">4 BHK Image</option>
+
+  <option value="5bhk">5 BHK Image</option>
+
+</select></p>
+<p><label for="id_images-4-DELETE">Delete:</label> <input type="checkbox" name="images-4-DELETE" id="id_images-4-DELETE"><input type="hidden" name="images-4-id" id="id_images-4-id"><input type="hidden" name="images-4-property_post" id="id_images-4-property_post"></p>
+            </div>
+        
+    </div>
+    
+    <button type="button" id="add-image-field">Add Image</button>
+    <button type="submit">Submit Property</button>
+</form>
+
+<!-- Add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        const container = $('#image-fields-container');
+        const maxForms = 5; // Maximum total forms allowed
+
+        // Hide forms beyond the second one initially
+        container.find('.image-field:gt(1)').hide();
+
+        $('#add-image-field').click(function() {
+            const formCount = container.find('.image-field:visible').length;
+
+            if (formCount < maxForms) { // Limit to maximum total forms
+                const totalForms = $('#id_propertyimage_set-TOTAL_FORMS');
+                const newForm = container.find('.image-field:hidden:first').clone(true);
+
+                // Update form IDs, names, and reset input values
+                const formIndex = formCount; // Start indexing from formCount
+                newForm.find('input[type="file"]').attr({
+                    'id': `id_images-${formIndex}-image`,
+                    'name': `images-${formIndex}-image`
+                }).val('');
+                newForm.find('select').attr({
+                    'id': `id_images-${formIndex}-image_type`,
+                    'name': `images-${formIndex}-image_type`
+                }).val(newForm.find('select option:first').val());
+                newForm.find('input[type="checkbox"]').attr({
+                    'id': `id_images-${formIndex}-DELETE`,
+                    'name': `images-${formIndex}-DELETE`
+                }).prop('checked', false);
+                newForm.find('input[type="hidden"]').attr('id', `id_images-${formIndex}-id`).val('');
+                newForm.find('input[type="hidden"]').attr('id', `id_images-${formIndex}-property_post`).val('');
+
+                // Append new form and update total forms count
+                container.append(newForm);
+                totalForms.val(formCount + 1);
+
+                newForm.show(); // Show the newly added form
+
+                if (formCount + 1 === maxForms) {
+                    $('#add-image-field').hide();
+                }
+            } else {
+                alert('You can upload a maximum of 5 images.');
+            }
+        });
+    });
+</script>
+
+
+    </div>
+
+    <!-- Include common footer content here, if needed -->
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+</body>
+</html>
 

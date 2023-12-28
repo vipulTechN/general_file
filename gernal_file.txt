@@ -1,1 +1,12 @@
-git config --global user.name "vipulTechN"
+//Pg more Addon model
+1.Security deposit
+2.Description
+3.Status
+4.Floor No.
+//more checkbox aminities
+6.Refrigrator
+7.water
+8.Electricity
+9.Power Backup
+10.WashingMachine
+

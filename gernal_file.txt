@@ -267,7 +267,7 @@
                             </div>
                             <select name="ac_rooms" required id="id_ac_rooms">
 
-                                <option value="" selected>Ac rooms</option>
+                                <option value="" selected>Select Type</option>
                               
                                 <option value="yes">YES</option>
                               
@@ -282,27 +282,27 @@
                             </div>
                             <ul class="pg2ndul">
                                 <li>
-                                    <label for="Wifi">Wifi</label>
+                                    <label for="id_has_wifi">Wifi</label>
                                     <input type="checkbox" name="has_wifi" id="id_has_wifi" class="iamradio1">
-                                    <label for="Refrigerator">Refrigerator</label>
+                                    <label for="id_has_refrigerator">Refrigerator</label>
                                     <input type="checkbox" name="has_refrigerator" id="id_has_refrigerator" class="iamradio1">
-                                    <label for="Security">Security</label>
+                                    <label for="id_has_security">Security</label>
                                     <input type="checkbox" name="has_security" class="iamradio1" id="id_has_security">
                                 </li>
                                 <li>
-                                    <label for="Parking">Parking</label>
+                                    <label for="id_has_parking">Parking</label>
                                     <input type="checkbox" name="has_parking" id="id_has_parking" class="iamradio1">
-                                    <label for="Gym">Gym</label>
+                                    <label for="id_has_gym">Gym</label>
                                     <input type="checkbox" name="has_gym" id="id_has_gym" class="iamradio1">
-                                    <label for="Pg/Colive">WashingMachine</label>
+                                    <label for="id_has_washingmachine">WashingMachine</label>
                                     <input type="checkbox" name="has_washingmachine" class="iamradio1"  id="id_has_washingmachine">
                                 </li>
                                 <li>
-                                    <label for="Water">Water</label>
+                                    <label for="id_has_water">Water</label>
                                     <input type="checkbox" name="has_water" id="id_has_water" class="iamradio1">
-                                    <label for="Electricity">Electricity</label>
+                                    <label for="id_has_electricity">Electricity</label>
                                     <input type="checkbox" name="has_electricity" id="id_has_electricity" class="iamradio1">
-                                    <label for="PowerBackup">Power Backup</label>
+                                    <label for="id_has_powerbackup">Power Backup</label>
                                     <input type="checkbox" name="has_powerbackup" id="id_has_powerbackup"  class="iamradio1">
                                 </li>
                             </ul>
@@ -567,19 +567,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-//====this is only for style.css===
-form .page .field select {
-  font-size: 15px!important;
-}
-
-
-
-
-
-

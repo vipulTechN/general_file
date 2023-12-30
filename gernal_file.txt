@@ -29,3 +29,46 @@
                 </ul>
             </div>
         {% endfor %}
+
+
+
+
+
+this is for check required fields
+<script>
+    // Get all the "Next" buttons
+    var nextButtons = document.querySelectorAll(".button-nex");
+  
+    // Add event listeners to the "Next" buttons
+    nextButtons.forEach(function(button, index) {
+      button.addEventListener("click", function() {
+        // Get the current slide and required inputs in that slide
+        var currentSlide = document.getElementsByClassName("input-slide")[index];
+        var inputs = currentSlide.querySelectorAll("input[required]");
+  
+        // Check if all the required inputs in the current slide are filled
+        var isValid = true;
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].value === "") {
+            isValid = false;
+            break;
+          }
+        }
+  
+        if (isValid) {
+          // Proceed to the next slide
+          // Your code to change slides goes here
+  
+          // Enable the "Create User" button if it's the last slide
+          if (index === nextButtons.length - 1) {
+            var createButton = document.querySelector(".input-slide.finish-slide button[type='submit']");
+            createButton.disabled = false;
+          }
+        } else {
+          // Display an error message or take any other action
+          alert("Please fill in all the required fields before proceeding.");
+        }
+      });
+    });
+  </script>
+<button class="button-nex">Next</button>

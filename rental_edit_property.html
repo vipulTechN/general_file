@@ -70,13 +70,13 @@
                    </div>
                    <label for="id_u_property_type_1"> Owner</label>
                    <input type="radio" name="u_property_type" value="owner" required id="id_u_property_type_1"
-                       class="iamradio" checked>
+                       class="iamradio"  {% if property.u_property_type == 'owner' %} checked {% endif %}>
                    <label for="id_u_property_type_2">Agent</label>
                    <input type="radio" name="u_property_type" value="agent" required id="id_u_property_type_2"
-                       class="iamradio">
+                       class="iamradio" {% if property.u_property_type == 'agent' %} checked {% endif %}>
                    <label for="id_u_property_type_3">Builder</label>
                    <input type="radio" name="u_property_type" value="builder" required
-                       id="id_u_property_type_3" class="iamradio">
+                       id="id_u_property_type_3" class="iamradio" {% if property.u_property_type == 'builder' %} checked {% endif %}>
 
                 </div>
                 <div class="field">
@@ -95,19 +95,20 @@
                       Enter City
                    </div>
                    <select name="project_city" id="id_project_city">
-                      <option value="bengaluru">Bengaluru</option>
+
+                      <option value="bengaluru" {% if property.project_city == 'bengaluru' %} selected {% endif %}>Bengaluru</option>
             
-                      <option value="chennai">Chennai</option>
+                      <option value="chennai" {% if property.project_city == 'chennai' %} selected {% endif %}>Chennai</option>
             
-                      <option value="mumbai">Mumbai</option>
+                      <option value="mumbai" {% if property.project_city == 'mumbai' %} selected {% endif %}>Mumbai</option>
             
-                      <option value="hyderabad">Hyderabad</option>
+                      <option value="hyderabad" {% if property.project_city == 'hyderabad' %} selected {% endif %}>Hyderabad</option>
             
-                      <option value="delhi">Delhi</option>
+                      <option value="delhi" {% if property.project_city == 'delhi' %} selected {% endif %}>Delhi</option>
             
-                      <option value="pune">Pune</option>
+                      <option value="pune" {% if property.project_city == 'pune' %} selected {% endif %}>Pune</option>
             
-                      <option value="allindia" selected>All India</option>
+                      <option value="allindia" {% if property.project_city == 'allindia' %} selected {% endif %}>All India</option>
             
                     </select>
                 </div>
@@ -117,7 +118,7 @@
                       Enter Locality
                    </div>
                    <input type="text" placeholder="Enter Locality" name="landmark" maxlength="100" required
-                      id="id_landmark">
+                      id="id_landmark" value="{{ property.landmark }}">
                 </div>
 
 
@@ -126,7 +127,7 @@
                       Property/Society Name
                    </div>
                    <input type="text" placeholder="Society name" name="r_property_name" maxlength="40" required
-                      id="id_r_property_name">
+                      id="id_r_property_name" value="{{ property.r_property_name }}">
                 </div>
 
                 <div class="field">
@@ -134,23 +135,23 @@
                       Apartment/Bhk Type
                    </div>
                    <select name="total_rooms" required id="id_total_rooms">
-                      <option value="" selected>Apartment Type</option>
+                      <option value="" {% if property.total_rooms == '' %} selected {% endif %}>Apartment Type</option>
 
-                      <option value="1RK">1 RK</option>
+                      <option value="1RK" {% if property.total_rooms == '1RK' %} selected {% endif %}>1 RK</option>
 
-                      <option value="1BHK">1 BHK</option>
+                      <option value="1BHK" {% if property.total_rooms == '1BHK' %} selected {% endif %}>1 BHK</option>
 
-                      <option value="2BHK">2 BHK</option>
+                      <option value="2BHK" {% if property.total_rooms == '2BHK' %} selected {% endif %}>2 BHK</option>
 
-                      <option value="3BHK">3 BHK</option>
+                      <option value="3BHK" {% if property.total_rooms == '3BHK' %} selected {% endif %}>3 BHK</option>
 
-                      <option value="4BHK">4 BHK</option>
+                      <option value="4BHK" {% if property.total_rooms == '4BHK' %} selected {% endif %}>4 BHK</option>
 
-                      <option value="5BHK">5 BHK</option>
+                      <option value="5BHK" {% if property.total_rooms == '5BHK' %} selected {% endif %}>5 BHK</option>
 
-                      <option value="villa">Villa</option>
+                      <option value="villa" {% if property.total_rooms == 'villa' %} selected {% endif %}>Villa</option>
 
-                      <option value="commercialspace">Commercial Space</option>
+                      <option value="commercialspace" {% if property.total_rooms == 'commercialspace' %} selected {% endif %}>Commercial Space</option>
 
                    </select>
                 </div>
@@ -161,30 +162,34 @@
                    </div>
                    <select name="available_from" required id="id_available_from">
                       
-                      <option value="" selected>Available from</option>
+                      <option value="" {% if property.available_from == '' %} selected {% endif %}>Available from</option>
 
-                      <option value="immediate">Immediate</option>
+                      <option value="immediate" {% if property.available_from == 'immediate' %} selected {% endif %}>Immediate</option>
 
-                      <option value="within15days">With In 15 Days</option>
+                      <option value="within15days" {% if property.available_from == 'within15days' %} selected {% endif %}>With In 15 Days</option>
 
-                      <option value="within1month">With In 1 Month</option>
+                      <option value="within1month" {% if property.available_from == 'within1month' %} selected {% endif %}>With In 1 Month</option>
 
-                      <option value="morethan1month">More Than 1 Month</option>
+                      <option value="morethan1month" {% if property.available_from == 'morethan1month' %} selected {% endif %}>More Than 1 Month</option>
 
                    </select>
                 </div>
+
                 <div class="field">
                    <div class="label">
                       Furnished Status
                    </div>
-                   <select name="furnished_status" id="id_furnished_status">
-                   <option value="furnished" selected>Furnished</option>
-         
-                   <option value="semi-furnished">Semi-Furnished</option>
-         
-                   <option value="unfurnished">Unfurnished</option>
-         
-                 </select>
+
+                 <select name="furnished_status" id="id_furnished_status">
+
+                  <option value="furnished" {% if property.furnished_status == 'furnished' %} selected {% endif %}>Furnished</option>
+
+                  <option value="semi-furnished" {% if property.furnished_status == 'semi-furnished' %} selected {% endif %}>Semi-Furnished</option>
+
+                  <option value="unfurnished" {% if property.furnished_status == 'unfurnished' %} selected {% endif %}>Unfurnished</option>
+
+              </select>
+
                 </div>
                 <div class="field">
                    <div class="label">
@@ -192,17 +197,17 @@
                    </div>
                    <select name="available_for" required id="id_available_for">
 
-                      <option value="" selected>Available for</option>
+                      <option value="" {% if property.available_for == '' %} selected {% endif %}>Available for</option>
 
-                      <option value="family">Family</option>
+                      <option value="family" {% if property.available_for == 'family' %} selected {% endif %}>Family</option>
 
-                      <option value="bachelors">Bachelors</option>
+                      <option value="bachelors" {% if property.available_for == 'bachelors' %} selected {% endif %}>Bachelors</option>
 
-                      <option value="familybachelors">Family/Bachelors</option>
+                      <option value="familybachelors" {% if property.available_for == 'familybachelors' %} selected {% endif %}>Family/Bachelors</option>
 
-                      <option value="company-guests">Company Guests</option>
+                      <option value="company-guests" {% if property.available_for == 'company-guests' %} selected {% endif %}>Company Guests</option>
 
-                      <option value="commercial">Commercial</option>
+                      <option value="commercial" {% if property.available_for == 'commercial' %} selected {% endif %}>Commercial</option>
 
                    </select>
                 </div>
@@ -211,7 +216,7 @@
                    <div class="label">
                       Age of Construction
                    </div>
-                   <input type="number" placeholder="Age of Construction" name="age_of_construction" min="0" required id="id_age_of_construction">
+                   <input type="number" placeholder="Age of Construction" name="age_of_construction" min="0" value="{{ property.age_of_construction }}" required id="id_age_of_construction">
                 </div>
 
                 <div class="field">
@@ -228,7 +233,7 @@
                    <div class="label">
                       Min. Pricing(/month)
                    </div>
-                   <input type="number" placeholder=" Min. Pricing" name="min_price_filter" step="0.01" required id="id_min_price_filter">
+                   <input type="number" placeholder=" Min. Pricing" value="{{ property.min_price_filter }}" name="min_price_filter" step="0.01" required id="id_min_price_filter">
                 </div>
 
                 <div class="field">
@@ -236,14 +241,14 @@
                       Max. Pricing(/month)
                    </div>
                    <input type="number" placeholder="Max. Pricing" name="max_price_filter" step="0.01" required
-                      id="id_max_price_filter">
+                      id="id_max_price_filter" value="{{ property.max_price_filter }}">
                 </div>
                 <div class="field">
                    <div class="label">
                       Security Deposit
                    </div>
                    <input type="number" placeholder="Security Deposit" name="security_deposit" step="0.01" required
-                      id="id_security_deposit">
+                      id="id_security_deposit" value="{{ property.security_deposit }}">
                 </div>
 
                 <div class="field">
@@ -251,7 +256,7 @@
                       Maintenance Cost
                    </div>
                    <input type="number" placeholder="Security Deposit" name="maintenance_cost" step="0.01" required
-                      id="id_maintenance_cost">
+                      id="id_maintenance_cost" value="{{ property.maintenance_cost }}">
                 </div>
 
                 <div class="field">
@@ -259,7 +264,7 @@
                       Floor No.
                    </div>
                    <input type="number" placeholder="Floor No." name="floor_number" min="0" required
-                      id="id_floor_number">
+                      id="id_floor_number" value="{{ property.floor_number }}">
                 </div>
 
                 <div class="field">
@@ -267,29 +272,29 @@
                        Notice Period
                     </div>
                     <input type="number" placeholder="Floor No." name="notice_period" min="0"
-                       id="id_notice_period">
+                       id="id_notice_period" value="{{ property.notice_period }}" >
                  </div>
 
                 <div class="field">
                    <div class="label">
                       Amenities
                    </div>
-                   <input type="text" placeholder="Amenities" name="amenities" maxlength="300" id="id_amenities">
+                   <input type="text" placeholder="Amenities" name="amenities" maxlength="300" id="id_amenities" value="{{ property.amenities }}">
                 </div>
 
                 <div class="field">
                    <div class="label">
                     Lifts
                    </div>
-                   <select name="lifts" required id="id_lifts">
+                   <select name="lifts" id="id_lifts" required>
 
-                      <option value="" selected>Total lifts</option>
+                     <option value="" {% if property.lifts == '' %} selected {% endif %}>Select</option>
 
-                      <option value="yes">YES</option>
+                     <option value="yes" {% if property.lifts == 'yes' %} selected {% endif %}>YES</option>
 
-                      <option value="no">NO</option>
+                     <option value="no" {% if property.lifts == 'no' %} selected {% endif %}>No</option>
 
-                   </select>
+                 </select>
                 </div>
 
                 <div class="field">
@@ -297,15 +302,15 @@
                       Facing
                    </div>
                    <select name="facing" required id="id_facing">
-                      <option value="" selected>Select facing</option>
+                      <option value="" {% if property.facing == '' %} selected {% endif %}>Select facing</option>
 
-                      <option value="north">North</option>
+                      <option value="north" {% if property.facing == 'north' %} selected {% endif %}>North</option>
 
-                      <option value="south">South</option>
+                      <option value="south" {% if property.facing == 'south' %} selected {% endif %}>South</option>
 
-                      <option value="east">East</option>
+                      <option value="east" {% if property.facing == 'east' %} selected {% endif %}>East</option>
 
-                      <option value="west">West</option>
+                      <option value="west" {% if property.facing == 'west' %} selected {% endif %}>West</option>
                    </select>
                 </div>
 
@@ -314,11 +319,11 @@
                       Ac Rooms
                    </div>
                    <select name="ac_rooms" required id="id_ac_rooms">
-                      <option value="" selected> Ac Rooms</option>
+                      <option value="" {% if property.ac_rooms == '' %} selected {% endif %}> Ac Rooms</option>
             
-                      <option value="yes">YES</option>
+                      <option value="yes" {% if property.ac_rooms == 'yes' %} selected {% endif %}>YES</option>
             
-                      <option value="no">NO</option>
+                      <option value="no" {% if property.ac_rooms == 'no' %} selected {% endif %}>NO</option>
             
                     </select>
                 </div>
@@ -329,11 +334,11 @@
                    </div>
                    <select name="power_backup" required id="id_power_backup">
 
-                      <option value="" selected>Select Type</option>
+                      <option value="" {% if property.power_backup == '' %} selected {% endif %}>Select Type</option>
 
-                      <option value="yes">YES</option>
+                      <option value="yes" {% if property.power_backup == 'yes' %} selected {% endif %}>YES</option>
 
-                      <option value="no">NO</option>
+                      <option value="no" {% if property.power_backup == 'no' %} selected {% endif %}>NO</option>
 
                    </select>
                 </div>
@@ -343,7 +348,7 @@
                       Decription
                    </div>
                    <textarea name="discription" placeholder="For Good Response describe" required
-                      id="id_discription"></textarea>
+                      id="id_discription" value="{{ property.discription }}"></textarea>
                 </div>
 
                 <div class="field">
@@ -351,7 +356,7 @@
                       Address
                    </div>
                    <input type="text" placeholder="Address & pincode" name="address" maxlength="255" required
-                      id="id_address">
+                      id="id_address" value="{{ property.address }}">
                 </div>
 
                 <div class="field btns">
@@ -371,154 +376,42 @@
                    <div class="label">
                       Cover Image
                    </div>
-                   <input type="file" name="project_cover_img" accept="image/*" id="id_project_cover_img">
-                </div>
-                <div class="field" id="imgfields">
-                   <div class="label">
-                      Image No.1
-                      <input type="hidden" name="images-TOTAL_FORMS" value="5" id="id_images-TOTAL_FORMS"><input type="hidden" name="images-INITIAL_FORMS" value="0" id="id_images-INITIAL_FORMS"><input type="hidden" name="images-MIN_NUM_FORMS" value="0" id="id_images-MIN_NUM_FORMS"><input type="hidden" name="images-MAX_NUM_FORMS" value="5" id="id_images-MAX_NUM_FORMS">
-                   </div>
-                   <ul class="imgno1">
-                      <li class="img01flex1">
-                         <select name="images-0-image_type" id="id_images-0-image_type">
-                            <option value="living_room">Living Room</option>
-                          
-                            <option value="bedroom">Bed Room</option>
-                          
-                            <option value="bathroom">Bathroom</option>
-                          
-                            <option value="kitchen">Kitchen</option>
-                          
-                            <option value="balcony">Balcony</option>
-                          
-                          </select>
-                          <input type="file" name="images-0-image" accept="image/*" id="id_images-0-image">
-                      </li>
-                      <li class="img01flex2">
-                         <label for="id_images-0-DELETE">Delete:</label>
-                          <input type="checkbox" name="images-0-DELETE" id="id_images-0-DELETE"><input type="hidden" name="images-0-id" id="id_images-0-id"><input type="hidden" name="images-0-property_rental" id="id_images-0-property_rental">
-
-                      </li>
-                   </ul>
+                   <input type="file" name="project_cover_img" accept="image/*" id="id_project_cover_img" value="{{ property.project_cover_img }}">
                 </div>
 
-                <div class="field" id="imgfields">
-                   <div class="label">
-                      Image No.2
-                   </div>
-                   <ul class="imgno1">
-                      <li class="img01flex1">
-                         <select name="images-1-image_type" id="id_images-1-image_type">
-                            <option value="living_room">Living Room</option>
-                          
-                            <option value="bedroom">Bed Room</option>
-                          
-                            <option value="bathroom">Bathroom</option>
-                          
-                            <option value="kitchen">Kitchen</option>
-                          
-                            <option value="balcony">Balcony</option>
-                          
-                          </select>
-
-                         <input type="file" name="images-1-image" accept="image/*" id="id_images-1-image">
-                      </li>
-                      <li class="img01flex2">
-                         <label for="id_images-1-DELETE">Delete:</label> 
-                         <input type="checkbox" name="images-1-DELETE" id="id_images-1-DELETE"><input type="hidden" name="images-1-id" id="id_images-1-id"><input type="hidden" name="images-1-property_rental" id="id_images-1-property_rental">
-
-                      </li>
-                   </ul>
+                {% for image in property.gallery_images.all %}
+            <div class="field" id="imgfields">
+                <div class="label">
+                    Image No.{{ forloop.counter }}
                 </div>
+                <ul class="imgno1">
+                    <li class="img01flex1">
+                        <select name="images-{{ forloop.counter0 }}-image_type" id="id_images-{{ forloop.counter0 }}-image_type">
+                            <!-- Options for image types -->
+                            <!-- Example: Living Room -->
+                            <option value="living_room" {% if image.image_type == 'living_room' %} selected {% endif %}>Living Room</option>
+                            <!-- Add options for other image types -->
+                        </select>
+                        <input type="file" name="images-{{ forloop.counter0 }}-image" accept="image/*" id="id_images-{{ forloop.counter0 }}-image">
+                    </li>
+                    <li class="img01flex2">
+                        <label for="id_images-{{ forloop.counter0 }}-DELETE">Delete:</label>
+                        <input type="checkbox" name="images-{{ forloop.counter0 }}-DELETE" id="id_images-{{ forloop.counter0 }}-DELETE">
+                        <input type="hidden" name="images-{{ forloop.counter0 }}-id" value="{{ image.id }}">
+                        <!-- You might need to include a hidden input for the image ID -->
+                        <input type="hidden" name="images-{{ forloop.counter0 }}-property_rental" value="{{ property.id }}">
+                        <!-- You may need to adjust this hidden input to match your model structure -->
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
 
-                <div class="field" id="imgfields">
-                   <div class="label">
-                      Image No.3
-                   </div>
-                   <ul class="imgno1">
-                      <li class="img01flex1">
-                         <select name="images-2-image_type" id="id_images-2-image_type">
-                            <option value="living_room">Living Room</option>
-                          
-                            <option value="bedroom">Bed Room</option>
-                          
-                            <option value="bathroom">Bathroom</option>
-                          
-                            <option value="kitchen">Kitchen</option>
-                          
-                            <option value="balcony">Balcony</option>
-                          
-                          </select>
-                          <input type="file" name="images-2-image" accept="image/*" id="id_images-2-image">
-                      </li>
-                      <li class="img01flex2">
-                        <label for="id_images-2-DELETE">Delete:</label>
-                         <input type="checkbox" name="images-2-DELETE" id="id_images-2-DELETE"><input type="hidden" name="images-2-id" id="id_images-2-id"><input type="hidden" name="images-2-property_rental" id="id_images-2-property_rental">
-
-                      </li>
-                   </ul>
-                </div>
-
-                <div class="field" id="imgfields">
-                   <div class="label">
-                      Image No.4
-                   </div>
-                   <ul class="imgno1">
-                      <li class="img01flex1">
-                         <select name="images-3-image_type" id="id_images-3-image_type">
-                            <option value="living_room">Living Room</option>
-                          
-                            <option value="bedroom">Bed Room</option>
-                          
-                            <option value="bathroom">Bathroom</option>
-                          
-                            <option value="kitchen">Kitchen</option>
-                          
-                            <option value="balcony">Balcony</option>
-                          
-                          </select>
-                          <input type="file" name="images-3-image" accept="image/*" id="id_images-3-image">
-                      </li>
-                      <li class="img01flex2">
-                      <label for="id_images-3-DELETE">Delete:</label>
-                       <input type="checkbox" name="images-3-DELETE" id="id_images-3-DELETE"><input type="hidden" name="images-3-id" id="id_images-3-id"><input type="hidden" name="images-3-property_rental" id="id_images-3-property_rental">
-
-                      </li>
-                   </ul>
-                </div>
-
-                <div class="field" id="imgfields">
-                   <div class="label">
-                      Image No.5
-                   </div>
-                   <ul class="imgno1">
-                      <li class="img01flex1">
-                         <select name="images-4-image_type" id="id_images-4-image_type">
-                            <option value="living_room">Living Room</option>
-                          
-                            <option value="bedroom">Bed Room</option>
-                          
-                            <option value="bathroom">Bathroom</option>
-                          
-                            <option value="kitchen">Kitchen</option>
-                          
-                            <option value="balcony">Balcony</option>
-                          
-                          </select>
-                          <input type="file" name="images-4-image" accept="image/*" id="id_images-4-image">
-                      </li>
-                      <li class="img01flex2">
-                      <label for="id_images-4-DELETE">Delete:</label> 
-                      <input type="checkbox" name="images-4-DELETE" id="id_images-4-DELETE"><input type="hidden" name="images-4-id" id="id_images-4-id"><input type="hidden" name="images-4-property_rental" id="id_images-4-property_rental">
-                      </li>
-                   </ul>
-
-                </div>
                 <div class="field btns">
                    <a href="#page2dets"><button type="button" class="prev-2 prev" id="page3prev">Previous</button></a>
                    <a href="#page4dets"><button type="button" class="next-2 next" id="page3next">Next</button>
                    </a>
                 </div>
+
              </div>
 
 
@@ -534,6 +427,7 @@
                    <button type="submit" class="submit">Submit</button>
                 </div>
              </div>
+
           </form>
        </div>
     </div>

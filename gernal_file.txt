@@ -1,19 +1,9 @@
-<!-- edit_property.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Property</title>
-    <!-- Add necessary CSS stylesheets or link to your CSS file -->
-    <!-- ... -->
-</head>
-<body>
-
-<!-- Your form for editing property -->
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div>
-        <!-- Display existing images -->
-        {% for image in property.gallery_images.all %}
+ <select name="ac_rooms" required id="id_ac_rooms">
+       <option value="" {% if property.ac_rooms == '' %} selected {% endif %}>Ac Rooms</option>
+       <option value="yes" {% if property.ac_rooms == 'yes' %} selected {% endif %}>YES</option>
+       <option value="no" {% if property.ac_rooms == 'no' %} selected {% endif %}>NO</option>
+ </select>
+{% for image in property.gallery_images.all %}
             <div class="field" id="imgfields">
                 <div class="label">
                     Image No.{{ forloop.counter }}
@@ -39,14 +29,3 @@
                 </ul>
             </div>
         {% endfor %}
-        
-        <!-- Allow user to add new images -->
-        <!-- Add fields for new images, similar to the existing images -->
-        <!-- ... -->
-        
-        <input type="submit" value="Update Property">
-    </div>
-</form>
-
-</body>
-</html>

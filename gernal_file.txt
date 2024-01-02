@@ -1,4 +1,5 @@
-             <div class="field" id="imgfields">
+//html page3dets section for images        
+     <div class="field" id="imgfields">
                             <div class="label">
                                 Image No.1
                             </div>
@@ -45,3 +46,79 @@
                                 </li>
                             </ul>
                         </div>
+
+
+
+
+
+
+
+
+
+
+<style>
+.img01flex2{
+    display: flex;
+    justify-content: space-between;
+    margin-top:15px;
+}
+.image-preview{
+    overflow: hidden;
+}
+
+.image-preview,.image-path{
+    width: 45%;
+    height: 200px;
+}
+
+.image-path textarea{
+ font-weight: 400!important;
+ padding: 1px!important;
+ font-size: 16px;
+ overflow: hidden;
+}
+
+.image-path textarea::-webkit-scrollbar{
+display: none;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+.img0flex0{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+#imgfields {
+  width: 80%!important;
+  height: 300px;
+}
+.foreditpage{
+    display: flex;
+    width: 50%;
+}
+.forcleardel{
+    margin-left: -70px;
+height: 65%!important;
+margin-top: 5px;
+}
+
+@media only screen and (max-width:768px){
+    .forcleardel{
+        margin-left: -30px;
+    margin-top:3px;
+    }
+    .image-preview,.image-path{
+        height: 100px;
+    }
+    .image-path textarea{
+        font-size: 11px;
+       }
+.img01flex2 {
+    margin-top: 5px;
+}
+}
+</style>

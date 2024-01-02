@@ -1,43 +1,47 @@
-   .image-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Adjust the gap between image items */
-}
-
-.image-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 200px; /* Adjust the width of each image item */
-}
-
-.image-preview img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.image-type select,
-.image-update input[type="file"],
-.image-actions input[type="checkbox"],
-.image-actions input[type="hidden"] {
-    margin-bottom: 5px;
-}
-<div class="image-container">
-                                <div class="image-item">
+             <div class="field" id="imgfields">
+                            <div class="label">
+                                Image No.1
+                            </div>
+                            <ul class="imgno1">
+                                <li class="img0flex0" >
                                     <div class="image-preview">
-                                        <img src="{{ form.instance.image.url }}" alt="Current Image">
+                                        <img src="https://www.shutterstock.com/image-vector/flat-vector-cute-cartoon-panda-600nw-2343798945.jpg" alt="">
                                     </div>
-                                    <div class="image-details">
-                                        <div class="image-type">
-                                            {{ form.image_type }}
-                                        </div>
-                                        <div class="image-update">
-                                            {{ form.image }}
-                                        </div>
-                                        <div class="image-actions">
-                                            {{ form.DELETE }}
-                                            {{ form.id }}
-                                        </div>
-                                    </div>
+                                    <div class="image-path">
+                                        <label for="" class="label">Image Url</label>
+                                       
+                                    <textarea name="" id="">https://www.shutterstock.com/image-vector/flat-vector-cute-cartoon-panda-600nw-2343798945.jpg</textarea>
                                 </div>
+                                </li>
+                                <li class="img01flex1">
+                                           // {{ form.image_type }}
+                                    <select name="" id="">
+
+                                        <option value="image_1">Image 1</option>
+    
+                                        <option value="image_2">Image 2</option> 
+    
+                                        <option value="image_3">Image 3</option>
+    
+                                        <option value="image_4">Image 4</option>
+    
+                                        <option value="image_5">Image 5</option>
+    
+                                    </select>
+
+                                    <input type="file" name="" accept="image/*" id="">
+
+                                </li>
+
+                                <li class="img01flex2">
+                                    <div class="foreditpage">
+                                    <label for="">Delete</label>
+                                    <input type="checkbox" class="forcleardel">
+                                </div>
+                                <div class="foreditpage">
+                                        <label for="">clear</label>
+                                        <input type="checkbox" class="forcleardel">
+                                    </div>
+                                </li>
+                            </ul>
                         </div>

@@ -1,53 +1,218 @@
-//html page3dets section for images        
-     <div class="field" id="imgfields">
-                            <div class="label">
-                                Image No.1
-                            </div>
-                            <ul class="imgno1">
-                                <li class="img0flex0" >
-                                    <div class="image-preview">
-                                        <img src="https://www.shutterstock.com/image-vector/flat-vector-cute-cartoon-panda-600nw-2343798945.jpg" alt="">
-                                    </div>
-                                    <div class="image-path">
-                                        <label for="" class="label">Image Url</label>
-                                       
-                                    <textarea name="" id="">https://www.shutterstock.com/image-vector/flat-vector-cute-cartoon-panda-600nw-2343798945.jpg</textarea>
-                                </div>
-                                </li>
-                                <li class="img01flex1">
-                                           // {{ form.image_type }}
-                                    <select name="" id="">
+    .imagesIcon {
+    background: url('../static/images/toolsimg.jpg');
+    width: 70px;
+    height: 70px;
+    background-size: 1560px 149px;
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal;
+    background-repeat: no-repeat;
+    }
+.imagesIcon.icon_thum {
+    background-position: -983px -40px;
+}
+.imagesIcon.icon_thum1 {
+    background-position: -190px -40px;
+}
+.imagesIcon.icon_thum2 {
+    background-position: -358px -40px;
+}
+.imagesIcon.icon_thum3 {
+    background-position: -758px -40px;
+}
+.imagesIcon.icon_thum4{
+    background-position: -543px -40px;
+}
 
-                                        <option value="image_1">Image 1</option>
-    
-                                        <option value="image_2">Image 2</option> 
-    
-                                        <option value="image_3">Image 3</option>
-    
-                                        <option value="image_4">Image 4</option>
-    
-                                        <option value="image_5">Image 5</option>
-    
-                                    </select>
+.ShiIcons {
+    background: url('../static/images/SHIicons2.png');
+    width: 24.5px;
+    height: 24px;
+    background-size: 450px 287px;
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal;
+    background-repeat: no-repeat;
+  }
+.ShiIcons.icon_toggle {
+    background-position: -346px -24px;
+}
+.index_menu1{
+  right: 16px;
+}
+.ShiIcons.icon_user {
+  background-position: -160px -120px;
+}
+.ShiIcons.icon_user1 {
+  background-position: 0px -95px;
+}
+.ShiIcons.icon_search {
+  background-position: -27px 0px;
+  margin-left: 15px;
+}
+.ShiIcons.icon_search1 {
+  background-position: -1px -71px;
+}
+.ShiIcons.icon_voiceicon {
+  background-position: -286px -98px;
+position: absolute;
+right: 160px; 
+bottom: 17px;
+}
+.ShiIcons.icon_voiceicon1 {
+  background-position: -128px -120px;
+}
+.ShiIcons.icon_cross {
+  background-position: -400px -24px;
+}
+.ShiIcons.icon_phonecall{
+  background-position: -162px -240px;
+}
+.ShiIcons.icon_phonecall1{
+  background-position: -187px -240px;
+}
+.ShiIcons.icon_phonecall2{
+  background-position: -133px 1px;
+} 
+.ShiIcons.icon_cross1 {
+  background-position: 0px -20px;
+}
+/* footer=========================================================================================== */
+.ShiIcons.icon_inst {
+  background-position: -266px -25px;
+}
+.ShiIcons.icon_face {
+  background-position: -187px -25px;
+}
+.ShiIcons.icon_twit {
+  background-position: -239px -25px;
+}
+.ShiIcons.icon_yout {
+  background-position: -213px -25px;
+}
+.ShiIcons.icon_what {
+  background-position: -345px -74px;
+}
+.ShiIcons.icon_time {
+  background-position: -133px -239px;
+}
+.ShiIcons.icon_home {
+  background-position: -424px -97px;
+}
+.ShiIcons.icon_blog {
+  background-position: -293px -216px;
+}
+.ShiIcons.icon_eye {
+  background-position: -402px -191px;
+}
+.ShiIcons.icon_careers {
+  background-position: -398px -120px;
+}
+.ShiIcons.icon_testimonials{
+  background-position: -319px -167px;
+}
+.ShiIcons.icon_tc{
+  background-position: -292px -167px;
+}
+.ShiIcons.icon_search2{
+  background-position: -54px -73px;
+}
+.copyright{
+  background-color: #fff;
+}
+/* update==================================== */
+ /* =====propertydetial page icon start============ */
+ .ShiIcons.icon_share1 {
+  background-position: -135px -214px;
+}
+.ShiIcons.icon_save {
+  background-position: -53px -96px;
+}
+.ShiIcons.icon_gallery{
+  position: absolute;
+  background-position: -51px 1px;
+}
+ /* =====propertydetial page icon end============ */
+/* =========property listing icons start===== */
+.ShiIcons.icon_share {
+  background-position: -26px -94px;
+  margin-top: -7px;
+  margin-right:28px ;
+}
+.ShiIcons.icon_location{
+  background-position: -132px -97px;
+}
+/* =========property listing icons end===== */
+.ShiIcons1 {
+  background: url('../static/images/SHIicons3.png');
+  width: 24px;
+  height: 24px;
+  background-size: 450px 287px;
+  display: inline-block;
+  vertical-align: middle;
+  font-style: normal;
+  background-repeat: no-repeat;
+}
+.ShiIcons1.icon_link {
+  background-position: 0px -2px;
+}
+.ShiIcons1.icon_mail {
+  background-position:-27px -2px;
+}
+.ShiIcons1.icon_calci{
+  background-position: -78px -2px;
+}
+.ShiIcons1.icon_faq{
+  background-position: -160px -2px;
+}
+.ShiIcons1.icon_about{
+  background-position: -133px -3px;
+}
+.ShiIcons1.icon_services{
+  background-position: -106px -2px;
+}
+/* update==================================== */
 
-                                    <input type="file" name="" accept="image/*" id="">
+.ShiIcons2{
+    background: url('../static/images/SHIicons1.webp');
+    width: 95px;
+    height: 65px;
+    background-size: 450px 287px;
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal;
+    background-repeat: no-repeat;
+  }
+.ShiIcons2.icon_prestige{
+  background-position: -3px -62px;
+}
+.ShiIcons2.icon_shobha{
+  background-position: -92px -62px;
+}
+.ShiIcons2.icon_godrej{
+  background-position: -186px -62px;
+}
+.ShiIcons2.icon_assetz{
+  background-position: -278px -62px;
+}
+.ShiIcons2.icon_shriram{
+  background-position: 2px -127px;
+}
+.ShiIcons2.icon_Salarpuria{
+  background-position: -94px -127px;
+}
 
-                                </li>
-
-                                <li class="img01flex2">
-                                    <div class="foreditpage">
-                                    <label for="">Delete</label>
-                                    <input type="checkbox" class="forcleardel">
-                                </div>
-                                <div class="foreditpage">
-                                        <label for="">clear</label>
-                                        <input type="checkbox" class="forcleardel">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-
-
-
-
+ /* search icons inteernal impliment End */
+ .ShiIcons3 {
+  background: url('../static/images/SHIicons1.webp');
+  width: 29px;
+  height: 23px;
+  background-size: 408px 287px;
+  display: inline-block;
+  vertical-align: middle;
+  font-style: normal;
+  background-repeat: no-repeat;
+}
+ .ShiIcons3.icon_thumG {
+  background-position: -243px -4px;
+} 

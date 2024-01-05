@@ -1,38 +1,32 @@
-            <a href="#Livingroom"><button class="btns hsactive" type="submit">Living Room</button></a>
-            <a href="#MasterPlan"><button class="btns" type="submit">Master Plan</button></a>
-            <a href="#TypicalPlan"><button class="btns" type="submit">Typical Plan</button></a>
-            <a href="#Location"><button class="btns" type="submit" >Location</button></a>
-            <a href="#1Bhk"><button class="btns" type="submit">1 Bhk</button></a>
+{% if user_post.project_society_name %}
+                {% for image in user_post.images.all %}
+                  <a href="#{{ image.image_type }}"><button class="btns hsactive" type="submit">{{ image.image_type }}</button></a>
+                {% endfor %}
+            {% else %}
+                  <p>Sorry Somthing Went Wrong</p>
 
+            {% endif %}
 
+<!--this is differen-->
+{% if user_post.project_society_name %}
+              <div class="swipewrapper">
+                <div class="swiper9 mySwiper11">
+                  <div class="swiper-wrapper s11">
+                    {% for image in user_post.images.all %}
+                      <div class="swiper-slide ss11">
+                        <a href="#." id="{{ image.image_type }}"> 
+                          <img src="{{ image.image.url }}" title="{{ image.image_type }}" alt="{{ image.image_type }}"> 
+                        </a>
+                      </div> <!-- end section -->
+                    {% endfor %}
+                  </div>
+                  <div class=" nextbut1 swiper-button-next"></div>
+                  <div class=" prevbut1 swiper-button-prev"></div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+              
+          {% else %}
+              <p>Sorry Somthing Went Wrong</p>
+          {% endif %}
 
-
-        <div class="swipewrapper">
-          <div class="swiper9 mySwiper11">
-            <div class="swiper-wrapper s11">
-              <div class="swiper-slide ss11">
-                <a href="#." id="Livingroom"> <img src="{% static 'images/p4_500.jpg' %}" loading="lazy" alt=""></a>
-              </div> <!-- end section -->
-
-              <div class="swiper-slide ss11">
-                <a href="#." id="MasterPlan"><img src="{% static 'images/p5_500.jpg' %}" loading="lazy" alt=""></a>
-              </div><!-- end section -->
-
-              <div class="swiper-slide ss11">
-                <a href="#." id="TypicalPlan"><img src="{% static 'images/p8_500.jpg' %}" loading="lazy" alt=""></a>
-              </div><!-- end section -->
-
-              <div class="swiper-slide ss11">
-                <a href="#." id="Location"><img src="{% static 'images/p9_500.jpg' %}" loading="lazy" alt=""></a>
-              </div><!-- end section -->
-
-              <div class="swiper-slide ss11">
-                <a href="#." id="1Bhk"><img src="{% static 'images/p1_500.jpg' %}" loading="lazy" alt=""></a>
-              </div><!-- end section -->
-
-            </div>
-            <div class=" nextbut1 swiper-button-next"></div>
-            <div class=" prevbut1 swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>

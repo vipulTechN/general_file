@@ -1,0 +1,27 @@
+//   <!-- ===bhk strating price and sqft change start====== -->
+function showPricing(bhk) {
+  const bhkElements = [
+    'oneBHKDetails',
+    'twoBHKDetails',
+    'threeBHKDetails',
+    'fourBHKDetails',
+    'fiveBHKDetails'
+  ];
+
+  bhkElements.forEach(elementId => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.style.display = 'none';
+    }
+  });
+
+  const indexToShow = bhk - 1;
+  if (indexToShow >= 0 && indexToShow < bhkElements.length) {
+    const selectedElementId = bhkElements[indexToShow];
+    const selectedElement = document.getElementById(selectedElementId);
+    if (selectedElement) {
+      selectedElement.style.display = 'flex';
+    }
+  }
+}
+//   <!-- ===bhk strating price and sqft change end====== -->

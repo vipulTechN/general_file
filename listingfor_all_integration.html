@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ListingPage</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./assets/vendor/swiper/swiper-bundle1.css">  in base (home).html -->
-    <!-- <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.css">    in base (home).html -->
-    <!-- <link rel="stylesheet" href="./assets/css/shiicons.css">  in base (home).html  -->
     <link rel="stylesheet" href="{% static 'css/listing.css'%}">
     <style>
         .ShiIcons.icon_broucher {
@@ -854,7 +851,8 @@
                         </div>
                         <div class="mob-bottom">
                         <a href="#."><button class="rbbutton1" type="submit"><i class="ShiIcons icon_phonecall2"></i> Contact owner</button> </a>
-                            <a href="{% url 'pg_property_detail' property.slug %}" ><button class="rbbutton1" type="submit"><i class="ShiIcons icon_broucher"></i> View details</button> </a>
+                            <a href="{% url 'pg_property_detail' property.slug %}" ><button class="rbbutton1" type="submit">
+                                <i class="ShiIcons icon_broucher"></i> View details</button> </a>
                         <a href="#."><button class="rbbutton1" type="submit" >Check loan eligibility</button></a>
                         </div>
                     </div>
@@ -869,9 +867,5 @@
  
 </div>
 <!--mobile property listing end ======== -->
-
-<!-- <script src="./assets/js/jquery3-3-1.js"></script>
-<script src="./assets/vendor/swiper/swiper-bundle1.js"></script>
-<script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>   All are in base(home).html -->
 <script src="{% static 'js/mainswiper.js' %}"></script>
 {% endblock %}

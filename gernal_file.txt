@@ -1,0 +1,8 @@
+function handleSelectChange(selectName, currentVal) {
+  $("select").not("[name='" + selectName + "']").find("option").prop('selected', false);
+  $("select").not("[name='" + selectName + "']").find("option[value='" + currentVal + "']").prop('selected', true);
+}
+$("select[name='student1'], select[name='project_city'], select[name='student3']").change(function() {
+  const currentVal = $(this).val();
+  handleSelectChange($(this).attr('name'), currentVal);
+});

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 this model is for old property
 Prop_ID = models.AutoField(primary_key=True)  # prop id will be our primary key based on this id the property individual page will work.
 
@@ -223,3 +224,13 @@ Prop_ID = models.AutoField(primary_key=True)  # prop id will be our primary key 
 
     #Time stamp for showing at what time the particular property has been listen in the site.
     timestamp = models.DateTimeField(default=datetime.now)
+=======
+function handleSelectChange(selectName, currentVal) {
+  $("select").not("[name='" + selectName + "']").find("option").prop('selected', false);
+  $("select").not("[name='" + selectName + "']").find("option[value='" + currentVal + "']").prop('selected', true);
+}
+$("select[name='student1'], select[name='project_city'], select[name='student3']").change(function() {
+  const currentVal = $(this).val();
+  handleSelectChange($(this).attr('name'), currentVal);
+});
+>>>>>>> 319d8d7c6173a3b4bc0f0028e6fb47c9059ee489

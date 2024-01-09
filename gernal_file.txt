@@ -1,236 +1,41 @@
-<<<<<<< HEAD
-this model is for old property
-Prop_ID = models.AutoField(primary_key=True)  # prop id will be our primary key based on this id the property individual page will work.
+      <div class="mobilesidenav" id="up22">
 
-    # builder name will get stored here related to a particular property.
-    BuilderName = models.ForeignKey(Builder, on_delete=models.SET_NULL, null=True)
+      class="activeElement"
 
-    # property name will be stored here.
-    PropertyName = models.CharField(max_length=100, unique=True)
+          <style>
+              .activeElement{
+                background-image: linear-gradient(180deg, #1faac9, #053a49);
+                color: #fff;
+              }
+              .btnsss2{
+                font-weight: 700;
+              }
+              .btnsss2:hover{
+                background-image: linear-gradient(180deg, #1faac9, #053a49);
+              }
+            </style>
 
-    #####New Version
-    show_in_slider = models.BooleanField(default=False, verbose_name='Show in Homepage Slider')
-    #####New Version
-    show_in_tranding_slider = models.BooleanField(default=False, verbose_name='Show in Homepage Slider Top')
-    #####New Version
-    r_property_type = models.CharField(max_length=20, default='sell')
+////////this js will be in new-header.js file/////
 
-    slug = models.CharField(max_length=550, default="", null=True) #This slug is used for showing the property name and location in the url.
-
-    #we are using this for improvement of search functionality if the user will write the query in small letter than with the help of this table the filteration will be done.
-    SearchName = models.CharField(max_length=500, default="") #This field will help us to make the general search work better !(always store the values in small letters with no space).
-
-     # We are using this to add Title to the property.
-    PageTitle = models.CharField(max_length=300, blank=True, default="")
-    
-    # We are using this to add MetaDescription to the property.
-    MetaDescription = models.TextField(max_length=2000, blank=True, default="")
-    
-    # We are using this to add MetaKeyword to the property.
-    MetaKeyword = models.CharField(max_length=1000, blank=True, default="")
-
-    # property images will get uploaded here, inside the (SHIProj\media\Property_images) folder.
-    Property_Image = models.ImageField(upload_to='media/Property_images')
-
-    # Master Plan will get uploaded here, inside the (SHIProj\media\Master_Plans) folder.
-    Master_Plan = models.ImageField(upload_to='media/Master_Plans', blank=True, default="")
-    masterPlan_altTag = models.CharField(max_length=50, blank=True)
-
-    #Typical Floor Plan will get uploaded here inside (Typical_Plan)
-    Typical_Plan = models.ImageField(upload_to='media/Typical_Plan', blank=True, default="")
-    typicalPlan_altTag = models.CharField(max_length=50, blank=True)
-
-    #location map will get uploaded here inside the (SHIProj\media\Master_Plans) folder
-    Location_Map = models.ImageField(upload_to='media/Location_Map', blank=True, default="")
-    locationPlan_altTag = models.CharField(max_length=50, blank=True)
-
-    # Master Plan will get uploaded here, inside the (SHIProj\media\Floor_Plan_1BHK) folder.
-    Floor_Plan_1BHK = models.ManyToManyField(Multiple1BHK, blank=True, default="")
-
-    # Floor_Plan_2BHK will get uploaded here, inside the (SHIProj\media\Floor_Plan_2BHK) folder.
-    Floor_Plan_2BHK = models.ManyToManyField(Multiple2BHK, blank=True, default="")
-    
-    # Floor_Plan_3BHK will get uploaded here, inside the (SHIProj\media\Floor_Plan_3BHK) folder.
-    Floor_Plan_3BHK = models.ManyToManyField(Multiple3BHK, blank=True, default="")
-    
-    # Floor_Plan_4BHK will get uploaded here, inside the (SHIProj\media\Floor_Plan_4BHK) folder.
-    Floor_Plan_4BHK = models.ManyToManyField(Multiple4BHK, blank=True, default="")
-
-    #plots data will we here...
-    Plot = models.ImageField(upload_to='media/Plot', blank=True, default="")
-
-    #plot area will we here
-    Plot_Area = models.CharField(max_length=100, blank=True, default="")
-
-    #plot Price will we here
-    Plot_Price = models.CharField(max_length=100, blank=True, default="")
-    
-     #Villa data will we here...
-    Villa = models.ImageField(upload_to='media/Plot', blank=True, default="")
-
-    #plot area will we here
-    Villa_Area = models.CharField(max_length=100, blank=True, default="")
-
-    #plot Price will we here
-    Villa_Price = models.CharField(max_length=100, blank=True, default="")
-    #video related to a particular property will get stored here inside the (SHIProj\media\Videos) folder.
-    # Video = models.FileField(upload_to='media/Videos', blank=True, default="")
-
-    #Here we will upload all the images for gallery
-    Gallery_Images = models.ManyToManyField(MultipleImageGallery, blank=True, default="")
-
-    #Property Structure will we here
-    Project_Structure = models.ManyToManyField(projectStructure, blank=True, default="")
-
-    #Property video url will be save here
-    propertyvideoURL = models.CharField(max_length=10000, blank=True, default="")
-
-    # property price will be stored here.
-    Property_Price = models.CharField(max_length=50, default="")
-
-    # BHK1 property price will be stored here.
-    ExOneBHK = models.CharField(max_length=100, blank=True, default="")
-
-    #BHK1 size will store here
-    OneBHKArea = models.CharField(max_length=100, blank=True, default="")
-    
-    # BHK2 property price will be stored here.
-    ExTwoBHK = models.CharField(max_length=99, blank=True, default="")
-
-    #BHK2 SIZE will store here
-    TwoBHKArea = models.CharField(max_length=100, blank=True, default="")
-    
-    # # BHK3 property price will be stored here.
-    ExThreeBHK = models.CharField(max_length=90, blank=True, default="")
-
-    #BHK3 Size data will Store here
-    ThreeBHKArea = models.CharField(max_length=100, blank=True, default="")
-    
-    # # BHK3 property price will be stored here.
-    ExFourBHK = models.CharField(max_length=80, blank=True, default="")
-
-    #FourBHK Size data will store here...
-    FourBHKArea = models.CharField(max_length=100, blank=True, default="")
-    
-    #This column will store the information about the Property Possession Date. 
-    PossessionDate = models.CharField(max_length=80, blank=True)
-
-    #This column will store the information about the Property RERA Number. 
-    ReraNo = models.CharField(max_length=80, blank=True)
-
-    #This column will store the information about NoOfUnits present in a particular property.
-    NoOfUnits = models.CharField(max_length=80, blank=True)
-    
-    # property description will be stored here.
-    List_Property_Description = models.ManyToManyField(Description,blank=True, default="")
-
-    Property_Description = models.TextField(max_length=5000, null=True, default="")
-
-    PropertyStat = [
-        ('Ongoing', 'Ongoing'),
-        ('Completed', 'Completed'),
-        ('Ready to move', 'Ready to move'),
-    ]  # choices for property status.
-    # property status will be stored here.
-    PropertyStatus = models.CharField(max_length=50, choices=PropertyStat)
-
-    PropertyType = [
-        ('Residential', 'Residential'),
-        ('Commercial', 'Commercial'),
-    ]  # choices for propertytype.
-    # property type will be stored here.
-    Property_Type = models.CharField(
-        max_length=20, choices=PropertyType, default='Residential')
-
-    upcomingProp = [
-        ('Yes', 'Yes'),
-        ('No', 'No'),
-    ]  # choices for property status.
-    # property status will be stored here.
-    UpcomingProperty = models.CharField(max_length=50, choices=upcomingProp, default='No')
-    
-    HotProp = [
-        ('Yes', 'Yes'),
-        ('No', 'No'),
-    ]  # choices for property status.
-    # property status will be stored here.
-    HotProperty = models.CharField(max_length=50, choices=HotProp, default='No')
-
-    SliderImg = [
-        ('Yes', 'Yes'),
-        ('No', 'No'),
-    ]  # choices for property status.
-    # property status will be stored here.
-    HomeBanner = models.CharField(max_length=50, choices=SliderImg, default='No')
-
-
-    SubProp = [
-        ('Plot', 'Plot'),
-        ('Villa', 'Villa'),
-        ('Apartment', 'Apartment'),
-        ('Rowhouse', 'Rowhouse'),
-        ('Farmhouse', 'Farmhouse'),
-        ('Building', 'Building'),
-        ('Flat', 'Flat'),
-        #this is used to add the sub property dropdown menu in the general search(this will help the user to get the correct result).
-    ]
-    #subproptype details will get stored here.
-    SubPropType = models.CharField(max_length=60, choices=SubProp, default="")
-    
-    MultipleLocations = [
-        ('Bangalore', 'Bangalore'),
-        ('Chennai', 'Chennai'),
-        ('Goa', 'Goa'),
-        ('Pune', 'Pune'),
-        ('Mumbai', 'Mumbai'),
-        ('Delhi', 'Delhi'),
-        ('Punjab', 'Punjab'),
-        ('Hyderabad', 'Hyderabad'),
-    ]  # choices for locations.
-    # property locations will get stored here.
-    Location = models.CharField(max_length=50, choices=MultipleLocations)
-
-    project_city = models.CharField(max_length=50, choices=MultipleLocations, default="Chennai")
-
-    # this data will help you to define write location
-    Nearby_Facilities = models.ManyToManyField(Nearbylocation,blank=True, default="")
-
-    # property address will get stored here.
-    PropertyAddress = models.CharField(max_length=500)
-
-    # BHK values will be stored here.
-    BHK = models.CharField(max_length=50)  
-
-    # property avaliability will get stored here and the default value will be Sale.
-    Avaliable_For = models.CharField(max_length=50, default="For Sale")
-
-    #Property_Amenities is the foreign model that we are using here to store the amenities related to the particular property.
-    About_Builder = models.ManyToManyField(aboutBuilder,blank=True, default="")
-    
-    #Project_Area will store the information about in how many acres the project is Build.
-    Project_Area = models.CharField(max_length=100, default=None)
-
-    #No of Tower will store the information about in how many Tower the project is Build.
-    No_of_Tower = models.CharField(max_length=100, null=True, blank=True)
-
-    #No of Floor will store the information about in how many Floor the project is Build.
-    No_of_Floor = models.CharField(max_length=100, null=True, blank=True)
-    
-    #PerSqftPrice will store the information about the cost of per square feet of a property.
-    PerSqftPrice = models.CharField(max_length=100, default=None)
-
-    # Google_Map api will get stored here, the google map api key.
-    Google_Map = models.CharField(max_length=10000, default="")
-
-    #Time stamp for showing at what time the particular property has been listen in the site.
-    timestamp = models.DateTimeField(default=datetime.now)
-=======
-function handleSelectChange(selectName, currentVal) {
-  $("select").not("[name='" + selectName + "']").find("option").prop('selected', false);
-  $("select").not("[name='" + selectName + "']").find("option[value='" + currentVal + "']").prop('selected', true);
+var containerElement = document.getElementById("up22");
+var buttonElements = containerElement.getElementsByClassName("btnsss2");
+for (var i = 0; i < buttonElements.length; i++) {
+  buttonElements[i].addEventListener("click", function() {
+    var activeElements = document.getElementsByClassName("activeElement");
+    activeElements[0].className = activeElements[0].className.replace(" activeElement", "");
+    this.className += " activeElement";
+  });
 }
-$("select[name='student1'], select[name='project_city'], select[name='student3']").change(function() {
-  const currentVal = $(this).val();
-  handleSelectChange($(this).attr('name'), currentVal);
-});
->>>>>>> 319d8d7c6173a3b4bc0f0028e6fb47c9059ee489
+
+
+////////this js will be in new-index.js file/////
+
+var container = document.getElementById("up");
+var buttons = container.getElementsByClassName("btnsss");
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function() {
+    var currentActive = document.getElementsByClassName("active");
+    currentActive[0].className = currentActive[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}

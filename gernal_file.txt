@@ -1,41 +1,55 @@
-      <div class="mobilesidenav" id="up22">
 
-      class="activeElement"
+============html==========
 
-          <style>
-              .activeElement{
-                background-image: linear-gradient(180deg, #1faac9, #053a49);
-                color: #fff;
-              }
-              .btnsss2{
-                font-weight: 700;
-              }
-              .btnsss2:hover{
-                background-image: linear-gradient(180deg, #1faac9, #053a49);
-              }
-            </style>
+<div class="ripple"></div>
 
-////////this js will be in new-header.js file/////
 
-var containerElement = document.getElementById("up22");
-var buttonElements = containerElement.getElementsByClassName("btnsss2");
-for (var i = 0; i < buttonElements.length; i++) {
-  buttonElements[i].addEventListener("click", function() {
-    var activeElements = document.getElementsByClassName("activeElement");
-    activeElements[0].className = activeElements[0].className.replace(" activeElement", "");
-    this.className += " activeElement";
-  });
+============css===========
+/*Ripple*/
+
+.ripple {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  transform: scale(0);
+  background-image: linear-gradient(180deg, #1faac9c1, #053a4981);
+  border-radius: 50%;
+  position: fixed;
+  z-index: 999;
+}
+
+/*Animate Function*/
+
+.animate {
+  animation: ripple-mo 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes ripple-mo {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
 }
 
 
-////////this js will be in new-index.js file/////
+===============js===========
 
-var container = document.getElementById("up");
-var buttons = container.getElementsByClassName("btnsss");
-for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", function() {
-    var currentActive = document.getElementsByClassName("active");
-    currentActive[0].className = currentActive[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
+
+//Ripple Event Handler
+var drawRipple = function(ev) {
+  var x = ev.clientX;
+  var y = ev.clientY;
+  var node = document.querySelector(".ripple");
+  var newNode = node.cloneNode(true);
+  newNode.classList.add("animate");
+  newNode.style.left = ev.clientX - 5 + "px";
+  newNode.style.top = ev.clientY - 5 + "px";
+  node.parentNode.replaceChild(newNode, node);
+};
+
+//Ripple Triggers
+window.addEventListener("click", drawRipple);

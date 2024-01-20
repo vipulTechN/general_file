@@ -1,0 +1,140 @@
+:root {
+  --textBlue: hsl(238, 29%, 16%);
+  --textRed: hsl(14, 88%, 65%);
+  --textVeryDarkBlue: hsl(237, 12%, 33%);
+  --textDarkBlue: hsl(240, 6%, 50%);
+  --gradientViolet: hsl(273, 75%, 66%);
+  --gradientBlue: hsl(240, 73%, 65%);
+  --dividerGray: hsl(240, 5%, 91%);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(var(--gradientViolet), var(--gradientBlue));
+}
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1600px;
+  padding: 155px 0px 80px 0px;
+  margin: 0px auto;
+
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 2.5rem;
+  min-width: 33rem;
+  width: 90%;
+  margin: 0 2.5rem 6rem;
+  padding: 0 2.3rem 4.8rem;
+  background-image: url(../Faq_Shi/images/bg-pattern-desktop.svg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 45rem;
+}
+
+.card__img {
+  position: relative;
+}
+
+
+.card__img-mobile {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 25rem;
+}
+
+
+.card__text {
+  margin-top: 200px;
+}
+
+.card__text h1 {
+  margin: 0;
+  padding-bottom: 1.5rem;
+  font-size:32px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--textBlue);
+}
+
+.accordion-item{
+  margin-top: 15px;
+border: 1px solid rgba(128, 128, 128, 0.662)!important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #fff !important;
+  color: var(--textRed)!important;
+}
+
+.accordion-button:focus {
+  z-index: 3;
+  box-shadow: none !important;
+}
+
+.accordion-button{
+font-size: 17px!important;
+font-weight: 600;
+}
+.accordion-body p{
+  text-align: justify;
+  color: grey;
+  font-weight: 500;
+  font-size: 14px;
+}
+.accordion-button:focus {
+  box-shadow:none!important;
+}
+.accordion-button:hover {
+  cursor: pointer;
+  color: var(--textRed);
+} 
+@media only screen and (min-width:400px)and (max-width:767px){
+  .card__img-mobile {
+    max-width: 18rem!important;
+  }
+  .card{
+    background-size: 26rem!important;
+  }
+}
+@media only screen and (max-width:768px){
+  .main{
+    padding: 90px 0px 40px 0px;
+  }
+.card{
+  background-size: 18.5rem;
+}
+  .card__text {
+    margin-top: 115px;
+}
+.card__text h1 {
+  margin: 0;
+  padding-bottom: 0px;
+  font-size: 24px;
+}
+.accordion-button{
+  font-size: 13px!important;
+  font-weight: 600;
+  }
+}

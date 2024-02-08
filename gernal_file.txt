@@ -1,59 +1,127 @@
-============506==========
-.right-listsection {
-  width: 100%;
+=====new js===========
+$(document).ready(function () {
+  $(window).scroll(function () {
+    var scrollY = $(window).scrollTop();
+    if (scrollY > 0) {
+      $(".shiform").css("top", "20px");
+      $(".shiform").css("position", "sticky");
+    }
+    if (scrollY >= 1100) {
+      $(".shiform").css("top", "115px");
+      $(".brand-logo").css("display", "none");
+      $(".shiform").css("height", "auto");
+
+    }
+    else if (scrollY >= 2500) {
+      $(".shiform").css("position", "sticky");
+    }
+    else {
+      $(".shiform").css("display", "flow");
+      $(".brand-logo").css("display", "flow");
+      $(".shiform").css("height", "auto");
+    }
+  });
+});
+
+
+=============
+.propdetail-right {
+  width: 28%;
   height: auto;
-  display: block;
+  border-radius: 10px;
+}
+=========
+
+
+
+======new form css=======
+
+.shiform {
+ width: 100%;
+ height: auto;
+ border-radius: 15px;
+ padding: 15px 30px;
+ border: 1px solid #c7c9d6;
+ background-image: linear-gradient(180deg, #f4fcff 0%, #fff 100%);
+}
+
+.form-control-lg {
+  min-height: 0px;
+  padding: 0rem;
+}
+
+.shiform .brand-logo {
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  object-fit: fill;
+  border-radius: 50%;
+  box-shadow: 0px 0px 6px 2px rgb(30,110,140);
+}
+
+.shiform .brand-title {
   margin-top: 10px;
-  padding: 10px;
-  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #1faac9;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
-.right-top {
+.shiform .inputs {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.shiform label,
+input {
+  display: block;
   width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
 }
 
-.right-middle {
-  width: 100%;
-  padding:20px 0px;
+.shiform label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-bottom: 4px;
 }
 
-.forselling{
-  height: auto;
+.shiform input::placeholder {
+  color: gray;
 }
 
-=====line 538==========
-.right-bottom {
-  width: 100%;
-  height: auto;
+.shiform input,
+.inputs textarea {
+  padding-left: 20px;
+  font-size: 14px;
+  height: 33px;
+  border-radius: 50px;
+}
+
+.inputs textarea {
+  height: 50px;
+}
+
+.shiform button {
+  padding: 6px 20px;
   margin-top: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-======= line 580 ======
-.rm-box {
-  height: auto;
-  background-color: #fff;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.30);
+  border: none;
   border-radius: 5px;
-}
-.rm-row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+  margin-left: 20%;
+  background-color:#1B6C9F;
+  color: #fff;
 }
 
-====1476=======
-  .right-top {
-    align-items: normal;
-    height: auto;
-  }
+.shiform button:hover {
+  box-shadow: none;
+}
 
-  .forselling{
-    height: auto;
-  }
+.shiform h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

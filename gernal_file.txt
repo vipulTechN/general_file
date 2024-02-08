@@ -1,0 +1,59 @@
+============506==========
+.right-listsection {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.right-top {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right-middle {
+  width: 100%;
+  padding:20px 0px;
+}
+
+.forselling{
+  height: auto;
+}
+
+=====line 538==========
+.right-bottom {
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+======= line 580 ======
+.rm-box {
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.30);
+  border-radius: 5px;
+}
+.rm-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+====1476=======
+  .right-top {
+    align-items: normal;
+    height: auto;
+  }
+
+  .forselling{
+    height: auto;
+  }

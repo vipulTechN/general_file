@@ -1,127 +1,1149 @@
-=====new js===========
-$(document).ready(function () {
-  $(window).scroll(function () {
-    var scrollY = $(window).scrollTop();
-    if (scrollY > 0) {
-      $(".shiform").css("top", "20px");
-      $(".shiform").css("position", "sticky");
-    }
-    if (scrollY >= 1100) {
-      $(".shiform").css("top", "115px");
-      $(".brand-logo").css("display", "none");
-      $(".shiform").css("height", "auto");
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Godrej Ananda in Bagalur, North Bangalore | Get Brochure">
+  <meta name="twitter:description" content="Godrej Ananda Phase 3 in Bagalur, North Bangalore, Near Bangalore Airport and Hennur loaction launching new apartment tower. Luxury 2/3 BHK @80L-1.40Cr">
+  <title>Godrej Ananda in Bagalur, North Bangalore | Get Brochure</title>
+  <meta name="description" content="Godrej Ananda Phase 3 in Bagalur, North Bangalore, Near Bangalore Airport and Hennur loaction launching new apartment tower. Luxury 2/3 BHK @80L-1.40Cr">
+  <meta name="keywords" content="godrej ananda, godrej ananda phase 3, godrej ananda hennur, godrej ananda 3 bhk, godrej properties near bangalore airport, new apartments near hebba, flats near hennur, apartments in bangalore near airport, 3 bhk flat in bangalore near airport, godrej ananda brochure">
+  <meta name="google-site-verification" content="H89hRXUWiL0HiVuGPxsqgmOJuzSdeAUBR_r9nwD5030" />
+  <!-- Favicons -->
+  <link href="assets/img/logo.jpg" rel="icon">
+  <link href="assets/img/logo.jpg" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+   .main-btn-circle,.main-btn-rect,.popup-content h6{font-family:Roboto,sans-serif;text-transform:uppercase}.popup-content h6,.share-btn{font-weight:100;text-transform:uppercase}.services .icon-box{padding:30px;position:relative;overflow:hidden;margin:0;background:#fff;box-shadow:0 10px 29px 0 rgb(68 88 144 / 10%);transition:.3s ease-in-out;border-radius:4px;text-align:center;border-bottom:3px solid #fff;width:100%}.features .nav-link{background-color: rgb(7,94,174);}.features .nav-link h4{color:white;}.aboutBtn{background-color:rgb(199,55,114);border:none;border-radius:10px;height:42px;box-shadow:0 0 2px;}.main-btn-circle,.main-btn-rect{position:relative;margin:0;color:ivory;background-color:rgb(199,55,114);font-size:25px;letter-spacing:1px;outline:0;cursor:pointer;z-index:100}.main-btn-rect{padding:10px 80px;line-height:30px}.main-btn-rect:after,.main-btn-rect:before{position:absolute;content:'';top:0;width:0%;height:100%;background-color:rgba(255,255,240,.2);-webkit-transition:width .3s;-o-transition:width .3s;transition:width .3s}.main-btn-rect:before{left:0}.main-btn-rect:after{right:0}.main-btn-rect:hover:after,.main-btn-rect:hover:before{width:50%}.main-btn-circle{height:40px;width:40px;-webkit-border-radius:50%;border-radius:100%;line-height:40px;-webkit-transition:box-shadow .3s;-o-transition:box-shadow .3s;transition:box-shadow .3s}.main-btn-circle:hover{-webkit-box-shadow:inset 2px 1px 0 20px rgba(255,255,240,.2);-moz-box-shadow:inset 2px 1px 0 20px rgba(255,255,240,.2);box-shadow:inset 2px 1px 0 20px rgba(255,255,240,.2)}.popup{position:fixed;top:100%;width:100%;height:100%;z-index:10001}.popup.active{top:0;background-color:rgba(3,3,3,.98);transition:background-color .6s,opacity .6s}.popup .main-btn-rect{padding:10px 100px}.popup .popup-content{position:absolute;top:50%;left:50%;max-height:568px;min-width:320px;margin-top:150px;padding:25px;background-color:rgb(248,244,240);color:#070000;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-ms-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);-webkit-transform:translateX(-50%) translateY(-50%);-moz-transform:translateX(-50%) translateY(-50%);-o-transform:translateX(-50%) translateY(-50%);transition:margin .6s;-webkit-transition:margin .6s;-moz-transition:margin .6s;-o-transition:margin .6s}.share-btn,.share-btn:hover{color:ivory;text-decoration:none}.popup.active .popup-content{margin-top:0}.popup-content h6{display:table;font-size:16px;text-align:center;margin:10px auto}.form-group{position:relative;width:90%;margin:0 auto}.newform#send input,.newform#send textarea,.newform#send select{position:relative;margin-bottom:32px;width:100%;height:29px;font-family:RobotoLight,sans-serif;text-indent:20px;background-color:transparent;outline:0;border:none;border-bottom:1px solid #070000;-webkit-transition:border .6s;-o-transition:border .6s;transition:border .6s}.newform#send input:focus,.newform#send textarea:focus{border-bottom:1px solid #3fada8}.newform label{position:absolute;top:0;right: 1px; line-height:28px;-webkit-transition:color .5s;-o-transition:color .5s;transition:color .5s}.newform#send input:focus+label,.newform#send textarea:focus+label{color:#3fada8}.newform#send .txt{line-height:22px;left:2px}.newform#send .main-btn-rect{position:relative;display:block;padding:12px 80px;margin:0 auto;font-size:14px;background-color:rgb(199,55,114);}.newform#send .main-btn-rect i{margin-right:5px}.popup .fade-out{position:absolute;top:-20px;right:-20px;text-align:center;font-size:15px}.share-wrap{position:absolute;display:inline-table;top:67%;left:50%;transform:translate(-50%,-50%);padding:15px;text-align:center}.share-btn{padding:7px 25px;cursor:pointer;font-size:14px;font-family:Lobster,sans-serif;background-color:rgba(63,173,168,.8);border-radius:5px;transition:background-color .5s;-webkit-transition:background-color .5s;-moz-transition:background-color .5s;-o-transition:background-color .5s}.share-btn:hover{background-color:#3fada8}.resp-sharing-button__icon,.resp-sharing-button__link{display:inline-block}.resp-sharing-button__link{text-decoration:none;color:#fff;margin:2px}.resp-sharing-button{border-radius:5px;transition:background-color .5s;padding:6px 9px;-webkit-transition:background-color .5s;-moz-transition:background-color .5s;-o-transition:background-color .5s}.resp-sharing-button__icon svg{width:1em;height:1em;margin-right:.4em;vertical-align:top}.resp-sharing-button--small svg{margin:0;vertical-align:middle}@media only screen and (max-width:768px){h1{font-size:25px}h2{font-size:14px}form#send .main-btn-rect{padding:7px 60px;font-size:14px}}.buttombtn{border:none;margin-top:5%;border-radius:40px;height:40px;width:50%;background-color:rgb(199,55,114);color:#fff}.columnvip{box-sizing:border-box;float:left;width:50%;padding:5px}.rowvip{margin-left:-5px;margin-right:-5px}.rowvip::after{content:"";clear:both;display:table}.tablevip{border-collapse:collapse;border-spacing:0;width:100%;border:1px solid #ddd}.tdvip,.thvip{text-align:left;padding:16px}.thvip{text-align:center}.trvip:nth-child(2n){background-color:#f2f2f2}@media screen and (max-width:600px){.columnvip{width:100%}}/*crousleimagecss*/.captiontitle{/*text-align:center;*/font-family:avenir;font-weight:600;font-size:2vw;color:#fff;text-shadow:0 2px 2px rgba(150,150,150,.5);animation-name:headerenter;animation-duration:5s}@media(max-width:500px){h2.captiontitle{margin-top:2vw;font-family:avenir;font-weight:100;letter-spacing:-.25vw;font-size:4.5vw;color:#fff;text-shadow:-5px 5px 5px black}}#slidy-container{width:100%;overflow:hidden;margin:0 auto 0}.imageslide{height:100%}.centered{position:absolute;top:300px;left:30%;transform:translate(-50%,-50%);z-index:9}.captiontitle{font-size: 45px;/*background-image: linear-gradient(65deg, black, transparent);*/text-shadow:-5px 5px 5px black;margin-left: 2%;}.fontsizenew{color:white;font-size:28px;background-image: linear-gradient(65deg, black, transparent);}@media (max-width:991px){.hgtag1{margin-top:10%;}.centered{position:absolute;top:170px;left:210px;transform:translate(-50%,-50%);z-index:9}.captiontitle{font-size: 15px;background-image: linear-gradient(65deg, black, transparent);margin-left: 2%;}.fontsizenew{color:white;text-align:center;font-size:15px;}#slidy-container{width:100%;overflow:hidden;margin:0% auto 0}.br{display:none}.imageslide{height:250px}}
+  .extraButton{height:50px;margin-top:1%;border-radius:35px;background-color:#3498db}@media screen and (max-width:768px) and (min-width:239px){.captiontitle{margin-top:-9%;}.mt-o{margin-top:-15%}.hgtag1{margin-top:40%;}.hgtag{margin-left: -30%; margin-bottom:10% ;background-image: linear-gradient(45deg, grey, transparent);}.hgtag1{margin-left: -29%;}}#more {display: none;}#more1 {display: none;}.form-inline input,.form-inline label{margin:2px}.form-inline input,.form-inline select{vertical-align:middle;padding:5px;background-color:#fff;border:1px solid #ddd}.form-inline button{padding:10px 20px;background-color:#1e90ff;border:1px solid #ddd;color:#fff;cursor:pointer}.form-inline button:hover{background-color:#4169e1}.hgtag1{margin-top:10%;}.form-inline input,.form-inline select{margin:10px 0}.form-inline{display: flex; flex-direction:column;align-items:stretch}.inlineForm{width: 100%; overflow: hidden; padding: 20px; box-shadow: 0px 0px 3px 0px black; border-radius: 10px;}#neonShadow{height:50px;width:250px;border:none;border-radius:50px;transition:.5s;background-color:#fff;animation:1s infinite glow}#spanNo{display:block;width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;padding-top:2%;padding-right:2.5%;margin-right:0;font-size:1rem;transition:.3s;opacity:1;font-weight:700}.span1{color:red;font-size:25px}@media screen and (max-width:768px){.hgtag1{margin-top:-30%;}#neonShadow{height:30px;width:150px;}.span1{font-size:15px}#spanNo{font-size:.7rem}}@keyframes glow{0%,100%{box-shadow:5px 5px 20px #5d34a8,-5px -5px 20px #5d34a8}50%{box-shadow:5px 5px 20px #51e0d2,-5px -5px 20px #51e0d2}}.pricing .advanced {background: rgb(199,55,114);}.amenitiesimg,.amenitiesimg img{width:100%;height:100%}.proptype{padding: 8px; margin-bottom: 10px;}.amenitiesimg img{object-fit:fill}.topheading{font-size: 20px; margin-bottom: 20px; color: rgb(199,55,114);font-weight: 700;}.imgtop{display:none!important}.newcenter{width:600px;height:auto;position:absolute;top:150px;left:10%;white-space:nowrap;overflow:hidden!important}.newcen{color:#000;background-image:linear-gradient(65deg,rgba(248,244,240,.868),transparent);margin-top:20px;font-weight:600}@media only screen and (max-width:1000px){.newcenter{width:300px;height:auto;position:absolute;top:90px;left:2%;overflow:hidden!important}.newcen{margin-top:5px}.newcenter h1{font-size:20px}.newcenter h2{font-size:18px}.newcenter h3{font-size:15px}.newcenter h4{font-size:13px}}@media only screen and (max-width:768px){.heada,.newa2{position:absolute}.proptype,.videothumb img{width:100%!important}.captiont{font-size:17px!important}.logo{max-width:90px}.fontsizenew{line-height:-60px!important}.newa,.tab-content{display:none}.newa1{display:flow-root;color:#fff;font-weight:600;margin-left:-30%;margin-top:-16%;background-color:#0000007e;width:200px;margin-bottom:10%}.subbutt,.videothumb img,.vpricebox{margin-left:0!important}.newa2{bottom:35px}.heada{top:25%}.pt1{margin-top:15px}.bhklabel{margin-top:-17px;margin-left:6px}#text{margin-top:10px}.videothumb{margin-top:-65px!important}.videothumb img{height:100%!important}.imgbottom{display:none!important}.imgtop{display:flow-root!important}}
+  .formobile{
+    display: none;
+  }
+  @media only screen and (max-width:768px){
+  #slidy {
+    margin-top: 80px!important;
+  }
+  .formobile{
+    display: flow-root;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .forlaptop{
+    display: none;
+  }
+
+}
+</style>
+
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Y2BEPZ7DX"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-9Y2BEPZ7DX'); </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11139463293"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-11139463293');
+    </script>
+
+</head>
+<body>
+  <!-- End Meta Pixel Code -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <div class="logo me-auto">
+        <!--<h1><a href="index.html">Vipul</a></h1>-->
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <a href="#"><img src="assets/img/logo.jpg" alt="" class="img-fluid"></a>
+      </div>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link active" href="#About">About US</a></li>
+          <li><a class="nav-link" href="#Highlights">Highlights</a></li>
+          <li><a class="nav-link" href="#Pricing">Pricing</a></li>
+          <li><a class="nav-link" href="#FloorPlan">FloorPlan</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <div class="header-social-links d-flex align-items-center">
+        <button class="aboutBtn"><a class="cta-btn align-middle popup-btn" data-popup="popup-reg"
+            style="color:white;cursor:pointer;text-align:center;padding:15px;">Book Site Visit</a></button>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
+
+  <div id="slidy-container">
+
+    <div id="slidy" >
+      <img src="assets/img/b-1.jpg" alt="Meadows" class="imageslide">
+      <img src="assets/img/b-2.jpg" alt="Meadows" class="imageslide">
+    </div>
+    <!-- <div class="centered">
+      <br><h1 class="captiontitle hgtag mt-o   heada" data-aos="fade-right" style="width: 100%;">
+            Prestige Lavender Fields
+        </h1><br>
+      <br>
+      <h1 class="captiont hgtag fontsizenew" data-aos="fade-right">
+        Exquisite 4-Bedroom Haven
+      </h1>
+      <br class="br">
+      <h2 class="captiontitle hgtag hgtag1" style="line-height:25px;" data-aos="fade-right">
+        <b class="fontsizenew">Supreme.Elegance.Graceful Living</b>
+      </h2><br>
+      <h2 class="captiontitle hgtag hgtag1" style="line-height:15px;" data-aos="fade-right">
+        <b class="fontsizenew newa2">2451- 3856Sqft: 2.6-3.9Cr Onwards*</b>
+      </h2><br>
+      <h1 class="captiontitle hgtag hgtag1" style="line-height:15px;" data-aos="fade-right">
+        <b class="fontsizenew newa">Whitefield, Bangalore</b>
+      </h1><br>
+      <h2 class="newa1">Whitefield, Bangalore</h2>
+      <button id="neonShadow" class="popup-btn" data-popup="popup-reg">
+        <span id="spanNo">
+          <span class="span1" style="font-weight: 700;">Book Now</span>
+        </span>
+      </button>
+    </div> -->
+
+    <!-- <div class="newcenter" data-aos="fade-right">
+      <h1 class="newcen">Exquisite 4-Bedroom Haven</h1>
+      <h2 class="newcen">Supreme.Elegance.Graceful Living</h2>
+      <h3 class="newcen">2451- 3856Sqft: 2.6-3.9Cr Onwards*</h3>
+      <h4 class="newcen">Whitefield, Bangalore</h4>
+      <button id="neonShadow" class="popup-btn" data-popup="popup-reg" style="margin-top: 20px;">
+        <span class="span1" style="font-weight:700;">Book Now</span>
+      </button>
+    </div> -->
+  </div>
+
+  <!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= Cta Section ======= -->
+    <section id="About" class="cta">
+      <div class="container">
+
+        <div class="row" data-aos="zoom-in">
+          <div class="col-lg-8 text-center text-lg-start">
+            <h3 style="color: rgb(199,55,114);margin-bottom: 20px; text-align: center;">Your Perfect Space, waiting to be Called Home</h3>
+            <h6 style="margin-bottom: 20px; font-size: 17px; font-weight: 600; text-align: center;">Possession 2027</h6>
+            <p style="text-align:justify;">
+              Welcome to the Pinnacle of Elegance and luxury apartment project– <b> Godrej Ananda in Bagalur, North Bangalore</b>. This prestigious township project <b> spread across an expansive 20 acres of area </b>, providing a haven of opulence. Situated amidst the tranquil beauty of this idyllic setting, this presents an exclusive prospect for discerning individuals to acquire their ideal residences. <br> <br>
+              Following the resounding success of <b> Godrej Ananda's phase-1 and phase-2 , we are excited to unveil the eagerly awaited new tower of phase 3 </b>. This new chapter introduces 2/3 bedroom larger dimension fltas units, radiating grandeur at every turn, while accommodating diverse budgetary needs.<br> <br>
+              These luxury apartments in Bagalur, North Bangalore redefine contemporary living, promising a seamless fusion of comfort and exclusivity. Boasting state-of-the-art amenities and meticulously designed interiors, the residences offer a life immersed in pure serenity and indulgence.<br> <br>
+              Designed with utmost consideration for comfort and luxury, all the apartments are spacious and well-ventilated, with large windows welcoming natural light and fresh air into the rooms. The kitchens feature the latest appliances, and the bathrooms are adorned with high-quality fixtures.<br> <br>
+              Residents of <b> Godrej Ananda Phase 3 </b> can indulge in a plethora of amenities, including a swimming pool, gymnasium, kids play area, clubhouse, and more. Conveniently situated near major schools, hospitals, shopping malls, and recreational facilities, this project is the epitome of comfortable and luxurious living. In summary, Godrej Ananda in Bagalur is the perfect abode for those seeking a harmonious blend of comfort and luxury in their living space.<br> <br>
+              If you are looking for properties at an unbeatable price with premium features  then this Godrej project is the best option for you and your family it is open for sale at a convenient and rapidly growing area. Don't miss out on this incredible opportunity – contact us now to receive detailed plans and a brochure showcasing the upcoming towers. Elevate your lifestyle with the best investment choice in North Bangalore!
+            </p>
+          </div>
+          <div class="col-lg-4 cta-btn-container text-center">
+            <div class="inlineForm">
+            <h2 class="topheading">Request a Call Back</h2>
+             <form class="form-inline" action="mail.php" method="post" role="form" id="carform">
+                <input type="hidden" name="mgh" value="GAnanda">
+                <label for="email">Name:*</label>
+                <input type="username" id="Inname" placeholder="Enter Name Here" name="name" required>
+                <label for="pwd">Number:*</label>
+                <input type="tel" id="Innumber" placeholder="Enter Number Here" name="phone" required>
+                <!--This is OTP-->
+                    <button type="button" class="otpbutts sendotp" onclick="sendOTP()">Send OTP</button>
+                    <div id="otpResult"></div>
+                    <input type="text" id="otpInput" placeholder="Enter OTP" required>
+                    <button type="button" class="otpbutts verifyotp" onclick="verifyOTP()">Verify OTP</button>
+                    <p id="otpResult1"></p>
+                <!--This is OTP-->
+                <label for="time">Best Time to Contact You:*</label> 
+                <input type="datetime-local" placeholder="Enter Number Here" name="time" required>
+                <label for="propertiestype" class="pt1">Property type:*</label>
+                <select id="proptype" name="propertytypes" required>
+                  <option value="select">Bhk Type</option>
+                  <option value="2/1+1BHK">2 BHK / 1+1 BHK</option>
+                  <option value="2+1BHK">2+1 BHK</option>
+                </select>
+                <button class="subbutt" type="submit" name="submit" style="background-color:rgb(199,55,114); margin-top: 5px;" disabled>Submit</button>
+              </form>
+            </div>
+            <style>
+                .sendotp{
+                background-color: #3498db!important;
+                }
+                .verifyotp{
+                background-color: lightgreen!important;
+                }
+                .otpbutts{
+                    width: 40%;
+                    border-radius: 10px;
+                    margin-left: 30%;
+                    padding: 5px 5px!important;
+                    border: none;
+                    color: #fff;
+                    font-weight: 600
+                }
+                .otpbutts:hover{
+                    color: black;
+                }
+                .readbut{
+                    border-radius: 10px;
+                    padding: 5px;
+                    background-color: rgb(199,55,114);
+                    border: none;
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: 13px;
+                }
+            </style>
+            <!-- <a class="cta-btn align-middle popup-btn" data-popup="popup-reg"
+              style="cursor:pointer;background-color:rgb(199,55,114);">Enquire Us</a> -->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Cta Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="Highlights" class="features">
+      <div class="container">
+        <div class="row" style="margin-top: -60px;">
+          <div class="col-lg-6 mt-2 mb-tg-0 order-2 order-lg-1">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item" data-aos="fade-up">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
+                  <h3 style="color:rgb(199,55,114);  ">Project Highlights</h3>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="50">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>20 Acres Of Area</h4>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="100">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>7 High Rise Towers</h4>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="150">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>3B+G+28 Floors</h4>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="200">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>2 Acres of Greens</h4>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="250">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>35000 Sq.Ft Lavish Clubhouse</h4>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="300">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>30+ Amenities</h4>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="350">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>3-tier security system</h4>
+                </a>
+              </li>
+              <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="400">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
+                  <h4>Vaastu Compliant</h4>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <figure>
+                  <img src="assets/img/testimonials/side-1.jpg" alt="" class="img-fluid"
+                    style="height: 610px; width: 100%;  margin-top: 17.5%;">
+                </figure>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="400" >
+            <button class="aboutBtn popup-btn" data-popup="popup-reg" style="width: 50%;margin-left: 25%;margin-top: 30px; height: 42px;"><a style="color:white;cursor:pointer;">Download Brochure</a></button>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Features Section -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="Pricing" class="pricing section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2 style="color:rgb(199,55,114);  ">Pricing & Configurations</h2> <br>
+          <!-- <p style="font-size: 20px;font-weight: 600;">Apartments</p> -->
+        </div>
+        <div class="row">
+          <div class="col-lg-5 col-md-6 mt-4 mt-md-0 mx-auto">
+            <div class="box " data-aos="zoom-in" data-aos-delay="100">
+              <span class="advanced">For Sale</span>
+              <h3><b>2 BHK / 1+1 BHK </b></h3>
+              <h4><sup>₹</sup>79.99 - 92.99<sub>lacs*</sub><span> <span> <br><b style="color:black; font-size: 13px;">Onwards</b></span></span></h4><ul>
+                <li>998-1092 Sq.Ft</li>
+              </ul>
+              <div class="btn-wrap">
+                <a class="btn-buy popup-btn" data-popup="popup-reg" style="cursor:pointer;">View Cost Sheet</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-6 mt-4 mt-md-0 mx-auto">
+            <div class="box " data-aos="zoom-in" data-aos-delay="200">
+              <span class="advanced">For Sale</span>
+              <h3><b>2+1 BHK</b></h3>
+              <h4><sup>₹</sup>1588 - 1630<sub>Cr*</sub><span> <br> <span><b style="color:black;font-size: 13px;"> Onwards</b></span></span></h4>
+              <ul>
+                <li>1755-1800 Sq.Ft</li>
+              </ul>
+              <div class="btn-wrap">
+                <a class="btn-buy popup-btn" data-popup="popup-reg" style="cursor:pointer;">View Cost Sheet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Pricing Section -->
+    <!-- ======= Portfolio Section ======= -->
+    <section id="FloorPlan" class="portfolio">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2 style="color:rgb(199,55,114);">Our Floor/Master Plans</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">Floor Plan</li>
+              <li data-filter=".filter-card">Master Plan</li>
+              <li data-filter=".filter-web">Location Map</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/2BHK.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Floor Plan</h4>
+                <p>View Plan</p>
+              </div>
+              <div class="portfolio-links">
+                <a class=" popup-btn" data-popup="popup-reg" title="Plan"><i class="bx bx-plus"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/3BHK.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Floor Plan</h4>
+                <p>View Plan</p>
+              </div>
+              <div class="portfolio-links">
+                <a class=" popup-btn" data-popup="popup-reg" title="Plan"><i class="bx bx-plus"></i></a>
+              </div>
+            </div>
+          </div>    
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/LOCATION.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Location MAp</h4>
+                <p>View Location</p>
+              </div>
+              <div class="portfolio-links">
+                <a class="popup-btn" data-popup="popup-reg" title="Plan"><i class="bx bx-plus"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/masterplan.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Master Plan</h4>
+                <p>View Plan</p>
+              </div>
+              <div class="portfolio-links">
+                <a class=" popup-btn" data-popup="popup-reg" title="Plan"><i class="bx bx-plus"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+    <!-- ======= About Section ======= -->
+    <section id="About" class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6" data-aos="zoom-in">
+            <h3 style="color:rgb(199,55,114); text-align:center;" class="formobile">Live in the Lap of Luxury </h3>
+            <img src="./assets/img/testimonials/side-2.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 d-flex flex-column justify-contents-center" data-aos="fade-left">
+            <div class="content pt-4 pt-lg-0">
+              <h3 style="color:rgb(199,55,114); text-align:center;" class="forlaptop">Live in the Lap of Luxury </h3>
+              <br>
+              <br>
+              <p style="margin-top:-10%;text-align:justify;">
+                Introducing a haven for joy and tranquility, our meticulously crafted homes are designed to bring unparalleled happiness to you and your loved ones. Nestled within a serene environment, we prioritize the comfort and safety of your family, ensuring a warm and secure haven that you can call home. <br> <br>
+Embrace the beauty of life with extended family strolls through our sprawling 2 acres of lush gardens. Let the little ones explore the wonders of childhood in our carefully curated play areas, featuring the Swing Garden, Kids' Play Area, and Pet Park. Foster a sense of well-being in our Therapeutic and Aromatic Gardens, providing a soothing retreat for all family members<span id="dots">...</span> <span id="more">.<br> <br>
+Our commitment to your family's holistic development is reflected in our recreational offerings. Encourage an active lifestyle with a Jogging Track, Skating Rink, and Badminton Court. Find relaxation in our Reflexology Walk, Relaxation Lounge, and Hammock Garden. Stay fit and healthy in our Outdoor Gym, fully equipped Gym, and Aerobic/Zumba Room. Dive into refreshing moments at our Swimming Pool or create lasting memories in our Open Party Lawn.
+We understand that security is paramount. That's why we provide a Security Cabin, CCTV Surveillance, and 24*7 security, offering you peace of mind so you can focus on building a lifetime of memories with your loved ones.
+Whether it's engaging in a friendly game of Table Tennis or enjoying a multipurpose play court, our recreation facilities are designed to cater to every member of the family. Create bonds that withstand the test of time in an environment that nurtures togetherness and happiness.
+</span> <button onclick="myFunction()" id="myBtn" class="readbut">Read more</button>
+
+              </p>
+              <button class="aboutBtn" style="height:41px;"><a class="cta-btn align-middle popup-btn" data-popup="popup-reg" style="color:white;cursor:pointer;padding: 15px;">Schedule Site
+                  Visit</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End About Section -->
+    <!-- ======= About Section ======= -->
+    <section id="Villa" class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 d-flex flex-column justify-contents-center imgtop" data-aos="fade-left">
+            <h3 style="color:rgb(199,55,114); text-align: center;" class="formobile">Discover Comfort and Convenience</h3><br>
+            <img src="./assets/img/testimonials/side-3.jpg" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6" data-aos="zoom-in">
+            <div class="content pt-4 pt-lg-0">
+              <h3 style="color:rgb(199,55,114); text-align: center;" class="forlaptop">Discover Comfort and Convenience</h3><br>
+              <p style="margin-top:-5%;text-align:justify;">
+                Godrej Ananda offers a world of comfort and convenience for you and your family at Bagalur North Bangalore. <b> Strategically located located within the KIADB Aerospace Park, Near Hennur and Bangalore international airport </b>, Bagalur is intersected by a motorway that seamlessly connects the airport to the city's bustling Central Business District. This prime location lies within a rapidly evolving Tech-corridor, poised to attract a growing influx of professionals and residents in the years to come .<br> <br>
+                Boasting expansive roads that lead to the international airport and excellent connectivity <span id="dots1">...</span><span id="more1"> through the ring road, North Bangalore stands out as a premier destination for both living and investment. <b> The presence of renowned IT parks like Manyata, Ecopolis, and ITSEZ further enhances the area's appeal</b>. <br> <br>
+                <b> Adding to the allure, the upcoming Line-5 (Central Silk Board-KIA Terminal) of Namma Metro is on track for completion by mid-2025 </b>. This metro line will feature key stations in Hebbal, Yelahanka, and Jakkur Cross, significantly bolstering connectivity within North Bangalore and fostering increased capital and rental value in the region. Embrace a lifestyle of ease and growth at Godrej Ananda, where every detail is crafted for your family's well-being.
+                </span> <button onclick="myFunction1()" id="myBtn1" class="readbut">Read more</button>
+              </p>
+              <button class="aboutBtn" style="height:41px;"><a class="cta-btn align-middle popup-btn" data-popup="popup-reg" style="color:white;cursor:pointer;padding: 15px;">Schedule Site Visit</a></button> <br>
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex flex-column justify-contents-center imgbottom" data-aos="fade-left">
+            <img src="./assets/img/testimonials/side-3.jpg" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End About Section -->
+    
+    <!-- ======= Portfolio Section ======= -->
+    <!-- <section id="VPlan" class="portfolio">
+        <div class="container">
+  
+          <div class="section-title" data-aos="fade-up">
+            <h2 style="color:rgb(199,55,114);  ">Villa FloorPlan</h2>
+            <p>Prestige Lavender Fields Floor Plan Structure</p>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+              <ul id="portfolio-flters">
+                <li data-filter="*" class="filter-active">All</li>
+                <li data-filter=".filter-app">Floor Plan</li>
+                <li data-filter=".filter-card">Master Plan</li>
+                <li data-filter=".filter-web">Location Map</li>
+              </ul>
+            </div>
+          </div>
+  
+          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+              
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img src="assets/img/portfolio/vill-floorplan.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Floor Plan</h4>
+                  <p>View Plan</p>
+                </div>
+                <div class="portfolio-links">
+                  <a class=" popup-btn" data-popup="popup-reg" title="Plan"><i class="bx bx-plus"></i></a>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+              <div class="portfolio-wrap">
+                <img src="assets/img/portfolio/masterplan.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Master Plan</h4>
+                  <p>View Plan</p>
+                </div>
+                <div class="portfolio-links">
+                   <a class=" popup-btn" data-popup="popup-reg" title="Plan"><i class="bx bx-plus"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+    <!-- End Portfolio Section -->
+    <!-- ======= Services Section ======= -->
+    <section id="Aminities" class="services section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2 style="color:rgb(199,55,114);  ">Unparalleled Amenities for an Exceptional Lifestyle</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-12 amenitiesimg popup-btn" data-popup="popup-reg" data-aos="zoom-in">
+            <img src="./assets/img/portfolio/amenities.jpg" alt="">
+
+          </div>
+          <!-- <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="100" style="padding: 20px;">
+            <div class="icon-box icon-box-cyan">
+              <div class="icon"><i class="bi bi-dribbble"></i></div>
+              <h4 class="title"><a href="">FootBall Court</a></h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200" style="padding: 20px;">
+            <div class="icon-box icon-box-green">
+              <div class="icon"><i class="bi bi-dice-5"></i></div>
+              <h4 class="title"><a href="">Indoor Games Room</a></h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300" style="padding: 20px;">
+            <div class="icon-box icon-box-blue">
+              <div class="icon"><i class="bi bi-camera-reels-fill"></i></div>
+              <h4 class="title"><a href="">24/7 CCTV Monitoring</a></h4>
+            </div>
+          </div>
+
+        </div> -->
+        </div>
+    </section><!-- End Services Section -->
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2 style="color:rgb(199,55,114);  ">View Gallery</h2>
+        </div>
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/testimonials/G-1.jpg" class="testimonial-img" alt="" style="width:100%;">
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <img src="assets/img/testimonials/G-2.jpg" class="testimonial-img" alt="" style="width:100%;">
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <img src="assets/img/testimonials/G-3.jpg" class="testimonial-img" alt="" style="width:100%;">
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <img src="assets/img/testimonials/G-4.jpg" class="testimonial-img" alt="" style="width:100%;">
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <img src="assets/img/testimonials/G-5.jpg" class="testimonial-img" alt="" style="width:100%;">
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <img src="assets/img/testimonials/G-6.jpg" class="testimonial-img" alt="" style="width:100%;">
+            </div><!-- End testimonial item -->
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section>
+    <!-- End Testimonials Section -->
+
+    <!-- ===video thumbnail start=== -->
+    <section id="videothumb" class="videothumb">
+      <div class="container">
+        <div class="row" >
+          <div class="section-title" data-aos="fade-up">
+            <h2 style="color:rgb(199,55,114);  ">Virtual Tour</h2>
+          </div>
+          <div class="col-lg-12 popup-btn" data-popup="popup-reg">
+            <img src="./assets/img/video_thumbnail.jpg" alt="" style="width: 90%; height: 80%; margin-left: 5%;">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===video thumbnail end=== -->
+
+    <div class="container">
+      <h1 style="text-align:center;color:rgb(199,55,114);  ">Location & Connectivity</h1>
+      <div class="rowvip" data-aos="zoom-in">
+        <div class="columnvip">
+          <table class="tablevip">
+            <tr class="trvip">
+              <th class="thvip" colspan="3">Transporatations</th>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Kempegowda International Airport</td>
+              <td class="tdvip">10 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Proposed Bettahalasuru Metro Station</td>
+              <td class="tdvip">8.6 Km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Proposed Bagalur Metro Stations </td>
+              <td class="tdvip">10 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Halt Railway Station</td>
+              <td class="tdvip">10 km</td>
+            </tr>
+          </table>
+        </div>
+        <div class="columnvip">
+          <table class="tablevip">
+            <tr class="trvip">
+              <th class="thvip" colspan="3">School & Colleges</th>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Oxford Group of institutions</td>
+              <td class="tdvip">8.7 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Delhi Public School </td>
+              <td class="tdvip">7.6 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Reva University</td>
+              <td class="tdvip">8.5km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Brindavan College of Engineering</td>
+              <td class="tdvip">9.3km</td>
+            </tr>
+          </table>
+        </div>
+        <div class="columnvip">
+          <table class="tablevip">
+            <tr class="trvip">
+              <th class="thvip" colspan="3">Hospitals</th>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Relive Hospital</td>
+              <td class="tdvip">3.2 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Cratis Hospital</td>
+              <td class="tdvip">13 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Aster CMI Hospital</td>
+              <td class="tdvip">18 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Cloudnine Hospital</td>
+              <td class="tdvip">19.2 km</td>
+            </tr>
+          </table>
+        </div>
+        <div class="columnvip">
+          <table class="tablevip">
+            <tr class="trvip">
+              <th class="thvip" colspan="3">Tech Parks</th>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Proposed IFCI Financial City</td>
+              <td class="tdvip">700 ms</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Shell India Markets Pvt. Ltd</td>
+              <td class="tdvip">4 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Manyata Tech Park</td>
+              <td class="tdvip">17.5 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">LNT Tech Park</td>
+              <td class="tdvip">16.3 km</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+  
+     <div class="rowvip" data-aos="fade-up">
+        <div class="columnvip sincolvip">
+          <table class="tablevip">
+            <tr class="trvip">
+              <th class="thvip" colspan="3">Hotels, Malls and Resorts</th>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Elements Mall</td>
+              <td class="tdvip">16.5 Mtr</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">RMZ Galleria Mall</td>
+              <td class="tdvip">15.4 km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Royal Orchid Resort</td>
+              <td class="tdvip">15km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Taj Bangalore </td>
+              <td class="tdvip">11.3 km</td>
+            </tr>
+
+          </table>
+        </div>
+        </div>
+
+        <!--  <div class="columnvip">
+          <table class="tablevip">
+            <tr class="trvip">
+              <th class="thvip" colspan="3">Key Locations</th>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Hope Farm Bus stop </td>
+              <td class="tdvip">3.8km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Whitefield Railway Station </td>
+              <td class="tdvip">4.4km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Whitefield (Kadugodi) Metro Station</td>
+              <td class="tdvip">4.6km</td>
+            </tr>
+            <tr class="trvip">
+              <td class="tdvip">Sri Sathya Sai Baba Ashram</td>
+              <td class="tdvip">5.3km</td>
+            </tr>
+          </table>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2 style="color:rgb(199,55,114);  ">Reach Us</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-right">
+            <div class="info" style="height: 544px;">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>Bagalur, North Bangalore, 562149</p>
+              </div>
+
+              <!--<div class="phone">-->
+              <!--  <i class="bi bi-phone"></i>-->
+              <!--  <h4>Call:</h4>-->
+              <!--  <p><a href="tel:6360016487">6360016487</a></p>-->
+              <!--</div>-->
+
+              <!--<iframe src="" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>-->
+              <a class="popup-btn" data-popup="popup-reg" title="Plan"><img src="assets/img/portfolio/LOCATION.jpg"
+                  alt="" style="width:100%" height="350px"></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch " data-aos="fade-left">
+            <form action="mail.php" method="post" role="form" id="carform">
+              <input type="hidden" name="mgh" value="GAnanda">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="FDN1" required>
+                </div>
+                <div class="form-group col-md-6 mt-3 mt-md-0">
+                  <label for="email">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="FDE3">
+                </div>
+              </div>
+
+              <div class="form-group mt-3">
+                <label for="number">Phone Number</label>
+                <input type="tel" class="form-control" name="phone" id="Innumber1" required>
+                <!--This is OTP-->
+                <button type="button" class="otpbutts sendotp mt-2"  onclick="sendOTP1()">Send OTP</button>
+                <div id="otpResultf"></div>
+                <input type="text" id="otpInputf" class="form-control mt-2" placeholder="Enter OTP" required>
+                <button onclick="verifyOTP1()" class="otpbutts verifyotp mt-2" style="background-color: lightgreen;font-weight: 600;">Verify OTP</button>
+                <p id="otpResult1f"></p>
+            <!--This is OTP-->
+              </div>
+
+              <div class="form-group mt-3">
+                <label for="propertiestype">Property type:*</label>
+                <select id="proptype" class="form-control" name="propertytypes" style="width: 100%;" required>
+                  <option value="select">Bhk Type:*</option>
+                  <option value="2/1+1BHK">2 BHK / 1+1 BHK</option>
+                  <option value="2+1BHK">2+1 BHK</option>
+                </select>
+              </div>
+
+              <div class="form-group mt-3">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="enquiry" rows="3"></textarea>
+              </div>
+              
+              <div class="form-group mt-3">
+                <label for="time">Best Time to Contact You*</label>
+                <input type="datetime-local" class="form-control" name="time" required>
+              </div>
+              
+              <div class="text-center"><button type="submit" class="buttombtn" name="submit" disabled>Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Godrej Ananda</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="#">SHI Developement</a>
+        <p style="background-color:black;color:white;">Disclaimer: This website is not an official site and it
+          belongs
+          to the authorized channel partner for information purpose only.</p>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="popup-reg" class="popup">
+    <div class="popup-content" style="overflow-y:scroll;height:500px;">
+      <div class="event-header">
+        <h6>Get Instant Response</h6>
+      </div>
+      <form action="mail.php" method="post" id="send" class="newform">
+        <input type="hidden" name="mgh" value="GAnanda">
+        <div class="form-group">
+          <input type="text" placeholder="Enter name..." id="FMN1" name="name" required="required">
+          <label for="name">
+            <i class="fa fa-user"></i>
+          </label>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="Innumber2" placeholder="Enter phone..." name="phone" required="required">
+           <!--This is OTP-->
+          <button type="button" class="otpbutts sendotp" onclick="sendOTP2()">Send OTP</button>
+          <div id="otpResultff"></div>
+          <input type="text" id="otpInputff" class="mt-3" placeholder="Enter OTP" required>
+          <button type="button" class="otpbutts verifyotp" onclick="verifyOTP2()">Verify OTP</button>
+          <p id="otpResult1ff"></p>
+          <!--This is OTP-->
+          <label for="phone">
+            <i class="fa fa-phone"></i>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <input type="email" placeholder="Enter mail..." id="FME3" name="email">
+          <label for="mail">
+            <i class="fa fa-envelope"></i>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <!-- <label class="bhklabel" for="propertiestype" style="color:rgb(121, 121, 121);">Property type:* </label> -->
+            <select id="proptype" name="propertytypes" required style="background-color: transparent; width: 100%;">
+              <option value="select">Property type:*</option>
+              <option value="2/1+1BHK">2 BHK / 1+1 BHK</option>
+              <option value="2+1BHK">2+1 BHK</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+          <textarea placeholder="Enter message..." name="enquiry" id="text"></textarea>
+          <label for="text" class="txt">
+            <i class="fa fa-commenting"></i>
+          </label>
+        </div>
+        
+        <div class="form-group">
+            <lable for="time">Best Time to Contact You*</lable>
+          <input type="datetime-local" name="time" required="required">
+        </div>
+        
+        <button type="submit" class="main-btn-rect" name="submit" value="Send" disabled>
+          <i class="fa fa-paper-plane"></i>Send</button>
+      </form>
+      <span class="fade-out main-btn-circle" style="top:10px;right:10px">╳</span>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  
+   <script>
+         var otpG = Math.floor(1000 + Math.random() * 9000).toString();
+         var otpVerified = false; // Initial OTP verification status
+    function sendOTP() {
+  var mobileNumber = document.getElementById('Innumber').value;
+  console.log("Mobile Number:", mobileNumber);
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = this.responseText;
+
+      // Check if the response contains a success message
+      if (response.includes("success")) {
+        document.getElementById("otpResult").innerText = "OTP sent successfully!";
+      } else {
+        document.getElementById("otpResult").innerText = "Failed to send OTP.";
+      }
+      // You can perform further actions based on the response
     }
-    else if (scrollY >= 2500) {
-      $(".shiform").css("position", "sticky");
+  };
+
+  var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values="+otpG+"&route=otp&numbers=" + encodeURIComponent(mobileNumber);
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+function verifyOTP() {
+  var enteredOTP = document.getElementById("otpInput").value;
+//   var sentOTP = localStorage.getItem("sentOTP");
+
+  if (enteredOTP === otpG) {
+    document.getElementById("otpResult1").innerText = "OTP verification successful!";
+    otpVerified = true; // Update OTP verification status
+    enableSubmitButton(); // Enable submit button after OTP verification
+  } else {
+    document.getElementById("otpResult1").innerText = "OTP verification failed.";
+    otpVerified = false; // Update OTP verification status
+    enableSubmitButton(); // Disable submit button after OTP verification failure
+  }
+}
+function enableSubmitButton() {
+        // Enable or disable the submit button based on the OTP verification status
+        var submitButton = document.querySelector('.subbutt');
+        submitButton.disabled = !otpVerified;
     }
-    else {
-      $(".shiform").css("display", "flow");
-      $(".brand-logo").css("display", "flow");
-      $(".shiform").css("height", "auto");
+</script>
+<script>
+var otpGg = Math.floor(1000 + Math.random() * 9000).toString();
+var otpVerified = false; // Initial OTP verification status
+    function sendOTP1() {
+  var mobileNumber = document.getElementById('Innumber1').value;
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = this.responseText;
+
+      // Check if the response contains a success message
+      if (response.includes("success")) {
+        document.getElementById("otpResultf").innerText = "OTP sent successfully!";
+      } else {
+        document.getElementById("otpResultf").innerText = "Failed to send OTP.";
+      }
+      // You can perform further actions based on the response
     }
+  };
+
+  var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values="+otpGg+"&route=otp&numbers=" + encodeURIComponent(mobileNumber);
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+function verifyOTP1() {
+  var enteredOTP = document.getElementById("otpInputf").value;
+//   var sentOTP = localStorage.getItem("sentOTP");
+
+  if (enteredOTP === otpG) {
+            document.getElementById("otpResult1f").innerText = "OTP verification successful!";
+            otpVerified = true; // Update OTP verification status
+            enableSubmitButton1(); // Enable submit button after OTP verification
+        } else {
+            document.getElementById("otpResult1f").innerText = "OTP verification failed.";
+            otpVerified = false; // Update OTP verification status
+            enableSubmitButton1(); // Disable submit button after OTP verification failure
+        }
+}
+function enableSubmitButton1() {
+        // Enable or disable the submit button based on the OTP verification status
+        var submitButton = document.querySelector('.subbutt');
+        submitButton.disabled = !otpVerified;
+    }
+</script>
+<script>
+         var otpGg = Math.floor(1000 + Math.random() * 9000).toString();
+         var otpVerified = false; // Initial OTP verification status
+    function sendOTP2() {
+  var mobileNumber = document.getElementById('Innumber2').value;
+  console.log(mobileNumber);
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = this.responseText;
+
+      // Check if the response contains a success message
+      if (response.includes("success")) {
+        document.getElementById("otpResultff").innerText = "OTP sent successfully!";
+      } else {
+        document.getElementById("otpResultff").innerText = "Failed to send OTP.";
+      }
+      // You can perform further actions based on the response
+    }
+  };
+
+  var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values="+otpGg+"&route=otp&numbers=" + encodeURIComponent(mobileNumber);
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+function verifyOTP2() {
+  var enteredOTP = document.getElementById("otpInputff").value;
+//   var sentOTP = localStorage.getItem("sentOTP");
+
+  if (enteredOTP === otpG) {
+            document.getElementById("otpResult1ff").innerText = "OTP verification successful!";
+            otpVerified = true; // Update OTP verification status
+            enableSubmitButton2(); // Enable submit button after OTP verification
+        } else {
+            document.getElementById("otpResult1ff").innerText = "OTP verification failed.";
+            otpVerified = false; // Update OTP verification status
+            enableSubmitButton2(); // Disable submit button after OTP verification failure
+        }
+}
+function enableSubmitButton2() {
+        // Enable or disable the submit button based on the OTP verification status
+        var submitButton = document.querySelector('.subbutt');
+        submitButton.disabled = !otpVerified;
+    }
+</script>
+
+  <script>
+    $(document).ready(function () {
+      $('.popup-btn').click(function () {
+        var popupBlock = $('#' + $(this).data('popup'));
+        popupBlock.addClass('active')
+          .find('.fade-out').click(function () {
+            popupBlock.css('opacity', '0').find('.popup-content').css('margin-top', '350px');
+            setTimeout(function () {
+              $('.popup').removeClass('active');
+              popupBlock.css('opacity', '').find('.popup-content').css('margin-top', '');
+            }, 600);
+          });
+      });
+    });
+  </script>
+  <script>
+    var timeOnSlide = 3, timeBetweenSlides = 1, animationstring = "animation", animation = !1, keyframeprefix = "", domPrefixes = "Webkit Moz O Khtml".split(" "), pfx = "", slidy = document.getElementById("slidy"); if (void 0 !== slidy.style.animationName && (animation = !0), !1 === animation) { for (var i = 0; i < domPrefixes.length; i++)if (void 0 !== slidy.style[domPrefixes[i] + "AnimationName"]) { animationstring = (pfx = domPrefixes[i]) + "Animation", keyframeprefix = "-" + pfx.toLowerCase() + "-", animation = !0; break } } if (!1 === animation); else { var e, n = slidy.getElementsByTagName("img"), t = n[0].cloneNode(!1); slidy.appendChild(t); var a = n.length, o = (timeOnSlide + timeBetweenSlides) * (a - 1), s = timeOnSlide / o * 100, l = timeBetweenSlides / o * 100, r = 100 / a, m = 0, d = document.createElement("style"); for (d.type = "text/css", d.innerHTML += "#slidy { text-align: left; margin: 0; font-size: 0; position: relative; width: " + 100 * a + "%;  }\n", d.innerHTML += "#slidy img { float: left; width: " + r + "%; }\n", d.innerHTML += "@" + keyframeprefix + "keyframes slidy {\n", i = 0; i < a - 1; i++)m += s, d.innerHTML += m + "% { left: -" + 100 * i + "%; }\n", m += l, d.innerHTML += m + "% { left: -" + (i + 1) * 100 + "%; }\n"; d.innerHTML += "}\n", d.innerHTML += "#slidy { left: 0%; " + keyframeprefix + "transform: translate3d(0,0,0); " + keyframeprefix + "animation: " + o + "s slidy infinite; }\n", document.body.appendChild(d) } $(document).ready(function () { $(".popup-btn").click(function () { var e = $("#" + $(this).data("popup")); e.addClass("active").find(".fade-out").click(function () { e.css("opacity", "0").find(".popup-content").css("margin-top", "350px"), setTimeout(function () { $(".popup").removeClass("active"), e.css("opacity", "").find(".popup-content").css("margin-top", "") }, 600) }) }) });
+  </script>
+  <!--End INternal JS-->
+
+  <script>
+    function myFunction() {
+      var dots = document.getElementById("dots");
+      var moreText = document.getElementById("more");
+      var btnText = document.getElementById("myBtn");
+
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+      }
+    }
+  </script>
+  <script>
+    function myFunction1() {
+      var dots = document.getElementById("dots1");
+      var moreText = document.getElementById("more1");
+      var btnText = document.getElementById("myBtn1");
+
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+      }
+    }
+  </script>
+ 
+ <script>
+  $(document).ready(function () {
+    // Function to show the popup form
+    function showPopupForm() {
+      $('#popup-reg').addClass('active')
+        .find('.fade-out').click(function () {
+          $('#popup-reg').css('opacity', '0').find('.popup-content').css('margin-top', '350px');
+          setTimeout(function () {
+            $('#popup-reg').removeClass('active');
+            $('#popup-reg').css('opacity', '').find('.popup-content').css('margin-top', '');
+          }, 600);
+        });
+    }
+    //   showPopupForm()
+    //  setInterval(showPopupForm, 20000);
   });
-});
+</script>
+</body>
 
-
-=============
-.propdetail-right {
-  width: 28%;
-  height: auto;
-  border-radius: 10px;
-}
-=========
-
-
-
-======new form css=======
-
-.shiform {
- width: 100%;
- height: auto;
- border-radius: 15px;
- padding: 15px 30px;
- border: 1px solid #c7c9d6;
- background-image: linear-gradient(180deg, #f4fcff 0%, #fff 100%);
-}
-
-.form-control-lg {
-  min-height: 0px;
-  padding: 0rem;
-}
-
-.shiform .brand-logo {
-  height: 100px;
-  width: 100px;
-  margin: auto;
-  object-fit: fill;
-  border-radius: 50%;
-  box-shadow: 0px 0px 6px 2px rgb(30,110,140);
-}
-
-.shiform .brand-title {
-  margin-top: 10px;
-  font-weight: 700;
-  font-size: 16px;
-  color: #1faac9;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-.shiform .inputs {
-  text-align: left;
-  margin-top: 10px;
-}
-
-.shiform label,
-input {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.shiform label {
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 2px;
-  margin-bottom: 4px;
-}
-
-.shiform input::placeholder {
-  color: gray;
-}
-
-.shiform input,
-.inputs textarea {
-  padding-left: 20px;
-  font-size: 14px;
-  height: 33px;
-  border-radius: 50px;
-}
-
-.inputs textarea {
-  height: 50px;
-}
-
-.shiform button {
-  padding: 6px 20px;
-  margin-top: 5px;
-  border: none;
-  border-radius: 5px;
-  margin-left: 20%;
-  background-color:#1B6C9F;
-  color: #fff;
-}
-
-.shiform button:hover {
-  box-shadow: none;
-}
-
-.shiform h1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+</html>

@@ -1,849 +1,131 @@
-<!-- This is the file where we are showing data to the user -->
-<?php
-// We need to use sessions, so you should always start sessions using the below code.
-// session_start();
-require_once 'action.php';
-$counter = $db->printTableRowsCount();
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.html');
-	exit;
-}
-// fitch name from  account table to show to the user
-$nameuser = $_SESSION['username'];
 
-// Check if the logged-in user is a superadmin and set the session variable accordingly
-if ($nameuser === $nameuser) { // Replace 'your_superadmin_username' with the actual superadmin's username
-  $_SESSION['is_superadmin'] = true;
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Homes India Booking DataBase</title>
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="./dataimage/nobglogo.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/style.css">
-  <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">-->
-  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css">-->
-  <!-- this is same css of bootstrap 5,0.0 -->
-  <!-- <link rel="stylesheet" href="assets/5.0.0bootstrap.min.css"> -->
-  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script> -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-  <style>
-    /*timer*/
-    .time{background:#000}.clock{position:absolute;color:#17d4fe;font-size:30px;font-family:Orbitron;letter-spacing:7px;margin-left: 25%;}
-    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {border: 2px solid black;}
-    .img{background-image:url('./dataimage/logoimage2.jpg');width: 100%;background-position: center;background-repeat: no-repeat;background-size: cover;}
-    .Processing {color:white;background-color: lightgreen!important;font-weight: 800!important;padding: 19px!important;}
-    .Received {color:white;background-color: green!important;font-weight: 800!important;padding: 19px!important; }
-    .Cancled {color:white;background-color: red!important;font-weight: 800!important;padding: 19px!important;}
-    /* Fixed positioning when scrolling */#fixedBox {position: relative;}.fixed {position: fixed;top: -8px;left: 6%;width: 100%;z-index: 1000;/*background-color: white;border: 1px solid #000;box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3)*/;height:42px;}
-    /*This CSS is for DropDown Users With Search*/.dropdown-select,.dropdown-select:focus,.dropdown-select:hover{background-color:#fff}.dropdown-select,.dropdown-select .option{font-weight:400;line-height:40px;outline:0}select{display:none!important}.dropdown-select{font-weight:700;background-image:linear-gradient(to bottom,rgba(255,255,255,.25) 0,rgba(255,255,255,0) 100%);background-repeat:repeat-x;border-radius:6px;border:1px solid #eee;box-shadow:0 2px 5px 0 rgba(155,155,155,.5);box-sizing:border-box;cursor:pointer;display:block;float:left;font-size:14px;height:42px;padding-left:18px;padding-right:30px;position:relative;text-align:left!important;transition:.2s ease-in-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;width:auto}.dropdown-select.open,.dropdown-select:active{background-color:#fff!important;border-color:#bbb;box-shadow:0 1px 4px rgba(0,0,0,.05) inset}.dropdown-select:after{height:0;width:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid #777;-webkit-transform:origin(50% 20%);transform:origin(50% 20%);transition:125ms ease-in-out;content:'';display:block;margin-top:-2px;pointer-events:none;position:absolute;right:10px;top:50%}.dropdown-select.open:after{-webkit-transform:rotate(-180deg);transform:rotate(-180deg)}.dropdown-select.open .list{-webkit-transform:scale(1);transform:scale(1);opacity:1;pointer-events:auto}.dropdown-select.open .option{cursor:pointer}.dropdown-select.wide{width:25%;top:-10%;border: 2px solid black;}.dropdown-select.wide .list{left:0!important;right:0!important}.dropdown-select .list{box-sizing:border-box;transition:.15s cubic-bezier(.25, 0, .25, 1.75),opacity .1s linear;-webkit-transform:scale(.75);transform:scale(.75);-webkit-transform-origin:50% 0;transform-origin:50% 0;box-shadow:0 0 0 1px rgba(0,0,0,.09);background-color:#fff;border-radius:6px;margin-top:4px;padding:3px 0;opacity:0;pointer-events:none;position:absolute;top:100%;left:0;z-index:999;max-height:250px;overflow:auto;border:1px solid #ddd}.dropdown-select .list:hover .option:not(:hover){background-color:transparent!important}.dropdown-select .dd-search{overflow:hidden;display:flex;align-items:center;justify-content:center;margin:.5rem}.dropdown-select .dd-searchbox{width:90%;padding:.5rem;border:1px solid #999;border-radius:4px;outline:0}.dropdown-select .dd-searchbox:focus{border-color:#12cbc4}.dropdown-select .list ul{padding:0}.dropdown-select .option{cursor:default;padding-left:18px;padding-right:29px;text-align:left;transition:.2s;list-style:none}.dropdown-select .option:focus,.dropdown-select .option:hover{background-color:#f6f6f6!important}.dropdown-select .option.selected{font-weight:600;color:#12cbc4}.dropdown-select .option.selected:focus{background:#f6f6f6}.dropdown-select a{color:#aaa;text-decoration:none;transition:.2s ease-in-out}.dropdown-select a:hover{color:#666}/*This CSS is for DropDown Users With Search End*/.disable{cursor: no-drop;}
-  </style>
-</head>
 
-<body class="img">
-    
-  <!-- Filter Rows Modal Start -->
-  <div class="modal fade" tabindex="-1" id="filterModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Filter Data</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="closeFilter"></button>
-        </div>
-        <div class="modal-body">
-			 <div class="container">
-		          <div class="row">
-				 <!-- Filter inputs -->
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterID" placeholder="ID" >
-		                        <input type="text" class="form-control mb-2" id="filterBookingDate" placeholder="Booking Date" >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterMonth" placeholder="Month" >
-		                        <input type="text" class="form-control mb-2" id="filterBuilder" placeholder="Builder Name" >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterProject" placeholder="Project Name" >
-		                        <input type="text" class="form-control mb-2" id="filterCustumername" placeholder="Customer Name" >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterContactnumber" placeholder="Contact No." >
-		                        <input type="text" class="form-control mb-2" id="filterEmail" placeholder="Email Id" >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterType" placeholder="Unit Type" >
-		                        <input type="text" class="form-control mb-2" id="filterUnit" placeholder="Unit No." >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterSize" placeholder="Unit Size" >
-		                        <input type="text" class="form-control mb-2" id="filterAgreement" placeholder="Agreement Value" >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterCommission" placeholder="Commission %" >
-		                        <input type="text" class="form-control mb-2" id="filterTrevenue" placeholder="Total Revenue" >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterCashBack" placeholder="CashBack %" >
-		                        <input type="text" class="form-control mb-2" id="filterActualRevenue" placeholder="Actual Revenue" >
-            			</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control mb-2" id="filterStatus" placeholder="Status" >
-		                        <input type="text" class="form-control mb-2" id="filterReceived" placeholder="Received Amt." >
-            			</div>
-				<div class="col-md-12">
-					<input type="text" class="form-control mb-2" id="filterSales" placeholder="Sales person" >
-            			</div>
-			  </div>
-			</div>
-        </div>
-         <div class="modal-footer">
-          <!-- Close Modal button -->
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
-          <!-- Clear Filters button -->
-          <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-          <!-- Apply Filters button -->
-          <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- filter rows Modal End -->
-     <!-- Calculator Modal -->
-   <div class="modal fade" id="calculatorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Incentive Calculator</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="calculator-form">
-                        <div class="form-group">
-                            <label for="d1" class="font-weight-bold">Current Salary:</label>
-                            <input type="number" class="form-control" id="d1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="d2" class="font-weight-bold">Generated Revenue</label>
-                            <input type="number" class="form-control" id="d2" required>
-                        </div>
-                    </form>
-                    <div class="mt-3">
-                        <!-- <p>Incentive:</p> -->
-                        <div class="border border-dark d-inline p-2 m-1 bg-success text-white font-weight-bold">Amount: ₹<span id="result">0.00</span></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="calculator-form" class="btn btn-primary">Calculate</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- calculator modal End -->
-  <!-- Add New User Modal Start -->
-  <div class="modal fade" tabindex="-1" id="addNewUserModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add New Booking</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="add-user-form" name="myform" class="p-2" novalidate>
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="date" name="bdate" class="form-control form-control-lg" required>
-                <div class="invalid-feedback">Date is required!</div>
-              </div>
 
-              <div class="col">
-                <input type="month" name="bmonth" class="form-control form-control-lg" required>
-                <div class="invalid-feedback">Month is required!</div>
-              </div>
-            </div>
+<title> Privacy Policy</title>
+<link rel="icon" href="assets/img/comman/favicon.ico" sizes="16x16" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="text" name="developer" class="form-control form-control-lg" placeholder="Enter Builder Name" required>
-                <div class="invalid-feedback">Builder name is required!</div>
-              </div>
+<link rel="shortcut icon" href="assets/img/comman/favicon.ico" type="image/x-icon">
+<link rel="preload" href="assets/css/style.css" as="style" />
+      <link rel="preload" href="assets/js/app.js" as="script" />
+      <link rel="stylesheet" href="assets/css/style.css" />
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-              <div class="col">
-                <input type="text" name="bproject" class="form-control form-control-lg" placeholder="Enter Project Name" required>
-                <div class="invalid-feedback">Project name is required!</div>
-              </div>
-            </div>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="username" name="cname" class="form-control form-control-lg" placeholder="Enter Customer Name" required>
-                <div class="invalid-feedback">Customer name is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="cnumber" class="form-control form-control-lg" placeholder="Enter Contact Number" required>
-                <div class="invalid-feedback">Contact Number is required!</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <input type="email" name="cemail" class="form-control form-control-lg" placeholder="Enter E-mail" required>
-              <div class="invalid-feedback">E-mail is required!</div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="text" name="tproject" class="form-control form-control-lg" placeholder="Enter Project Tpye" required>
-                <div class="invalid-feedback">Project Tpye is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="text" name="unitno" class="form-control form-control-lg" placeholder="Enter Unit Number" required>
-                <div class="invalid-feedback">Unit Number is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="number" name="psize" class="form-control form-control-lg" placeholder="Enter Project Size" required>
-                <div class="invalid-feedback">Project Size is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="cagreement" class="form-control form-control-lg" placeholder="Enter Agreement Value" required>
-                <div class="invalid-feedback">Agreement Value is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="text" name="ccashback" class="form-control form-control-lg" placeholder="Enter Commission %" onkeyup="addCalculate(this.value)" required>
-                <div class="invalid-feedback">Commission % is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="crevenue" class="form-control form-control-lg" placeholder="Total Revenue Amount" required>
-                <div class="invalid-feedback">Revenue Amount is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="text" name="cccashback" class="form-control form-control-lg" placeholder="Enter Cashback %" onkeyup="addCalculate(this.value)" required>
-                <div class="invalid-feedback">Cashback % is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="ccrevenue" class="form-control form-control-lg" placeholder="Actual Revenue Amount" required>
-                <div class="invalid-feedback">Actual Amount is required!</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-            <input type="checkbox" class="btn-check Processing" name="cstatus" id="btn-check-2-outlined" value="Processing" checked>
-            <label class="btn btn-outline-primary" for="btn-check-2-outlined">Processing</label><br><br>
-
-            <input type="radio" class="btn-check Received" name="cstatus" id="success-outlined" value="Received">
-            <label class="btn btn-outline-success" for="success-outlined">Received</label>
-
-            <input type="radio" class="btn-check Cancled" name="cstatus" id="danger-outlined" value="Cancled">
-            <label class="btn btn-outline-danger" for="danger-outlined">Cancled</label>
-              <div class="invalid-feedback">Status is required!</div>
-            </div>
-
-            <div class="mb-3">
-              <input type="number" name="brecived" class="form-control form-control-lg" placeholder="Enter Enter Received Amt." >
-              <div class="invalid-feedback">Enter Received Amt. is required!</div>
-            </div>
-
-            <div class="mb-3">
-              <input type="submit" value="Add Booking" class="btn btn-primary btn-block btn-lg" id="add-user-btn">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Add New User Modal End -->
-
-  <!-- Edit User Modal Start -->
-  <div class="modal fade" tabindex="-1" id="editUserModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Edit This Booking</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="edit-user-form" name="myform" class="p-2" novalidate>
-            <input type="hidden" name="id" id="id">
-            <div class="row mb-3 gx-3">
-              <div class="col">
-                <input type="date" name="bdate" id="bdate" class="form-control form-control-lg" required>
-                <div class="invalid-feedback">Date is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="month" name="bmonth" id="bmonth" class="form-control form-control-lg" placeholder="Enter Last Name" required>
-                <div class="invalid-feedback">Month is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-              <input type="text" name="developer" id="developer" class="form-control form-control-lg" placeholder="Enter Builder Name" required>
-                <div class="invalid-feedback">Builder name is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="text" name="bproject" id="bproject" class="form-control form-control-lg" placeholder="Enter Project Name" required>
-                <div class="invalid-feedback">Project name is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-              <input type="username" name="cname" id="cname" class="form-control form-control-lg" placeholder="Enter Customer Name" required>
-                <div class="invalid-feedback">Customer name is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="cnumber" id="cnumber" class="form-control form-control-lg" placeholder="Enter Contact Number" required>
-                <div class="invalid-feedback">Contact Number is required!</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <input type="email" name="cemail" id="cemail" class="form-control form-control-lg" placeholder="Enter E-mail" required>
-              <div class="invalid-feedback">E-mail is required!</div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-              <input type="text" name="tproject" id="tproject" class="form-control form-control-lg" placeholder="Enter Project Type" required>
-                <div class="invalid-feedback">Project Type is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="text" name="unitno" id="unitno" class="form-control form-control-lg" placeholder="Enter Unit Number" required>
-                <div class="invalid-feedback">Unit Number is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-              <input type="number" name="psize" id="psize" class="form-control form-control-lg" placeholder="Enter Project Size" required>
-                <div class="invalid-feedback">Project Size is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="cagreement" id="cagreement" class="form-control form-control-lg" placeholder="Enter Agreement Value" required>
-                <div class="invalid-feedback">Agreement Value is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-              <input type="text" name="ccashback" id="ccashback" class="form-control form-control-lg" placeholder="Enter Commission %" onkeyup="updateCalculate(this.value)" required>
-                <div class="invalid-feedback">Commission % is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="crevenue" id="crevenue" class="form-control form-control-lg" placeholder="Total Revenue Amount" required>
-                <div class="invalid-feedback">Total Revenue Amount is required!</div>
-              </div>
-            </div>
-
-            <div class="row mb-3 gx-3">
-              <div class="col">
-              <input type="text" name="cccashback" id="cccashback" class="form-control form-control-lg" placeholder="Enter CashBack %" onkeyup="updateCalculate(this.value)" required>
-                <div class="invalid-feedback">CashBack % is required!</div>
-              </div>
-
-              <div class="col">
-                <input type="number" name="ccrevenue" id="ccrevenue" class="form-control form-control-lg" placeholder="Actual Revenue Amount" required>
-                <div class="invalid-feedback">Actual Revenue Amount is required!</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-            <input type="checkbox" class="btn-check Processing" name="cstatus" id="btn-check-3-outlined" value="Processing" required>
-            <label class="btn btn-outline-primary" for="btn-check-3-outlined">Processing</label><br><br>
-
-            <input type="radio" class="btn-check Received" name="cstatus" id="2success-outlined" value="Received" required>
-            <label class="btn btn-outline-success" for="2success-outlined">Received</label>
-
-            <input type="radio" class="btn-check Cancled" name="cstatus" id="2danger-outlined" value="Cancled" required>
-            <label class="btn btn-outline-danger" for="2danger-outlined">Cancled</label>
-              <div class="invalid-feedback">Please Select the staus of booking!</div>
-            </div>
-
-            <div class="mb-3">
-              <input type="number" name="brecived" id="brecived" class="form-control form-control-lg disable" placeholder="Enter Received Amt." readonly>
-              <div class="invalid-feedback">Received Amt. is required!</div>
-            </div>
-
-            <div class="mb-3">
-              <input type="submit" value="Update Booking" class="btn btn-success btn-block btn-lg" id="edit-user-btn" onclick="validateForm()">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Edit User Modal End -->
-  <!-- Fitching the table from database to the html table and show to the user -->
-  <div class="container" style="margin-top: 3%;">
-    <div class="row mt-4 bg-dark" style="height:80px;">
-      <div class="col-lg-12 d-flex justify-content-between align-items-center">
-        <div>
-          <h4 class="text-info">Search Homes India Pvt. Ltd.</h4>
-        </div>
-        <!--<div>-->
-        <!--  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addNewUserModal">Add New Booking</button>-->
-        <!--</div>-->
-        <div class="panel-heading">
-              <div class="row">
-             <!--   <div class="col col-xs-6">     -->
-					        <!--<h5 class="text-white m-1"><i class="fa fa-user"></i> Admin <?php echo $nameuser ?></h5> -->
-             <!--   </div>-->
-                <div class="col col-xs-6 text-right">
-                   <div class="btn-group">
-                    <button type="button" class="btn btn-primary btn-filter" data-target="all">All</button>
-                    <button type="button" class="btn btn-success btn-filter" data-target="Received">Received</button>
-                    <button type="button" class="btn btn-danger btn-filter" data-target="Cancled">Cancled</button>
-                    <button type="button" class="btn btn-info btn-filter text-white" data-target="Processing">Processing</button>
-                    <button type="button" class="btn btn-primary" onclick="submitLoginForm()">HR_Login</button>
-                    <button type="button" class="btn btn-success" onclick="submitLoginUser()">User_Login</button>
-                    <a href="/user/superadmin/tracking.php"><button type="button" class="btn btn-primary">Incentive_Tracker</button></a>
-                    <a href="/user/superadmin/companyassets.php"><button type="button" class="btn btn-primary">Company_assets</button></a>
-                    <a href="logout.php"><button type="button" class="btn btn-danger">LogOut</button></a>
-                  </div>
-                </div>
-              </div>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-lg-12">
-        <div id="showAlert"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="table-responsive">
-        <div class="row" style="width:151%">
-          <div class="panel panel-default panel-table filterable">
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col col-xs-12"> 
-                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addNewUserModal" style="margin-left: 0.5%;">Add New Booking</button>    
-				  <button class="btn btn-primary btn-filter1"><span class="glyphicon glyphicon-filter"></span><i class="fa fa-filter"></i> Filter</button> 
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calculatorModal"><i class="fa fa-calculator"></i></button>
-				  <button id="downloadCsvBtn" class="btn btn-primary">Download <i class="fa fa-download" aria-hidden="true"></i></button>
-				  <!-- Here implimentation of DropDown Section -->
-                    <select name="">
-                      <option value="Look The OverView">Booking Status</option>
-                      <?php foreach ($counter as $tableName => $rowCount): ?>
-                                      <!-- Use 'echo' to display the option value correctly -->
-                                      <option value="<?php echo $tableName; ?>"><?php echo $tableName . ': ' . $rowCount; ?></option>
-                                    <?php endforeach; ?>
-                    </select>
-                    <!-- Here implimentation of DropDown Section End-->
-                </div>
-                <!--timer-->
-                <!--<div class="col col-xs-6">-->
-                <!--<div id="MyClockDisplay" class="clock time" onload="showTime()"></div>-->
-                <!--</div>-->
-                <div class="viewport col col-xs-6" id="fixedBox">
-                <!-- these box use to know the person generate revenue -->
-                  <div class="container m-2 fixed">
-                    <div class="row" style="margin-top:0.5%;margin-left: 27%;">
-                      <div class="col-md-12">
-                          <div class="border border-dark d-inline p-2 btn-primary text-white font-weight-bold"><i class="fa fa-user"></i> <?php echo $nameuser ?></div> 
-                          <div class="border border-dark d-inline p-2 m-1 bg-warning text-dark font-weight-bold"> Bookings: <span id="counter"></span></div>
-                          <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold"> Total Revenue: ₹<span id="totalTotalRevenue">0.00</span></div>	
-                          <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold"> Actual Revenue: ₹<span id="totalActualRevenue">0.00</span></div>
-                      </div>
-                    </div>
-                  </div><br>
-                <!-- these box use to know the person generate revenue End -->
-                </div>
-                <!-- <div class="col col-xs-6 text-right">
-                   <div class="btn-group">
-                    <button type="button" class="btn btn-primary btn-filter" data-target="all">All</button>
-                    <button type="button" class="btn btn-success btn-filter" data-target="Received">Paid</button>
-                    <button type="button" class="btn btn-danger btn-filter" data-target="Cancled">Cancled</button> 
-                    <button class="btn btn-pink btn-filter1"><span class="glyphicon glyphicon-filter"></span> Filter</button>
-                  </div>
-                </div> -->
-              </div>
-            </div><br>
-            <div class="panel-body">
-              <table class="table table-bordered table-hover text-center">
-                <thead>
-                <tr class="filters">
-               
-                      <th><input type="text" class="form-control" placeholder="ID" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Booking Date" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Month" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Builder" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Project" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Customer Name" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Contact No." disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Email Id" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Type" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Unit No." disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Size" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Agreement Value" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Commission %" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Total Revenue" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="CashBack %" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Actual Revenue" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Status" disabled></th>
-                      <th><input type="text" class="form-control" placeholder="Received Amt." disabled></th>
-                       <th><input type="text" class="form-control" placeholder="Sales Person" disabled></th> 
-                 
-                  </tr>
-                  </thead>
-                <tbody id="pagedata">
-                  
-                </tbody>
-                <tfoot>
-                  <th>ID</th>
-                  <th>Booking Date</th>
-                  <th>Month</th>
-                  <th>Builder</th>
-                  <th>Project</th>
-                  <th>Customer Name.</th>
-                  <th>Contact No.</th>
-                  <th>Email Id</th>
-                  <th>Type</th>
-                  <th>Unit No.</th>
-                  <th>Size</th>
-                  <th>Agreement Value</th>
-                  <th>Commission %</th>
-                  <th>Total Revenue</th>
-                  <th>CashBack %</th>
-                  <th>Actual Revenue</th>
-                  <th>Status</th>
-                  <th>Received Amt.</th>
-                   <th>Sales Person</th> 
-                </tfoot>
-              </table>
-            </div>
-            <!-- // end panel body -->
-            <div class="panel-footer">
-               <nav aria-label="...">
-                <ul class="pagination" id="myPager">
-                  
-                </ul>
-               </nav>
-            </div> 
-            
-          </div>
-          <!-- // end panel default --> 
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="assets/5.0.0bootstrap.bundle.min.js"></script>
-  <script src="main.js"></script>
-  <script src="calc.js"></script>
-  <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>-->
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>-->
-  <!--<script src="assets/jquery-2.2.4.min.js"></script>-->
-   <!-- this Script is for dropdown users Start -->
-  <script>
-    function create_custom_dropdowns() {
-    $('select').each(function (i, select) {
-        if (!$(this).next().hasClass('dropdown-select')) {
-            $(this).after('<div class="dropdown-select wide ' + ($(this).attr('class') || '') + '" tabindex="0"><span class="current"></span><div class="list"><ul></ul></div></div>');
-            var dropdown = $(this).next();
-            var options = $(select).find('option');
-            var selected = $(this).find('option:selected');
-            dropdown.find('.current').html(selected.data('display-text') || selected.text());
-            options.each(function (j, o) {
-                var display = $(o).data('display-text') || '';
-                dropdown.find('ul').append('<li class="option ' + ($(o).is(':selected') ? 'selected' : '') + '" data-value="' + $(o).val() + '" data-display-text="' + display + '">' + $(o).text() + '</li>');
-            });
-        }
-    });
-
-    $('.dropdown-select ul').before('<div class="dd-search"><input id="txtSearchValue" autocomplete="off" onkeyup="filter()" class="dd-searchbox" type="text"></div>');
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ <style>
+	.h5, h5 {
+    font-size: 20px;
 }
+  	.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 17px;
+    font-weight: 100;
+}
+  </style> 
 
-// Event listeners
 
-// Open/close
-$(document).on('click', '.dropdown-select', function (event) {
-    if($(event.target).hasClass('dd-searchbox')){
-        return;
-    }
-    $('.dropdown-select').not($(this)).removeClass('open');
-    $(this).toggleClass('open');
-    if ($(this).hasClass('open')) {
-        $(this).find('.option').attr('tabindex', 0);
-        $(this).find('.selected').focus();
-    } else {
-        $(this).find('.option').removeAttr('tabindex');
-        $(this).focus();
-    }
-});
+</head>
+<body id="page-top" oncopy="return false" oncut="return false">
 
-// Close when clicking outside
-$(document).on('click', function (event) {
-    if ($(event.target).closest('.dropdown-select').length === 0) {
-        $('.dropdown-select').removeClass('open');
-        $('.dropdown-select .option').removeAttr('tabindex');
-    }
-    event.stopPropagation();
-});
-
-function filter(){
-    var valThis = $('#txtSearchValue').val();
-    $('.dropdown-select ul > li').each(function(){
-     var text = $(this).text();
-        (text.toLowerCase().indexOf(valThis.toLowerCase()) > -1) ? $(this).show() : $(this).hide();         
-   });
-};
-// Search
-
-// Option click
-$(document).on('click', '.dropdown-select .option', function (event) {
-    $(this).closest('.list').find('.selected').removeClass('selected');
-    $(this).addClass('selected');
-    var text = $(this).data('display-text') || $(this).text();
-    $(this).closest('.dropdown-select').find('.current').text(text);
-    $(this).closest('.dropdown-select').prev('select').val($(this).data('value')).trigger('change');
-});
-
-// Keyboard events
-$(document).on('keydown', '.dropdown-select', function (event) {
-    var focused_option = $($(this).find('.list .option:focus')[0] || $(this).find('.list .option.selected')[0]);
-    // Space or Enter
-    //if (event.keyCode == 32 || event.keyCode == 13) {
-    if (event.keyCode == 13) {
-        if ($(this).hasClass('open')) {
-            focused_option.trigger('click');
-        } else {
-            $(this).trigger('click');
-        }
-        return false;
-        // Down
-    } else if (event.keyCode == 40) {
-        if (!$(this).hasClass('open')) {
-            $(this).trigger('click');
-        } else {
-            focused_option.next().focus();
-        }
-        return false;
-        // Up
-    } else if (event.keyCode == 38) {
-        if (!$(this).hasClass('open')) {
-            $(this).trigger('click');
-        } else {
-            var focused_option = $($(this).find('.list .option:focus')[0] || $(this).find('.list .option.selected')[0]);
-            focused_option.prev().focus();
-        }
-        return false;
-        // Esc
-    } else if (event.keyCode == 27) {
-        if ($(this).hasClass('open')) {
-            $(this).trigger('click');
-        }
-        return false;
-    }
-});
-
-$(document).ready(function () {
-    create_custom_dropdowns();
-});
-  </script>
-  <script>
-      document.getElementById('2success-outlined').addEventListener('click', function() {
-          // Copy the value from #ccrevenue to #brecived
-          var ccrevenueValue = document.getElementById('ccrevenue').value;
-          document.getElementById('brecived').value = ccrevenueValue;
-      });
-  </script>
-
-<script>
-    function validateForm() {
-        var processingChecked = document.getElementById('btn-check-3-outlined').checked;
-        var receivedChecked = document.getElementById('2success-outlined').checked;
-        var canceledChecked = document.getElementById('2danger-outlined').checked;
-
-        if (!(processingChecked || receivedChecked || canceledChecked)) {
-            document.querySelector('.invalid-feedback').style.display = 'block';
-        } else {
-            document.querySelector('.invalid-feedback').style.display = 'none';
-
-            // Remove "required" attribute from the remaining buttons
-            var checkboxes = document.querySelectorAll('.btn-check.Processing');
-            var radios = document.querySelectorAll('.btn-check.Received, .btn-check.Cancled');
-
-            if (processingChecked) {
-                // If Processing is selected, remove "required" from radios
-                radios.forEach(function (radio) {
-                    radio.removeAttribute('required');
-                });
-            } else {
-                // If Processing is not selected, remove "required" from checkboxes
-                checkboxes.forEach(function (checkbox) {
-                    checkbox.removeAttribute('required');
-                });
-            }
-        }
-    }
-</script>
- <!-- this script is for filter the rows and get total of specify columnd -->
-  <script>
-//   $(document).ready(function() {
-//   var isFilterApplied = false; // Flag to track if filter is applied
-//   var activeFilters = [];
-
-//   // Function to apply the filters
-//   function applyFilters() {
-//     var filterInputs = [
-//       { id: "filterID", columnIndex: 0 },
-//       { id: "filterBookingDate", columnIndex: 1 },
-//       { id: "filterMonth", columnIndex: 2 },
-//       { id: "filterBuilder", columnIndex: 3 },
-//       { id: "filterProject", columnIndex: 4 },
-//       { id: "filterCustumername", columnIndex: 5 },
-//       { id: "filterContactnumber", columnIndex: 6 },
-//       { id: "filterEmail", columnIndex: 7 },
-//       { id: "filterType", columnIndex: 8 },
-//       { id: "filterUnit", columnIndex: 9 },
-//       { id: "filterSize", columnIndex: 10 },
-//       { id: "filterAgreement", columnIndex: 11 },
-//       { id: "filterCommission", columnIndex: 12 },
-//       { id: "filterTrevenue", columnIndex: 13 },
-//       { id: "filterCashBack", columnIndex: 14 },
-//       { id: "filterActualRevenue", columnIndex: 15 },
-//       { id: "filterStatus", columnIndex: 16 },
-//       { id: "filterReceived", columnIndex: 17 },
-//       { id: "filterSales", columnIndex: 18 },
-//     ];
-
-//     activeFilters = []; // Reset active filters
-
-//     $("#pagedata tr").each(function() {
-//       var row = $(this);
-//       var showRow = true;
-
-//       filterInputs.forEach(function(inputInfo) {
-//         var input = $("#" + inputInfo.id);
-//         var filterValue = input.val().toLowerCase();
-//         var cellValue = row.find("td:eq(" + inputInfo.columnIndex + ")").text().toLowerCase();
-
-//         if (cellValue.indexOf(filterValue) === -1) {
-//           showRow = false;
-//           return false; // Break out of forEach loop
-//         }
-
-//         if (filterValue.trim() !== "") {
-//           activeFilters.push(filterValue); // Add non-empty filters to activeFilters
-//         }
-//       });
-
-//       if (showRow) {
-//         row.addClass("custom-filtered-row"); // Add a custom class to the filtered rows
-//       } else {
-//         row.removeClass("custom-filtered-row"); // Remove the custom class from unfiltered rows
-//       }
-//     });
-
-//     var totalTotalRevenue = 0;
-//   var totalActualRevenue = 0;
-//   var counterRow = 0;
-
-//   // Loop through visible rows and calculate totals
-//   $(".custom-filtered-row").each(function() {
-//     var totalRevenue = parseFloat($(this).find("td:eq(13)").text());
-//     var actualRevenue = parseFloat($(this).find("td:eq(15)").text());
-
-//     if (!isNaN(totalRevenue)) {
-//       totalTotalRevenue += totalRevenue;
-//       counterRow += 1;
-//     }
-
-//     if (!isNaN(actualRevenue)) {
-//       totalActualRevenue += actualRevenue;
-//     }
-//   });
-
-//   // Update the totals in your UI (adjust the IDs accordingly)
-//   $("#counter").text(counterRow);
-//   $("#totalTotalRevenue").text(totalTotalRevenue.toLocaleString());
-//   $("#totalActualRevenue").text(totalActualRevenue.toLocaleString());
-
-//     applyCustomFilter();
-//   }
-//   applyCustomFilter();
-//   // Function to apply custom filter based on active filters
-//   function applyCustomFilter() {
-//     $("#pagedata tr").hide(); // Hide all rows
-//     $(".custom-filtered-row").show(); // Show only the rows with the custom class
-
-//     isFilterApplied = true; // Mark filter as applied
-//   }
-
-//   // Show filter modal when button is clicked
-//   $(".filterable .btn-filter1").click(function() {
-//     $("#filterModal").modal("show");
-//   });
-
-//   // Apply filters and update the table
-//   $("#applyFiltersBtn").click(function() {
-//     applyFilters();
-//     $("#filterModal").modal("hide");
-//   });
-
-//   // Clear filters and update the table when modal is closed
-//   $("#filterModal").on("hidden.bs.modal", function() {
-//     $(".filterable .filters input").val("");
-
-//     if (!isFilterApplied) {
-//       // Show all rows only if the filter was not applied
-//       $("#pagedata tr").show();
-//     }
-
-//     applyFilters(); // Reapply filters if they were applied
-//   });
-
-  
-//   // Close filters and update the table
-//   $("#closeFilter").click(function() {
-//     applyFilters();
-//     $("#filterModal").modal("hide");
-//   });
-
-  
-//   // Cancle filters and update the table
-//   $("#cancleFilter").click(function() {
-//     applyFilters();
-//     $("#filterModal").modal("hide");
-//   });
-
-// });
-
-</script>
- 
-</body>
-
+	<div class="container">
+		<div class="jumbotron">
+			<h5 class="font-weight-normal">PRIVACY POLICY & TERM OF USES</h5>
+			<p>
+				Premier ("Premier Real Estate Services" or "We") a Real Estate Regulatory Authority ("RERA") Registered Agent bearing RERA No:  PRM/KA/RERA/1251/310/AG/190510/001384. We prioritize your privacy. Our concise Privacy Policy outlines the personal information we collect through our website, including sub-domains and microsites, the purposes of collection we may share it with, and security measures in place. It also informs you about your rights, choices, and how to contact us regarding privacy concerns. We highly recommend reading this Privacy Policy before using services and/or providing personal information.
+		  </p>
+			<hr>
+			<h5 class="font-weight-normal">INTERPRETATIONS AND DEFINITIONS</h5>
+			<p>"Data" shall mean personal information, including sensitive personal information and special category personal data (as defined under Data Protection Laws) about you, which we collect, receive, or otherwise process in connection with your use of our website and/or the Platform.
+			  <br>
+		  
+			  "Data Protection Laws" shall mean any applicable law for the time being in force relating to the processing of Data.
+			  <br>
+			  "Service Providers" includes entities which provide services to and to whom we may disclose your Data for a specific purpose pursuant to a written contract.
+			  <br>
+			  "Premier/We" shall mean Premier Real Estate Services, and its subsidiaries, affiliates and associate companies.
+			  <br>
+			  "User or You" shall mean the natural person who accesses our website/pages or Platform.</p>
+			  <hr>
+			   <h5 class="font-weight-normal">WEBSITE CONTENT OVERVIEW:</h5>
+			<p>The contents of this landing page, containing details of properties, property photos, costs, and availability, are provided for informational and illustrative purposes only. This information is subject to change at any time. Users are hereby advised that the actual properties may differ from what is shown in photos and cost on the website and pages, and as such, no claims shall be entertained based on such representations.
+			  
+			  </p>
+			  <hr>
+			   <h5 class="font-weight-normal">Uses of Developer Information:</h5>
+			<p>All images, cost descriptions, logos, and other project materials featured on this landing page are presented in accordance with the respective project developer or its licensors. We are in legal agreements and established legal relationships with the said respective developer, thereby possessing the authority to advertise, market for sale, and generate leads for the respective project.</p>
+			  <hr>
+			  <h4>TYPES OF DATA COLLECTED</h4>
+			   <h5 class="font-weight-normal">RETENTION OF YOUR PERSONAL DATA</h5>
+			<p>While visiting to this website, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
+			<ul>
+			  <li>Email address</li>
+			  <li>First name and last name</li>
+			  <li>Phone number</li>
+			  <li>Address, State, Province, ZIP/Postal code, City</li>
+			  <li>We may use Personal Data for the following purposes:</li>
+			</ul>
+			<p>To provide and maintain our Service, including to monitor the usage of our Service.
+			  To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication.
+			  To provide Information related to the propertyâ€™s sale, purchase etc. with, special offers and general information about properties, real estate services which we offer that are similar to those that you have already purchased or enquired about. 
+			  To manage Your requests: To attend and manage Your requests to Us.
+			  We may share Your personal information in the following situations:</p>
+			  <p>With Affiliates: We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our associates and any other subsidiaries, that We control or that are under common control with Us.
+				With Authorized Developers: We may disclose Your personal information with Real Estate Regulatory Authority (RERA) registered Developers for further processing as necessary. 
+				With Your consent: We may disclose Your personal information for any other purpose with Your consent.</p>
+			  <hr>
+			 
+			  <h5 class="font-weight-normal">RETENTION OF YOUR PERSONAL DATA</h5>
+			  <p>We shall retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws). 
+			  </p>
+			  <hr>
+			  <h4>DISCLOSURE OF YOUR PERSONAL DATA</h4>
+			  <h5 class="font-weight-normal">USER'S CONSENT</h5>
+			  <p>By using the Website/Landing Page and/or by providing information to Us through this Website/Landing Page, the User consents to the collection and use of the information disclosed by the User on the Website in accordance with this Privacy Policy.
+			  </p>
+			  <h5 class="font-weight-normal">LAW ENFORCEMENT</h5>
+			  <p>Under certain circumstances, the We may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
+			  </p>
+			  <h5 class="font-weight-normal">OTHER LEGAL REQUIREMENTS</h5>
+			  <p>The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:
+			  </p>
+			  <p>Comply with a legal obligation.
+				Prevent or investigate possible wrongdoing in connection with the Service.
+				Protect the personal safety of Users of the Service or the public.
+				Protect against legal liability.
+				</p>
+				<h5 class="font-weight-normal">SECURITY OF YOUR PERSONAL DATA</h5>
+				<p>The security of Your Personal Data is important to Us but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, we cannot guarantee its absolute security.
+				</p>
+				<h5 class="font-weight-normal">CHILDREN'S PRIVACY</h5>
+				<p>Our Service does not address anyone under the age of 18. We do not knowingly collect personally identifiable information from anyone under the age of 18. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 18 without verification of parental consent, we take steps to remove that information from Our servers.
+				</p>
+				<h5 class="font-weight-normal">CHANGES TO THIS PRIVACY POLICY</h5>
+				<p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+				</p>
+				<h5 class="font-weight-normal">CONTACT US</h5>
+				<p>To request to review, update, or delete your personal information or to otherwise reach us, please submit a request by e-mailing us at <a href="mailto:marketing@premierconsulting.co.in">marketing@premierconsulting.co.in</a>
+				</p>
+			  <hr>
+			  
+		  </div>
+		  </div>
+		  
+			  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+	
+	
+	</body>
 </html>

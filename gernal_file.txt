@@ -1,131 +1,1568 @@
-
-<html>
-<head>
-
-
-<title> Privacy Policy</title>
-<link rel="icon" href="assets/img/comman/favicon.ico" sizes="16x16" />
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="shortcut icon" href="assets/img/comman/favicon.ico" type="image/x-icon">
-<link rel="preload" href="assets/css/style.css" as="style" />
-      <link rel="preload" href="assets/js/app.js" as="script" />
-      <link rel="stylesheet" href="assets/css/style.css" />
- <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
- <style>
-	.h5, h5 {
-    font-size: 20px;
+.nowbutton {
+  font-weight: 700;
+  line-height: 9px;
+  letter-spacing: 0.02em;
+  padding:1px 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  margin-left: 4px;
+  background: #1B6C9F;
+  border: 1px solid #d7f2e3;
+  font-size: 10px;
+  border-radius: 3px!important;
+  text-align: center;
+  background-repeat: no-repeat;
+  mask: linear-gradient(-70deg, #000 60%, rgba(0,0,0,0.333333) 65%, #000 70%) right/310% 90%;
+  animation: style__shimmer 2s infinite;
+  animation-iteration-count: infinite!important;
 }
-  	.jumbotron p {
-    margin-bottom: 15px;
-    font-size: 17px;
-    font-weight: 100;
+@keyframes style__shimmer {
+100% {
+  -webkit-mask-position: left;
+  background-color: #0b527e;
 }
-  </style> 
+}
+@media only screen and (max-width:768px){
+  .nowbutton {
+    font-size: 6px;
+    margin-left: 2px;
+  }
+}
+.gets2 button {padding:5px}
+
+    <!-- ===top builder section start==== -->
+    <section class="topbuilder_sect">
+        <div class="cmmnheading">
+            <h4>Top Builders</h4>
+            <h5>Pioneering Excellence in Construction</h5>
+        </div>
+        <div class="swiper mySwiper20">
+            <div class="swiper-wrapper s20">
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/prestigeproperties.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/godrejproperties.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/lodha.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/Century.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/birlaestates.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/brigadegroup.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/Shapoorjipallonji.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/assetz.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/shriramproperites.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/sobha.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/Sowparnika.png %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/builder/Tatahousing.png' %}" loading="lazy" alt="" />
+                </div>
+            </div>
+            <div class="swiper-button-next topbuilder_next"></div>
+            <div class="swiper-button-prev topbuilder_prev"></div>
+            <div class="swiper-pagination topbuilder_pagination"></div>
+        </div>
+    </section>
+
+    <style>
+        .topbuilder_pagination .swiper-pagination-bullet-active {
+            background-color: red !important;
+            width: 15px;
+            border-radius: 10px;
+        }
+
+        .topbuilder_prev,
+        .topbuilder_next {
+            display: none;
+        }
+
+        .newspartner_sect,
+        .topbuilder_sect {
+            margin: 60px 0px 30px;
+        }
+
+        .mySwiper22,
+        .mySwiper20 {
+            width: 100%;
+            height: 150px;
+        }
+
+        .s20 {
+            padding-top: 5px;
+        }
+
+        .ss20 {
+            height: 75px;
+        }
+
+        .ss20 img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+    <script>
+        var swiper20 = new Swiper(".mySwiper20", {
+            spaceBetween: 40,
+            speed: 700,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                1100: {
+                    slidesPerView: 4,
+                },
+                768: {
+                    spaceBetween: 10,
+                    slidesPerView: 4,
+                },
+                500: {
+                    spaceBetween: 10,
+                    slidesPerView: 3,
+                },
+                250: {
+                    spaceBetween: 10,
+                    slidesPerView: 2,
+                }
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+    </script>
+    <!-- ===top builder section end==== -->
+
+    <!-- =============why choose us start============ -->
+    <section class="whyus_sect">
+        <div class="feat bg-gray pt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="section-head col-sm-12">
+                        <h4><span>Why Choose</span> Us?</h4>
+                        <p>Apna Ghar, Apni Pehchan</p>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 box-11">
+                        <div class="item"> <span class="icon feature_box_col_one"><i
+                                    class="bi bi-file-earmark-person"></i></span>
+                            <h6>Personalized Property Matching</h6>
+                            <p>We offer personalised property matching services, tailored to individual preferences and
+                                requirements, ensuring clients find properties that meet their specific needs.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="item"> <span class="icon feature_box_col_two"><i
+                                    class="bi bi-currency-rupee"></i></span>
+                            <h6>Strategic Investment Guidance</h6>
+                            <p>We provide strategic investment guidance to help clients make informed decisions
+                                regarding real
+                                estate investments, maximizing potential returns.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="item"> <span class="icon feature_box_col_three"><i
+                                    class="bi bi-card-checklist"></i></span>
+                            <h6>Free Property Listings</h6>
+                            <p>Our Sites allows Property Builder, Owners & Agent to list their properties for free,
+                                expanding
+                                the pool of available options for potential buyers or renters.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="item"> <span class="icon feature_box_col_four"><i class="bi bi-safe"></i></span>
+                            <h6>Secure Data-Driven</h6>
+                            <p>We prioritise data security, utilizing advanced technology and encryption methods to
+                                safeguard
+                                client information and ensure a secure browsing experience.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="item"> <span class="icon feature_box_col_five"><i class="bi bi-search"></i></span>
+                            <h6>Wide Range of Properties</h6>
+                            <p>The platform offers a wide range of residential properties in different cities, including
+                                apartments, villas, plots, catering to diverse preferences and budgets.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="item"> <span class="icon feature_box_col_six"><i
+                                    class="bi bi-house-check"></i></span>
+                            <h6>Real Estate Perks</h6>
+                            <p>Experience a one-stop real estate platform with exclusive perks like Home Loan
+                                Assistance,
+                                Builder Funding, Interior Design, & Special Offers—all at your fingertips.</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-sm-6">
+                        <div class="item"> <span class="icon feature_box_col_seven"><i class="fa fa-camera"></i></span>
+                          <h6>Expert Consultation </h6>
+                          <p>Clients benefit from expert consultation services offered by the best real estate company, receiving guidance from seasoned professionals to navigate the market effectively.</p>
+                          <p></p>
+                        </div>
+                      </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .whyus_sect {
+            margin: 60px 0px 10px;
+        }
+
+        .feat a,
+        .feat a:active,
+        .feat a:focus {
+            color: #333;
+            text-decoration: none;
+            transition-timing-function: ease-in-out;
+            -ms-transition-timing-function: ease-in-out;
+            -moz-transition-timing-function: ease-in-out;
+            -webkit-transition-timing-function: ease-in-out;
+            -o-transition-timing-function: ease-in-out;
+            transition-duration: .2s;
+            -ms-transition-duration: .2s;
+            -moz-transition-duration: .2s;
+            -webkit-transition-duration: .2s;
+            -o-transition-duration: .2s;
+        }
+
+        .feat ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .feat img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .feat span,
+        .feat a,
+        .feat a:hover {
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .section-head {
+            margin-bottom: 60px;
+        }
+
+        .section-head h4 {
+            position: relative;
+            padding: 0;
+            color: #f91942;
+            line-height: 1;
+            letter-spacing: 0.3px;
+            font-size: 34px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: none;
+            margin-bottom: 30px;
+        }
+
+        .section-head h4:before {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: #f91942;
+            position: absolute;
+            left: 0px;
+            bottom: -10px;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        .section-head h4 span {
+            font-weight: 700;
+            padding-bottom: 5px;
+            color: #2f2f2f
+        }
+
+        .section-head p {
+            color: #818181;
+            font-size: 16px;
+            line-height: 28px;
+            text-align: center;
+        }
+
+        .feat .item {
+            background: #fff;
+            text-align: center;
+            padding: 30px 25px;
+            -webkit-box-shadow: 0 0px 25px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 0px 25px rgba(0, 0, 0, 0.07);
+            border-radius: 20px;
+            border-left: 2px solid #f91942;
+            border-right: 2px solid #f91942;
+            margin-bottom: 30px;
+            -webkit-transition: all .5s ease 0;
+            transition: all 0.5s ease 0s;
+            transform: scale(1);
+        }
+
+        .feat .item:hover {
+            box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.2);
+            -webkit-transition: all .5s ease 0;
+            transition: all 0.5s ease 0s;
+            transform: scale(1.01);
+            border-bottom: 5px solid #f91942;
+        }
+
+        .feat .item:hover,
+        .feat .item:hover span.icon {
+            border-radius: 13px;
+            -webkit-transition: all .5s ease 0;
+            transition: all .5s ease 0;
+            transition: all 0.5s ease 0s;
+        }
+
+        .feat .item:hover h6,
+        .feat .item:hover p {
+            color: black;
+            -webkit-transition: all .5s ease 0;
+            transition: all .5s ease 0;
+            transition: all 0.5s ease 0s;
+        }
+
+        .feat .item .icon {
+            font-size: 40px;
+            margin-bottom: 25px;
+            color: #f91942;
+            width: 90px;
+            height: 90px;
+            line-height: 96px;
+            border-radius: 50px;
+        }
+
+        .feat .item .feature_box_col_one {
+            background: rgba(247, 198, 5, 0.20);
+            color: #f91942
+        }
+
+        .feat .item .feature_box_col_two {
+            background: rgba(255, 77, 28, 0.15);
+            color: #f91942
+        }
+
+        .feat .item .feature_box_col_three {
+            background: rgba(0, 147, 38, 0.15);
+            color: #f91942
+        }
+
+        .feat .item .feature_box_col_four {
+            background: rgba(0, 108, 255, 0.15);
+            color: #f91942
+        }
+
+        .feat .item .feature_box_col_five {
+            background: rgba(146, 39, 255, 0.15);
+            color: #f91942
+        }
+
+        .feat .item .feature_box_col_six {
+            background: rgba(23, 39, 246, 0.15);
+            color: #f91942
+        }
+
+        .feat .item p {
+            font-size: 15px;
+            text-align: justify;
+            font-size: 14px;
+        }
+
+        .feat .item h6 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2f2f2f;
+        }
+    </style>
+    <!-- =============why choose us end============ -->
+
+    <!-- ====easy steps posting start -->
+    <section class="easystep_sec">
+        <div id="homepage_easystep">
+            <div class="easystep_wrapdiv undefined">
+                <div class="easystep_leftsideimg">
+                    <section class="easystep_conatiner animate">
+                        <img src="{% static 'images/post-property.png' %}"
+                            class="completeHomeInteriro_completeHome_Image__2_ZVU transformImg">
+                    </section>
+                </div>
+                <div class="easystep_tabSec">
+                    <h3 class="easystep_heading">List Your Residential Property Effortlessly In 3 Easy Step</h3>
+                    <div class="easystep_activenodiv">
+                        <span class="easystep_activenumber easystepactive">1</span>
+                        <span class="easystep_activenumber">2</span>
+                        <span class="easystep_activenumber">3</span>
+                    </div>
+                    <div class="completeHomeInteriro_selectedTab_list__xW6W4">
+                        <div class="completeHomeInteriro_selectedTab_details__1VTVk easystepactive">
+                            <h3 class="completeHomeInteriro_selectedTab_head__uJ_G_">Register & Discover</h3>
+                            <p class="completeHomeInteriro_selectedTab_desc__2e1TI">Sign up with your phone number and
+                                verify
+                                via OTP.</p>
+                        </div>
+                        <div class="completeHomeInteriro_selectedTab_details__1VTVk">
+                            <h3 class="completeHomeInteriro_selectedTab_head__uJ_G_">Add Property Detail</h3>
+                            <p class="completeHomeInteriro_selectedTab_desc__2e1TI">Share property info and upload
+                                images.</p>
+                        </div>
+                        <div class="completeHomeInteriro_selectedTab_details__1VTVk">
+                            <h3 class="completeHomeInteriro_selectedTab_head__uJ_G_">Review & Submit</h3>
+                            <p class="completeHomeInteriro_selectedTab_desc__2e1TI">Check details and submit.</p>
+                        </div>
+                    </div>
+                    <div class="completeHomeInteriro_selectedTabs_dots__3XOQ7">
+                        <span class="completeHomeInteriro_tabs_Dots__1tRqA easystepactive"></span>
+                        <span class="completeHomeInteriro_tabs_Dots__1tRqA"></span>
+                        <span class="completeHomeInteriro_tabs_Dots__1tRqA"></span>
+                    </div>
+                </div>
+            </div>
+            <div hidden="">
+                <h2>Complete home interiors in 3 easy steps</h2>
+            </div>
+            <button class="homepage_btn__HaiUd undefined homepage_commonBFB_btn__2IAEC undefined mt-3">Post Your
+                Property Now Free</button>
+            <p class="mt-3" style="text-align: center; font-size: 13px;">Whether you're an owner, agent, or builder</p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.easystep_activenumber');
+            const dots = document.querySelectorAll('.completeHomeInteriro_tabs_Dots__1tRqA');
+            const details = document.querySelectorAll('.completeHomeInteriro_selectedTab_details__1VTVk');
+            let currentIndex = 0;
+
+            function activateTab(index) {
+                // Reset all tabs, dots, and details to initial style
+                tabs.forEach(tab => tab.classList.remove('easystepactive'));
+                dots.forEach(dot => dot.classList.remove('easystepactive'));
+                details.forEach(detail => detail.classList.remove('easystepactive'));
+
+                // Activate the current tab, dot, and detail with red background
+                tabs[index].classList.add('easystepactive');
+                dots[index].classList.add('easystepactive');
+                details[index].classList.add('easystepactive');
+
+                // Update the currentIndex for the next iteration
+                currentIndex = (currentIndex + 1) % tabs.length;
+            }
+
+            function startLoop() {
+                // Initial activation
+                activateTab(currentIndex);
+
+                // Set interval to activate tabs, dots, and details every 3 seconds
+                setInterval(function () {
+                    activateTab(currentIndex);
+                }, 4000);
+            }
+
+            // Start the loop when the DOM is ready
+            startLoop();
+        });
+    </script>
+
+    <style>
+        .easystep_sec {
+            margin: 45px 0px 30px;
+        }
+
+        .homepage_commonBFB_btn__2IAEC {
+            background-color: rgb(236, 32, 42) !important;
+            border: 1px solid transparent;
+            border-radius: 8px !important;
+            color: #fff !important;
+            display: inline-block;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0 !important;
+            line-height: 19px !important;
+            padding: 15px 30px !important;
+            text-align: center;
+            text-transform: uppercase;
+            vertical-align: middle;
+            width: auto !important;
+        }
+
+        #homepage_easystep {
+            -webkit-animation: homepage_opac__11K3E .2s ease-in-out .5s 1 backwards;
+            -moz-animation: homepage_opac__11K3E .2s ease-in-out .5s 1 backwards;
+            animation: homepage_opac__11K3E .2s ease-in-out .5s 1 backwards;
+            border-bottom: 1px solid #eee;
+            border-top: 1px solid #eee;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            text-align: center
+        }
+
+        .easystep_wrapdiv {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 50% 50%;
+            padding: 20px 10px
+        }
+
+        @media(min-width: 900px) and (max-width:1060px) {
+            .easystep_wrapdiv {
+                padding-bottom: 50px
+            }
+        }
+
+        .easystep_wrapdiv.completeHomeInteriro_add-space__JnGsR {
+            padding: 4rem 1.87rem
+        }
+
+        .easystep_wrapdiv.completeHomeInteriro_add-space__JnGsR .easystep_leftsideimg {
+            padding-top: 0
+        }
+
+        .easystep_wrapdiv.completeHomeInteriro_add-space__JnGsR button {
+            padding: 15px 40px
+        }
+
+        .easystep_wrapdiv .easystep_leftsideimg {
+            padding: 20px 130px 20px 20px
+        }
+
+        @media(min-width: 900px) and (max-width:1060px) {
+            .easystep_wrapdiv .easystep_leftsideimg {
+                padding-top: 0
+            }
+        }
+
+        .easystep_conatiner {
+            padding-bottom: 59%;
+            position: relative
+        }
+
+        @media(max-width: 768px) {
+            .easystep_conatiner {
+                padding-bottom: 75%
+            }
+        }
+
+        @media(min-width: 540px) and (max-width:900px) {
+            .easystep_conatiner {
+                padding-bottom: 50%
+            }
+        }
+
+        .easystep_conatiner .completeHomeInteriro_completeHome_Image__2_ZVU {
+            bottom: 0;
+            left: 0;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
+        @media(max-width: 768px) and (max-width:900px) {
+            .easystep_conatiner .completeHomeInteriro_completeHome_Image__2_ZVU {
+                margin: auto
+            }
+        }
+
+        .easystep_wrapdiv .easystep_leftsideimg .completeHomeInteriro_completeHome_Image__2_ZVU {
+            float: right;
+            max-width: 390px;
+            min-width: 250px;
+            width: 51vw
+        }
+
+        .easystep_wrapdiv .easystep_tabSec {
+            padding: 13% 0;
+            text-align: left
+        }
+
+        .easystep_wrapdiv .easystep_tabSec .easystep_heading {
+            color: #222;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-align: center;
+            line-height: 29px
+        }
+
+        .easystep_activenodiv {
+            padding: 20px 0
+        }
+
+        .easystep_activenodiv .easystepactive {
+            background-color: rgb(27, 108, 159) !important;
+            color: #fff !important
+        }
+
+        .easystep_activenodiv .easystep_activenumber {
+            background-color: #fff;
+            border-radius: 50%;
+            -webkit-box-shadow: 0 1px 2px 0 hsla(0, 0%, 79%, .5), 0 0 4px 0 #eee;
+            box-shadow: 0 1px 2px 0 hsla(0, 0%, 79%, .5), 0 0 4px 0 #eee;
+            font-size: 12px;
+            margin-right: 100px;
+            padding: 4px 8px
+        }
+
+        .easystep_activenodiv .easystep_activenumber:before {
+            border: .5px dashed hsla(0, 0%, 60%, .28);
+            content: "";
+            height: 1px;
+            margin-left: 18px;
+            margin-top: 13px;
+            position: absolute;
+            width: 94px
+        }
+
+        .easystep_activenodiv .easystep_activenumber:last-child:before {
+            border: none;
+            display: none
+        }
+
+        .completeHomeInteriro_selectedTab_list__xW6W4 .completeHomeInteriro_selectedTab_details__1VTVk {
+            display: none;
+        }
+
+        .completeHomeInteriro_selectedTab_list__xW6W4 .easystepactive {
+            display: block
+        }
+
+        .completeHomeInteriro_selectedTab_list__xW6W4 .completeHomeInteriro_selectedTab_details__1VTVk .completeHomeInteriro_selectedTab_head__uJ_G_ {
+            color: rgb(27, 108, 159);
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 0;
+            line-height: 27px
+        }
+
+        .completeHomeInteriro_selectedTab_list__xW6W4 .completeHomeInteriro_selectedTab_details__1VTVk .completeHomeInteriro_selectedTab_desc__2e1TI {
+            font-size: 16px;
+            letter-spacing: 0;
+            line-height: 19px;
+            margin: 0;
+            /* max-width: 351px; */
+        }
+
+        @media(min-width: 540px) and (max-width:900px) {
+            .completeHomeInteriro_selectedTab_list__xW6W4 .completeHomeInteriro_selectedTab_details__1VTVk .completeHomeInteriro_selectedTab_desc__2e1TI {
+                max-width: unset
+            }
+        }
+
+        .completeHomeInteriro_selectedTabs_dots__3XOQ7 {
+            display: none
+        }
+
+        @media(max-width: 768px), (max-width:900px) {
+            .easystep_wrapdiv {
+                display: block
+            }
+        }
+
+        @media(max-width: 768px) and (min-width:540px) and (max-width:900px), (max-width:900px) and (min-width:540px) and (max-width:900px) {
+            .easystep_wrapdiv {
+                padding-bottom: 10px !important
+            }
+        }
+
+        @media(max-width: 768px), (max-width:900px) {
+            .completeHomeInteriro_completeHome_SecHeading__yWWK4 {
+                color: #222;
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 0;
+                line-height: 29px;
+                margin-bottom: 40px;
+                text-align: center
+            }
+
+            .easystep_wrapdiv .easystep_leftsideimg {
+                padding: 0;
+                text-align: center;
+                width: 100%
+            }
+
+            .easystep_wrapdiv .easystep_leftsideimg .completeHomeInteriro_completeHome_Image__2_ZVU {
+                float: none;
+                max-width: 390px;
+                min-width: 250px;
+                width: 51vw
+            }
+
+            .easystep_wrapdiv .easystep_tabSec {
+                padding: 20px 0
+            }
+        }
+
+        @media(max-width: 768px) and (min-width:500px) and (max-width:1000px), (max-width:900px) and (min-width:500px) and (max-width:1000px) {
+            .easystep_wrapdiv .easystep_tabSec {
+                text-align: center
+            }
+        }
+
+        @media(max-width: 768px), (max-width:900px) {
+            .easystep_activenodiv .easystep_activenumber {
+                margin-right: 35%
+            }
+
+            .easystep_activenodiv .easystep_activenumber:before {
+                width: -moz-calc(39vw - 32px);
+                width: calc(39vw - 32px)
+            }
+
+            .easystep_activenodiv .easystep_activenumber:last-child {
+                margin-right: 0
+            }
+
+            .completeHomeInteriro_selectedTabs_dots__3XOQ7 {
+                display: block;
+                text-align: center
+            }
+
+            .completeHomeInteriro_selectedTabs_dots__3XOQ7 span.completeHomeInteriro_tabs_Dots__1tRqA {
+                background-color: #bbb;
+                border-radius: 50%;
+                display: inline-block;
+                height: 8px;
+                margin: 0 2px;
+                width: 8px
+            }
+
+            .completeHomeInteriro_selectedTabs_dots__3XOQ7 span.easystepactive {
+                background-color: rgb(27, 108, 159)
+            }
+
+            .completeHomeInteriro_selectedTab_list__xW6W4 {
+                margin-bottom: 20px
+            }
+        }
+
+        @media(max-width: 345px) {
+            .easystep_activenodiv .easystep_activenumber {
+                margin-right: 35%
+            }
+
+            .easystep_activenodiv .easystep_activenumber:before {
+                width: 27%
+            }
+        }
+
+        @media(orientation: portrait) and (min-width:900px) {
+            .completeHomeInteriro_show-portrait__2tPDi {
+                display: none
+            }
+        }
+
+        @media(orientation: portrait) and (max-width:900px) {
+            .completeHomeInteriro_show-portrait__2tPDi {
+                display: block
+            }
+        }
+
+        @media(orientation: landscape) and (min-width:900px) {
+            .completeHomeInteriro_show-portrait__2tPDi {
+                display: none
+            }
+        }
+
+        @media(orientation: landscape) and (max-width:900px) {
+            .completeHomeInteriro_show-portrait__2tPDi {
+                display: block
+            }
+        }
+
+        .completeHomeInteriro_show-landscape__34kJU {
+            font-weight: 700
+        }
+
+        @media(orientation: landscape) and (min-width:900px) {
+            .completeHomeInteriro_show-landscape__34kJU {
+                display: block
+            }
+        }
+
+        @media(orientation: portrait) and (max-width:900px) {
+            .completeHomeInteriro_show-landscape__34kJU {
+                display: none
+            }
+        }
+
+        @media only screen and (max-width:768px) {
+            .homepage_commonBFB_btn__2IAEC {
+                font-size: 10px !important;
+                padding: 7px 30px !important;
+                margin-top: -20px !important;
+            }
+
+            .completeHomeInteriro_selectedTab_head__uJ_G_ {
+                text-align: center;
+            }
+        }
+    </style>
+    <!-- ====easy steps posting end -->
+
+    <!-- news article section start-->
+    <section class="news_arctile_sect">
+        <div class="cmmnheading">
+            <h4>News & Article</h4>
+            <h5>Unveiling the Latest Real Estate Market Trend & Update</h5>
+        </div>
+        <div class="swiper mySwiper21">
+            <div class="swiper-wrapper s21">
+                {% for blogdata in blog_data %}
+                <div class="swiper-slide ss21">
+                    <a href="{% url 'blog_details' slug=blogdata.slug %}">
+                        <img src="{{ blogdata.blog_image.url }}" loading="lazy" alt="news images" />
+                        <a href="{% url 'blog_details' slug=blogdata.slug %}">
+                            <button class="btn-1">
+                                <svg>
+                                    <rect x="0" y="0" fill="none" width="100%" height="100%" />
+                                </svg>
+                                Read more
+                            </button>
+                        </a>
+                        <div class="news_content">
+                            <h6 class="newsauthor">{{ blogdata.small_blog_name }}</h6>
+                            <p class="newspara limited-text">
+                                {{ blogdata.blog_description|safe }}
+                            </p>
+                            <p class="newsdate">{{ blogdata.formatted_date }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="swiper-button-next news_next"></div>
+            <div class="swiper-button-prev news_prev"></div>
+            <div class="swiper-pagination news_pagination"></div>
+        </div>
+    </section>
+
+    <style>
+        .news_next,
+        .news_prev {
+            display: none;
+        }
+
+        .news_content {
+            margin: 20px 0px;
+            color: #000;
+        }
+
+        .news_content .newsauthor {
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .news_content .newspara {
+            text-align: justify;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .news_content .newsdate {
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: -8px;
+            color: grey;
+        }
+
+        .ss21 .btn-1 {
+            border: none;
+            color: #fff;
+            font-size: 11px;
+            padding: 5px 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            background: #f91942;
+
+            svg {
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            rect {
+                fill: none;
+                stroke: #fff;
+                stroke-width: 3;
+                stroke-dasharray: 422, 0;
+                transition: all 0.35s linear;
+            }
+        }
+
+        .ss21:hover {
+            background: #f91942;
+
+            rect {
+                stroke-width: 7;
+                stroke-dasharray: 15, 310;
+                stroke-dashoffset: 48;
+                transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+            }
+        }
+
+        .news_pagination .swiper-pagination-bullet-active {
+            background-color: #f91942 !important;
+            width: 15px;
+            border-radius: 10px;
+        }
+
+        .news_arctile_sect {
+            margin: 60px 0px 30px;
+        }
+
+        .mySwiper21 {
+            width: 100%;
+            height: 420px;
+            position: relative;
+        }
+
+        .s21 {
+            padding-top: 5px;
+        }
+
+        .ss21 {
+            height: 200px;
+            border-radius: 15px;
+        }
+
+        .ss21 img {
+            border-radius: 15px;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        @media only screen and (max-width:768px) {
+            .mySwiper21 {
+                height: 395px;
+            }
+        }
+    </style>
+
+    <script>
+        const maxCharacters = 200;
+        const limitedTextElements =
+            document.querySelectorAll(".limited-text");
+        limitedTextElements.forEach((element) => {
+            const longText = element.textContent;
+            const trimmedText = longText.slice(0, maxCharacters);
+            element.textContent = trimmedText;
+            if (longText.length > maxCharacters) {
+                element.title = longText;
+            }
+        });
+    </script>
+
+    <script>
+        var swiper21 = new Swiper(".mySwiper21", {
+            spaceBetween: 30,
+            slidesPerView: 3,
+            speed: 900,
+            autoplay: {
+                delay: 3300,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                900: {
+                    slidesPerView: 3,
+                },
+                560: {
+                    slidesPerView: 2,
+                },
+                200: {
+                    slidesPerView: 1,
+                }
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    <!-- news article section end-->
+
+    <!-- ============testimonials setion start============ -->
+    <section class="testimonial_sect">
+        <div class="cmmnheading">
+            <h4>Testimonials</h4>
+            <h5>Hear It from Our Clients</h5>
+        </div>
+        <div class="swiper mySwiper23">
+            <div class="swiper-wrapper s23">
+                <div class="swiper-slide ss23">
+                    <div class="test_wrap">
+                        <div class="test_head">
+                            <div class="test_prof_img">
+                                <img src="{% static 'images/leafblog.avif' %}" loading="lazy" alt="" />
+                            </div>
+                            <div class="test_prof_detail">
+                                <div class="test_prof_name">Pratham Harode</div>
+                                <div class="test_prof_date">1 march 24</div>
+                            </div>
+                        </div>
+                        <div class="test_prof_star">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="test_prof_content">
+                            <p class="add-read-more show-less-content">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Odio reprehenderit suscipit esse nihil dolorum amet
+                                dignissimos laudantium maxime culpa libero laborum
+                                itaque atque quas praesentium dolores magnam at quod
+                                nobis ipsa quam nesciunt magni, perspiciatis nemo. Cum
+                                accusamus tenetur aperiam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next testimonial_next"></div>
+            <div class="swiper-button-prev testimonial_prev"></div>
+            <div class="swiper-pagination testimonial_pagination"></div>
+        </div>
+    </section>
+
+    <style>
+        .add-read-more.show-less-content .second-section,
+        .add-read-more.show-less-content .read-less {
+            display: none;
+        }
+
+        .add-read-more.show-more-content .read-more {
+            display: none;
+        }
+
+        .add-read-more .read-more,
+        .add-read-more .read-less {
+            font-weight: 600;
+            margin-left: 2px;
+            color: rgb(57, 56, 56);
+            cursor: pointer;
+        }
+
+        .add-read-more .read-more:hover,
+        .add-read-more .read-less:hover {
+            font-weight: 600;
+            text-decoration: underline;
+            color: black;
+        }
+
+        .add-read-more {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .testimonial_next,
+        .testimonial_prev {
+            display: none;
+        }
+
+        .test_prof_content {
+            width: 100%;
+            height: auto;
+        }
+
+        .test_prof_content p {
+            font-size: 14px;
+            text-align: justify;
+            color: black;
+        }
+
+        .test_prof_star {
+            margin: 10px 5px;
+            display: flex;
+            align-items: left;
+        }
+
+        .test_prof_star i {
+            color: gold;
+            font-size: 15px;
+            margin: 0px 3px;
+        }
+
+        body {
+            scroll-behavior: smooth;
+        }
+
+        .test_wrap {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0px 0px 3px 0px #00000047;
+        }
+
+        .test_head {
+            width: 100%;
+            height: auto;
+            display: flex;
+            position: relative;
+        }
+
+        .test_head .test_prof_img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .test_head .test_prof_img img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .test_head .test_prof_detail {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 15px;
+        }
+
+        .test_head .test_prof_detail .test_prof_name {
+            font-size: 14px;
+            font-weight: 600;
+            color: black;
+        }
+
+        .test_head .test_prof_detail .test_prof_date {
+            color: grey;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .test_head:after {
+            content: "";
+            display: block;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 0px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-image: url(./assets/img/News-Media/googleicon.svg);
+            background-size: 100% 100%;
+        }
+
+        .mySwiper23 {
+            width: 100%;
+            height: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ss23 {
+            padding: 10px;
+            height: auto;
+        }
+
+        .ss23 img {
+            border-radius: 15px;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .testimonial_pagination {
+            display: none;
+        }
+
+        .testimonial_sect {
+            margin: 60px 0px 30px;
+        }
+    </style>
+
+    <script>
+        var swiper23 = new Swiper(".mySwiper23", {
+            spaceBetween: 15,
+            speed: 900,
+            autoplay: {
+                delay: 3700,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                1050: {
+                    slidesPerView: 4,
+                },
+                780: {
+                    slidesPerView: 3,
+                },
+                500: {
+                    slidesPerView: 2,
+                },
+                250: {
+                    slidesPerView: 1,
+                }
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            function AddReadMore() {
+                var carLmt = 200;
+                var readMoreTxt = " ...Read more";
+                var readLessTxt = " Read less";
+                $(".add-read-more").each(function () {
+                    if ($(this).find(".first-section").length)
+                        return;
+
+                    var allstr = $(this).text();
+                    if (allstr.length > carLmt) {
+                        var firstSet = allstr.substring(0, carLmt);
+                        var secdHalf = allstr.substring(carLmt, allstr.length);
+                        var strtoadd = firstSet + "<span class='second-section'>" + secdHalf + "</span><br><span class='read-more'  title='Click to Show More'>" + readMoreTxt + "</span> <br> <span class='read-less' title='Click to Show Less'>" + readLessTxt + "</span>";
+                        $(this).html(strtoadd);
+                    }
+                });
+                $(document).on("click", ".read-more,.read-less", function () {
+                    $(this).closest(".add-read-more").toggleClass("show-less-content show-more-content");
+                });
+            }
+
+            AddReadMore();
+        });
+
+    </script>
+    <!-- ============testimonials setion ends============ -->
+
+    <!-- ======happy dwelers section start-->
+    <section class="happy_dwellers">
+        <div class="cmmnheading">
+            <h4>Our Most Recent Happy Home Dwellers</h4>
+            <h5>Dream Make True</h5>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 p-4 happyleftcontent">
+                <div class="about-content">
 
 
-</head>
-<body id="page-top" oncopy="return false" oncut="return false">
+                    <h2 class="section-title mt-3">Every Unit Tells a <br> Story</h2>
 
-	<div class="container">
-		<div class="jumbotron">
-			<h5 class="font-weight-normal">PRIVACY POLICY & TERM OF USES</h5>
-			<p>
-				Premier ("Premier Real Estate Services" or "We") a Real Estate Regulatory Authority ("RERA") Registered Agent bearing RERA No:  PRM/KA/RERA/1251/310/AG/190510/001384. We prioritize your privacy. Our concise Privacy Policy outlines the personal information we collect through our website, including sub-domains and microsites, the purposes of collection we may share it with, and security measures in place. It also informs you about your rights, choices, and how to contact us regarding privacy concerns. We highly recommend reading this Privacy Policy before using services and/or providing personal information.
-		  </p>
-			<hr>
-			<h5 class="font-weight-normal">INTERPRETATIONS AND DEFINITIONS</h5>
-			<p>"Data" shall mean personal information, including sensitive personal information and special category personal data (as defined under Data Protection Laws) about you, which we collect, receive, or otherwise process in connection with your use of our website and/or the Platform.
-			  <br>
-		  
-			  "Data Protection Laws" shall mean any applicable law for the time being in force relating to the processing of Data.
-			  <br>
-			  "Service Providers" includes entities which provide services to and to whom we may disclose your Data for a specific purpose pursuant to a written contract.
-			  <br>
-			  "Premier/We" shall mean Premier Real Estate Services, and its subsidiaries, affiliates and associate companies.
-			  <br>
-			  "User or You" shall mean the natural person who accesses our website/pages or Platform.</p>
-			  <hr>
-			   <h5 class="font-weight-normal">WEBSITE CONTENT OVERVIEW:</h5>
-			<p>The contents of this landing page, containing details of properties, property photos, costs, and availability, are provided for informational and illustrative purposes only. This information is subject to change at any time. Users are hereby advised that the actual properties may differ from what is shown in photos and cost on the website and pages, and as such, no claims shall be entertained based on such representations.
-			  
-			  </p>
-			  <hr>
-			   <h5 class="font-weight-normal">Uses of Developer Information:</h5>
-			<p>All images, cost descriptions, logos, and other project materials featured on this landing page are presented in accordance with the respective project developer or its licensors. We are in legal agreements and established legal relationships with the said respective developer, thereby possessing the authority to advertise, market for sale, and generate leads for the respective project.</p>
-			  <hr>
-			  <h4>TYPES OF DATA COLLECTED</h4>
-			   <h5 class="font-weight-normal">RETENTION OF YOUR PERSONAL DATA</h5>
-			<p>While visiting to this website, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
-			<ul>
-			  <li>Email address</li>
-			  <li>First name and last name</li>
-			  <li>Phone number</li>
-			  <li>Address, State, Province, ZIP/Postal code, City</li>
-			  <li>We may use Personal Data for the following purposes:</li>
-			</ul>
-			<p>To provide and maintain our Service, including to monitor the usage of our Service.
-			  To contact You: To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication.
-			  To provide Information related to the propertyâ€™s sale, purchase etc. with, special offers and general information about properties, real estate services which we offer that are similar to those that you have already purchased or enquired about. 
-			  To manage Your requests: To attend and manage Your requests to Us.
-			  We may share Your personal information in the following situations:</p>
-			  <p>With Affiliates: We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our associates and any other subsidiaries, that We control or that are under common control with Us.
-				With Authorized Developers: We may disclose Your personal information with Real Estate Regulatory Authority (RERA) registered Developers for further processing as necessary. 
-				With Your consent: We may disclose Your personal information for any other purpose with Your consent.</p>
-			  <hr>
-			 
-			  <h5 class="font-weight-normal">RETENTION OF YOUR PERSONAL DATA</h5>
-			  <p>We shall retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws). 
-			  </p>
-			  <hr>
-			  <h4>DISCLOSURE OF YOUR PERSONAL DATA</h4>
-			  <h5 class="font-weight-normal">USER'S CONSENT</h5>
-			  <p>By using the Website/Landing Page and/or by providing information to Us through this Website/Landing Page, the User consents to the collection and use of the information disclosed by the User on the Website in accordance with this Privacy Policy.
-			  </p>
-			  <h5 class="font-weight-normal">LAW ENFORCEMENT</h5>
-			  <p>Under certain circumstances, the We may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
-			  </p>
-			  <h5 class="font-weight-normal">OTHER LEGAL REQUIREMENTS</h5>
-			  <p>The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:
-			  </p>
-			  <p>Comply with a legal obligation.
-				Prevent or investigate possible wrongdoing in connection with the Service.
-				Protect the personal safety of Users of the Service or the public.
-				Protect against legal liability.
-				</p>
-				<h5 class="font-weight-normal">SECURITY OF YOUR PERSONAL DATA</h5>
-				<p>The security of Your Personal Data is important to Us but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, we cannot guarantee its absolute security.
-				</p>
-				<h5 class="font-weight-normal">CHILDREN'S PRIVACY</h5>
-				<p>Our Service does not address anyone under the age of 18. We do not knowingly collect personally identifiable information from anyone under the age of 18. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 18 without verification of parental consent, we take steps to remove that information from Our servers.
-				</p>
-				<h5 class="font-weight-normal">CHANGES TO THIS PRIVACY POLICY</h5>
-				<p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
-				</p>
-				<h5 class="font-weight-normal">CONTACT US</h5>
-				<p>To request to review, update, or delete your personal information or to otherwise reach us, please submit a request by e-mailing us at <a href="mailto:marketing@premierconsulting.co.in">marketing@premierconsulting.co.in</a>
-				</p>
-			  <hr>
-			  
-		  </div>
-		  </div>
-		  
-			  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-	
-	
-	</body>
-</html>
+                    <p class="section-text mt-4 mb-5">
+                        Lorem Ipsum is simply dummy text of the printingand typesetting industry lorem Ipsum has been
+                        the
+                        industrys standard dummy text ever since the when an unknown printer took a galley of type and
+                        scrambled
+                        it to make a type specimen book It has survived not only five centuries, but also the leap into.
+                    </p>
+
+                    <!-- <div class="contact-label">Book Through Call</div>
+              
+                          <a href="tel:+804001234567" class="body-1 contact-number hover-underline">+80 (400) 123 4567</a> -->
+
+                    <a href="#" class="happydweller_btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 happyrightimg">
+                <div class="p-5 happyrightpadd">
+                    <div class="swiper mySwiper25">
+                        <div class="swiper-wrapper s25">
+                            <div class="swiper-slide ss25">
+                                <img src="{% static 'images/unit-2.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-button-next happy_dwellers_next"></div>
+                        <div class="swiper-button-prev happy_dwellers_prev"></div>
+                        <div class="swiper-pagination happy_dwellers_pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <style>
+        .happy_dwellers::before,
+        .happy_dwellers::after {
+            content: url('./images/separator.svg');
+            display: block;
+            width: 150px;
+            margin-inline: auto;
+            margin-bottom: 50px;
+            margin-block-start: 5px;
+
+        }
+
+        .happy_dwellers {
+            text-align: center;
+            margin: 75px 0px 30px 0px;
+        }
+
+        .about-content {
+            font-family: 'Forum', cursive;
+
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .section-text {
+            font-family: 'DM Sans', sans-serif;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .happydweller_btn {
+            position: relative;
+            color: var(--gold-crayola);
+            font-size: 14px;
+            font-weight: var(--weight-bold);
+            text-transform: uppercase;
+            letter-spacing: var(--letterSpacing-5);
+            max-width: max-content;
+            border: 2px solid var(--gold-crayola);
+            padding: 12px 38px;
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .happydweller_btn:after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: var(--gold-crayola);
+            transition: all .35s;
+            z-index: -1;
+        }
+
+        .happydweller_btn:hover:after {
+            height: 100%;
+        }
+
+        .happydweller_btn:hover {
+            color: black;
+            font-weight: 800;
+            border: 2px solid black;
+        }
+
+        .happyrightimg {
+            background-image: url("./assets/images/celebration-bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-size: 100% 100%;
+        }
+
+        .happy_dwellers_next,
+        .happy_dwellers_prev {
+            display: none;
+        }
+
+        .happy_dwellers_pagination .swiper-pagination-bullet-active {
+            background-color: var(--gold-crayola) !important;
+            width: 15px;
+            border-radius: 10px;
+        }
+
+        .mySwiper25 {
+            width: 100%;
+            height: 340px;
+            position: relative;
+        }
+
+        .s25 {
+            padding-top: 5px;
+        }
+
+        .ss25 {
+            height: 300px;
+            border-radius: 15px;
+        }
+
+        .ss25 img {
+            border-radius: 15px;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        @media only screen and (max-width:768px) {
+            .happyrightpadd {
+                padding: 0px !important;
+            }
+
+            .happyleftcontent {
+                padding: 0px !important;
+            }
+
+            .happyrightimg {
+                padding: 20px 0px 0px 0px !important;
+            }
+
+            .homepage_commonBFB_btn__2IAEC {
+                font-size: 10px !important;
+                padding: 7px 30px !important;
+                margin-top: -20px !important;
+            }
+
+            .completeHomeInteriro_selectedTab_head__uJ_G_ {
+                text-align: center;
+            }
+        }
+    </style>
+
+    <script>
+        var swiper25 = new Swiper(".mySwiper25", {
+            spaceBetween: 5,
+            slidesPerView: 1,
+            speed: 800,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    <!-- ======happy dwelers section end-->
+
+    <!-- top news channel patner start -->
+    <section class="newspartner_sect">
+        <div class="cmmnheading">
+            <h4>We’re In The News</h4>
+        </div>
+        <div class="swiper mySwiper22">
+            <div class="swiper-wrapper s20">
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/ANI.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/Businesstandard.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/Dailyhunt.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/Financialexpress.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/Googlenews.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/republicnewstoday.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/Theprint.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/Washington.png' %}" loading="lazy" alt="" />
+                </div>
+                <div class="swiper-slide ss20">
+                    <img src="{% static 'images/News-Media/Zee5.png' %}" loading="lazy" alt="" />
+                </div>
+            </div>
+            <div class="swiper-button-next topbuilder_next"></div>
+            <div class="swiper-button-prev topbuilder_prev"></div>
+            <div class="swiper-pagination topbuilder_pagination"></div>
+        </div>
+    </section>
+
+    <script>
+        var swiper22 = new Swiper(".mySwiper22", {
+            spaceBetween: 40,
+            speed: 700,
+            autoplay: {
+                delay: 2700,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                1100: {
+                    slidesPerView: 4,
+                },
+                768: {
+                    spaceBetween: 10,
+                    slidesPerView: 4,
+                },
+                500: {
+                    spaceBetween: 10,
+                    slidesPerView: 3,
+                },
+                250: {
+                    spaceBetween: 10,
+                    slidesPerView: 2,
+                }
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    <!-- top news channel patner end -->

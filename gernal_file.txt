@@ -1,238 +1,96 @@
-                    <style>
-                    .test_prof_img{
-                      background-color: rgb(27,108,159);
-                     position: relative;
-                    }
-                    .testimonialuser{
-                      position: absolute;
-                      top: 50%;
-                      left: 50%;
-                      transform: translate(-50%,-50%);
-                    }
-                    .show-less-content{
-                      height: 150px;
-                    }
-                  </style>
+  <div class="preload" data-preload>
+    <div class="circle"></div>
+    <p class="text">Search Homes India</p>
+  </div>
 
-  <div class="swiper-wrapper s23">
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">Srikanth .Y</div>
-                      <div class="test_prof_date">1a month ago</div>
-                    </div>
-                  </div>
 
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      I was very much happy with the service / help given by Mr. Sharath Kumar from Godrej Ananda. He helped me in booking the flat. This will be our biggest life time investment/ dream. Thanks a lot Sharath Kumar for being customer friendly.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">Ankit Nagpal</div>
-                      <div class="test_prof_date">a year ago</div>
-                    </div>
-                  </div>
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
+document.addEventListener("DOMContentLoaded", () => {
+  const preloader = document.querySelector("[data-preload]");
+  setTimeout(() => {
+    preloader.classList.add("loaded");
+    document.body.classList.add("loaded");
+  }, 5000);
+  
+  window.addEventListener("load", function () {
+    preloader.classList.add("loaded");
+    document.body.classList.add("loaded");
+  });
+});
 
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      Hello team,  would like to really appreciate the services and support provided by your team specially PALLAVI from search homes for booking in prestige City Sarjapur. The after sales service is the main what I was looking for and it's really commendable the support and solution provided to my queries is still the same. Looking forward more relation with you guys.. and thanks VIPUL for making me introduce to pallavi and prestige City.  👍
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">Nikhil Ingale</div>
-                      <div class="test_prof_date">3 years ago</div>
-                    </div>
-                  </div>
 
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
 
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      I'm so grateful to meet Mangesh from search homes India Pvt Ltd in the process of buying first property. I'm so happy with the services recommended by him. First house is dream house for each one of us. Meeting him was really fortunate which helped us to turn our dream come true in purchase of the first property where our majority of the expectations met.
-                      <br>
-                      I would definitely recommend  'Search Homes Pvt Ltd' to everyone who are searching to buy dream home.
-                      <br>
-                      Thank you so much Mangesh and team for the great service provided by you.
-                      <br>
-                      I’m expecting to get same quality support from your end.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">Shipra Jain</div>
-                      <div class="test_prof_date">3 years ago</div>
-                    </div>
-                  </div>
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
+/*-----------------------------------*\
+  #PRELOAD
+\*-----------------------------------*/
 
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      It was good experience with search homes and they helped us to find the right home. However, some followup was required to get certain things done.
-                      I would recommend all to go ahead with them in future.
-                      
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">Subrat Sahoo</div>
-                      <div class="test_prof_date">3 years ago</div>
-                    </div>
-                  </div>
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
+.preload {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:white;
+  z-index: 999;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  transition: 500ms ease;
+}
 
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      I would highly recommend Search Homes to anyone looking to buy a property/land/apartment in Bangalore, they are highly efficient and professional group, Pankaj has always put our interest first and that's what is different from other property consultants, I have also referred them to my friends and they were extremely happy with the entire process, right from prestige, brigade and many others, they have always got fast handover to us and friends, always got referrals on time, couldn't have asked for a better property consultants in Bangalore.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">Yogesh Tiwari</div>
-                      <div class="test_prof_date">3 years ago</div>
-                    </div>
-                  </div>
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
+.preload > * {
+  transition: 250ms ease;
+}
 
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      There are many consultants in the property market specially in Bangalore but Search homes is definitely one of “the best” because I personally believe that employee drives the company to the next level.
-                      I would like to take this opportunity to thanks “Pankaj” for keeping his commitment, passion, and his 24x7 support starting from suggesting PLSH, site visits, floor selection, TDS filling, and seamless handover. His relationship building skills are naturally awesome.
-                      I wish him and search homes all the best.
-                      
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">mohammed ashraf</div>
-                      <div class="test_prof_date">a year ago</div>
-                    </div>
-                  </div>
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
+.preload.loaded > * {
+  opacity: 0;
+}
 
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      Bought an apartment through Search Homes India pvt lmtd, and enjoyed true customer care from Mr Pankaj Sing, he offered 1% cash back at the time of booking and processed the payment immediately after their bill settlement with Prestige group.  Highly recommended
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide ss23">
-                <div class="test_wrap">
-                  <div class="test_head">
-                    <div class="test_prof_img">
-                      <i class="ShiIcons icon_user testimonialuser"></i>
-                    </div>
-                    <div class="test_prof_detail">
-                      <div class="test_prof_name">manoj manglani</div>
-                      <div class="test_prof_date">11 months ago</div>
-                    </div>
-                  </div>
-                  <div class="test_prof_star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
+.preload.loaded {
+  transition-delay: 250ms;
+  transform: translateY(100%);
+}
 
-                  <div class="test_prof_content">
-                    <p class="add-read-more show-less-content">
-                      Well it was a nice experience with this team ,, our site visit was with Hanshika  and she was excellent with the details , we were not sure to buy but she treat us patiently .
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+.circle {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  border: 5px solid rgb(27,108,159);
+  border-block-start-color:white;
+  margin-block-end: 45px;
+  animation: rotate360 1s linear infinite;
+}
+
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.preload .text {
+  background-image: linear-gradient(90deg, transparent 0% 16.66%, hsl(203.18, 70.97%, 36.47%) 33.33% 50%,  transparent 66.66% 75%);
+  background-size: 500%;
+  font-size: calc(2rem + 3vw);
+  font-weight: 700;
+  line-height: 1em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  padding-inline-start: 16px;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.3px rgb(53, 52, 52);
+  animation: loadingText linear 2s infinite;
+  transition: all 0.8s ease;
+}
+
+@keyframes loadingText {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}

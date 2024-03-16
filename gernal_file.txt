@@ -1,96 +1,49 @@
-  <div class="preload" data-preload>
-    <div class="circle"></div>
-    <p class="text">Search Homes India</p>
-  </div>
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const preloader = document.querySelector("[data-preload]");
-  setTimeout(() => {
-    preloader.classList.add("loaded");
-    document.body.classList.add("loaded");
-  }, 5000);
-  
-  window.addEventListener("load", function () {
-    preloader.classList.add("loaded");
-    document.body.classList.add("loaded");
-  });
-});
-
-
-
-/*-----------------------------------*\
-  #PRELOAD
-\*-----------------------------------*/
-
-.preload {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color:white;
-  z-index: 999;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  transition: 500ms ease;
-}
-
-.preload > * {
-  transition: 250ms ease;
-}
-
-.preload.loaded > * {
-  opacity: 0;
-}
-
-.preload.loaded {
-  transition-delay: 250ms;
-  transform: translateY(100%);
-}
-
-.circle {
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  border: 5px solid rgb(27,108,159);
-  border-block-start-color:white;
-  margin-block-end: 45px;
-  animation: rotate360 1s linear infinite;
-}
-
-@keyframes rotate360 {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(1turn);
-  }
-}
-
-.preload .text {
-  background-image: linear-gradient(90deg, transparent 0% 16.66%, hsl(203.18, 70.97%, 36.47%) 33.33% 50%,  transparent 66.66% 75%);
-  background-size: 500%;
-  font-size: calc(2rem + 3vw);
-  font-weight: 700;
-  line-height: 1em;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  padding-inline-start: 16px;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-stroke: 0.3px rgb(53, 52, 52);
-  animation: loadingText linear 2s infinite;
-  transition: all 0.8s ease;
-}
-
-@keyframes loadingText {
-  0% {
-    background-position: 100%;
-  }
-  100% {
-    background-position: 0%;
-  }
-}
+	756KB
+https://www.searchhomesindia.com/static/images/baner2.webp
+709KB
+https://www.searchhomesindia.com/static/images/baner3.webp
+697KB
+https://www.searchhomesindia.com/static/images/e2_500.jpg
+484KB
+https://www.searchhomesindia.com/static/images/p6_500.jpg
+483KB
+https://www.searchhomesindia.com/static/images/p9_500.jpg
+483KB
+https://www.searchhomesindia.com/static/images/p7_500.jpg
+478KB
+https://www.searchhomesindia.com/static/images/post-property.png
+459KB
+https://www.searchhomesindia.com/static/images/e8_500.jpg
+444KB
+https://www.searchhomesindia.com/static/images/SHIicons2.png
+311KB
+	https://www.searchhomesindia.com/static/images/e2_500.jpg	483KB	483KB
+	https://www.searchhomesindia.com/static/images/p9_500.jpg	483KB	483KB
+	https://www.searchhomesindia.com/static/images/p6_500.jpg	483KB	482KB
+	https://www.searchhomesindia.com/static/images/p7_500.jpg	477KB	477KB
+	https://www.searchhomesindia.com/static/images/e8_500.jpg	443KB	443KB
+	https://www.searchhomesindia.com/static/images/post-property.png	459KB	354KB
+	https://www.searchhomesindia.com/static/images/baner1.webp	755KB	332KB
+	https://www.searchhomesindia.com/static/images/baner2.webp	708KB	311KB
+	https://www.searchhomesindia.com/static/images/baner3.webp	696KB	306KB
+	https://www.searchhomesindia.com/static/images/invest.png	302KB	297KB
+	https://www.searchhomesindia.com/media/media/Property_images/brigade-valencia_11zon_11zon.webp	170KB	162KB
+	https://www.searchhomesindia.com/media/media/Property_images/sobha-brooklyn-towers_11zon_11zon.webp	155KB	148KB
+	https://www.searchhomesindia.com/static/images/mumbai.jpg	243KB	140KB
+	https://www.searchhomesindia.com/media/media/Property_images/tvs_luxor_banner.webp	139KB	133KB
+	https://www.searchhomesindia.com/media/media/Property_images/B-1.jpg	169KB	116KB
+	https://www.searchhomesindia.com/static/images/hyderabad.jpg	184KB	106KB
+	https://www.searchhomesindia.com/static/images/bengaluru.jpg	183KB	105KB
+	https://www.searchhomesindia.com/static/images/pune.jpg	173KB	99KB
+	https://www.searchhomesindia.com/static/images/delhi.jpg	171KB	98KB
+	https://www.searchhomesindia.com/static/images/chennai.jpg	167KB	95.9KB
+	https://www.searchhomesindia.com/static/images/prestige.jpg	56.7KB	56.0KB
+	https://www.searchhomesindia.com/static/images/banner-4.webp	116KB	50.8KB
+	https://www.searchhomesindia.com/static/images/unit1.jpg	131KB	45.1KB
+	https://www.searchhomesindia.com/static/images/unit5.jpg	128KB	44.0KB
+	https://www.searchhomesindia.com/static/images/unit2.jpg	128KB	44.0KB
+	https://www.searchhomesindia.com/static/images/unit6.jpg	120KB	41.2KB
+	https://www.searchhomesindia.com/static/images/unit3.jpg	117KB	40.3KB
+	https://www.searchhomesindia.com/static/images/unit4.jpg	113KB	38.8KB
+	https://www.searchhomesindia.com/static/images/shi_logo.png	12.8KB	12.3KB
+	https://www.searchhomesindia.com/static/images/godrej.png	6.15KB	5.65KB

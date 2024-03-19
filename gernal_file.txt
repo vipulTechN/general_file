@@ -46,4 +46,4 @@ https://www.searchhomesindia.com/static/images/SHIicons2.png
 	https://www.searchhomesindia.com/static/images/unit3.jpg	117KB	40.3KB
 	https://www.searchhomesindia.com/static/images/unit4.jpg	113KB	38.8KB
 	https://www.searchhomesindia.com/static/images/shi_logo.png	12.8KB	12.3KB
-	https://www.searchhomesindia.com/static/images/godrej.png	6.15KB	5.65KB
+	https://www.searchhomesindia.com/static/images/godrej.png	6.15KB	5.65Kb

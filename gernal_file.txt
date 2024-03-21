@@ -1,6 +1,12 @@
-<i class="commenticon icon_infra"></i>
-<i class="commenticon icon_door"></i>
-<i class="commenticon icon_tiles"></i>
-<i class="commenticon icon_wash"></i>
-<i class="commenticon icon_golden"></i>
-<i class="commenticon icon_camera"></i> 
+                  .commenticon.icon_conservation {
+                      background-position: -744px -43px;
+                  }
+                  .commenticon.icon_structure{
+                      background-position: -858px  -43px;
+                  }
+                  .commenticon.icon_landscape {
+                      background-position: -979px -47px;
+                  }
+<i class="commenticon icon_conservation"></i> 
+<i class="commenticon icon_structure"></i> 
+<i class="commenticon icon_landscape"></i> 

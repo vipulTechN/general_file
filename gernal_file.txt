@@ -1,1 +1,61 @@
-sbin0001206
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded event fired');
+            var form = document.getElementById('submit_propertyid');
+            console.log('Form element selected:', form);
+    
+            var submitButton = document.getElementById('submit_buttonid');
+            console.log('Submit button element selected:', submitButton);
+    
+            if (form && submitButton) { 
+                submitButton.addEventListener('click', function(event) {
+                    console.log('Submit button clicked');
+                    event.preventDefault(); 
+    
+                    var requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required], input[type="file"][required]');
+                    console.log('Required inputs:', requiredInputs); 
+    
+                    var isValid = true;
+                    console.log('Function Running');
+    
+                    var firstEmptyInput = null;
+    
+                    requiredInputs.forEach(function(input) {
+                        if (!input.value.trim()) {
+                            console.log('this works');
+                            if (!firstEmptyInput) {
+                                firstEmptyInput = input;
+                            }
+                            if (!input.classList.contains('required-error')) {
+                                input.classList.add('required-error');
+                                input.style.border = '1px solid red'; 
+                                input.insertAdjacentHTML('afterend', '<span class="error-message" style="color: red;">(This field is required)</span>');
+                            }
+                            isValid = false;
+                        } else {
+                            if (input.classList.contains('required-error')) {
+                                input.classList.remove('required-error');
+                                input.style.border = ''; 
+                                var errorMessage = input.nextElementSibling;
+                                if (errorMessage && errorMessage.classList.contains('error-message')) {
+                                    errorMessage.remove();
+                                }
+                            }
+                        }
+                    });
+    
+                    if (!isValid) {
+                        console.log('Please fill out all required fields.');
+                        if (firstEmptyInput) {
+                            firstEmptyInput.focus(); 
+                            firstEmptyInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    } else {
+                        form.submit(); // Submit the form if all fields are valid
+                    }
+                });
+            } else {
+                console.log('Form with ID "submit_propertyid" or submit button with ID "submit_button" not found.');
+            }
+        });
+    </script> 

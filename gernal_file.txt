@@ -1,61 +1,187 @@
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOMContentLoaded event fired');
-            var form = document.getElementById('submit_propertyid');
-            console.log('Form element selected:', form);
-    
-            var submitButton = document.getElementById('submit_buttonid');
-            console.log('Submit button element selected:', submitButton);
-    
-            if (form && submitButton) { 
-                submitButton.addEventListener('click', function(event) {
-                    console.log('Submit button clicked');
-                    event.preventDefault(); 
-    
-                    var requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required], input[type="file"][required]');
-                    console.log('Required inputs:', requiredInputs); 
-    
-                    var isValid = true;
-                    console.log('Function Running');
-    
-                    var firstEmptyInput = null;
-    
-                    requiredInputs.forEach(function(input) {
-                        if (!input.value.trim()) {
-                            console.log('this works');
-                            if (!firstEmptyInput) {
-                                firstEmptyInput = input;
-                            }
-                            if (!input.classList.contains('required-error')) {
-                                input.classList.add('required-error');
-                                input.style.border = '1px solid red'; 
-                                input.insertAdjacentHTML('afterend', '<span class="error-message" style="color: red;">(This field is required)</span>');
-                            }
-                            isValid = false;
-                        } else {
-                            if (input.classList.contains('required-error')) {
-                                input.classList.remove('required-error');
-                                input.style.border = ''; 
-                                var errorMessage = input.nextElementSibling;
-                                if (errorMessage && errorMessage.classList.contains('error-message')) {
-                                    errorMessage.remove();
-                                }
-                            }
-                        }
-                    });
-    
-                    if (!isValid) {
-                        console.log('Please fill out all required fields.');
-                        if (firstEmptyInput) {
-                            firstEmptyInput.focus(); 
-                            firstEmptyInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    } else {
-                        form.submit(); // Submit the form if all fields are valid
-                    }
-                });
-            } else {
-                console.log('Form with ID "submit_propertyid" or submit button with ID "submit_button" not found.');
-            }
-        });
-    </script> 
+gallery section html
+
+ <div id="myModalswiper" class="modalswiper">
+            <span class="closemodal">&times;</span>
+            <img class="modal-content-swiper" id="imgswiper">
+        </div>
+
+            <section class="section shadow-sm lazyloaded" id="galleryswiper">
+                <span class="section-link" id="gallery"></span>
+            <span class="head text-capitalize">View Gallery</span>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"><img src="images/g-1.webp" class="myImgswiper"  alt=""></div>
+                  <div class="swiper-slide"><img src="images/g-2.webp" class="myImgswiper"  alt=""></div>
+                  <div class="swiper-slide"><img src="images/g-3.webp" class="myImgswiper"  alt=""></div>
+                  <div class="swiper-slide"><img src="images/g-4.webp" class="myImgswiper"  alt=""></div>
+                  <div class="swiper-slide"><img src="images/g-5.webp" class="myImgswiper"  alt=""></div>
+                  <div class="swiper-slide"><img src="images/g-6.webp" class="myImgswiper"  alt=""></div>
+                  <div class="swiper-slide"><img src="images/g-7.webp" class="myImgswiper"  alt=""></div>
+                  <div class="swiper-slide"><img src="images/g-8.webp" class="myImgswiper"  alt=""></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+              </div>
+        </section>
+
+
+Gallery section js
+
+var swiper = new Swiper(".mySwiper", {
+  spaceBetween: 30,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
+  slidesPerView: 2,
+  grabCursor: true,
+  keyboard: {
+    enabled: true,
+  },
+  breakpoints: {
+    250: {
+      slidesPerView: 1,
+    },
+    700: {
+      slidesPerView: 2,
+    }, 
+    1650: {
+      slidesPerView: 3,
+    },
+
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+// Get all elements with class "myImg"
+var images = document.getElementsByClassName('myImgswiper');
+
+// Get the modal
+var modal = document.getElementById('myModalswiper');
+var modalImg = document.getElementById("imgswiper");
+
+// Loop through all images and attach click event handler
+for (var i = 0; i < images.length; i++) {
+    images[i].onclick = function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    };
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("closemodal")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+};
+
+gallery sec css
+
+.swiper {
+  width: 100%;
+  height: 300px;
+}
+
+.swiper-slide {
+  height: 250px;
+}
+
+.swiper-slide img {
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--colorPrimary)!important;
+  width: 20px;
+  border-radius: 20px;
+}
+.swiper-button-next, .swiper-button-prev {
+  color: var(--colorPrimary)!important;
+
+}
+.myImgswiper {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.myImgswiper:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modalswiper {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  z-index: 99999;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content-swiper {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+
+/* Add Animation */
+.modal-content-swiper{    
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.closemodal {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.closemodal:hover,
+.closemodal:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+      width: 100%;
+  }
+}

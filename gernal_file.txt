@@ -1,27 +1,28 @@
-var originalDisplay = {};
-function filterOptions() {
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('searchInput');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById('optionul');
-  li = ul.getElementsByClassName('optionli');
-
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName('a')[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = 'block';
-    } else {
-      li[i].style.display = 'none';
-    }
-  }
-  if (filter === '') {
-    for (i = 0; i < li.length; i++) {
-      li[i].style.display = 'none'; 
-    }
-  }
+.whychoose {
+  background: url(/assets/img/wcuimg.png);
+  width: 90px;
+  height: 90px;
+  background-size: 2100px 275px;
+  display: inline-block;
+  vertical-align: middle;
+  font-style: normal;
+  background-repeat: no-repeat;
 }
-
-.optionli{
-    display: none;
+.whychoose.icon_match {
+  background-position: -36px -95px;
+}
+.whychoose.icon_guid {
+  background-position: -160px -95px;
+}
+.whychoose.icon_listing {
+  background-position: -283px -95px;
+}
+.whychoose.icon_dd {
+  background-position: -405px -95px;
+}
+.whychoose.icon_property {
+  background-position: -532px -95px;
+}
+.whychoose.icon_perks {
+  background-position: -660px -95px;
 }

@@ -15,8 +15,82 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 </head>
 <body>
-    <section class="banner">
+    <nav class="mobilenav">
+        <div class="imgwrap">
         <div class="logo-img">
+            <img src="./images/logo.webp" alt="" id="logoImg" />
+        </div>
+    </div>
+        <div class="buttoonformob">
+            <button style="background-color: rgb(192,151,136); color: white;">
+              Tap to call
+            </button>
+            <button>
+                Whatsapp us
+            </button>
+        </div>
+    </nav>
+    <style>
+        .mobilenav{
+            display: none;
+        }
+        .getoffers{
+            border: 1px solid rgb(192,151,136);
+         font-size: 20px;
+         font-weight: 600;
+         width: 40%;
+         margin-left: 30%;
+         text-align: center;
+         color: rgb(192,151,136);
+         border-radius: 2px;
+        }
+        @media screen and (max-width: 768px) {
+            .fordesktop{
+                display: none;
+            }
+            .mobilenav{
+            display: flex!important;
+            align-items: center;
+            height: 65px;
+            position: relative;
+            background-color: rgba(10, 9, 9, 0.171);
+            padding: 5px;
+        }
+        .imgwrap{
+            width: 50%;
+        }
+        .mobilenav .logo-img{
+            max-width: 50px !important;
+            max-height: 42px !important;
+            background-color: white;
+            border-radius: 2px;
+        }
+         .buttoonformob{
+            display: flex;
+            justify-content: space-between;
+            width: 50%;
+         }
+         .buttoonformob button{
+         border: 1px solid rgb(192,151,136);
+         font-size: 13px;
+         font-weight: 600;
+         /* background-color: rgb(192,151,136); */
+         color: rgb(192,151,136);
+         border-radius: 2px;
+        }
+        .buttoonformob button:focus{
+          outline: 0;
+        }
+        .buttoonformob button:hover{
+            color: white;
+            background-color: rgb(192,151,136);
+         border: 1px solid rgb(192,151,136);
+
+        }
+        }
+    </style>
+    <section class="banner">
+        <div class="logo-img fordesktop">
             <img src="./images/logo.webp" alt="" id="logoImg" />
         </div>
         <div class="banner-img desk">
@@ -330,7 +404,15 @@
 
                         </div>
                     </div>
+                        
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                          <button class="getoffers">
+                            Get Offers
+                          </button>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>

@@ -81,3 +81,13 @@ function drawChart() {
       updateChart(selectedYear);
   });
 }
+
+
+
+
+
+
+###########################
+"SELECT id, employee_name, employee_id, phone_number, laptop_id, project, office_location,
+        laptop_brand, sim_cad, company_laptop, laptop_charger, company_mouse, datesignature
+        FROM company_assets"

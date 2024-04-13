@@ -1,82 +1,83 @@
-<nav class="mobilenav">
-        <div class="imgwrap">
-        <div class="logo-img">
-            <img src="./images/logo.webp" alt="" id="logoImg" />
-        </div>
-    </div>
-        <div class="buttoonformob">
-            <button style="background-color: rgb(192,151,136); color: white;">
-              Tap to call
-            </button>
-            <button>
-                Whatsapp us
-            </button>
-        </div>
-    </nav>
-fordesktop
-<style>
-        .mobilenav{
-            display: none;
-        }
-        .getoffers{
-            border: 1px solid rgb(192,151,136);
-         font-size: 20px;
-         font-weight: 600;
-         width: 40%;
-         margin-left: 30%;
-         text-align: center;
-         color: rgb(192,151,136);
-         border-radius: 2px;
-        }
-        @media screen and (max-width: 768px) {
-            .fordesktop{
-                display: none;
+    <div class="col-lg-6">
+        <label for="year_select">Select Year:</label>
+        <select id="year_select">
+        </select>
+        <div class="chartcmmnstyle" id="barchart_material"></div>
+        <script>
+          function populateYearDropdown() {
+            var yearSelect = document.getElementById('year_select');
+            var currentYear = new Date().getFullYear();
+            var startYear = 2022;
+            yearSelect.innerHTML = '';
+            for (var year = startYear; year <= currentYear; year++) {
+              var option = document.createElement('option');
+              option.value = year;
+              option.text = year;
+              yearSelect.appendChild(option);
             }
-            .mobilenav{
-            display: flex!important;
-            align-items: center;
-            height: 65px;
-            position: relative;
-            background-color: rgba(10, 9, 9, 0.171);
-            padding: 5px;
-        }
-        .imgwrap{
-            width: 50%;
-        }
-        .mobilenav .logo-img{
-            max-width: 50px !important;
-            max-height: 42px !important;
-            background-color: white;
-            border-radius: 2px;
-        }
-         .buttoonformob{
-            display: flex;
-            justify-content: space-between;
-            width: 50%;
-         }
-         .buttoonformob button{
-         border: 1px solid rgb(192,151,136);
-         font-size: 13px;
-         font-weight: 600;
-         /* background-color: rgb(192,151,136); */
-         color: rgb(192,151,136);
-         border-radius: 2px;
-        }
-        .buttoonformob button:focus{
-          outline: 0;
-        }
-        .buttoonformob button:hover{
-            color: white;
-            background-color: rgb(192,151,136);
-         border: 1px solid rgb(192,151,136);
+          }
+          populateYearDropdown();
+        </script>
+      </div>
 
-        }
-        }
-    </style>
-<div class="row">
-                    <div class="col-12">
-                          <button class="getoffers">
-                            Get Offers
-                          </button>
-                        </div>
-                    </div>
+var piechartdata = [
+  ['Year', 'Received', 'Processing', 'Cancel'],
+  ['2022', 500, 300, 200],
+  ['2023', 900, 200, 400],
+  ['2024', 1100, 600, 300]
+];
+
+function drawChart() {
+  var dataTable = google.visualization.arrayToDataTable(piechartdata);
+
+  var options = {
+      title: 'Sales Status by Year',
+      is3D: true,
+      legend: { position:'bottom'}
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('barchart_material'));
+
+  function updateChart(year) {
+      var filteredData = piechartdata.filter(function(row){
+          return row[0] === year;
+      });
+
+      var rowData = filteredData.map(function(row) { return row.slice(1); })[0];
+
+      dataTable = google.visualization.arrayToDataTable([
+          ['Status', 'Count'],
+          ['Received', rowData[0]],
+          ['Processing', rowData[1]],
+          ['Cancel', rowData[2]]
+      ]);
+
+      chart.draw(dataTable, options);
+  }
+
+  function setDefaultYear() {
+      var currentYear = new Date().getFullYear().toString();
+      var yearSelect = document.getElementById('year_select');
+      var found = false;
+
+      for (var i = 0; i < yearSelect.options.length; i++) {
+          if (yearSelect.options[i].value === currentYear) {
+              yearSelect.selectedIndex = i;
+              found = true;
+              break;
+          }
+      }
+
+      if (!found) {
+          yearSelect.selectedIndex = 0;
+      }
+
+      updateChart(currentYear);
+  }
+
+  setDefaultYear();
+  document.getElementById('year_select').addEventListener('change', function() {
+      var selectedYear = this.value;
+      updateChart(selectedYear);
+  });
+}

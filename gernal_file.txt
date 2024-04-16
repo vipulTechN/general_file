@@ -1,18 +1,20 @@
-
-###########################
-"SELECT id, employee_name, employee_id, phone_number, laptop_id, project, office_location,
-        laptop_brand, sim_cad, company_laptop, laptop_charger, company_mouse, datesignature
-        FROM company_assets"
-$sql = "SELECT id, overall_earn, overall_paid, advance_pay, remaning_payment, user_name, bookin_number FROM payment_table";
-$sql = "SELECT id, month, gen_revenue, recent_pay, remaning_amt, user_name, bookin_number, send_amt FROM tracking_table";
-
-
-
-#########################
-<div class="custom-select mb-2" >
-          <select id="year_select">
-            <option value="">2024</option>
-            <option value="">2023</option>
-            <option value="">2023</option>
-          </select>
-</div>
+User Tracker
+<th>ID</th>
+                <th>Date Of Joining</th>
+                <th>DAte Of Birth</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact No.</th>
+                <th>Password</th>
+                <th>In Hand Salary</th>
+                <th>Table Name</th>
+                <th>Employee ID</th>
+                <th>1st Amount</th>
+                <th>2nd Amount</th>
+                <th>3rd Amount</th>
+                <th>4th Amount </th>
+                <th>5th Amount</th>
+                <th>6th Amount</th>
+                <th>Project Name</th>
+                <th>Project Type</th>
+                <th>Code</th>

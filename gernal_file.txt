@@ -1,59 +1,132 @@
-User Tracker
+<style>
+.Amenitiesicon {
+  background: url(../images/Amenitiesimg.png);
+  width: 75px;
+  height: 75px;
+  background-size: 1566px 370px;
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
 
-                <th>ID</th>
-                <th>Date Of Joining</th>
-                <th>DAte Of Birth</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact No.</th>
-                <th>Password</th>
-                <th>In Hand Salary</th>
-                <th>Table Name</th>
-                <th>Employee ID</th>
-                <th>1st Amount</th>
-                <th>2nd Amount</th>
-                <th>3rd Amount</th>
-                <th>4th Amount </th>
-                <th>5th Amount</th>
-                <th>6th Amount</th>
-                <th>Project Name</th>
-                <th>Project Type</th>
-                <th>Code</th>
+.Amenitiesicon.icon_clubhouse {
+  background-position: -40px -28px;
+}
 
+.Amenitiesicon.icon_Maintenance {
+  background-position: -146px -28px;
+}
 
+.Amenitiesicon.icon_Water {
+  background-position: -255px -28px;
+}
 
-##########################user Columns
-<th>ID</th>
-                  <th>Booking Date</th>
-                  <th>Month</th>
-                  <th>Builder</th>
-                  <th>Project</th>
-                  <th>Customer Name.</th>
-                  <th>Contact No.</th>
-                  <th>Email Id</th>
-                  <th>Type</th>
-                  <th>Unit No.</th>
-                  <th>Size</th>
-                  <th>Agreement Value</th>
-                  <?php if ($Project_type === 'mandate'): ?>
-                    <!-- <th>Commission %</th> -->
-                  <?php else: ?>
-                    <th>Commission %</th>
-                  <?php endif; ?>
-                  <?php if ($Project_type === 'mandate'): ?>
-                    <!-- <th>Total Revenue</th> -->
-                  <?php else: ?>
-                    <th>Total Revenue</th>
-                  <?php endif; ?>
-                  <th>CashBack %</th>
-                  <?php if ($Project_type === 'mandate'): ?>
-                    <!-- <th>Actual Revenue</th> -->
-                  <?php else: ?>
-                    <th>Actual Revenue</th>
-                  <?php endif; ?>
-                  <th>Status</th>
-                  <?php if ($Project_type === 'mandate'): ?>
-                    <!-- <th>Received Amt.</th> -->
-                  <?php else: ?>
-                    <th>Received Amt.</th>
-                  <?php endif; ?>
+.Amenitiesicon.icon_Security {
+  background-position: -357px -28px;
+}
+
+.Amenitiesicon.icon_Power {
+  background-position: -463px -28px
+}
+
+.Amenitiesicon.icon_Citizen {
+  background-position: -569px -28px
+}
+
+.Amenitiesicon.icon_Indoor {
+  background-position: -675px -28px
+}
+
+.Amenitiesicon.icon_Swimming {
+  background-position: -781px -28px
+}
+
+.Amenitiesicon.icon_Parking {
+  background-position: -888px -28px;
+}
+
+.Amenitiesicon.icon_GYM {
+  background-position: -994px -28px
+}
+
+.Amenitiesicon.icon_Park {
+  background-position: -1100px -28px
+}
+
+.Amenitiesicon.icon_Outdoor {
+  background-position: -1206px -28px
+}
+
+.Amenitiesicon.icon_infra {
+  background-position: -45px -130px;
+}
+
+.Amenitiesicon.icon_door {
+  background-position: -150px -130px;
+}
+
+.Amenitiesicon.icon_tiles {
+  background-position: -255px -130px;
+}
+
+.Amenitiesicon.icon_wash {
+  background-position: -363px -130px;
+}
+
+.Amenitiesicon.icon_golden {
+  background-position: -473px -130px;
+}
+
+.Amenitiesicon.icon_camera {
+  background-position: -575px -130px;
+}
+
+.Amenitiesicon.icon_conservation {
+  background-position: -680px -130px;
+}
+
+.Amenitiesicon.icon_structure {
+  background-position: -788px -130px;
+}
+
+.Amenitiesicon.icon_landscape {
+  background-position: -892px -130px;
+}
+
+.whychoose {
+  background: url(./assets/images/wcuimg1.png);
+  width: 90px;
+  height: 75px;
+  background-size: 1950px 225px;
+  display: inline-block;
+  vertical-align: middle;
+  font-style: normal;
+  background-repeat: no-repeat;
+}
+
+.whychoose.icon_match {
+  background-position: -50px -72px;
+}
+
+.whychoose.icon_guid {
+  background-position: -180px -72px;
+}
+
+.whychoose.icon_listing {
+  background-position: -312px -72px;
+}
+
+.whychoose.icon_dd {
+  background-position: -445px -72px;
+}
+
+.whychoose.icon_property {
+  background-position: -579px -72px;
+}
+
+.whychoose.icon_perks {
+  background-position: -712px -72px;
+}
+
+</style>

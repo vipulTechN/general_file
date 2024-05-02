@@ -1,132 +1,82 @@
-<style>
-.Amenitiesicon {
-  background: url(../images/Amenitiesimg.png);
-  width: 75px;
-  height: 75px;
-  background-size: 1566px 370px;
-  display: inline-block;
-  vertical-align: middle;
-  background-repeat: no-repeat;
-  margin-bottom: 10px;
-}
+this is backend from where i am passing the table rows
+$output .= '<tr class="group-header">
+        <td colspan="19" class="toggle-row">
+          <div class="border border-dark d-inline p-2 bg-warning text-dark font-weight-bold">Year/Bookings/Invoice: ('.$month.')/('.$rowcount.')/('.$total_raised.')</div>			  
+          <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Total Revenue: ₹ '.$totalRevenue.'</div>
+          <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold">Actual Revenue: ₹ '.$actualRevenue.'</div>
+          <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Remaning Revenue: ₹ '.$actualRevenue-$invoice_raised.'</div>
+          <div class="border border-dark d-inline p-2 bg-success text-white font-weight-bold">Recived Amount: ₹ '.$recivedRevenue.'</div>
+          <div class="border border-dark d-inline p-2 bg-secondary text-white font-weight-bold">Amount To be Pay: ₹ '.$totalAmtPay.'</div>
+          <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold">Total Paid Amt: ₹ '.$totalPaid.'</div>
+        </td>
+      </tr>';
+        foreach ($rows as $row) {
+            $row_id = $row['id'];
+            $checkbox_value = $db->getCheckboxValue($row_id);
+            $output .= '<tr class="data-row" data-status="' . $row['astatus'] . '">
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['booking_date'] . '</td>
+                            <td>' . $row['booking_month'] . '</td>
+                            <td>' . $row['builder'] . '</td>
+                            <td>' . $row['project'] . '</td>
+                            <td>' . $row['customer_name'] . '</td>
+                            <td>' . $row['contact_number'] . '</td>
+                            <td>' . $row['email_id'] . '</td>
+                            <td>' . $row['project_type'] . '</td>
+                            <td>' . $row['unit_no'] . '</td>
+                            <td>' . $row['size'] . '</td>
+                            <td>' . $row['agreement_value'] . '</td>
+                            <td>' . $row['cashback'] . '%</td>
+                            <td>' . $row['revenue'] . '</td>
+                            <td>' . $row['ccashback'] . '%</td>
+                            <td>' . $row['crevenue'] . '</td>
+                            <td><div class="status ' . $row['astatus'] . '">' . $row['astatus'] . '</div></td>
+                            <td>' . $row['recived_amt'] . '</td>';
+                            // Concatenate PHP code for displaying the checkbox value
+                            if ($checkbox_value) {
+                              // If the value is '1' (true), display a green tick icon
+                              $output .= '<td><div class="alignment">' . $row['source_table'] . '<div class="verified" style="color: white !important; background-color: green !important; border-radius: 50%; width:30px;height:30px;position:relative"><i class="bi bi-check-lg" style="position: absolute;
+                              left: 50%;top: 50%;transform: translate(-50%, -50%);"></i></div></div></td>';
+                            } else {
+                                // If the value is not '1' (false), display a red cross icon
+                                $output .= '<td><div class="alignment">' . $row['source_table'] . '<div class="not-verified" style="color: white !important; background-color: red !important; border-radius: 50%; width:30px;height:30px;position:relative"><i class="bi bi-x-lg" style="position: absolute;
+                                left: 50%;top: 50%;transform: translate(-50%, -50%);"></i></div></div></td>';
+                            }
+                            $output .= '<td>
+                                <a href="#" id="' . $row['id'] . '" class="btn btn-success btn-sm rounded-pill py-0 editLink" data-toggle="modal" data-target="#editUserModal">Edit</a>';
+                            if ($adminCode === 'Search6215Homes#$code!&%45') {
+                                $output .= '<a href="#" id="' . $row['id'] . '" class="btn btn-danger btn-sm rounded-pill py-0 deleteLink">Delete</a>';
+                            }
+                            $output .= '</td>
+                        </tr>';
 
-.Amenitiesicon.icon_clubhouse {
-  background-position: -40px -28px;
-}
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\this is the table where the row is populating 
 
-.Amenitiesicon.icon_Maintenance {
-  background-position: -146px -28px;
-}
-
-.Amenitiesicon.icon_Water {
-  background-position: -255px -28px;
-}
-
-.Amenitiesicon.icon_Security {
-  background-position: -357px -28px;
-}
-
-.Amenitiesicon.icon_Power {
-  background-position: -463px -28px
-}
-
-.Amenitiesicon.icon_Citizen {
-  background-position: -569px -28px
-}
-
-.Amenitiesicon.icon_Indoor {
-  background-position: -675px -28px
-}
-
-.Amenitiesicon.icon_Swimming {
-  background-position: -781px -28px
-}
-
-.Amenitiesicon.icon_Parking {
-  background-position: -888px -28px;
-}
-
-.Amenitiesicon.icon_GYM {
-  background-position: -994px -28px
-}
-
-.Amenitiesicon.icon_Park {
-  background-position: -1100px -28px
-}
-
-.Amenitiesicon.icon_Outdoor {
-  background-position: -1206px -28px
-}
-
-.Amenitiesicon.icon_infra {
-  background-position: -45px -130px;
-}
-
-.Amenitiesicon.icon_door {
-  background-position: -150px -130px;
-}
-
-.Amenitiesicon.icon_tiles {
-  background-position: -255px -130px;
-}
-
-.Amenitiesicon.icon_wash {
-  background-position: -363px -130px;
-}
-
-.Amenitiesicon.icon_golden {
-  background-position: -473px -130px;
-}
-
-.Amenitiesicon.icon_camera {
-  background-position: -575px -130px;
-}
-
-.Amenitiesicon.icon_conservation {
-  background-position: -680px -130px;
-}
-
-.Amenitiesicon.icon_structure {
-  background-position: -788px -130px;
-}
-
-.Amenitiesicon.icon_landscape {
-  background-position: -892px -130px;
-}
-
-.whychoose {
-  background: url(./assets/images/wcuimg1.png);
-  width: 90px;
-  height: 75px;
-  background-size: 1950px 225px;
-  display: inline-block;
-  vertical-align: middle;
-  font-style: normal;
-  background-repeat: no-repeat;
-}
-
-.whychoose.icon_match {
-  background-position: -50px -72px;
-}
-
-.whychoose.icon_guid {
-  background-position: -180px -72px;
-}
-
-.whychoose.icon_listing {
-  background-position: -312px -72px;
-}
-
-.whychoose.icon_dd {
-  background-position: -445px -72px;
-}
-
-.whychoose.icon_property {
-  background-position: -579px -72px;
-}
-
-.whychoose.icon_perks {
-  background-position: -712px -72px;
-}
-
-</style>
+<table id="example" class="stripe row-border order-column display" cellspacing="0" style="width:100%">
+            <thead class="maintheading">
+              <tr class="filters">
+                  <th>ID</th>
+                  <th>Booking Date</th>
+                  <th>Month</th>
+                  <th>Builder</th>
+                  <th>Project</th>
+                  <th>Customer Name.</th>
+                  <th>Contact No.</th>
+                  <th>Email Id</th>
+                  <th>Type</th>
+                  <th>Unit No.</th>
+                  <th>Size</th>
+                  <th>Agreement Value</th>
+                  <th>Commission %</th>
+                  <th>Total Revenue</th>
+                  <th>CashBack %</th>
+                  <th>Actual Revenue</th>
+                  <th>Status</th>
+                  <th>Received Amt.</th>
+                  <th>Sales Person</th> 
+                  <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="pagedata">
+              
+            </tbody>

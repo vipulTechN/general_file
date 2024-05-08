@@ -1,35 +1,130 @@
- <form action="main.php" method="POST" class="form-side">
-                    <input type="hidden" name="ipaddress" id="ipaddress-1" value="">
-                    <input type="hidden" name="mgh" value="GBLnew">
-                    <div class="form-group">
-                        <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field" required placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" name="fullMobileNo" value="">
-                        <input type="tel" id="intTelInput-mob" pattern="[0-9]+" name="phone" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="Mobile No">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control rounded-0 micro-form-field" required placeholder="E-Mail Address">
-                    </div>
-                    <button type="submit" name="submit" class="btn btn-info micro-form-btn effetMoveGradient">Submit Now</button>
-                </form>
-<script>
-    // Function to fetch user's IP and set it in the 'ipaddress' hidden input field for each form
-    function setIPInFormFields() {
-        fetch('https://api.ipify.org/?format=json')
-            .then(response => response.json())
-            .then(data => {
-                // Set the retrieved IP in each form's hidden input field
-                document.getElementById('ipaddress-1').value = data.ip;
-                document.getElementById('ipaddress-2').value = data.ip;
-                document.getElementById('ipaddress-3').value = data.ip;
-            })
-            .catch(error => {
-                console.error('Error fetching IP:', error);
-                // Handle the error here
-            });
-    }
-
-    // Call the function when the page loads
-    setIPInFormFields();
-</script>
+ $output .= '<tr class="group-header view">
+                    <td>('.$month.')/('.$rowcount.')/('.$total_raised.')</td>			  
+                    <td>₹ '.$totalRevenue.'</td>
+                    <td>₹ '.$actualRevenue.'</td>
+                    <td>₹ '.$actualRevenue-$invoice_raised.'</td>
+                    <td>₹ '.$recivedRevenue.'</td>
+                    <td>₹ '.$totalAmtPay.'</td>
+                    <td>₹ '.$totalPaid.'</td>
+                  </tr>
+                  <tr class="fold">
+                    <td colspan="20">
+                      <div class="fold-content" style="width: 30%;">
+                        <h3>Financial Year - '.$year.'</h3>
+                        <div class="totalbook">
+                          <div class="yeartotalpaid">
+                            <h6>Total Processing :- '.$processing_count.'</h6>
+                          </div>
+                          <div class="yeartotalcancel">
+                            <h6>Total Cancelled :- '.$canceled_count.'</h6>
+                          </div>
+                          <div class="yeartotalreceiv">
+                            <h6>Total Received :- '.$received_count.'</h6>
+                          </div>
+                        </div>
+                        <div class="totalbook">
+                          <div class="yeartotalpaid">
+                            <h6>Total Bookings :- <span id="counter">0.00</span></h6>
+                          </div>
+                          <div class="yeartotalcancel">
+                            <h6>Total Revenue :- ₹<span id="totalTotalRevenue">0.00</span></h6>
+                          </div>
+                          <div class="yeartotalreceiv">
+                            <h6>Actual Revenue :- ₹<span id="totalActualRevenue">0.00</span></h6>
+                          </div>
+                        </div>
+                        <table class="small-friendly" cellspacing="0" style="width: 100%">
+                          <thead>
+                            <tr class="filters">
+                              <th>ID</th>
+                              <th>Booking Date</th>
+                              <th>Month</th>
+                              <th>Builder</th>
+                              <th>Project</th>
+                              <th>Customer Name.</th>
+                              <th>Contact No.</th>
+                              <th>Email Id</th>
+                              <th>Type</th>
+                              <th>Unit No.</th>
+                              <th>Size</th>
+                              <th>Agreement Value</th>
+                              <th>Commission %</th>
+                              <th>Total Revenue</th>
+                              <th>CashBack %</th>
+                              <th>Actual Revenue</th>
+                              <th>Status</th>
+                              <th>Received Amt.</th>
+                              <th>Sales Person</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody id="filterdata">';
+        foreach ($rows as $row) {
+            $row_id = $row['id'];
+            $checkbox_value = $db->getCheckboxValue($row_id);
+            $output .= '<tr class="data-row" data-status="' . $row['astatus'] . '">
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['booking_date'] . '</td>
+                            <td>' . $row['booking_month'] . '</td>
+                            <td>' . $row['builder'] . '</td>
+                            <td>' . $row['project'] . '</td>
+                            <td>' . $row['customer_name'] . '</td>
+                            <td>' . $row['contact_number'] . '</td>
+                            <td>' . $row['email_id'] . '</td>
+                            <td>' . $row['project_type'] . '</td>
+                            <td>' . $row['unit_no'] . '</td>
+                            <td>' . $row['size'] . '</td>
+                            <td>' . $row['agreement_value'] . '</td>
+                            <td>' . $row['cashback'] . '%</td>
+                            <td>' . $row['revenue'] . '</td>
+                            <td>' . $row['ccashback'] . '%</td>
+                            <td>' . $row['crevenue'] . '</td>
+                            <td><div class="status ' . $row['astatus'] . '">' . $row['astatus'] . '</div></td>
+                            <td>' . $row['recived_amt'] . '</td>';
+                            // Concatenate PHP code for displaying the checkbox value
+                            if ($checkbox_value) {
+                              // If the value is '1' (true), display a green tick icon
+                              $output .= '<td><div class="alignment">' . $row['source_table'] . '<div class="verified" style="color: white !important; background-color: green !important; border-radius: 50%; width:30px;height:30px;position:relative"><i class="bi bi-check-lg" style="position: absolute;
+                              left: 50%;top: 50%;transform: translate(-50%, -50%);"></i></div></div></td>';
+                            } else {
+                                // If the value is not '1' (false), display a red cross icon
+                                $output .= '<td><div class="alignment">' . $row['source_table'] . '<div class="not-verified" style="color: white !important; background-color: red !important; border-radius: 50%; width:30px;height:30px;position:relative"><i class="bi bi-x-lg" style="position: absolute;
+                                left: 50%;top: 50%;transform: translate(-50%, -50%);"></i></div></div></td>';
+                            }
+                            $output .= '<td>
+                                <a href="#" id="' . $row['id'] . '" class="btn btn-success btn-sm rounded-pill py-0 editLink" data-toggle="modal" data-target="#editUserModal">Edit</a>';
+                            if ($adminCode === 'Search6215Homes#$code!&%45') {
+                                $output .= '<a href="#" id="' . $row['id'] . '" class="btn btn-danger btn-sm rounded-pill py-0 deleteLink">Delete</a>';
+                            }
+                            $output .= '</td>
+                        </tr>';
+        }
+        $output .= '</tbody>
+                      <tfoot>
+                        <tr>
+                          <td>ID</td>
+                          <td>Booking Date</td>
+                          <td>Month</td>
+                          <td>Builder</td>
+                          <td>Project</td>
+                          <td>Customer Name.</td>
+                          <td>Contact No.</td>
+                          <td>Email Id</td>
+                          <td>Type</td>
+                          <td>Unit no.</td>
+                          <td>Size</td>
+                          <td>Agreement Value</td>
+                          <td>Commission %</td>
+                          <td>Total Revenue</td>
+                          <td>CashBack %</td>
+                          <td>Actual Revenue</td>
+                          <td>Status</td>
+                          <td>Received Amt.</td>
+                          <td>Sales Person</td>
+                          <td>Action</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </td>
+              </tr>';

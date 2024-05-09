@@ -5,6 +5,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+}
 
 .newsec {
     width: 100%;
@@ -16,4 +17,3 @@
     background-color: #eaf6fd;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

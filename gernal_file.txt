@@ -1,43 +1,209 @@
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      var sidebar = document.getElementById('rightsidebar');
-      function hideSidebar() {
-          sidebar.style.display = 'none';
-      }
-      var sidebarItems = document.querySelectorAll('.pmd-sidebar-li');
-      sidebarItems.forEach(function(item) {
-          item.addEventListener('click', function() {
-              hideSidebar();
-          });
-      });
-  });
-</script>
-
-
-<div class="col-lg-12">
-          <div id="emptotaldata">
-            <h4>Financial Year - 2023/2024</h4>
-            <div class="totalbook">
-              <div class="totalbookchild">
-                <h6><span class="totalbookhead">Total Processed</span> :- 400</h6>
+<div class="wrapper">
+          <div class="container-calendar">
+            <div id="right">
+              <h3 id="monthAndYear"></h3>
+              <div class="button-container-calendar">
+                <button id="previous" onclick="previous()">
+                  ‹
+                </button>
+                <button id="next" onclick="next()">
+                  ›
+                </button>
               </div>
-              <div class="totalbookchild">
-                <h6><span class="totalbookhead">Total Cancelled </span> :- 37</h6>
-              </div>
-              <div class="totalbookchild">
-                <h6><span class="totalbookhead">Total Received </span>:- 230</h6>
+              <table class="table-calendar" id="calendar" data-lang="en">
+                <thead id="thead-month"></thead>
+                <tbody id="calendar-body"></tbody>
+              </table>
+              <div class="footer-container-calendar">
+                <label for="month">Jump To: </label>
+                <select id="month" onchange="jump()">
+                  <option value=0>Jan</option>
+                  <option value=1>Feb</option>
+                  <option value=2>Mar</option>
+                  <option value=3>Apr</option>
+                  <option value=4>May</option>
+                  <option value=5>Jun</option>
+                  <option value=6>Jul</option>
+                  <option value=7>Aug</option>
+                  <option value=8>Sep</option>
+                  <option value=9>Oct</option>
+                  <option value=10>Nov</option>
+                  <option value=11>Dec</option>
+                </select>
+                <select id="year" onchange="jump()"></select>
               </div>
             </div>
           </div>
         </div>
 
 <style>
-    @import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-#emptotaldata,.newsec{width:100%;margin:0 auto;padding:5px 20px;background-color:#eaf6fd;box-shadow:0 4px 6px rgba(0,0,0,.1)}table.fold-table{background:#fff;color:#555}.table-wrap{position:relative}tbody tr td,tfoot tr td,thead tr th{text-align:center!important;white-space:nowrap}.scroll-left,.scroll-left i,.scroll-right,.scroll-right i{top:50%;transform:translate(-50%,-50%)}.table-container{overflow-y:auto;max-height:55vh;height:100%;width:100%;max-width:76vw;margin:0 auto}.newsec{max-width:76vw;border:1px solid #e0e0e0;border-radius:10px}.maintablewrap{overflow-y:scroll;width:100%;height:85vh}.maintablewrap table{width:100%}table{border-collapse:collapse}.maintablewrap::-webkit-scrollbar,.table-container::-webkit-scrollbar{width:5px;height:5px}.maintablewrap::-webkit-scrollbar-track,.table-container::-webkit-scrollbar-track{background:#e3e3e3;border-radius:10px}.maintablewrap::-webkit-scrollbar-thumb,.table-container::-webkit-scrollbar-thumb{background-color:#1b6c9f;border-radius:20px}.table-container table tfoot tr td,.table-container table thead th{padding:5px 12px!important;border:1px solid rgba(0,0,0,.529);font-weight:500!important;color:#1b6c9f!important}.maintablewrap table tfoot tr td,.maintablewrap table thead th{padding:6px 0;border:1px solid rgba(0,0,0,.529);font-weight:600!important;color:#f6f5f3!important}.maintablewrap table tfoot,.maintablewrap table thead{position:sticky;background:#1b6c9f;z-index:99}.table-container table tfoot,.table-container table thead{position:sticky;background:#000;z-index:99}.maintablewrap table thead,.table-container thead{top:-2px}.maintablewrap table tfoot,.table-container tfoot{bottom:-2px}.fold-table tbody tr td{font-weight:500;font-size:15px!important;border:1px solid rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.599);padding:12px 20px!important;color:#000;transform:scale(1)}.small-friendly tbody tr td{padding:10px 12px!important}.fold-table tbody tr:hover{transform:scale(1.001);transition:.3s ease-in-out}.scroll-left,.scroll-right{position:absolute;border-radius:50%;border:1px solid #000;width:35px;height:35px;z-index:999;background-color:#fff}.scroll-left i,.scroll-right i{font-size:23px;color:#1b6c9f;position:absolute;left:50%}.scroll-left{left:0}.scroll-right{left:100%}table.fold-table>tbody>tr.view{transition:.3s}.fold-content>table>tbody>tr,table.fold-table>tbody>tr.view td,table.fold-table>tbody>tr.view th{cursor:pointer}table.fold-table>tbody>tr.view td:first-child,table.fold-table>tbody>tr.view th:first-child{position:relative;padding-left:20px}table.fold-table>tbody>tr.view td:first-child:before,table.fold-table>tbody>tr.view th:first-child:before{position:absolute;top:50%;left:5px;width:50px;height:16px;margin-top:-8px;font:20px fontawesome;content:"\f0d7";transition:.3s;color:red}table.fold-table>tbody>tr.view:nth-child(4n-1){background:#f4f4f4}.fold-content>table>tbody>tr:hover,table.fold-table>tbody>tr.view:hover{background:#ddd}table.fold-table>tbody>tr.view.open{background:#e5e5e6;color:#000}table.fold-table>tbody>tr.view.open td:first-child:before,table.fold-table>tbody>tr.view.open th:first-child:before{transform:rotate(-180deg);color:#000}.visible-small,table.fold-table>tbody>tr.fold{display:none}table.fold-table>tbody>tr.fold.open{display:table-row}.fold-content h3{margin-top:0}.fold-content>table{box-shadow:0 2px 8px 0 rgba(0,0,0,.2)}.fold-content>table>tbody>tr:nth-child(2n){background:#eee}.visible-big{display:block}.fold-content:first-child{text-align:left}.totalbook{display:flex;align-items:center;margin:3px 0}.totalbook .totalbookchild{margin-left:40px}.totalbook .totalbookchild:first-child{margin-left:0}.financialtrsticky{position:sticky;top:0;z-index:999}#emptotaldata{text-align:center;border:1px solid #e0e0e0;border-top-right-radius:10px;border-top-left-radius:10px;display:none}#emptotaldata .totalbook{justify-content:center}@media only screen and (max-width:768px){#emptotaldata .totalbookhead{font-size:13px}.scroll-right{right:-20px}.scroll-left{left:20px}.newsec,.table-container{width:100%;max-width:100%}.maintablewrap table tfoot tr td,.maintablewrap table thead th{padding:6px 12px;font-size:13px}.fold-table tbody tr td{padding:6px 12px!important}}@media only screen and (min-width:1600px){.newsec,.table-container{width:100%;max-width:1200px;margin:0 auto}}
-</style>
+     .container-calendar{background:#fff;padding:15px;overflow:auto;box-shadow:0 4px 8px 0 rgba(0,0,0,.2)}.button-container-calendar button{cursor:pointer;background:green;color:#fff;border:1px solid green;border-radius:4px;padding:5px 10px}.table-calendar{border-collapse:collapse;width:100%}.table-calendar td,.table-calendar th{padding:5px;border:1px solid #e2e2e2;text-align:center;vertical-align:top}.date-picker.selected{background-color:#f2f2f2;font-weight:700;outline:#00BCD4 dashed 1px}.date-picker.selected span{border-bottom:2px solid currentColor}.date-picker:first-child{color:red}.date-picker:nth-child(6){color:green}.date-picker:hover{background-color:green;color:#fff;cursor:pointer}#monthAndYear{text-align:center;margin-top:0}.button-container-calendar{position:relative;margin-bottom:1em;overflow:hidden;clear:both}#previous{float:left}#next{float:right}.footer-container-calendar{margin-top:1em;border-top:1px solid #dadada;padding:10px 0}.footer-container-calendar select{cursor:pointer;background:#fff;color:#585858;border:1px solid #bfc5c5;border-radius:3px;padding:5px 1em}
+    </style>
 
 
-      $("#emptotaldata").css("display", "block");
+<script>
+  let events = [];
+
+  let eventDateInput =
+    document.getElementById("eventDate");
+  let eventTitleInput =
+    document.getElementById("eventTitle");
+  let eventDescriptionInput =
+    document.getElementById("eventDescription");
+  let reminderList =
+    document.getElementById("reminderList");
+
+  // Counter to generate unique event IDs
+  let eventIdCounter = 1;
+
+  function generate_year_range(start, end) {
+    let years = "";
+    for (let year = start; year <= end; year++) {
+      years += "<option value='" +
+        year + "'>" + year + "</option>";
+    }
+    return years;
+  }
+
+  today = new Date();
+  currentMonth = today.getMonth();
+  currentYear = today.getFullYear();
+  selectYear = document.getElementById("year");
+  selectMonth = document.getElementById("month");
+
+  createYear = generate_year_range(1970, 2050);
+
+  document.getElementById("year").innerHTML = createYear;
+
+  let calendar = document.getElementById("calendar");
+
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  let days = [
+    "Sun", "Mon", "Tue", "Wed",
+    "Thu", "Fri", "Sat"
+  ];
+
+  $dataHead = "<tr>";
+  for (dhead in days) {
+    $dataHead += "<th data-days='" +
+      days[dhead] + "'>" +
+      days[dhead] + "</th>";
+  }
+  $dataHead += "</tr>";
+
+  document.getElementById("thead-month").innerHTML = $dataHead;
+
+  monthAndYear =
+    document.getElementById("monthAndYear");
+  showCalendar(currentMonth, currentYear);
+
+ 
+  function next() {
+    currentYear = currentMonth === 11 ?
+      currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+    showCalendar(currentMonth, currentYear);
+  }
+
+  function previous() {
+    currentYear = currentMonth === 0 ?
+      currentYear - 1 : currentYear;
+    currentMonth = currentMonth === 0 ?
+      11 : currentMonth - 1;
+    showCalendar(currentMonth, currentYear);
+  }
 
 
-        $("#emptotaldata").css("display", "none");
+  function jump() {
+    currentYear = parseInt(selectYear.value);
+    currentMonth = parseInt(selectMonth.value);
+    showCalendar(currentMonth, currentYear);
+  }
+
+
+  function showCalendar(month, year) {
+    let firstDay = new Date(year, month, 1).getDay();
+    tbl = document.getElementById("calendar-body");
+    tbl.innerHTML = "";
+    monthAndYear.innerHTML = months[month] + " " + year;
+    selectYear.value = year;
+    selectMonth.value = month;
+
+    let date = 1;
+    for (let i = 0; i < 6; i++) {
+      let row = document.createElement("tr");
+      for (let j = 0; j < 7; j++) {
+        if (i === 0 && j < firstDay) {
+          cell = document.createElement("td");
+          cellText = document.createTextNode("");
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+        } else if (date > daysInMonth(month, year)) {
+          break;
+        } else {
+          cell = document.createElement("td");
+          cell.setAttribute("data-date", date);
+          cell.setAttribute("data-month", month + 1);
+          cell.setAttribute("data-year", year);
+          cell.setAttribute("data-month_name", months[month]);
+          cell.className = "date-picker";
+          cell.innerHTML = "<span>" + date + "</span";
+
+          if (
+            date === today.getDate() &&
+            year === today.getFullYear() &&
+            month === today.getMonth()
+          ) {
+            cell.className = "date-picker selected";
+          }
+
+          if (hasEventOnDate(date, month, year)) {
+            cell.classList.add("event-marker");
+            cell.appendChild(
+              createEventTooltip(date, month, year)
+            );
+          }
+
+          row.appendChild(cell);
+          date++;
+        }
+      }
+      tbl.appendChild(row);
+    }
+
+  }
+
+  function getEventsOnDate(date, month, year) {
+    return events.filter(function(event) {
+      let eventDate = new Date(event.date);
+      return (
+        eventDate.getDate() === date &&
+        eventDate.getMonth() === month &&
+        eventDate.getFullYear() === year
+      );
+    });
+  }
+
+  function hasEventOnDate(date, month, year) {
+    return getEventsOnDate(date, month, year).length > 0;
+  }
+
+  function daysInMonth(iMonth, iYear) {
+    return 32 - new Date(iYear, iMonth, 32).getDate();
+  }
+
+  showCalendar(currentMonth, currentYear);
+</script>

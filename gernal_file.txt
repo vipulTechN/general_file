@@ -1,143 +1,119 @@
-           <!-- data submitted successfully popup -->
-            <div id="notificationPopup">Your data has been submitted successfully</div>
-          <!-- data submitted successfully popup end -->
+.ShiIcons4 {
+  background: url('/assets/img/SHIicons1.webp');
+  width: 17px;
+  height: 17px;
+  background-size: 300px 200px;
+  display: inline-block;
+  vertical-align: middle;
+  font-style: normal;
+  background-repeat: no-repeat;
+}
 
-          <!-- data delete popup -->
-            <div id="confirmationPopup">
-              <p>Are you sure you want to delete?</p>
-              <div class="confbutwrap">
-              <button onclick="rejectDelete()">Cancel</button>
-              <button onclick="confirmDeleteAction()">Delete</button>
-              </div>
-          </div>
-          <!-- data delete popup end-->
+.ShiIcons4.icon_stars {
+  background-position: 0px 0px;
+}
 
-          <!-- Delete confirmation popup -->
-          <div id="deleteConfirmationPopup">
-              <p>Your data has been deleted successfully.</p>
-          </div>
-          <!-- Delete confirmation popup end -->
-          
-          <!-- overlay for background -->
-            <div id="overlay"></div>
-          <!-- overlay for background end-->
+#nav2 {
+  width: 750px;
+  height: 130px;
+  border-radius: 10px;
+  background-color: #fff;
+  overflow: hidden;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 4px 12px -4px black;
+}
 
+#up .bottom__line {
+  top: 50%;
+  left: 58px;
+  width: 110px;
+  height: 4px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  background-color: #1b6c9f;
+  transition: 0.1s;
+}
 
-   #notificationPopup,#confirmationPopup,#deleteConfirmationPopup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 10px 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 200
-    }
+.btnsss {
+    margin-top: 10px;
+    border-radius: 45px;
+    position: relative;
+    height: 35px;
+    color: grey;
+    background-color: transparent;
+}
 
-    #notificationPopup p,#confirmationPopup p{
-      font-weight: 600;
-      font-size: 16px;
-      text-align: center;
-    }
+.active {
+  color: #fff;
+  background-color:#1b6c9f;
+}
 
-    #overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 100;
-    }
+.btnsss:hover {
+  color: #fff;
+  background-color:#1b6c9f;
+}
 
-    .confbutwrap{
-      width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-    }
+#credential {
+  width: 25%;
+  height: auto;
+  border-right: 1px solid #EBECF0;
+}
 
-    .confbutwrap button{
-      border-radius: 2px;
-      border: none;
-      font-size: 12px;
-      color: white;
-      padding: 4px 10px;
-      font-weight: 600;
-    }
+.bg-img {
+  width: 100%;
+  height: 75vh;
+  position: relative;
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  overflow: hidden;
+}
 
-    .confbutwrap button:nth-child(1){
-      background-color: green;
-    }
+.bg_img1 {
+  overflow: hidden;
+  margin-top: -65px;
+}	
 
-    .confbutwrap button:nth-child(2){
-      background-color: red;
-    }
+.ss12 img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0px!important;
+}
 
+.homepageheading {
+  display: none;
+}
 
-    @media only screen and (max-width:1170px) {
-      .table-container,
-      .newsec {
-        width: 100%;
-        max-width: 100%;
-      }
-    }
+#header {
+  background: #ffffff38;
+  top: 0;
+  backdrop-filter: blur(10px);
+  z-index: 35;
+  height: 65px;
+}
 
+#up .bottom__line {
+  top: 50%;
+  left: 58px;
+  width: 110px;
+  height: 4px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  background-color: #1b6c9f;
+  transition: 0.1s;
+}
 
-<script>
-    function saveData() {
-      var notificationPopup = document.getElementById('notificationPopup');
-      var overlay = document.getElementById('overlay');
-      overlay.style.display = 'block';
-      notificationPopup.style.display = 'block';
-      setTimeout(function() {
-        notificationPopup.style.display = 'none';
-        overlay.style.display = 'none';
-      }, 2000);
-    }
-  </script>
-  <script>
-    function confirmDelete() {
-      var confirmationPopup = document.getElementById('confirmationPopup');
-      var overlay = document.getElementById('overlay');
-      overlay.style.display = 'block';
-      confirmationPopup.style.display = 'block';
-    }
+#nav2 #down {
+    border-top: 1px solid #EBECF0;
+}
 
-    function rejectDelete() {
-      var confirmationPopup = document.getElementById('confirmationPopup');
-      var overlay = document.getElementById('overlay');
-      confirmationPopup.style.display = 'none';
-      overlay.style.display = 'none';
-    }
-
-    function confirmDeleteAction() {
-      var confirmationPopup = document.getElementById('confirmationPopup');
-      var overlay = document.getElementById('overlay');
-      confirmationPopup.style.display = 'none';
-      overlay.style.display = 'none';
-
-      var deleteConfirmationPopup = document.getElementById('deleteConfirmationPopup');
-      deleteConfirmationPopup.style.display = 'block';
-      setTimeout(function() {
-        deleteConfirmationPopup.style.display = 'none';
-      }, 2000);
-    }
-  </script>
-
-
-
-
-
-line no 266 in style.css change this css with old
-tbody tr td {
-    font-weight: 500;
-    font-size: 15px !important;
-    border: 1px solid rgba(0, 0, 0, .1);
-    border-bottom: 1px solid rgba(0, 0, 0, .599);
-    text-align: center !important;
+.gets2 button {
+    background-color: #fff;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px 7px;
+    border: 1px solid #f2f3f8;
 }

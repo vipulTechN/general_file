@@ -1,0 +1,138 @@
+{%extends "base(Home).html"%}
+{% load static %}
+
+{% block head_block %}
+
+<title>Latest Real Estate News, Articles, And Market Update</title>
+<meta name="description" content="Unlock Real Estate Success With Our latest Real Estate News, Articles, and Market Insights. Stay
+Informed With Market Updates For Smart Property Decisions.">
+<meta name="keywords" content="real estate news, real estate market update, property insights, latest real estate news">
+
+<link href="{% static 'css/blog.css' %}" rel="stylesheet">
+<style>
+    #header1 {top: 0px!important;}
+    .wrapper{margin-top: 65px;}
+    .truncate {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  /* -webkit-line-clamp: 1.2;   */
+}
+</style>
+{% endblock %}
+{%block body_block%}
+
+    <div class="main">
+ 
+    <div class="wrapper">
+         <div class="hero"><h2><a href="#">Your Ultimate Hub for Real Estate Trends and Market Updates</a></h2>
+         </div>
+    <div class="page-title-area page-title-img-blog">
+        <div class="container">
+            <div class="page-title-item">
+                <h1>Real Estate News &amp; Articles</h1>
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li style="font-size: 16px; font-weight: 800;">
+                        >
+                    </li>
+                    <li>Articles</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+       </div>
+
+<section class="pt-100 pb-70">
+    <div class="headforall">
+        <h3>Hot News &amp; Trends</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 ">
+                <div class="midlefty">
+                    <img src="{% static 'images/stayupdatedrealestate.webp' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                        <div class="midrighty">
+                            <ul> 
+                                 <!-- =============for loop from here start========= -->
+                                 {% for trend in sell_properties %}
+                                    <li class="sameliforbl" >
+                                        <div class="leftblog">
+                                            <!-- ======== small heading======== -->
+                                        <a href="{% url 'blog_details' slug=trend.slug %}">
+                                            <h5> {{ forloop.counter }}. {{ trend.small_blog_name }} </h5>
+                                        </a>
+                                        <!-- =============small discription========= -->
+                                        <p class="truncate" data-max-words="20">{{ trend.blog_description|safe }}</p>
+                                        <a href="{% url 'blog_details' slug=trend.slug %}"><button class="newbtn">Read More</button></a>
+                                        </div>
+                                        <div class="rightblog">
+                                            <a href="{% url 'blog_details' slug=trend.slug %}"><img src="{{ trend.blog_image.url }}" alt=""></a>
+                                        </div>
+                                    </li>
+                                 {% endfor %}
+                                 <!-- =============for loop from here end========= -->
+                           
+                            </ul>
+                        </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog-area pt-100 pb-70">
+    <div class="headforall">
+        <h3 style="color: black;">Discover the Latest News and Articles Here</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <!-- ==================for loop start from here ============== -->
+            {% for blogdata in blog_data %}
+                <div class="col-lg-4 col-sm-12">
+                    <div class="blog-item">
+                        <div class="blog-top">
+                            <a href="{% url 'blog_details' slug=blogdata.slug %}">
+                                <img src="{{ blogdata.blog_image.url }}" alt="best pubs near me">
+                            </a>
+                            <span>{{ blogdata.formatted_date }}</span>
+                        </div>
+                        <div class="blog-bottom">
+                            <!-- ===========small heading============ -->
+                            <h3>
+                                <a href="{% url 'blog_details' slug=blogdata.slug %}">{{ blogdata.small_blog_name }}</a>
+                            </h3>
+                            <!-- ===========small discription============ -->
+                            <p class="truncate" data-max-words="20">{{ blogdata.blog_description|safe }}</p>
+                            <a class="cmn-btn" href="{% url 'blog_details' slug=blogdata.slug %}">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- ==================for loop end from here ============== -->
+
+        </div>
+    </div>
+</section>
+</div>
+<script>
+    // In your JavaScript (you can include it in your template or a separate file)
+document.addEventListener("DOMContentLoaded", function() {
+  var truncateElements = document.querySelectorAll(".truncate");
+  
+  truncateElements.forEach(function(element) {
+    var maxWords = parseInt(element.getAttribute("data-max-words"), 10);
+    var words = element.textContent.split(" ").slice(0, maxWords).join(" ");
+    element.textContent = words + " ...";
+  });
+});
+
+</script>
+
+{% endblock %}

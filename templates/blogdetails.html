@@ -1,0 +1,67 @@
+{%extends "base(Home).html"%}
+{% load static %}
+
+{% block head_block %}
+<meta name="description" content="{{ blog_data.meta_description }}">
+<meta name="keywords" content="{{ blog_data.meta_keyword }}">
+<title>{{ blog_data.page_title }}</title>
+<link href="{% static 'css/blog.css' %}" rel="stylesheet">
+<style>
+     #header1 {top: 0px!important;}
+    .blogdetwrap{margin-top: 65px;}
+    .page-title-area {
+        position: absolute;
+        left: 60px;
+    }
+@media only screen and (max-width:768px){
+.page-title-area {
+        left: 10px;
+    }
+    .page-title-item h2{
+        font-size: 28px;
+    }
+}
+</style>
+{% endblock %}
+{%block body_block%}  
+   <div class="main">
+
+    <div class="blogdetwrap">
+        <div class="topdetwrap">
+            <div class="page-title-area page-title-img-blog">
+                <div class="container">
+                    <div class="page-title-item">
+                        <!-- ===========big heading============== -->
+                        <h1 style="color: white;">{{ blog_data.big_blog_name }}</h1>
+                        <ul>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li style="font-size: 16px; font-weight: 800;">
+                                >
+                            </li>
+                            <li>Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <img src="{{ blog_data.blog_image.url }}" alt="">
+        </div>
+           <div class="col-lg-8 btmdetright mx-auto p-2">
+            <!-- ===========big heading============== -->
+            <h2>{{ blog_data.big_blog_name }}</h2>
+            <br>
+            <!-- ==================big discription============= -->
+            <p>{{ blog_data.blog_description|safe }}</p>
+            
+            <br>
+            <p>Do you Like Our Article ? then View more of us:</p>
+
+              <a href="/articles"><button class="blogdetbtn"> View More Articles</button></a>
+              <a href="/"><button class="blogdetbtn">Back To Home</button></a>
+        </div>
+    </div>
+
+   </div>
+
+{% endblock %}

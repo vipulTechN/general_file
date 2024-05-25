@@ -1,76 +1,11 @@
-<div class="bar bar77">
-              <form action="" method="get">
-                <div class="dropdown3 form-select3 formobcitydrop">
-                  <select id="student1">
-                    <option selected value="allindia">All India</option>
-                    <option value="bengaluru">Bengaluru</option>
-                    <option value="chennai">Chennai</option>
-                    <option value="delhi">Delhi</option>
-                    <option value="hyderabad">Hyderabad</option>
-                  </select>
-                </div>
-              </form>
-              <div class="bar77input"  onclick="commonNav('mysidenav1','100%')">
-              <button type="button" class="searchbar">Search Your Dream</button>
-              <i class="ShiIcons icon_search"></i>
-            </div>
-            </div>
-
-
-
-
-.formobcitydrop{
-  display: none;
-}
-
-.forlapcitydrop{
-  display: flow-root;
-}
-
-  .searchbar {
-    top: -2px;
-    left: 100px;
-    height: 20px;
-    width: 115px;
-    font-size: 10px;
-  }
-
-  .ShiIcons.icon_search{
-    position: absolute;
-    right: 11px;
-    top: 7px;
-  }
-
-  .bar77 {
-    display: flex;
-    position: relative;
-  }
-
-  .bar77input{
-    border-left: 1px solid #EBECF0;
-    width: 68%;
-    }
-
-    .dropdown3 {
-     width: 32%;
-    }
-
-    .formobcitydrop{
-      display: flow-root;
-    }
-
-    .forlapcitydrop{
-      display: none;
-    }
-
-    .dropdown3 select {
-      font-size: 12px;
-        padding: 0px;
-        border: 0px;
-        border-radius: 3px;
-        position: absolute;
-        color: black;
-        left: 12px;
-        top: 11px;
-        outline: none;
-  }
+onclick="hiddendatablocks(this.value)"
+<script>
+        function hiddendatablocks(value) {
+            var hiddenblock = document.getElementById("hiddendatablock");
+            if (value) {
+                hiddenblock.style.display = "block";
+            } else {
+                hiddenblock.style.display = "none";
+            }
+        }
+    </script>

@@ -1,70 +1,419 @@
-foreach ($groupedRows as $fiscalYear => $months) {
-            // Add yearly total row at the top of the fiscal year
-            $output .= '<tr class="p-4 mb-2 bg-info text-dark">
-                <td colspan="3" class="text-end fw-bold">Total for Fiscal Year ' . $fiscalYear . ':<span class="text-danger bg-white">   ' . $yearlyTotals[$fiscalYear] . '₹</span></td>
-                <td colspan="7" class="text-center fw-bold">';
+<!DOCTYPE html>
+<html lang="en">
 
-            // Add yearly count by source within a single row
-            foreach ($yearlySourceTotals[$fiscalYear] as $source => $totalBySource) {
-                $output .= 'Total for <span style="color:green;">' . $source . '</span>:<span class="text-danger bg-white">   ' . $totalBySource . '₹ </span>; ';
-            }
-
-            $output .= '</td></tr>';
-
-            // Add monthly details for each fiscal year
-            foreach ($months as $month => $rows) {
-                $monthTotal = 0;
-                $sourceTotals = [];
-
-                // Calculate the month total and the totals by source
-                foreach ($rows as $row) {
-                    $monthTotal += $row['expense_amount'];
-
-                    if (!isset($sourceTotals[$row['expenses_source']])) {
-                        $sourceTotals[$row['expenses_source']] = 0;
-                    }
-                    $sourceTotals[$row['expenses_source']] += $row['expense_amount'];
-                }
-
-                // Add monthly total row
-                $output .= '<tr>
-                    <td colspan="3" class="text-end fw-bold">Total for ' . $month . ':<span style="color:red;"> ' . $monthTotal . '₹</span></td>
-                    <td colspan="7" class="text-center fw-bold">';
-
-                // Add monthly count by source within a single row
-                foreach ($sourceTotals as $source => $total) {
-                    $output .= 'Total for <span style="color:green;">' . $source . '</span>:<span style="color:red;"> ' . $total . '₹ </span>; ';
-                }
-
-                $output .= '</td></tr>';
-
-                // Add expense rows for the month
-                foreach ($rows as $row) {
-                    $output .= '<tr>
-                        <td>' . $row['id'] . '</td>
-                        <td>' . $row['expenses_date'] . '</td>
-                        <td>' . $row['expenses_month'] . '</td>
-                        <td>' . $row['expenses_by_name'] . '</td>
-                        <td>' . $row['expense_amount'] . '</td>
-                        <td>' . $row['expenses_source'] . '</td>
-                        <td>' . $row['expenses_source_project'] . '</td>
-                        <td>' . $row['source_project_name'] . '</td>
-                        <td class="text-center">
-                            <a href="' . $row['expenses_upload_invoice'] . '" class="btn" download><i class="bi bi-cloud-arrow-down-fill" title="Download Invoice" style="font-size: 1.7rem; color: black;"></i></a>
-                        </td>
-                        <!--<td class="text-center">
-                            <a href="#" id="' . $row['id'] . '" class="btn editLink" data-toggle="modal" data-target="#editUserModal"><i class="bi bi-pencil-square card" title="Edit" style="color: green;"></i></a>
-                            <a href="#" id="' . $row['id'] . '" class="btn deleteLink"><i class="bi bi-trash card" title="Delete" style="color: red;"></i></a>
-                        </td>-->
-                    </tr>';
-                }
-            }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Superadmin database</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+ <style>
+    @import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');.fold-content:first-child,.newsec{text-align:left}#emptotaldata,.newsec{width:100%;padding:5px 20px;background-color:#eaf6fd;box-shadow:0 4px 6px rgba(0,0,0,.1)}table.fold-table{background:#fff;color:#555}.table-wrap{position:relative}tbody tr td,tfoot tr td,thead tr th{text-align:center!important;white-space:nowrap}.scroll-left,.scroll-left i,.scroll-right,.scroll-right i{top:50%;transform:translate(-50%,-50%)}.table-container{overflow-y:auto;max-height:55vh;height:100%;width:100%;max-width:76vw;margin:0 auto}.newsec{border:1px solid #e0e0e0;border-radius:10px}.maintablewrap{overflow-y:scroll;width:100%;max-height:85vh;height:100%}.maintablewrap table{width:100%}table{border-collapse:collapse}.maintablewrap::-webkit-scrollbar,.table-container::-webkit-scrollbar{width:5px;height:5px}.maintablewrap::-webkit-scrollbar-track,.table-container::-webkit-scrollbar-track{background:#e3e3e3;border-radius:10px}.maintablewrap::-webkit-scrollbar-thumb,.table-container::-webkit-scrollbar-thumb{background-color:#1b6c9f;border-radius:20px}.table-container table tfoot tr td,.table-container table thead th{padding:5px 12px!important;border:1px solid rgba(0,0,0,.529);font-weight:500!important;color:#1b6c9f!important}.maintablewrap table tfoot tr td,.maintablewrap table thead th{padding:6px 0;border:1px solid rgba(0,0,0,.529);font-weight:600!important;color:#f6f5f3!important}.maintablewrap table tfoot,.maintablewrap table thead{position:sticky;background:#1b6c9f;z-index:99}.table-container table tfoot,.table-container table thead{position:sticky;background:#000;z-index:99}.maintablewrap table thead,.table-container thead{top:-2px}.maintablewrap table tfoot,.table-container tfoot{bottom:-2px}.fold-table tbody tr td{font-weight:500;font-size:15px!important;border:1px solid rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.599);padding:12px 20px!important;color:#000;transform:scale(1)}.small-friendly tbody tr td{padding:7px 12px!important}.fold-table tbody tr:hover{transform:scale(1.001);transition:.3s ease-in-out}.scroll-left,.scroll-right{position:absolute;border-radius:50%;border:1px solid #000;width:35px;height:35px;z-index:99;background-color:#fff}.scroll-left i,.scroll-right i{font-size:23px;color:#1b6c9f;position:absolute;left:50%}.scroll-left{left:20px}.scroll-right{right:-10px}table.fold-table>tbody>tr.view{transition:.3s}.fold-content>table>tbody>tr,table.fold-table>tbody>tr.view td,table.fold-table>tbody>tr.view th{cursor:pointer}table.fold-table>tbody>tr.view td:first-child,table.fold-table>tbody>tr.view th:first-child{position:relative;padding-left:20px}table.fold-table>tbody>tr.view td:first-child:before,table.fold-table>tbody>tr.view th:first-child:before{position:absolute;top:50%;left:5px;width:50px;height:16px;margin-top:-8px;font:20px fontawesome;content:"\f0d7";transition:.3s;color:red}table.fold-table>tbody>tr.view:nth-child(4n-1){background:#f4f4f4}.fold-content>table>tbody>tr:hover,table.fold-table>tbody>tr.view:hover{background:#ddd}table.fold-table>tbody>tr.view.open{background:#e5e5e6;color:#000}table.fold-table>tbody>tr.view.open td:first-child:before,table.fold-table>tbody>tr.view.open th:first-child:before{transform:rotate(-180deg);color:#000}.visible-small,table.fold-table>tbody>tr.fold{display:none}table.fold-table>tbody>tr.fold.open{display:table-row}.fold-content h3{margin-top:0;font-size:16px}.fold-content>table{box-shadow:0 2px 8px 0 rgba(0,0,0,.2)}.fold-content>table>tbody>tr:nth-child(2n){background:#eee}.visible-big{display:block}.totalbook{display:flex;align-items:center;margin:3px 0}.totalbook .totalbookchild{margin-left:10px}.totalbook .totalbookchild h6{font-size:14px}.divide{margin:-9px 0 0 10px;font-weight:400;font-size:18px;opacity:.6}.monthexp{color:red}.totalbook .totalbookchild:first-child{margin-left:0}.side-menu li.sideactive2{background:var(--shicol);position:relative}.side-menu li.sideactive2 a{color:var(--shicol)}.financialtrsticky{position:sticky;top:0;z-index:99}#emptotaldata{text-align:center;margin:0 auto;border:1px solid #e0e0e0;border-top-right-radius:10px;border-top-left-radius:10px;display:none}#emptotaldata .totalbook{justify-content:center}@media only screen and (max-width:1170px){.newsec,.table-container{width:100%;max-width:100%}}@media only screen and (max-width:768px){#emptotaldata .totalbookhead{font-size:13px}.scroll-right{right:-12px}.scroll-left{left:20px}.maintablewrap table tfoot tr td,.maintablewrap table thead th{padding:8px 12px;font-size:13px}.fold-table tbody tr td{padding:6px 12px!important}table.fold-table>tbody>tr.view td:first-child:before,table.fold-table>tbody>tr.view th:first-child:before{position:absolute;top:50%;left:0;width:20px;height:16px;margin-top:-8px;font:18px fontawesome;content:"\f0d7";transition:.3s;color:red}}@media only screen and (min-width:1600px){.newsec,.table-container{width:100%;max-width:1200px;margin:0 auto}}
+ </style>
+  <?php include('header.php'); ?>
+  <!-- Main Content -->
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="maintablewrap">
+            <table class="fold-table" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Financial Year</th>
+                  <th>Facebook Exp.</th>
+                  <th>Google Exp.</th>
+                  <th>HR Exp.</th>
+                  <th>IT Exp.</th>
+                  <th>SHI Exp.</th>
+                  <th>Accounts Exp.</th>
+                  <th>Others Exp.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="group-header view">
+                  <td class="financialyear">2023/2024</td>
+                  <td>35000000</td>
+                  <td>30000000</td>
+                  <td>12000</td>
+                  <td>5000000</td>
+                  <td>100</td>
+                  <td>100000000</td>
+                  <td>100000000</td>
+                </tr>
+                <tr class="fold">
+                  <td colspan="20">
+                    <div class="fold-content">
+                      <div class="table-wrap">
+                        <div class="table-container">
+                          <table class="small-friendly" cellspacing="0" style="width: 100%">
+                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>Expenses Date</th>
+                                <th>Expenses Month</th>
+                                <th>User Name</th>
+                                <th>Expenses Amount</th>
+                                <th>Expenses Source</th>
+                                <th>Source Project</th>
+                                <th>Project Name</th>
+                                <th>Invoice</th>
+                              </tr>
+                            </thead>
+                            <tbody id="expenses">
+                              <tr>
+                                <td colspan="9">
+                                  <div class="newsec">
+                                    <h3>Financial Month - 2023-5</h3>
+                                    <div class="totalbook">
+                                      <div class="totalbookchild">
+                                        <h6>FB Exp. :- <span class="monthexp">400</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Google Exp. :- <span class="monthexp">400</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>IT Exp. :- <span class="monthexp">400</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Accounts Exp. :- <span class="monthexp">400</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>HR Exp. :- <span class="monthexp">400</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>SHI Exp. :- <span class="monthexp">400</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Others :- <span class="monthexp">400</span></h6>
+                                      </div>
+                                    </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td>2024-01-01</td>
+                                <td>January</td>
+                                <td>John Doe</td>
+                                <td>$250.00</td>
+                                <td>Office Supplies</td>
+                                <td>Project X</td>
+                                <td>ABC Project</td>
+                                <td><a href="#">0001</a></td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>2024-01-05</td>
+                                <td>January</td>
+                                <td>Jane Smith</td>
+                                <td>$150.00</td>
+                                <td>Travel</td>
+                                <td>Project Y</td>
+                                <td>XYZ Project</td>
+                                <td><a href="#">0002</a></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>2024-01-10</td>
+                                <td>January</td>
+                                <td>Michael Johnson</td>
+                                <td>$100.00</td>
+                                <td>Meals & Entertainment</td>
+                                <td>Project Z</td>
+                                <td>PQR Project</td>
+                                <td><a href="#">0003</a></td>
+                              </tr>
+                              <tr>
+                                <td>4</td>
+                                <td>2024-02-03</td>
+                                <td>February</td>
+                                <td>Emily Davis</td>
+                                <td>$300.00</td>
+                                <td>Equipment Rental</td>
+                                <td>Project X</td>
+                                <td>ABC Project</td>
+                                <td><a href="#">0004</a></td>
+                              </tr>
+                              <tr>
+                                <td>5</td>
+                                <td>2024-02-08</td>
+                                <td>February</td>
+                                <td>Chris Wilson</td>
+                                <td>$200.00</td>
+                                <td>Utilities</td>
+                                <td>Project Y</td>
+                                <td>XYZ Project</td>
+                                <td><a href="#">0005</a></td>
+                              </tr>
+                              <tr>
+                                <td>6</td>
+                                <td>2024-02-15</td>
+                                <td>February</td>
+                                <td>Samantha Brown</td>
+                                <td>$150.00</td>
+                                <td>Office Supplies</td>
+                                <td>Project Z</td>
+                                <td>PQR Project</td>
+                                <td><a href="#">0006</a></td>
+                              </tr>
+                              <tr>
+                                <td>7</td>
+                                <td>2024-03-02</td>
+                                <td>March</td>
+                                <td>Andrew Miller</td>
+                                <td>$180.00</td>
+                                <td>Travel</td>
+                                <td>Project X</td>
+                                <td>ABC Project</td>
+                                <td><a href="#">0007</a></td>
+                              </tr>
+                              <tr>
+                                <td>8</td>
+                                <td>2024-03-09</td>
+                                <td>March</td>
+                                <td>Amy Martinez</td>
+                                <td>$220.00</td>
+                                <td>Meals & Entertainment</td>
+                                <td>Project Y</td>
+                                <td>XYZ Project</td>
+                                <td><a href="#">0008</a></td>
+                              </tr>
+                              <tr>
+                                <td>9</td>
+                                <td>2024-03-14</td>
+                                <td>March</td>
+                                <td>David Taylor</td>
+                                <td>$250.00</td>
+                                <td>Equipment Rental</td>
+                                <td>Project Z</td>
+                                <td>PQR Project</td>
+                                <td><a href="#">0009</a></td>
+                              </tr>
+                              <tr>
+                                <td>10</td>
+                                <td>2024-04-05</td>
+                                <td>April</td>
+                                <td>Laura Garcia</td>
+                                <td>$300.00</td>
+                                <td>Utilities</td>
+                                <td>Project X</td>
+                                <td>ABC Project</td>
+                                <td><a href="#">0010</a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>Financial Year</td>
+                  <td>Facebook Exp.</td>
+                  <td>Google Exp.</td>
+                  <td>HR Exp.</td>
+                  <td>IT Exp.</td>
+                  <td>SHI Exp.</td>
+                  <td>Accounts Exp.</td>
+                  <td>Others Exp.</td>
+                </tr>
+              </tfoot>
+            </table>
+            <button class="scroll-left">
+              <i class="bx bx-left-arrow-alt"></i>
+            </button>
+            <button class="scroll-right">
+              <i class="bx bx-right-arrow-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End Main Content -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bootstrap_alpha2.js"></script>
+  <script type="text/javascript" src="./assets/script.js"></script>
+  <!-- Filter Rows Modal Start -->
+  <div class="modal fade" tabindex="-1" id="filterModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Filter Data</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="closeFilter"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container p-0">
+            <div class="row">
+              <!-- Filter inputs -->
+              <div class="col-md-6">
+                <input type="text" class="form-control mb-2" id="filterID" placeholder="ID">
+                <input type="text" class="form-control mb-2" id="ExpensesDate" placeholder="Expenses Date">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control mb-2" id="ExpensesMonth" placeholder="ExpensesMonth">
+                <input type="text" class="form-control mb-2" id="UserName" placeholder="UserName">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control mb-2" id="ExpensesAmount" placeholder="ExpensesAmount">
+                <input type="text" class="form-control mb-2" id="ExpensesSource" placeholder="Expenses Source">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control mb-2" id="SourceProject" placeholder="Source Project">
+                <input type="text" class="form-control mb-2" id="ProjectName" placeholder="Project Name">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- Close Modal button -->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
+          <!-- Clear Filters button -->
+          <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
+          <!-- Apply Filters button -->
+          <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- filter rows Modal End -->
+  <script>
+    function applyFilters() {
+      var filterInputs = [{
+          id: "filterID",
+          columnIndex: 0
+        },
+        {
+          id: "ExpensesDate",
+          columnIndex: 1
+        },
+        {
+          id: "ExpensesMonth",
+          columnIndex: 2
+        },
+        {
+          id: "UserName",
+          columnIndex: 3
+        },
+        {
+          id: "ExpensesAmount",
+          columnIndex: 4
+        },
+        {
+          id: "ExpensesSource",
+          columnIndex: 5
+        },
+        {
+          id: "SourceProject",
+          columnIndex: 6
+        },
+        {
+          id: "ProjectName",
+          columnIndex: 6
+        },
+      ];
+      activeFilters = [];
+      $("#expenses tr").each(function() {
+        var row = $(this);
+        var showRow = true;
+        filterInputs.forEach(function(inputInfo) {
+          var input = $("#" + inputInfo.id);
+          var filterValue = input.val().toLowerCase();
+          var cellValue = row.find("td:eq(" + inputInfo.columnIndex + ")").text().toLowerCase();
+          if (cellValue.indexOf(filterValue) === -1) {
+            showRow = false;
+            return false;
+          }
+          if (filterValue.trim() !== "") {
+            activeFilters.push(filterValue);
+          }
+        });
+        if (showRow) {
+          row.addClass("custom-filtered-row");
+        } else {
+          row.removeClass("custom-filtered-row");
         }
+      });
+      $("#expenses tr").hide();
+      applyCustomFilter();
+    };
+    applyCustomFilter();
 
-        echo $output;
-    } else {
-        echo '<tr>
-            <td colspan="10" class="text-center bg-light text-dark fw-bold">No Expenses Found in the Database!</td>
-        </tr>';
+    function applyCustomFilter() {
+      $(".custom-filtered-row").show();
     }
-}
+    $(".filterable .btn-filter1").click(function() {
+      $("#filterModal").modal("show");
+    });
+    $("#applyFiltersBtn").click(function() {
+      $("#filterModal").modal("hide");
+      applyFilters();
+    });
+    $("#filterModal").on("hidden.bs.modal", function() {
+      $(".filterable .filters input").val("");
+      applyFilters();
+    });
+    $("#closeFilter").click(function() {
+      applyFilters();
+      $("#filterModal").modal("hide");
+    });
+    $("#cancleFilter").click(function() {
+      applyFilters();
+      $("#filterModal").modal("hide");
+    });
+    $(document).ready(function() {
+      $("#clearFiltersBtn").click(function() {
+        $("#filterID,#ExpensesDate,#ExpensesMonth,#UserName,#ExpensesAmount,#ExpensesSource,#SourceProject,#ProjectName").val("");
+      });
+    });
+    $("#clearFiltersBtn").click(function() {
+      applyFilters();
+      $("#filterModal").modal("hide");
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('.scroll-left').on('click', function() {
+        $('.table-container').animate({
+          scrollLeft: '-=300'
+        }, 'ease-in-out');
+        $('.maintablewrap').animate({
+          scrollLeft: '-=300'
+        }, 'ease-in-out');
+      });
+      $('.scroll-right').on('click', function() {
+        $('.table-container').animate({
+          scrollLeft: '+=300'
+        }, 'ease-in-out');
+        $('.maintablewrap').animate({
+          scrollLeft: '+=300'
+        }, 'ease-in-out');
+      });
+    });
+  </script>
+  <script>
+    $(function() {
+      $(".fold-table tr.view").on("click", function() {
+        if ($(this).hasClass("open")) {
+          $(this).removeClass("open").next(".fold").removeClass("open");
+          $(this).removeClass("financialtrsticky");
+        } else {
+          $(".fold-table tr.view").removeClass("open").next(".fold").removeClass("open").removeClass("financialtrsticky");
+          $(this).addClass("open").next(".fold").addClass("open");
+          $(".fold-table tr.view.open").addClass("financialtrsticky");
+        }
+      });
+    });
+  </script>
+  </body>
+</html>

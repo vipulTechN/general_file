@@ -1,11 +1,70 @@
-onclick="hiddendatablocks(this.value)"
-<script>
-        function hiddendatablocks(value) {
-            var hiddenblock = document.getElementById("hiddendatablock");
-            if (value) {
-                hiddenblock.style.display = "block";
-            } else {
-                hiddenblock.style.display = "none";
+foreach ($groupedRows as $fiscalYear => $months) {
+            // Add yearly total row at the top of the fiscal year
+            $output .= '<tr class="p-4 mb-2 bg-info text-dark">
+                <td colspan="3" class="text-end fw-bold">Total for Fiscal Year ' . $fiscalYear . ':<span class="text-danger bg-white">   ' . $yearlyTotals[$fiscalYear] . '₹</span></td>
+                <td colspan="7" class="text-center fw-bold">';
+
+            // Add yearly count by source within a single row
+            foreach ($yearlySourceTotals[$fiscalYear] as $source => $totalBySource) {
+                $output .= 'Total for <span style="color:green;">' . $source . '</span>:<span class="text-danger bg-white">   ' . $totalBySource . '₹ </span>; ';
+            }
+
+            $output .= '</td></tr>';
+
+            // Add monthly details for each fiscal year
+            foreach ($months as $month => $rows) {
+                $monthTotal = 0;
+                $sourceTotals = [];
+
+                // Calculate the month total and the totals by source
+                foreach ($rows as $row) {
+                    $monthTotal += $row['expense_amount'];
+
+                    if (!isset($sourceTotals[$row['expenses_source']])) {
+                        $sourceTotals[$row['expenses_source']] = 0;
+                    }
+                    $sourceTotals[$row['expenses_source']] += $row['expense_amount'];
+                }
+
+                // Add monthly total row
+                $output .= '<tr>
+                    <td colspan="3" class="text-end fw-bold">Total for ' . $month . ':<span style="color:red;"> ' . $monthTotal . '₹</span></td>
+                    <td colspan="7" class="text-center fw-bold">';
+
+                // Add monthly count by source within a single row
+                foreach ($sourceTotals as $source => $total) {
+                    $output .= 'Total for <span style="color:green;">' . $source . '</span>:<span style="color:red;"> ' . $total . '₹ </span>; ';
+                }
+
+                $output .= '</td></tr>';
+
+                // Add expense rows for the month
+                foreach ($rows as $row) {
+                    $output .= '<tr>
+                        <td>' . $row['id'] . '</td>
+                        <td>' . $row['expenses_date'] . '</td>
+                        <td>' . $row['expenses_month'] . '</td>
+                        <td>' . $row['expenses_by_name'] . '</td>
+                        <td>' . $row['expense_amount'] . '</td>
+                        <td>' . $row['expenses_source'] . '</td>
+                        <td>' . $row['expenses_source_project'] . '</td>
+                        <td>' . $row['source_project_name'] . '</td>
+                        <td class="text-center">
+                            <a href="' . $row['expenses_upload_invoice'] . '" class="btn" download><i class="bi bi-cloud-arrow-down-fill" title="Download Invoice" style="font-size: 1.7rem; color: black;"></i></a>
+                        </td>
+                        <!--<td class="text-center">
+                            <a href="#" id="' . $row['id'] . '" class="btn editLink" data-toggle="modal" data-target="#editUserModal"><i class="bi bi-pencil-square card" title="Edit" style="color: green;"></i></a>
+                            <a href="#" id="' . $row['id'] . '" class="btn deleteLink"><i class="bi bi-trash card" title="Delete" style="color: red;"></i></a>
+                        </td>-->
+                    </tr>';
+                }
             }
         }
-    </script>
+
+        echo $output;
+    } else {
+        echo '<tr>
+            <td colspan="10" class="text-center bg-light text-dark fw-bold">No Expenses Found in the Database!</td>
+        </tr>';
+    }
+}

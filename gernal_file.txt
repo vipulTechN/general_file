@@ -156,3 +156,32 @@ if (isset($_GET['read'])) {
               </tr>';
     }
 }
+//////////////////////////////////////////
+<table class="fold-table" cellspacing="0" style="width: 100%">
+              <thead>
+                <tr>
+                    <th>Financial Year/Bookings/Invoice</th>
+                    <th>Total Revenue</th>
+                    <th>Actual Revenue</th>
+                    <th>Remaning Revenue</th>
+                    <th>Received Amount</th>
+                    <th>Amount To be Pay</th>
+                    <th>Total Paid Amt</th>
+                  </tr>
+                </thead>
+                <tbody id="pagedata">
+                  <!-- Here Year Row will be populate dynamically -->
+                  <!-- Here Year Row will be populate dynamically with new table -->
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Financial Year/Bookings</td>
+                    <td>Total Revenue</td>
+                    <td>Actual Revenue</td>
+                    <td>Remaning Revenue</td>
+                    <td>Received Amount</td>
+                    <td>Amount To be Pay</td>
+                    <td>Total Paid Amt</td>
+                    </tr>
+              </tfoot>
+            </table>

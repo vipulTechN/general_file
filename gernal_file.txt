@@ -185,3 +185,452 @@ if (isset($_GET['read'])) {
                     </tr>
               </tfoot>
             </table>
+////////////////////////////////////////////// this function is for user where you have to Impliment the nested table logic
+if (isset($_GET['read'])) {
+    $users = $db->read();
+    $output = '';
+    $overall_earn = 0;    
+    $overall_paid = 0;
+    $overall_booking = 0;
+    $overall_amt = 0;
+    $advancepay = 0;
+    $outputY = '';
+    if ($users) {
+    // Group rows by month
+    $groupedRows = []; // Array to store grouped rows by month
+    foreach ($users as $row) {
+        $revenues[] = $row['crevenue'];
+        $month = $row['booking_month'];
+        if (!isset($groupedRows[$month])) {
+            $groupedRows[$month] = [];
+        }
+        $groupedRows[$month][] = $row;
+    }
+    // Generate table rows for each group
+    $output = '';
+    foreach ($groupedRows as $month => $rows) {
+        // this calculation is for mandate project
+        if ($Project_type === 'mandate' && $user_type === 'user'){
+        $arr_forData = [];
+        $storeVal = [];
+        $store = 0;
+        $afteramt = 0;
+        $Rev = 0;
+        $calculationPaid = array();
+        // this calculation is for the mandate projects
+        $filteredRows = array_filter($rows, function($row) {
+          return $row['astatus'] !== 'Cancled';
+        });
+        $rowCount = count($filteredRows);
+        /////////////////////////////////////////////////////CALCULATION MANDATE PROJECT 
+        foreach ($rows as $row) {
+          if ($row['ccashback'] !=0){
+            $storeVal[] = $row['ccashback'];
+            // $store = $row['ccashback'];
+          }
+          if ($row['astatus'] == 'Received'){
+            $arr_forData[] = $row['astatus'];
+          }
+        }
+        foreach ($rows as $row) {
+            $Rev += $row['crevenue'];
+        }
+        // here we are geeting all the recent update value on the bases of ccashback
+        $usersr = $db->recentCashback($month);
+        if (is_array($usersr) && isset($usersr["ccashback"])) {
+          $store = $usersr["ccashback"];
+          $id = $usersr['id']; // this is for totaling the given amt
+          //  echo $store;
+        }
+      
+       //Actual calculation will be start from here when all data will come into the variables
+        if ($rowCount === 1){
+          $cashbackCounter = count($storeVal);
+          if ($cashbackCounter != 0){
+            $afteramt = ($frist * 0.30)*$cashbackCounter;
+          }
+          $Final_Amount = ($frist*($rowCount-$cashbackCounter)) + $afteramt;
+          // here we are storing the value in to be pay amount for the team
+          $bookingMonth = $month;
+          $sourceTableName = $tablename;
+          $db->insert_pay_amount($Final_Amount, $sourceTableName, $bookingMonth);
+          $timesT = count($arr_forData);
+          if ($timesT != 0){
+            if ($store != 0){
+              $co2 = ($frist * 0.30);
+            }
+            else{
+              $co2 = $frist;
+            }
+            $updatamount = $db->updateAmt($co2, $id); //this function and inserting the value through "updateAmt"
+            $paid_amount = $db->getTotalSendAmt($month); //we are geeting the value through "getTotalSendAmt" 
+            $Final_Amount = $Final_Amount - $paid_amount;
+          }
+          else{
+            $paid_amount = 0;
+          }
+        }
+        elseif ($rowCount === 2){
+          $cashbackCounter = count($storeVal);
+          if ($cashbackCounter != 0){
+            $afteramt = ($secound * 0.30)*$cashbackCounter;
+          }
+          $Final_Amount = ($secound*($rowCount-$cashbackCounter)) + $afteramt;
+          // here we are storing the value in to be pay amount for the team
+          $bookingMonth = $month;
+          $sourceTableName = $tablename;
+          $db->insert_pay_amount($Final_Amount, $sourceTableName, $bookingMonth);
+          $timesT = count($arr_forData);
+          if ($timesT != 0){
+            if ($store != 0){
+              $co2 = ($secound * 0.30);
+            }
+            else{
+              $co2 = $secound;
+            }
+            $updatamount = $db->updateAmt($co2, $id); //this function and inserting the value through "updateAmt"
+            $paid_amount = $db->getTotalSendAmt($month); //we are geeting the value through "getTotalSendAmt" 
+            $Final_Amount = $Final_Amount - $paid_amount;
+          }
+          else{
+            $paid_amount = 0;
+          }
+        }
+        elseif ($rowCount === 3){
+          $cashbackCounter = count($storeVal);
+          if ($cashbackCounter != 0){
+            $afteramt = ($third * 0.30)*$cashbackCounter;
+          }
+          $Final_Amount = ($third*($rowCount-$cashbackCounter)) + $afteramt;
+          // here we are storing the value in to be pay amount for the team
+          $bookingMonth = $month;
+          $sourceTableName = $tablename;
+          $db->insert_pay_amount($Final_Amount, $sourceTableName, $bookingMonth);
+          $timesT = count($arr_forData);
+          if ($timesT != 0){
+            if ($store != 0){
+              $co2 = ($third * 0.30);
+            }
+            else{
+              $co2 = $third;
+            }
+            $updatamount = $db->updateAmt($co2, $id); //this function and inserting the value through "updateAmt"
+            $paid_amount = $db->getTotalSendAmt($month); //we are geeting the value through "getTotalSendAmt" 
+            $Final_Amount = $Final_Amount - $paid_amount;
+          }
+          else{
+            $paid_amount = 0;
+          }
+        }
+        elseif ($rowCount === 4){
+          $cashbackCounter = count($storeVal);
+          if ($cashbackCounter != 0){
+            $afteramt = ($forth * 0.30)*$cashbackCounter;
+          }
+          $Final_Amount = ($forth*($rowCount-$cashbackCounter)) + $afteramt;
+          // here we are storing the value in to be pay amount for the team
+          $bookingMonth = $month;
+          $sourceTableName = $tablename;
+          $db->insert_pay_amount($Final_Amount, $sourceTableName, $bookingMonth);
+          $timesT = count($arr_forData);
+          if ($timesT != 0){
+            if ($store != 0){
+              $co2 = ($forth * 0.30);
+            }
+            else{
+              $co2 = $forth;
+            }
+            $updatamount = $db->updateAmt($co2, $id); //this function and inserting the value through "updateAmt"
+            $paid_amount = $db->getTotalSendAmt($month); //we are geeting the value through "getTotalSendAmt" 
+            $Final_Amount = $Final_Amount - $paid_amount;
+          }
+          else{
+            $paid_amount = 0;
+          }
+        }
+        elseif ($rowCount === 5){
+          $cashbackCounter = count($storeVal);
+          if ($cashbackCounter != 0){
+            $afteramt = ($fifth * 0.30)*$cashbackCounter;
+          }
+          $Final_Amount = ($fifth*($rowCount-$cashbackCounter)) + $afteramt;
+          // here we are storing the value in to be pay amount for the team
+          $bookingMonth = $month;
+          $sourceTableName = $tablename;
+          $db->insert_pay_amount($Final_Amount, $sourceTableName, $bookingMonth);
+          $timesT = count($arr_forData);
+          if ($timesT != 0){
+            if ($store != 0){
+              $co2 = ($fifth * 0.30);
+            }
+            else{
+              $co2 = $fifth;
+            }
+            $updatamount = $db->updateAmt($co2, $id); //this function and inserting the value through "updateAmt"
+            $paid_amount = $db->getTotalSendAmt($month); //we are geeting the value through "getTotalSendAmt" 
+            $Final_Amount = $Final_Amount - $paid_amount; 
+          }
+          else{
+            $paid_amount = 0;
+          }
+        }
+        elseif ($rowCount >= 6){
+          $cashbackCounter = count($storeVal);
+          if ($cashbackCounter != 0){
+            $afteramt = ($sixth * 0.30)*$cashbackCounter;
+          }
+          $Final_Amount = ($sixth*($rowCount-$cashbackCounter)) + $afteramt;
+          // here we are storing the value in to be pay amount for the team
+          $bookingMonth = $month;
+          $sourceTableName = $tablename;
+          $db->insert_pay_amount($Final_Amount, $sourceTableName, $bookingMonth);
+          $timesT = count($arr_forData);
+          if ($timesT != 0){
+            if ($store != 0){
+              $co2 = ($sixth * 0.30);
+            }
+            else{
+              $co2 = $sixth;
+            }
+            // In blow all two function 
+            $updatamount = $db->updateAmt($co2, $id); //this function and inserting the value through "updateAmt"
+            $paid_amount = $db->getTotalSendAmt($month); //we are geeting the value through "getTotalSendAmt" 
+            $Final_Amount = $Final_Amount - $paid_amount;
+          }
+          else{
+            $paid_amount = 0;
+          }
+        }
+        elseif ($rowCount === 0){
+          $cashbackCounter = count($storeVal);
+          if ($cashbackCounter != 0){
+            $afteramt = ($sixth * 0.30)*$cashbackCounter;
+          }
+          $Final_Amount = ($sixth*($rowCount-$cashbackCounter)) + $afteramt;
+          // here we are storing the value in to be pay amount for the team
+          $bookingMonth = $month;
+          $sourceTableName = $tablename;
+          $db->insert_pay_amount($Final_Amount, $sourceTableName, $bookingMonth);
+          $timesT = count($arr_forData);
+          if ($timesT != 0){
+            if ($store != 0){
+              $co2 = ($sixth * 0.30);
+            }
+            else{
+              $co2 = $sixth;
+            }
+            // In blow all two function 
+            $updatamount = $db->updateAmt($co2, $id); //this function and inserting the value through "updateAmt"
+            $paid_amount = $db->getTotalSendAmt($month); //we are geeting the value through "getTotalSendAmt" 
+            $Final_Amount = $Final_Amount - $paid_amount;
+          }
+          else{
+            $paid_amount = 0;
+          }
+        }
+        $overall_earn += $Final_Amount ;
+        $overall_booking += $rowCount;
+        $overall_paid += $paid_amount;
+        //This function is for storing the data into the tracking table 
+        $updatamount = $db->insertOrUpdateTrackingData($month, $Rev, $paid_amount, $Final_Amount, $tablename, $rowCount, $paid_amount);
+        //This fucntion is for storing the data into the tracking End
+        $output .= '<tr class="group-header">
+                        <td colspan="19">
+                          <div class="border border-dark d-inline p-2 bg-warning text-dark font-weight-bold">Month: '.$month.'(Booking: '.$rowCount.')</div>			  
+                          <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Remaning Incentive: ₹ '.$Final_Amount.'</div>
+                          <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold">Build Incentive: ₹ '.$paid_amount.'</div>
+                        </td>
+                    </tr>';
+      }
+      /////////////////////////////////////////////////////CALCULATION MANDATE PROJECT END
+      /////////////////////////////////////////////////////CALCULATION RETAIL PROJECT
+      elseif ( $Project_type === 'retail' && $user_type === 'user') {
+          // this function is for get recent salary update
+          $D1 = $db->currentSalary($month);
+          $recentUpdate = 0;
+          $id = 0;
+          $D2 = 0; // Reset total revenue for each month
+          $Paid_Insentive = 0;
+
+        // Calculate total revenue for the month
+        foreach ($rows as $row) {
+            $D2 += $row['crevenue'];
+            $Paid_Insentive += $row['send_amt'];
+        }
+      // Count the rows for the current month
+      $rowCount = count($rows);
+        
+      $B3 = $D1*5;
+      $B4 = $D1*10;
+      $B5 = $D1*15;
+      $B6 = $D1*20;
+      $B7 = $D1*25;
+      // Get the value as slab of the company
+      // Calculate "C"
+      $C3 = $D2 > $B3 ? $B3 : $D2;
+      $C4 = $D2 > $B4 ? $B4 - $B3 : $D2 - $B3;
+      $C5 = $D2 > $B5 ? $B5 - $B4 : ($D2 > $B4 ? $D2 - $B4 : 0);
+      $C6 = $D2 > $B6 ? $B6 - $B5 : ($D2 > $B5 ? $D2 - $B5 : 0);
+      $C7 = $D2 > $B7 ? $B7 - $B6 : ($D2 > $B6 ? $D2 - $B6 : 0);
+      $C8 = $D2 > $B7 ? $D2 - $B3 : 0;
+      //Get the Value of "D" for all the insentive calculation after slab
+      // Calculate D3
+      $D3 = (int)((4 / 100) * $C3);
+      $D4 = (int)((8 / 100) * $C4);
+      $D5 = (int)((12 / 100) * $C5);
+      $D6 = (int)((16 / 100) * $C6);
+      $D7 = (int)((20 / 100) * $C7);
+      $sum_d3_d7 = array_sum([$D3, $D4, $D5, $D6, $D7]);
+      $D8 = (int)((22 / 100) * $C8);
+      $D10 = ($C8 == 0) ? $sum_d3_d7 : 0;
+      $D11 = ($C8 > 0) ? ($D8 + $D3) : 0;
+      //Now check which slap the person exist and cont the amount to be send
+      $temp = ($D1 <= 40000 && $D2 <= $D1 * 25) || ($D1 > 40000 && $D2 <= $D1 * 25) ? $D10 : $D11;
+      //here we are inserting the value of company will pay amount into the admintable
+      $bookingMonth = $month;
+      $sourceTableName = $tablename;
+      $db->insert_pay_amount($temp, $sourceTableName, $bookingMonth);
+       // this logic for geeting recent updated id value form receved amount
+       $usersr = $db->recent($month);
+       if (is_array($usersr) && isset($usersr["recived_amt"])) {
+         $recentUpdate = $usersr["recived_amt"];
+         $id = $usersr['id']; // this is for totaling the given amt
+      }
+      if ($D2 === 0){
+        $co1 = 	0;
+      }
+      else{
+        $co1 = 	$recentUpdate / $D2;
+      }
+      $co2 = (int)($temp * $co1);
+      //store the value of co2 in database column send_amt
+      $updatedRows = $db->updateAmt($co2, $id);
+      //get total of all paid amount 
+      $total = $db->getTotalSendAmt($month);
+      //Now we are calcultaing the recived amt and remaning amt
+      $co3 = $temp - $total;
+      if ($co3 < 0) {
+        $co3 = 0; // Set $co3 to 0 if it's negative
+      }
+      // Overall calculation Report
+      $overall_earn += $co3;
+      $overall_booking += $rowCount;
+      $overall_paid += $Paid_Insentive;
+      // Overall calculation Report
+      //This function is for storing the data into the tracking table 
+        $updatamount = $db->insertOrUpdateTrackingData($month, $D2, $co2, $co3, $tablename, $rowCount, $Paid_Insentive);
+        //This fucntion is for storing the data into the tracking End
+        $output .= '<tr class="group-header">
+                        <td colspan="19">
+                          <div class="border border-dark d-inline p-2 bg-warning text-dark font-weight-bold">Month: '.$month.'(Booking: '.$rowCount.')</div>
+                          <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Revenue: ₹ '.$D2.'</div>
+                          <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold">RemaningAmt: ₹ '.$co3.'</div>
+                          <div class="border border-dark d-inline p-2 bg-success text-white font-weight-bold">RecentBuild: ₹ '.$co2.'</div>
+                          <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Build Incentive: ₹ '.$Paid_Insentive.'</div>
+                        </td>
+                    </tr>';
+      }
+      /////////////////////////////////////////////////////CALCULATION RETAIL PROJECT END
+      /////////////////////////////////////////////////////CALCULATION MANAGER PROJECT START
+      elseif (($Project_type === 'mandate' || $Project_type === 'retail') && $user_type === 'manager') {
+        // Logic for mandate or retail project and user type manager
+        $rowCount = count($rows);
+        $D2 = 0; // Reset total revenue for each month
+        foreach ($rows as $row) {
+            $D2 += $row['crevenue']; 
+        }
+        $paid_salary = $db->getTotalMsalary($month);
+        $expenses_amount = $db->getTotalExpenses($month);
+        $output .= '<tr class="group-header">
+                        <td colspan="19">
+                          <div class="border border-dark d-inline p-2 bg-warning text-dark font-weight-bold">Month: '.$month.'(Booking: '.$rowCount.')</div>
+                          <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Revenue: ₹ '.$D2.'</div>
+                          <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold">Paid Salary : ₹ '.$paid_salary.'</div>
+                          <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold">Spend Amount : ₹ '.$expenses_amount.'</div>
+                        </td>
+                    </tr>';
+      } else {
+          // Optional: Handle other cases or show an error message
+          echo $Project_type, $user_type;
+      }
+      /////////////////////////////////////////////////////CALCULATION MANAGER PROJECT END
+        foreach ($rows as $row) {
+            $output .= '<tr data-status="' . $row['astatus'] . '">
+                <td>' . $row['id'] . '</td>
+                <td>' . $row['booking_date'] . '</td>
+                <td>' . $row['booking_month'] . '</td>
+                <td>' . $row['builder'] . '</td>
+                <td>' . $row['project'] . '</td>
+                <td>' . $row['customer_name'] . '</td>
+                <td>' . $row['contact_number'] . '</td>
+                <td>' . $row['email_id'] . '</td>
+                <td>' . $row['project_type'] . '</td>
+                <td>' . $row['unit_no'] . '</td>
+                <td>' . $row['size'] . '</td>
+                <td>' . $row['agreement_value'] . '</td>';
+                if ($Project_type === 'mandate') {
+                  // $output .= '<td></td>';
+                } else {
+                $output .= '<td>' . $row['cashback'] . '%</td>';
+                }
+            
+                if ($Project_type === 'mandate') {
+                // $output .= '<td></td>';
+                } else {
+                $output .= '<td>' . $row['revenue'] . '</td>';
+                }
+            
+                $output .= '<td>' . $row['ccashback'] . '%</td>';
+            
+                if ($Project_type === 'mandate') {
+                // $output .= '<td></td>';
+                } else {
+                $output .= '<td>' . $row['crevenue'] . '</td>';
+                }
+            
+                $output .= '<td><div class="' . $row['astatus'] . '"> ' . $row['astatus'] . '</div></td>';
+                if ($Project_type === 'mandate') {
+                  // $output .= '<td></td>';
+                } else {
+                    $output .= '<td>' . $row['recived_amt'] . '</td>';
+                }
+                if ('erkfdth' === 'Seas#$code!&%45') {
+                    $output .= '<td>
+                                    <a href="#" id="' . $row['id'] . '" class="btn btn-success btn-sm rounded-pill py-0 editLink" data-toggle="modal" data-target="#editUserModal">Edit</a>
+                                    <a href="#" id="' . $row['id'] . '" class="btn btn-danger btn-sm rounded-pill py-0 deleteLink">Delete</a>
+                                </td>
+                            </tr>';
+          }
+        }
+    }
+
+    echo $output;
+    if ( $Project_type === 'mandate' ){
+      $advancepay = $db->getAdvancePayByUser($tablename);
+      $overall_earn_collect = $overall_earn + $overall_paid;
+      $overall_amt = $overall_earn_collect - ($overall_paid + $advancepay);
+      $updatpayment = $db->insertOrUpdatePayment($overall_earn, $overall_paid, $overall_amt, $tablename, $overall_booking);
+    }
+    else{
+      $advancepay = $db->getAdvancePayByUser($tablename);
+      $overall_earn_collect = $overall_earn + $overall_paid;
+      $overall_amt = $overall_earn_collect - ($overall_paid + $advancepay);
+      $updatpayment = $db->insertOrUpdatePayment($overall_earn, $overall_paid, $overall_amt, $tablename, $overall_booking);
+    }
+    
+    $outputY .= '<tr class="group-header">
+    <td colspan="19">
+      <div class="border border-dark d-inline p-2 bg-warning text-dark font-weight-bold">Overall Bookings: ('.$overall_booking.')</div>			  
+      <div class="border border-dark d-inline p-2 bg-info text-white font-weight-bold">Overall Earn: ₹ '.$overall_earn_collect.'</div>
+      <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Overall Build: ₹ '.$overall_paid.'</div>
+      <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Advance Paid: ₹ '.$advancepay.'</div>
+      <div class="border border-dark d-inline p-2 bg-primary text-white font-weight-bold">Final Remaning: ₹ '.$overall_amt.'</div>
+      </td>
+  </tr>';
+echo $outputY;
+} else {
+    echo '<tr>
+            <td colspan="19" style="text-align: center;background-color: lightcyan;font-weight: 700;">No Users Found in the Database!</td>
+          </tr>';
+}
+  }

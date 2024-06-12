@@ -1,0 +1,1129 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+<title>Search Homes India: Best Real Estate Platform in Bangalore</title>
+<meta data-react-helmet="true" name="keyword"
+  content="real estate consultant in bangalore, best real estate platform in Bangalore, real estate broker in Bangalore, real estate platform in Bangalore, property management company in  bangalore">
+<meta data-react-helmet="true" name="description"
+  content="Search Homes India is the best real estate platform in Bangalore that can help in buying or selling properties with the financial support and experts advice">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/grid.css' %}">
+{% endblock %}
+{%block body_block%}
+  <main id="main">
+    <!-- top section start=============== -->
+    <div class="top">
+      <!-- ======= -main nav header of 1st page start  ======= -->
+      <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+          <div class="logo">
+            <a href="/">
+              <div style="width: 144px; height: 35px;">
+                <img src="{% static 'images/shi_logo_white.png' %}" loading="lazy" alt="logo" class="img-fluid">
+              </div>
+            </a>
+          </div>
+          <form action="" method="get">
+            <div class="dropdown3 form-select3 forlapcitydrop">
+              <select id="city3" name="project_city" data-target="2" required>
+                <option value="" selected disabled>All India</option>
+                <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
+                <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
+                <option value="{% url 'city_listings' 'mumbai' %}">Mumbai</option>
+                <option value="{% url 'city_listings' 'hyderabad' %}">Hyderabad</option>
+                <option value="{% url 'city_listings' 'delhi' %}">Delhi</option>
+                <option value="{% url 'city_listings' 'pune' %}">Pune</option>
+              </select>
+            </div>
+          </form>
+          <nav id="navbar" class="navbar">
+            <a href="/about" target="_blank"><button type="button">About</button></a>
+            <a><button type="button">Services</button></a>
+            <a><button type="button">Investor</button></a>
+            <a><button type="button">Reffer $ Earn</button></a>
+            <a href="/career" target="_blank"><button type="button">Careers</button></a>
+          </nav>
+          <!-- .navbar -->
+          <!-- this is me -->
+          {% if request.session.phone_verified %}
+              <a href="{% url 'select_user_and_property_type' %}" class="gets2 " style="cursor:pointer;"><button type="button">Property Posting<sup class="nowbutton">Now</sup></button></a>
+          {% else %}
+                <a href="{% url 'login_with_otp' %}" class="gets2 " style="cursor:pointer;"><button type="button">Property Posting<sup class="nowbutton">Free</sup></button></a>
+          {% endif %}
+          <!-- this is me -->
+          <div class="user_index_wrap">
+          <li class="user_menu1">
+            <div class="dropdown">
+              <a style="color: white;"><i class="ShiIcons icon_user" style="cursor: pointer;"></i></a>
+              <div class="dropdown-content">
+                <!-- this is me -->
+                {% if request.session.phone_verified %}
+                    <a><h6>Welcome, {{ request.session.phone_number }}!</h6></a>
+                    <a href="{% url 'dashboard' %}">DashBoard</a>
+                    <a href="/about/" target="_blank">About Us</a>
+                    <a href="{% url 'logout_view' %}">Logout</a>
+                    <a class="tele" href="tel:123-456-7890"> <i class="ShiIcons icon_phonecall"></i>
+                      <h6>Toll-Free | 10AM-8PM IST <button>1800-768-2234</button></h6>
+                    </a>
+                    <button id="Reqcall" type="button"> <i class="ShiIcons icon_phonecall1"></i>Request a callback</button>
+                {% else %}
+                    <a href="{% url 'login_with_otp' %}"><h6>Login | Register</h6></a>
+                    <a href="/about/" target="_blank">About Us</a>
+                    <a>Quick access</a>
+                    <a href="/contact/" target="_blank">Contact Us</a>
+                    <a class="tele" href="tel:123-456-7890"> <i class="ShiIcons icon_phonecall"></i>
+                      <h6>Toll-Free | 10AM-8PM IST <button>1800-768-2234</button></h6>
+                    </a>
+                    <button id="Reqcall" type="button"> <i class="ShiIcons icon_phonecall1"></i>Request a callback</button>
+                {% endif %}	
+                <!-- this is me -->
+              </div>
+            </div>
+          </li>
+          <li class="index_menu1" onclick="commonNav('mysidenav', '300px')">
+             <button type="button"><i  class="ShiIcons icon_toggle" style="cursor: pointer;"></i></button>
+               </li>
+            </div>     
+        </div>
+      </header>
+      <!--main nav header of 1st page end ------------- -->
+            <!-- banner for website================ -->
+            <div class="bg_img1">
+              <!-- <div class="homepageheading">
+                <h1>Real homes live here</h1>
+                <h2>Real Homes.Real Prices.Real Life</h2>
+               </div> -->
+              <div class="bg-img" id="home" data-popup="popup-reg" style="cursor:pointer;">
+                <div class="swiper10 mySwiper12 ">
+                  <div class="swiper-wrapper s12">
+                    <div class=" swiper-slide ss12">
+                      <img src="{% static 'images/b1.webp'%}" loading="lazy" alt="bannerimg">
+                    </div> <!-- end section -->
+                    <div class=" swiper-slide ss12">
+                      <img src="{% static 'images/b2.webp'%}" alt="bannerimg">
+                    </div> <!-- end section --> 
+                    <div class=" swiper-slide ss12">
+                     <img src="{% static 'images/b3.webp'%}" loading="lazy" alt="bannerimg">
+                    </div><!-- end section -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- banner for website end================ -->
+      <!-- /* scnd navbar on 1st page start ------------------------------------------------------------  */ -->
+      <!-- ========form section to be implemented in index.html======= -->
+      <form id="SearchForm" method="GET">
+        {% csrf_token %}
+        <div id="nav2" >
+          <div id="up" style="overflow: unset;">
+                <button type="button" class="btnsss menu--item__one active" onclick="selectPropertyTypee('sell')">Buy</button>
+                <button type="button" class="btnsss menu--item__two" onclick="selectPropertyTypee('rental')">Rent/Lease</button>
+                <button type="button" class="btnsss menu--item__three" onclick="selectPropertyTypee('pg')">PG/Co-living</button>
+                <select id="propertyType" name="r_property_type" style="display: none;">
+                    <option value="sell">Sell</option>
+                    <option value="rental">Rental</option>
+                    <option value="pg">PG/Coliving</option>
+                </select>
+                <li class="bottom__line"></li>
+          </div>
+          <div id="down">
+            <div id="credential">
+                <select class="dropdown form-select form-selectV" id="city4" name="project_city" data-target="4" required>
+                        <option value="" selected>All India</option>
+                        <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
+                        <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
+                        <option value="{% url 'city_listings' 'mumbai' %}">Mumbai</option>
+                        <option value="{% url 'city_listings' 'hyderabad' %}">Hyderabad</option>
+                        <option value="{% url 'city_listings' 'delhi' %}">Delhi</option>
+                        <option value="{% url 'city_listings' 'pune' %}">Pune</option>
+                    </select>
+            </div>
+            <!-- Price range slider -->
+            <!-- <div id="priceRangeSlider">
+                <label for="priceRange">Price Range:</label>
+                <div id="slider"></div>
+                <input type="hidden" id="minPrice" name="min_price" value="">
+                <input type="hidden" id="maxPrice" name="max_price" value="">
+                <span id="priceRangeValue"></span>
+            </div> -->
+            <div class="bar bar66">
+              <i class="ShiIcons icon_search"></i>
+              <input type="text" class="searchbar" id="searchInput" name="query" placeholder="Search Your Dream" title="Search">
+              <a id="voiceSearchBtn"> <i class="ShiIcons icon_voiceicon " title="serach by voice"></i></a>
+              <button type="submit" class=" btn1  btn btn-primary" value="Search" onclick="submitForm()">Search</button>
+              <ul id="suggestionsDropdown3" class="suggestion-list" style="max-height: 160px; overflow-y: auto;">
+                <!-- Suggestions will be dynamically added here -->
+              </ul>
+            </div>
+            <div class="bar bar77" onclick="commonNav('mysidenav1','100%')">
+              <form action="" method="get">
+                <div class="dropdown3 form-select3 formobcitydrop">
+                  <select >
+                    <option value="" selected disabled>All India</option>
+                    <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
+                    <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
+                    <option value="{% url 'city_listings' 'mumbai' %}">Mumbai</option>
+                    <option value="{% url 'city_listings' 'hyderabad' %}">Hyderabad</option>
+                    <option value="{% url 'city_listings' 'delhi' %}">Delhi</option>
+                    <option value="{% url 'city_listings' 'pune' %}">Pune</option>
+                  </select>
+                </div>
+              </form>
+                <div class="bar77input">
+                <button type="button" class="searchbar">Search Your Dream</button>
+                <i class="ShiIcons icon_search"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- /* scnd navbar on 1stpage end  ------------------------------------------------------------  */ -->
+    </div>
+    <!-- top section end=============== -->
+    <!-- middle  section===================================================================================-->
+    <div class="inner">
+    <div class="middle">
+   <!-- tools and offers section start======================================================================= -->
+   <div class="cmmnheading ch1">
+    <h2 style="font-size: 30px; font-weight: 800; margin-bottom: 10px;text-align: center;">Realty Solutions</h2>
+    <p style="text-align: center;">All Solutions Under One Roof!</p>
+  </div>
+      <div class="tools">
+        <!-- <div class="tools1"> -->
+          <div class="swiper3 mySwiper5">
+            <div class="swiper-wrapper s3">
+              <div class="swiper-slide ss3">
+                <a>
+                  <div class="cover"><i class="imagesIcon icon_thum5"></i></div>
+                </a>
+                <h5>Home Decor</h5>
+              </div> 
+              <div class="swiper-slide ss3">
+                <a>
+                  <div class="cover"><i class="imagesIcon icon_thum"></i></div>
+                </a>
+                <h5>Home Loan</h5>
+              </div>
+              <div class="swiper-slide ss3">
+                <a>
+                  <div class="cover"><i class="imagesIcon icon_thum1"></i></div>
+                </a>
+                <h5>Legal Assistance</h5>
+              </div>
+              <div class="swiper-slide ss3">
+                <a>
+                  <div class="cover"><i class="imagesIcon icon_thum4"></i></div>
+                </a>
+                <h5>Rent Agreement</h5>
+              </div>
+              <div class="swiper-slide ss3">
+                <a>
+                  <div class="cover"><i class="imagesIcon icon_thum8"></i></div>
+                </a>
+                <h5>Property Management</h5>
+              </div>
+              <div class="swiper-slide ss3">
+                <a>
+                  <div class="cover"><i class="imagesIcon icon_thum3"></i></div>
+                </a>
+                <h5>Builder's Commission</h5>
+              </div>
+              <div class="swiper-slide ss3">
+                <a>
+                  <div class="cover"><i class="imagesIcon icon_thum7" style="filter: blur(3px);"></i></div>
+                </a>
+                <h5>SHI Premium</h5>
+              </div>
+            </div>
+            <div class=" nextbut swiper-button-next"></div>
+            <div class=" prevbut swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        <!-- </div> -->
+      </div>
+   <!-- tools and offers section start======================================================================= -->
+<!-- grid section start========================================================================== -->
+        <div class="grid-heading" style="text-align: center;">
+          <h2 style="font-size: 30px; font-weight: 800; margin-bottom: 10px;">Popular Choices</h2>
+          <p>Where your Dream Homes take shape!</p>
+        </div>
+        <div class="swiper4 mySwiper6 ">
+          <div class="swiper-wrapper s4">
+            <div class=" swiper-slide ss4">
+              <a href="{% url 'city_listings' 'bengaluru' %}"> <img src="{% static 'images/bengaluru.webp'%}"  alt="cityimg"></a>
+              <div class="tplocation">
+                <button>Bengaluru</button>
+              </div>
+            </div> <!-- end section -->
+            <div class=" swiper-slide ss4">
+              <a href="{% url 'city_listings' 'chennai' %}"><img src="{% static 'images/chennai.webp'%}" alt="cityimg"></a>
+              <div class="tplocation">
+                <button>Chennai</button>
+              </div>
+            </div> <!-- end section -->
+            <div class=" swiper-slide ss4">
+              <a href="{% url 'city_listings' 'hyderabad' %}"><img src="{% static 'images/hyderabad.webp'%}" alt="cityimg"></a>
+              <div class="tplocation">
+                <button>Hyderabad</button>
+              </div>
+            </div> <!-- end section -->
+            <div class=" swiper-slide ss4">
+              <a href="{% url 'city_listings' 'mumbai' %}"><img src="{% static 'images/mumbai.webp'%}" alt="cityimg"></a>
+              <div class="tplocation">
+                <button>Mumbai</button>
+              </div>
+            </div> <!-- end section -->
+            <div class=" swiper-slide ss4">
+              <a href="{% url 'city_listings' 'pune' %}"><img src="{% static 'images/pune.webp'%}" alt="cityimg"></a>
+              <div class="tplocation">
+                <button>Pune</button>
+              </div>
+            </div> <!-- end section -->
+            <!-- end section -->
+          </div>
+          <div class="nextbut swiper-button-next"></div>
+          <div class="prevbut swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <!-- grid section end========================================================================== -->
+        <div class="mid-container">
+      <!-- left part of middle start =============================================== -->
+      <div class="midleft">
+        <!-- swiper-pagination 1 start================================== -->
+        <div class="swiper mySwiper">
+          <div class="cmmnheading">
+            <h4>Most Demanding Projects</h4>
+            <h5>Explore prime properties and picks for you!</h5>
+          </div><!-- end section -->
+          <div class="swiper-wrapper">
+            <!-- This Slider is for demanding properties -->
+            {% for property in trending_properties %}
+            <div class=" swiper-slide">
+              <a href="{% url 'property_detail' property.slug %}"> <img src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}"></a>
+              <h5>{{ property.PropertyName }}</h5>
+              <p>{{ property.PropertyAddress }}</p>
+              <h6>{{ property.Property_Price }}</h6>
+            </div> <!-- end section -->
+            {% endfor %}
+            <!-- This Slider is for demanding properties -->
+          </div>
+          <div class=" nextbut swiper-button-next"></div>
+          <div class=" prevbut swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <!-- swiper-pagination 1 end================================== -->
+        <!-- swiper-pagination 2 start================================== -->
+        <div class="swiper mySwiper1">
+          <div class="cmmnheading">
+            <h4>Highlighted Properties</h4>
+            <h5>Shortlisted homes for you</h5>
+          </div>
+          <div class="swiper-wrapper">
+            <!-- This Slider is for demanding properties -->
+            {% for property in sell_properties %}
+            <div class=" swiper-slide">
+              <a href="{% url 'property_detail' property.slug %}"> <img src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}"></a>
+              <h5>{{ property.PropertyName }}</h5>
+              <p>{{ property.PropertyAddress }}</p>
+              <h6>{{ property.Property_Price }}</h6>
+            </div><!-- end section -->
+            {% endfor %}
+            <!-- This Slider is for demanding properties -->
+          </div>
+          <div class=" nextbut swiper-button-next"></div>
+          <div class=" prevbut swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <!-- swiper-pagination 2 end================================== -->
+        <!-- swiper-pagination 3 start================================== -->
+        <!-- <div class="swiper mySwiper2">
+          <div class="cmmnheading">
+            <h4>Rental Properties</h4>
+            <h5>Find Your Perfect Rental Match</h5>
+          </div>
+          <div class="swiper-wrapper">
+            {% for property in rental_trending_properties %}
+            <div class=" swiper-slide">
+              <a href="{% url 'rental_property_detail' property.slug %}"> <img src="{{ property.project_cover_img.url }}" loading="lazy" alt="{{ property.PropertyName }}"></a>
+              <h5>{{ property.r_property_name }}</h5>
+              <p>{{ property.address }}</p>
+              <h6>{{ property.min_price_filter }}</h6>
+            </div>
+            {% endfor %}
+          </div>
+          <div class=" nextbut swiper-button-next"></div>
+          <div class=" prevbut swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div> -->
+        <!-- swiper-pagination 3 end================================== -->
+        <!-- swiper-pagination 4start================================== -->
+        <div class="upcoming">
+          <div class="swiper1 mySwiper3 ">
+            <div class="cmmnheading">
+              <h4>Newly Launched</h4>
+              <h5>Your Ultimate Living Destination.</h5>
+            </div>
+            <div class="swiper-wrapper s1">
+              {% for property in sell_properties %}
+              <div class=" swiper-slide ss1">
+                <a href="{% url 'property_detail' property.slug %}"> 
+                  <div class="pricing" >
+                 <div class="p1">
+                  <h4>{{ property.PropertyName }}</h4>
+                  <h6>{{ property.PropertyAddress }}</h6>
+                </div>
+                 <div class="p1">
+                  <h4>{{ property.BHK }}</h4>
+                  <h6>{{ property.Property_Price }}</h6>
+                 </div>
+                </div>
+                <img src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}">
+              </a>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="nextbut swiper-button-next"></div>
+            <div class="prevbut swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            <button id="callback" type="submit">
+              <h6>We Would Love To Help You</h6><i class="ShiIcons icon_phonecall2"></i>Request a Callback
+            </button>
+          </div>
+        </div>
+        <!-- swiper-pagination 4 end================================== -->
+        <!-- swiper-pagination 5 end================================== -->
+        <div class="swiper2 mySwiper4 ">
+          <div class="cmmnheading">
+            <h4>Choose Your Properties</h4>
+            <h5>Apartments | Villas | Plots</h5>
+          </div>
+          <div class="swiper-wrapper s2">
+            <div class=" swiper-slide ss2">
+              <a> <img src="{% static 'images/A1.webp'%}" loading="lazy" alt="filterimg"></a>
+            </div> <!-- end section -->
+            <div class=" swiper-slide ss2">
+              <a><img src="{% static 'images/A2.webp'%}" loading="lazy" alt="filterimg"></a>
+            </div><!-- end section -->
+            <div class=" swiper-slide ss2">
+              <a> <img src="{% static 'images/A3.webp'%}" loading="lazy" alt="filterimg"></a>
+            </div><!-- end section -->         
+          </div>
+          <div class="nextbut swiper-button-next"></div>
+          <div class="prevbut swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <!-- swiper-pagination 5 end==================== -->
+      </div>
+      <!-- left part of middle end====================== -->
+      <!-- right part of middle start=================== -->
+      <div class="midright">
+        <div class="box1"> <!-- section start======== -->
+          <a href="https://redwingsdesign.com/"><img src="{% static 'images/Interior.webp'%}" alt="interiorsimg"></a>
+          {% if request.session.phone_verified %}
+                <a><button id="box1button">Welcome, {{ request.session.phone_number }}!</button></a>
+          {% else %}
+              <a href="{% url 'login_with_otp' %}"><button id="box1button">Login | Register</button></a>
+          {% endif %}	
+        </div><!-- end section ======== -->
+        <div class="box2">
+          <a><img src="{% static 'images/invest.png'%}" alt="investimg"></a>
+        </div><!-- end  section ======== -->
+        <div class="box3">
+          <h6>Top Rated Builders In India</h6>
+          <div id="top-builder">
+            <div class="topb"><a><img
+                  src="{% static 'images/prestige.jpg'%}"
+                  alt="builderimg"></a></div>
+            <div class="topb"><a><img
+                  src="{% static 'images/godrej.png'%}"
+                  alt="builderimg"></a></div>
+            <div class="topb"><a><img
+                  src="{% static 'images/assetz.jpeg'%}"
+                  alt="builderimg"></a></div>
+            <div class="topb"><a><img
+                  src="{% static 'images/tvs.png'%}"
+                  alt="builderimg"></a></div>
+          </div>
+        </div><!-- end section ======== -->
+      </div>
+      <!-- right part of middle end=============================================== -->
+    </div>
+     <!-- ===top builder section start==== -->
+      <section class="topbuilder_sect">
+          <div class="cmmnheading">
+              <h4>Premier Builders </h4>
+              <h5>Leading the Way in High-Performance Construction.</h5>
+          </div>
+          <div class="swiper mySwiper20">
+              <div class="swiper-wrapper s20">
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/prestigeproperties.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/godrejproperties.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/lodha.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/Century.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/birlaestates.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/brigadegroup.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/Shapoorjipallonji.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/assetz.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/shriramproperites.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/sobha.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/Sowparnika.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+                  <div class="swiper-slide ss20">
+                      <img src="{% static 'images/Tatahousing.png' %}" loading="lazy" alt="builderimg" />
+                  </div>
+              </div>
+              <div class="swiper-button-next topbuilder_next"></div>
+              <div class="swiper-button-prev topbuilder_prev"></div>
+              <div class="swiper-pagination topbuilder_pagination"></div>
+          </div>
+      </section>
+      <!-- ===top builder section End==== -->
+          <!-- =============why choose us start============ -->
+    <section class="whyus_sect">
+      <div class="feat bg-gray pt-5">
+          <div class="container">
+              <div class="row">
+                  <div class="section-head col-sm-12">
+                      <h4><span>Why Choose</span> Us-</h4>
+                      <p>Transparency, and Tailored Solutions -  That's Our Promise</p>
+                  </div>
+                  <div class="col-lg-4 col-sm-6 box-11">
+                      <div class="item"> <span class="icon feature_box_col_one"><i class="whychoose icon_match"></i></span>
+                          <h6>Free Property Ads/ Cost-free property promotion -</h6>
+                          <p>We offer an extensive range of residential and commercial properties, including apartments, villas, plots, and farmlands. Whether you're buying, selling, or renting, our diverse listings ensure that you find exactly what you're looking for.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                      <div class="item"> <span class="icon feature_box_col_two"><i class="whychoose icon_guid"></i></span>
+                          <h6>User-friendly Platform -</h6>
+                          <p>Our platform is designed with simplicity and ease of use in mind. From quick registration to detailed property listings, we've streamlined every step of the process to save you time and effort. You can post unlimited properties for free and manage your listings effortlessly.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                      <div class="item"> <span class="icon feature_box_col_three"><i
+                        class="whychoose icon_listing"></i></span>
+                          <h6>Expert Guidance -</h6>
+                          <p>Our Sites allows Property Builder, Owners & Agent to list their properties for free,
+                              expanding
+                              the pool of available options for potential buyers or renters.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                      <div class="item"> <span class="icon feature_box_col_four"><i class="whychoose icon_dd"></i></span>
+                          <h6>Innovative Approach -</h6>
+                          <p>Innovation is at the heart of what we do. We continuously improve our platform to incorporate the latest technologies and industry trends, ensuring that you have access to the best tools and information available. Our goal is to make the property search and transaction process as simple and efficient as possible.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                      <div class="item"> <span class="icon feature_box_col_five"><i class="whychoose icon_property"></i></span>
+                          <h6>Customer-centric services -</h6>
+                          <p>Customer satisfaction is our top priority. We believe in building long-term relationships with our clients by delivering exceptional service at every stage of the real estate journey. Our team is always ready to address your queries and provide solutions tailored to your specific needs.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                      <div class="item"> <span class="icon feature_box_col_six"><i class="whychoose icon_perks"></i></span>
+                          <h6>Security and Transparent -</h6>
+                          <p>We prioritize your privacy and security. Our platform ensures that all transactions and communications are secure, and we maintain strict confidentiality of your personal information. You can trust us to handle your property dealings with the highest level of integrity and professionalism.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+<!-- this is for why chose us section End  -->
+    <!-- ====easy steps posting start -->
+    <section class="easystep_sec">
+      <div id="homepage_easystep">
+          <div class="easystep_wrapdiv undefined">
+              <div class="easystep_leftsideimg">
+                  <section class="easystep_conatiner animate">
+                      <img src="{% static 'images/post-property.png' %}"
+                          class="completeHomeInteriro_completeHome_Image__2_ZVU transformImg">
+                  </section>
+              </div>
+              <div class="easystep_tabSec">
+                  <h3 class="easystep_heading">Quick Property listing in just 3 Clicks</h3>
+                  <div class="easystep_activenodiv">
+                      <span class="easystep_activenumber easystepactive">1</span>
+                      <span class="easystep_activenumber">2</span>
+                      <span class="easystep_activenumber">3</span>
+                  </div>
+                  <div class="completeHomeInteriro_selectedTab_list__xW6W4">
+                      <div class="completeHomeInteriro_selectedTab_details__1VTVk easystepactive">
+                          <h3 class="completeHomeInteriro_selectedTab_head__uJ_G_">Register</h3>
+                          <p class="completeHomeInteriro_selectedTab_desc__2e1TI">Sign up with your phone number and
+                              verify
+                              via OTP.</p>
+                      </div>
+                      <div class="completeHomeInteriro_selectedTab_details__1VTVk">
+                          <h3 class="completeHomeInteriro_selectedTab_head__uJ_G_">Add Property Detail</h3>
+                          <p class="completeHomeInteriro_selectedTab_desc__2e1TI">Share property info and upload
+                              images.</p>
+                      </div>
+                      <div class="completeHomeInteriro_selectedTab_details__1VTVk">
+                          <h3 class="completeHomeInteriro_selectedTab_head__uJ_G_">Review & Submit</h3>
+                          <p class="completeHomeInteriro_selectedTab_desc__2e1TI">Check details and submit.</p>
+                      </div>
+                  </div>
+                  <div class="completeHomeInteriro_selectedTabs_dots__3XOQ7">
+                      <span class="completeHomeInteriro_tabs_Dots__1tRqA easystepactive"></span>
+                      <span class="completeHomeInteriro_tabs_Dots__1tRqA"></span>
+                      <span class="completeHomeInteriro_tabs_Dots__1tRqA"></span>
+                  </div>
+              </div>
+          </div>
+          <div hidden="">
+              <h2>Complete home interiors in 3 easy steps</h2>
+          </div>
+          {% if request.session.phone_verified %}
+            <button class="homepage_btn__HaiUd undefined homepage_commonBFB_btn__2IAEC undefined mt-3">Post Your
+              <a href="{% url 'select_user_and_property_type' %}">Property Now Free</a></button>
+          {% else %}
+            <button class="homepage_btn__HaiUd undefined homepage_commonBFB_btn__2IAEC undefined mt-3"><a href="{% url 'login_with_otp' %}">property free of charge!</a></button>
+          {% endif %}
+          <p class="mt-3" style="text-align: center; font-size: 13px;">Owners, agents, & builders are welcome!</p>
+      </div>
+  </section>
+<!-- this is three step section end -->
+    <!-- news article section start-->
+    <section class="news_arctile_sect">
+      <div class="cmmnheading">
+          <h4>News & Articles</h4>
+          <h5>Stay updated on fresh insights into real estate trends!</h5>
+      </div>
+      <div class="swiper mySwiper21">
+          <div class="swiper-wrapper s21">
+              {% for blogdata in blog_data %}
+              <div class="swiper-slide ss21">
+                  <a href="{% url 'blog_details' slug=blogdata.slug %}">
+                      <img src="{{ blogdata.blog_image.url }}" loading="lazy" alt="news images" />
+                      <a href="{% url 'blog_details' slug=blogdata.slug %}">
+                          <button class="btn-1">
+                              Read more
+                          </button>
+                      </a>
+                      <div class="news_content">
+                          <h6 class="newsauthor">{{ blogdata.small_blog_name }}</h6>
+                          <p class="newspara limited-text">
+                              {{ blogdata.blog_description|safe }}
+                          </p>
+                          <p class="newsdate">{{ blogdata.formatted_date }}</p>
+                      </div>
+                  </a>
+              </div>
+              {% endfor %}
+          </div>
+          <div class="swiper-button-next news_next"></div>
+          <div class="swiper-button-prev news_prev"></div>
+          <div class="swiper-pagination news_pagination"></div>
+      </div>
+  </section>
+  <!-- this is new section End  -->
+   <!-- ============testimonials setion start============ -->
+   <section class="testimonial_sect">
+    <div class="cmmnheading">
+        <h4>Testimonials</h4>
+        <h5>Listen to Their Experiences!</h5>
+    </div>
+    <div class="swiper mySwiper23">
+      <div class="swiper-wrapper s23">
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">Srikanth .Y</div>
+                <div class="test_prof_date">1 month ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                I was very much happy with the service / help given by Mr. Sharath Kumar from Godrej Ananda. He helped me in booking the flat. This will be our biggest life time investment/ dream. Thanks a lot Sharath Kumar for being customer friendly.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">Ankit Nagpal</div>
+                <div class="test_prof_date">a year ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                Hello team,  would like to really appreciate the services and support provided by your team specially PALLAVI from search homes for booking in prestige City Sarjapur. The after sales service is the main what I was looking for and it's really commendable the support and solution provided to my queries is still the same. Looking forward more relation with you guys.. and thanks VIPUL for making me introduce to pallavi and prestige City.  👍
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">Nikhil Ingale</div>
+                <div class="test_prof_date">3 years ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                I'm so grateful to meet Mangesh from search homes India Pvt Ltd in the process of buying first property. I'm so happy with the services recommended by him. First house is dream house for each one of us. Meeting him was really fortunate which helped us to turn our dream come true in purchase of the first property where our majority of the expectations met.
+                <br>
+                I would definitely recommend  'Search Homes Pvt Ltd' to everyone who are searching to buy dream home.
+                <br>
+                Thank you so much Mangesh and team for the great service provided by you.
+                <br>
+                I’m expecting to get same quality support from your end.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">Shipra Jain</div>
+                <div class="test_prof_date">3 years ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                It was good experience with search homes and they helped us to find the right home. However, some followup was required to get certain things done.
+                I would recommend all to go ahead with them in future.
+                
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">Subrat Sahoo</div>
+                <div class="test_prof_date">3 years ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                I would highly recommend Search Homes to anyone looking to buy a property/land/apartment in Bangalore, they are highly efficient and professional group, Pankaj has always put our interest first and that's what is different from other property consultants, I have also referred them to my friends and they were extremely happy with the entire process, right from prestige, brigade and many others, they have always got fast handover to us and friends, always got referrals on time, couldn't have asked for a better property consultants in Bangalore.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">Yogesh Tiwari</div>
+                <div class="test_prof_date">3 years ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                There are many consultants in the property market specially in Bangalore but Search homes is definitely one of “the best” because I personally believe that employee drives the company to the next level.
+                I would like to take this opportunity to thanks “Pankaj” for keeping his commitment, passion, and his 24x7 support starting from suggesting PLSH, site visits, floor selection, TDS filling, and seamless handover. His relationship building skills are naturally awesome.
+                I wish him and search homes all the best.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">mohammed ashraf</div>
+                <div class="test_prof_date">a year ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                Bought an apartment through Search Homes India pvt lmtd, and enjoyed true customer care from Mr Pankaj Sing, he offered 1% cash back at the time of booking and processed the payment immediately after their bill settlement with Prestige group.  Highly recommended
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide ss23">
+          <div class="test_wrap">
+            <div class="test_head">
+              <div class="test_prof_img">
+                <i class="ShiIcons icon_user testimonialuser"></i>
+              </div>
+              <div class="test_prof_detail">
+                <div class="test_prof_name">manoj manglani</div>
+                <div class="test_prof_date">11 months ago</div>
+                <div class="test_prof_star">
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                  <i class="ShiIcons4 icon_stars"></i>
+                </div>
+              </div>
+            </div>
+            <div class="test_prof_content">
+              <p class="add-read-more show-less-content">
+                Well it was a nice experience with this team ,, our site visit was with Hanshika  and she was excellent with the details , we were not sure to buy but she treat us patiently .
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="swiper-button-next testimonial_next"></div>
+        <div class="swiper-button-prev testimonial_prev"></div>
+        <div class="swiper-pagination testimonial_pagination"></div>
+    </div>
+</section>
+<!-- this is testimonial section End -->
+    <!-- ======happy dwelers section start-->
+    <section class="happy_dwellers">
+      <div class="cmmnheading">
+          <h4>Happy Home Dwellers!</h4>
+          <h5>Transforming Dreams into Memorable Tales!</h5>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 p-4 happyleftcontent">
+              <div class="about-content">
+                  <h2 class="section-title mt-3">Unlocking stories - </h2>
+                  <p class="section-text mt-4 mb-5">
+                    Every unit tells a story at SearchHomesIndia, where homebuyers’s dreams find their perfect match. Our portal offers residential properties across multiple cities, including flats, villas, and plots. With SearchHomesIndia, finding a home that precisely fits your lifestyle and budget is effortless. We prioritize attention to detail, provide expert advice, and ensure a seamless path to homeownership, making the journey enjoyable and stress-free.
+                  </p>
+                  <a href="/about" class="happydweller_btn" target="_blank">Read More</a>
+              </div>
+          </div>
+          <div class="col-lg-6 happyrightimg">
+              <div class="p-5 happyrightpadd">
+                  <div class="swiper mySwiper25">
+                      <div class="swiper-wrapper s25">
+                          <div class="swiper-slide ss25">
+                            <img src="{% static 'images/unit1.jpg' %}" alt="unitsoldimg">
+                          </div>
+                          <div class="swiper-slide ss25">
+                            <img src="{% static 'images/unit2.jpg' %}" alt="unitsoldimg">
+                          </div>
+                          <div class="swiper-slide ss25">
+                            <img src="{% static 'images/unit3.jpg' %}" alt="unitsoldimg">
+                          </div>
+                          <div class="swiper-slide ss25">
+                            <img src="{% static 'images/unit4.jpg' %}" alt="unitsoldimg">
+                          </div>
+                          <div class="swiper-slide ss25">
+                            <img src="{% static 'images/unit5.jpg' %}" alt="unitsoldimg">
+                          </div>
+                          <div class="swiper-slide ss25">
+                            <img src="{% static 'images/unit6.jpg' %}" alt="unitsoldimg">
+                        </div>
+                      </div>
+                      <div class="swiper-button-next happy_dwellers_next"></div>
+                      <div class="swiper-button-prev happy_dwellers_prev"></div>
+                      <div class="swiper-pagination happy_dwellers_pagination"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+<!-- this is new section End -->
+<!-- top news channel patner start -->
+<section class="newspartner_sect">
+  <div class="cmmnheading">
+      <h4>Media Buzz - Catch Us in the News!</h4>
+  </div>
+  <div class="swiper mySwiper22">
+      <div class="swiper-wrapper s20">
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/ANI.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/Businesstandard.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/Dailyhunt.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/Financialexpress.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/Googlenews.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/republicnewstoday.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/Theprint.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/Washington.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+          <div class="swiper-slide ss20">
+              <img src="{% static 'images/Zee5.png' %}" loading="lazy" alt="newsmediaimg" />
+          </div>
+      </div>
+      <div class="swiper-button-next topbuilder_next"></div>
+      <div class="swiper-button-prev topbuilder_prev"></div>
+      <div class="swiper-pagination topbuilder_pagination"></div>
+  </div>
+</section>
+<!-- this section for new icon end  -->
+    </div>
+    </div>
+    <!-- middle section end======================================================================= -->
+  </main>
+  <!-- Vendor JS Files -->
+  <script src="{% static 'js/swiper-bundle1.js'%}"></script>
+  <script src="{% static 'js/new-index.js'%}"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // console.log('DOMContentLoaded event fired Index');
+      const searchInput3 = document.getElementById('searchInput');
+      const propertyTypeDropdown3 = document.getElementById('propertyType');
+      const cityDropdown3 = document.getElementById('city4');
+      const suggestionsDatalist3 = document.getElementById('suggestionsDropdown3');
+      const uniqueSuggestions = new Set();
+      searchInput3.addEventListener('input', function() {
+          const query = this.value;
+          const rPropertyType = propertyTypeDropdown3.value;
+          const projectCity = cityDropdown3.value;
+  
+          // Clear previous suggestions when the input is empty
+          if (query === '') {
+            uniqueSuggestions.clear();
+            suggestionsDropdown3.innerHTML = '';
+            suggestionsDropdown3.style.display = 'none';
+            // closeBtn1.style.display = 'none';
+            return;
+          }
+  
+          // Make an AJAX request to get autosuggestions
+          fetch(`/get_autosuggestions/?query=${encodeURIComponent(query)}&r_property_type=${encodeURIComponent(rPropertyType)}&project_city=${encodeURIComponent(projectCity)}`, {
+                headers: {
+                    'Accept': 'application/json',
+                },
+            })
+            .then(response => {
+                // console.log('Response status:', response.status);
+                return response.json();
+            })
+              .then(data => {
+                // console.log('Data received:', data);
+                  // Clear previous suggestions when receiving new suggestions
+                  uniqueSuggestions.clear();
+                  suggestionsDropdown3.innerHTML = '';
+  
+                  if (data && data.suggestions) {
+                    data.suggestions.forEach(suggestion => {
+                      if (!uniqueSuggestions.has(suggestion)) {
+                        uniqueSuggestions.add(suggestion);
+  
+                        const listItem = document.createElement('li');
+                        listItem.textContent = suggestion;
+                        listItem.addEventListener('click', function() {
+                          // Set the selected suggestion in the input field
+                          searchInput3.value = suggestion;
+                          // Clear the suggestion list
+                          suggestionsDropdown3.innerHTML = '';
+                        });
+                        suggestionsDropdown3.appendChild(listItem);
+                      }
+                    });
+                    // closeBtn1.style.display = uniqueSuggestions.size > 0 ? 'block' : 'none';
+                  } else {
+                    console.error('Invalid JSON structure in response:', data);
+                }
+                      // Display the suggestion list only if there are suggestions
+                suggestionsDropdown3.style.display = data && data.suggestions && data.suggestions.length > 0 ? 'block' : 'none';
+              })
+              .catch(error => console.error('Error fetching autosuggestions:', error));
+      });
+  });
+    </script>
+<script>
+  function submitForm() {
+        const propertyType = document.getElementById('propertyType').value;
+        const city = document.getElementById('city4').value;
+        const query = document.getElementById('searchInput').value;
+    
+        if (city === '' || city === 'allindia') {
+
+        return false; // Prevent form submission
+
+        } else {
+
+            const trimmedCity = city.replace(/^\/|\/$/g, '');
+            const form = document.getElementById('SearchForm');
+            form.action = `/${propertyType}/${trimmedCity}/`;
+            return true; // Allow form submission
+        }
+    }
+</script>
+<script>
+  function selectPropertyTypee(value) {
+    document.getElementById('propertyType').value = value;
+  }
+</script>
+<!-- this is for city wise filter -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('city3').addEventListener('change', function() {
+          const selectedCityUrl = this.value;
+
+          // Save the selected city in localStorage
+          localStorage.setItem('selectedCity', selectedCityUrl);
+
+          // Redirect to the selected city's listings page
+          if (selectedCityUrl) {
+              window.location.href = selectedCityUrl;
+          } else {
+              // Redirect to the "All India" page
+              window.location.href = '{% url "city_listings" "allindia" %}';
+          }
+      });
+
+      // Retrieve and set the selected city from localStorage
+      const storedCity = localStorage.getItem('selectedCity');
+      if (storedCity) {
+          document.getElementById('city3').value = storedCity;
+      }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('city4').addEventListener('change', function() {
+          const selectedCityUrl = this.value;
+
+          // Save the selected city in localStorage
+          localStorage.setItem('selectedCity', selectedCityUrl);
+
+          // Redirect to the selected city's listings page
+          if (selectedCityUrl) {
+              window.location.href = selectedCityUrl;
+          } else {
+              // Redirect to the "All India" page
+              window.location.href = '{% url "city_listings" "allindia" %}';
+          }
+      });
+
+      // Retrieve and set the selected city from localStorage
+      const storedCity = localStorage.getItem('selectedCity');
+      if (storedCity) {
+          document.getElementById('city4').value = storedCity;
+      }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const voiceSearchBtn = document.getElementById('voiceSearchBtn');
+  
+    voiceSearchBtn.addEventListener('click', function () {
+      if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  
+        recognition.lang = 'en-US';
+  
+        recognition.start();
+  
+        recognition.onresult = function (event) {
+          const result = event.results[0][0].transcript;
+          searchInput.value = result;
+        };
+  
+        recognition.onerror = function (event) {
+          console.error('Speech recognition error:', event.error);
+        };
+      } else {
+        console.error('SpeechRecognition is not supported in this browser.');
+      }
+    });
+  });
+  </script>
+{% endblock %} 

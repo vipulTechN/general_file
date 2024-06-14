@@ -382,252 +382,49 @@
     <div class="contentinside">
       <div class="container">
         <div class="row">
+           <!-- Operation Alert -->
+            <div class="col-lg-12">
+                <div id="showAlert"></div>
+            </div>
+          <!-- Operation Alert End-->
           <div class="col-lg-12">
             <div class="maintablewrap">
               <table class="fold-table" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Month</th>
-                    <th>Revenue</th>
-                    <th>Remaining Amount</th>
-                    <th>Recent Build</th>
+                    <th>Month/Bookings</th>
+                    <?php if ($Project_type === 'mandate'): ?>
+                      <!-- <th>Revenue</th> -->
+                    <?php else: ?>
+                      <th>Revenue</th>
+                    <?php endif; ?>
+                      <th>Remaining Amount</th>
+                    <?php if ($Project_type === 'mandate'): ?>
+                      <!-- <th>Recent Build</th> -->
+                    <?php else: ?>
+                      <th>Recent Build</th>
+                    <?php endif; ?>
                     <th>Build Incentive</th>
                   </tr>
                 </thead>
-                <tbody>
-
-                  <tr>
-                    <td colspan="5">
-                      <div class="newsec">
-                        <h3>Financial year - 2023-2024</h3>
-                        <div class="totalbook">
-                          <div class="totalbookchild">
-                            <h6>Overall Bookings :- <span class="monthexp">400</span></h6>
-                          </div>
-                          <div class="divide">|</div>
-                          <div class="totalbookchild">
-                            <h6>Overall Earn :- <span class="monthexp">400</span></h6>
-                          </div>
-                          <div class="divide">|</div>
-                          <div class="totalbookchild">
-                            <h6>Overall Build :- <span class="monthexp">400</span></h6>
-                          </div>
-                          <div class="divide">|</div>
-                          <div class="totalbookchild">
-                            <h6>Advance Paid :- <span class="monthexp">400</span></h6>
-                          </div>
-                          <div class="divide">|</div>
-                          <div class="totalbookchild">
-                            <h6> Final Remaning :- <span class="monthexp">400</span></h6>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  
-                  <tr class="group-header view">
-                    <td class="financialyear">2024-03-01</td>
-                    <td>16000</td>
-                    <td>300000</td>
-                    <td>800088</td>
-                    <td>2020</td>
-                  </tr>
-
-                  <tr class="fold">
-                    <td colspan="20">
-                      <div class="fold-content">
-                        <div class="table-wrap">
-                          <div class="table-container">
-                            <table class="small-friendly" cellspacing="0" style="width: 100%">
-                              <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Booking Date</th>
-                                  <th>Month</th>
-                                  <th>Builder</th>
-                                  <th>Project</th>
-                                  <th>Customer Name.</th>
-                                  <th>Contact No.</th>
-                                  <th>Email Id</th>
-                                  <th>Type</th>
-                                  <th>Unit No.</th>
-                                  <th>Size</th>
-                                  <th>Agreement Value</th>
-                                  <th>Commission %</th>
-                                  <th>Total Revenue</th>
-                                  <th>CashBack %</th>
-                                  <th>Status</th>
-                                  <th>Amount Received</th>
-                                </tr>
-                              </thead>
-                              <tbody id="expenses">
-                                <tr>
-                                  <td>1</td>
-                                  <td>2024-05-01</td>
-                                  <td>May</td>
-                                  <td>ABC Builders</td>
-                                  <td>Project X</td>
-                                  <td>John Doe</td>
-                                  <td>1234567890</td>
-                                  <td>johndoe@example.com</td>
-                                  <td>Residential</td>
-                                  <td>101</td>
-                                  <td>1000 sq ft</td>
-                                  <td>$100,000</td>
-                                  <td>5%</td>
-                                  <td>$5,000</td>
-                                  <td>2%</td>
-                                  <td>Confirmed</td>
-                                  <td>$50,000</td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>2024-05-15</td>
-                                  <td>May</td>
-                                  <td>XYZ Developers</td>
-                                  <td>Project Y</td>
-                                  <td>Jane Smith</td>
-                                  <td>9876543210</td>
-                                  <td>janesmith@example.com</td>
-                                  <td>Commercial</td>
-                                  <td>202</td>
-                                  <td>1500 sq ft</td>
-                                  <td>$200,000</td>
-                                  <td>7%</td>
-                                  <td>$14,000</td>
-                                  <td>3%</td>
-                                  <td>Pending</td>
-                                  <td>$0</td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>2024-05-20</td>
-                                  <td>May</td>
-                                  <td>DEF Builders</td>
-                                  <td>Project Z</td>
-                                  <td>Michael Johnson</td>
-                                  <td>5555555555</td>
-                                  <td>michaeljohnson@example.com</td>
-                                  <td>Residential</td>
-                                  <td>303</td>
-                                  <td>1200 sq ft</td>
-                                  <td>$150,000</td>
-                                  <td>6%</td>
-                                  <td>$9,000</td>
-                                  <td>2.5%</td>
-                                  <td>Confirmed</td>
-                                  <td>$75,000</td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>2024-05-25</td>
-                                  <td>May</td>
-                                  <td>GHI Constructions</td>
-                                  <td>Project A</td>
-                                  <td>Sarah Johnson</td>
-                                  <td>4444444444</td>
-                                  <td>sarahjohnson@example.com</td>
-                                  <td>Residential</td>
-                                  <td>404</td>
-                                  <td>1100 sq ft</td>
-                                  <td>$120,000</td>
-                                  <td>5.5%</td>
-                                  <td>$6,600</td>
-                                  <td>2.5%</td>
-                                  <td>Pending</td>
-                                  <td>$0</td>
-                                </tr>
-                                <tr>
-                                  <td>5</td>
-                                  <td>2024-05-10</td>
-                                  <td>May</td>
-                                  <td>JKL Developers</td>
-                                  <td>Project B</td>
-                                  <td>Emily Davis</td>
-                                  <td>3333333333</td>
-                                  <td>emilydavis@example.com</td>
-                                  <td>Commercial</td>
-                                  <td>505</td>
-                                  <td>1800 sq ft</td>
-                                  <td>$250,000</td>
-                                  <td>8%</td>
-                                  <td>$20,000</td>
-                                  <td>3%</td>
-                                  <td>Confirmed</td>
-                                  <td>$100,000</td>
-                                </tr>
-                                <tr>
-                                  <td>6</td>
-                                  <td>2024-05-05</td>
-                                  <td>May</td>
-                                  <td>MNO Builders</td>
-                                  <td>Project C</td>
-                                  <td>James Wilson</td>
-                                  <td>2222222222</td>
-                                  <td>jameswilson@example.com</td>
-                                  <td>Residential</td>
-                                  <td>606</td>
-                                  <td>1300 sq ft</td>
-                                  <td>$180,000</td>
-                                  <td>6.5%</td>
-                                  <td>$11,700</td>
-                                  <td>2%</td>
-                                  <td>Pending</td>
-                                  <td>$0</td>
-                                </tr>
-                                <tr>
-                                  <td>7</td>
-                                  <td>2024-05-18</td>
-                                  <td>May</td>
-                                  <td>PQR Constructions</td>
-                                  <td>Project D</td>
-                                  <td>Olivia Brown</td>
-                                  <td>9999999999</td>
-                                  <td>oliviabrown@example.com</td>
-                                  <td>Residential</td>
-                                  <td>707</td>
-                                  <td>1400 sq ft</td>
-                                  <td>$190,000</td>
-                                  <td>7%</td>
-                                  <td>$13,300</td>
-                                  <td>2.5%</td>
-                                  <td>Confirmed</td>
-                                  <td>$70,000</td>
-                                </tr>
-                                <tr>
-                                  <td>8</td>
-                                  <td>2024-05-08</td>
-                                  <td>May</td>
-                                  <td>STU Builders</td>
-                                  <td>Project E</td>
-                                  <td>William Taylor</td>
-                                  <td>7777777777</td>
-                                  <td>williamtaylor@example.com</td>
-                                  <td>Commercial</td>
-                                  <td>808</td>
-                                  <td>1600 sq ft</td>
-                                  <td>$220,000</td>
-                                  <td>7.5%</td>
-                                  <td>$16,500</td>
-                                  <td>3%</td>
-                                  <td>Pending</td>
-                                  <td>$20000</td>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+                <tbody id="pagedataaas">
 
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td>Month</td>
-                    <td>Revenue</td>
-                    <td>Remaining Amount</td>
-                    <td>Recent Build</td>
-                    <td>Build Incentive</td>
+                    <th>Month/Bookings</th>
+                    <?php if ($Project_type === 'mandate'): ?>
+                      <!-- <th>Revenue</th> -->
+                    <?php else: ?>
+                      <th>Revenue</th>
+                    <?php endif; ?>
+                      <th>Remaining Amount</th>
+                    <?php if ($Project_type === 'mandate'): ?>
+                      <!-- <th>Recent Build</th> -->
+                    <?php else: ?>
+                      <th>Recent Build</th>
+                    <?php endif; ?>
+                    <th>Build Incentive</th>
                   </tr>
                 </tfoot>
               </table>

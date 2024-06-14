@@ -1,14 +1,266 @@
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      var sidebar = document.getElementById('rightsidebar');
-      function hideSidebar() {
-          sidebar.style.display = 'none';
-      }
-      var sidebarItems = document.querySelectorAll('.pmd-sidebar-li');
-      sidebarItems.forEach(function(item) {
-          item.addEventListener('click', function() {
-              hideSidebar();
-          });
-      });
-  });
-</script>
+<!-- Add New User Modal Start -->
+  <div class="modal fade" tabindex="-1" id="addNewUserModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Booking</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="add-user-form" name="myform" class="p-2" novalidate>
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="date" name="bdate" class="form-control form-control-lg" required>
+                <div class="invalid-feedback">Date is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="month" name="bmonth" class="form-control form-control-lg" required>
+                <div class="invalid-feedback">Month is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="text" name="developer" class="form-control form-control-lg" placeholder="Enter Builder Name" required>
+                <div class="invalid-feedback">Builder name is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="text" name="bproject" class="form-control form-control-lg" placeholder="Enter Project Name" required>
+                <div class="invalid-feedback">Project name is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="username" name="cname" class="form-control form-control-lg" placeholder="Enter Customer Name" required>
+                <div class="invalid-feedback">Customer name is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="cnumber" class="form-control form-control-lg" placeholder="Enter Contact Number" required>
+                <div class="invalid-feedback">Contact Number is required!</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <input type="email" name="cemail" class="form-control form-control-lg" placeholder="Enter E-mail" required>
+              <div class="invalid-feedback">E-mail is required!</div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="text" name="tproject" class="form-control form-control-lg" placeholder="Enter Project Tpye" required>
+                <div class="invalid-feedback">Project Tpye is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="text" name="unitno" class="form-control form-control-lg" placeholder="Enter Unit Number" required>
+                <div class="invalid-feedback">Unit Number is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="number" name="psize" class="form-control form-control-lg" placeholder="Enter Project Size" required>
+                <div class="invalid-feedback">Project Size is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="cagreement" class="form-control form-control-lg" placeholder="Enter Agreement Value" required>
+                <div class="invalid-feedback">Agreement Value is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="text" name="ccashback" class="form-control form-control-lg" placeholder="Enter Commission %" onkeyup="addCalculate(this.value)" required>
+                <div class="invalid-feedback">Commission % is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="crevenue" class="form-control form-control-lg" placeholder="Total Revenue Amount" required>
+                <div class="invalid-feedback">Revenue Amount is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="text" name="cccashback" class="form-control form-control-lg" placeholder="Enter Cashback %" onkeyup="addCalculate(this.value)" required>
+                <div class="invalid-feedback">Cashback % is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="ccrevenue" class="form-control form-control-lg" placeholder="Actual Revenue Amount" required>
+                <div class="invalid-feedback">Actual Amount is required!</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+            <input type="checkbox" class="btn-check Processing" name="cstatus" id="btn-check-2-outlined" value="Processing" checked>
+            <label class="btn btn-outline-primary" for="btn-check-2-outlined">Processing</label><br><br>
+
+            <input type="radio" class="btn-check Received" name="cstatus" id="success-outlined" value="Received">
+            <label class="btn btn-outline-success" for="success-outlined">Received</label>
+
+            <input type="radio" class="btn-check Cancled" name="cstatus" id="danger-outlined" value="Cancled">
+            <label class="btn btn-outline-danger" for="danger-outlined">Cancled</label>
+              <div class="invalid-feedback">Status is required!</div>
+            </div>
+
+            <div class="mb-3">
+              <input type="number" name="brecived" class="form-control form-control-lg" placeholder="Enter Enter Received Amt." >
+              <div class="invalid-feedback">Enter Received Amt. is required!</div>
+            </div>
+
+            <div class="mb-3">
+              <input type="submit" value="Add Booking" class="btn btn-primary btn-block btn-lg" id="add-user-btn">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Add New User Modal End -->
+<!-- Edit User Modal Start -->
+  <div class="modal fade" tabindex="-1" id="editUserModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit This Booking</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-user-form" name="myform" class="p-2" novalidate>
+            <input type="hidden" name="id" id="id">
+            <div class="row mb-3 gx-3">
+              <div class="col">
+                <input type="date" name="bdate" id="bdate" class="form-control form-control-lg" required>
+                <div class="invalid-feedback">Date is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="month" name="bmonth" id="bmonth" class="form-control form-control-lg" placeholder="Enter Last Name" required>
+                <div class="invalid-feedback">Month is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+              <input type="text" name="developer" id="developer" class="form-control form-control-lg" placeholder="Enter Builder Name" required>
+                <div class="invalid-feedback">Builder name is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="text" name="bproject" id="bproject" class="form-control form-control-lg" placeholder="Enter Project Name" required>
+                <div class="invalid-feedback">Project name is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+              <input type="username" name="cname" id="cname" class="form-control form-control-lg" placeholder="Enter Customer Name" required>
+                <div class="invalid-feedback">Customer name is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="cnumber" id="cnumber" class="form-control form-control-lg" placeholder="Enter Contact Number" required>
+                <div class="invalid-feedback">Contact Number is required!</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <input type="email" name="cemail" id="cemail" class="form-control form-control-lg" placeholder="Enter E-mail" required>
+              <div class="invalid-feedback">E-mail is required!</div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+              <input type="text" name="tproject" id="tproject" class="form-control form-control-lg" placeholder="Enter Project Type" required>
+                <div class="invalid-feedback">Project Type is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="text" name="unitno" id="unitno" class="form-control form-control-lg" placeholder="Enter Unit Number" required>
+                <div class="invalid-feedback">Unit Number is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+              <input type="number" name="psize" id="psize" class="form-control form-control-lg" placeholder="Enter Project Size" required>
+                <div class="invalid-feedback">Project Size is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="cagreement" id="cagreement" class="form-control form-control-lg" placeholder="Enter Agreement Value" required>
+                <div class="invalid-feedback">Agreement Value is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+              <input type="text" name="ccashback" id="ccashback" class="form-control form-control-lg" placeholder="Enter Commission %" onkeyup="updateCalculate(this.value)" required>
+                <div class="invalid-feedback">Commission % is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="crevenue" id="crevenue" class="form-control form-control-lg" placeholder="Total Revenue Amount" required>
+                <div class="invalid-feedback">Total Revenue Amount is required!</div>
+              </div>
+            </div>
+
+            <div class="row mb-3 gx-3">
+              <div class="col">
+              <input type="text" name="cccashback" id="cccashback" class="form-control form-control-lg" placeholder="Enter CashBack %" onkeyup="updateCalculate(this.value)" required>
+                <div class="invalid-feedback">CashBack % is required!</div>
+              </div>
+
+              <div class="col">
+                <input type="number" name="ccrevenue" id="ccrevenue" class="form-control form-control-lg" placeholder="Actual Revenue Amount" required>
+                <div class="invalid-feedback">Actual Revenue Amount is required!</div>
+              </div>
+            </div>
+            
+            <div class="mb-3 form-check"> 
+                <input type="checkbox" class="form-check-input" name="update_invoice_checkbox" id="update_invoice_checkbox">
+                <label class="form-check-label" for="update-invoice-checkbox"><b>Raised Invoice</b></label>
+            </div>
+
+            <div class="mb-3">
+                <input type="checkbox" class="btn-check Processing" name="cstatus" id="btn-check-3-outlined" value="Processing" required>
+                <label class="btn btn-outline-primary" for="btn-check-3-outlined">Processing</label><br><br>
+    
+                <input type="radio" class="btn-check Received" name="cstatus" id="2success-outlined" value="Received" required>
+                <label class="btn btn-outline-success" for="2success-outlined">Received</label>
+    
+                <input type="radio" class="btn-check Cancled" name="cstatus" id="2danger-outlined" value="Cancled" required>
+                <label class="btn btn-outline-danger" for="2danger-outlined">Cancled</label>
+                <div class="invalid-feedback">Please Select the staus of booking!</div>
+            </div>
+
+            <div class="mb-3">
+              <input type="number" name="brecived" id="brecived" class="form-control form-control-lg disable" placeholder="Enter Received Amt." readonly>
+              <div class="invalid-feedback">Received Amt. is required!</div>
+            </div>
+            
+            <div class="mb-3">
+              <input type="number" name="invoice_raised" id="invoice_raised" class="form-control form-control-lg" placeholder="Enter Received Amt.">
+            </div>
+            
+            <!-- Checkbox for updating user table -->
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" name="update_user_checkbox" id="update_user_checkbox">
+                <label class="form-check-label" for="update-user-checkbox"><b>Update in User Incentive</b></label>
+            </div>
+
+            <div class="mb-3">
+              <input type="submit" value="Update Booking" class="btn btn-success btn-block btn-lg" id="edit-user-btn" onclick="validateForm()">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Edit User Modal End -->

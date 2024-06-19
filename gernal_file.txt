@@ -1,1745 +1,654 @@
-////////////////css////////////////
-    <style>
-        .form-item {
-            position: relative;
+///////////////////////css////////////////////////
+ @import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+
+    .fold-content:first-child,
+    .newsec {
+      text-align: left
+    }
+
+    #emptotaldata,
+    .newsec {
+      width: 100%;
+      padding: 5px 20px;
+      background-color: #eaf6fd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, .1)
+    }
+
+    table.fold-table {
+      background: #fff;
+      color: #555
+    }
+
+    .table-wrap {
+      position: relative
+    }
+
+    tbody tr td,
+    tfoot tr td,
+    thead tr th {
+      text-align: center !important;
+      white-space: nowrap
+    }
+
+    .scroll-left,
+    .scroll-left i,
+    .scroll-right,
+    .scroll-right i {
+      top: 50%;
+      transform: translate(-50%, -50%)
+    }
+
+    .table-container {
+      overflow-y: auto;
+      max-height: 55vh;
+      height: 100%;
+      width: 100%;
+      max-width: 76vw;
+      /* margin: 0 auto  */
+    }
+
+    .newsec {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px
+    }
+
+    .maintablewrap {
+      overflow-y: scroll;
+      width: 100%;
+      max-height: 85vh;
+      height: 100%;
+      position: relative;
+    }
+
+    .maintablewrap table {
+      width: 100%
+    }
+
+    table {
+      border-collapse: collapse
+    }
+
+    .maintablewrap::-webkit-scrollbar,
+    .table-container::-webkit-scrollbar {
+      width: 5px;
+      height: 5px
+    }
+
+    .maintablewrap::-webkit-scrollbar-track,
+    .table-container::-webkit-scrollbar-track {
+      background: #e3e3e3;
+      border-radius: 10px
+    }
+
+    .maintablewrap::-webkit-scrollbar-thumb,
+    .table-container::-webkit-scrollbar-thumb {
+      background-color: #1b6c9f;
+      border-radius: 20px
+    }
+
+    .table-container table tfoot tr td,
+    .table-container table thead th {
+      padding: 5px 12px !important;
+      border: 1px solid rgba(0, 0, 0, .529);
+      font-weight: 500 !important;
+      color: #1b6c9f !important
+    }
+
+    .maintablewrap table tfoot tr td,
+    .maintablewrap table thead th {
+      padding: 6px 0px !important;
+      border: 1px solid rgba(0, 0, 0, .529);
+      font-weight: 600 !important;
+      color: #f6f5f3 !important
+    }
+
+    .maintablewrap table tfoot,
+    .maintablewrap table thead {
+      position: sticky;
+      background: #1b6c9f;
+      z-index: 99
+    }
+
+    .table-container table tfoot,
+    .table-container table thead {
+      position: sticky;
+      background: #000;
+      z-index: 99
+    }
+
+    .maintablewrap table thead,
+    .table-container thead {
+      top: -2px
+    }
+
+    .maintablewrap table tfoot,
+    .table-container tfoot {
+      bottom: -2px
+    }
+
+    .fold-table tbody tr td {
+      font-weight: 500;
+      font-size: 15px !important;
+      border: 1px solid rgba(0, 0, 0, .1);
+      border-bottom: 1px solid rgba(0, 0, 0, .599);
+      padding: 12px 20px !important;
+      color: #000;
+      transform: scale(1)
+    }
+
+    .small-friendly tbody tr td {
+      padding: 7px 12px !important
+    }
+
+    .fold-table tbody tr:hover {
+      transform: scale(1.001);
+      transition: .3s ease-in-out
+    }
+
+    .scroll-left,
+    .scroll-right {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid #000;
+      width: 35px;
+      height: 35px;
+      z-index: 99;
+      background-color: #fff
+    }
+
+    .scroll-left i,
+    .scroll-right i {
+      font-size: 23px;
+      color: #1b6c9f;
+      position: absolute;
+      left: 50%
+    }
+
+    .scroll-left {
+      left: 20px
+    }
+
+    .scroll-right {
+      right: -10px
+    }
+
+    table.fold-table>tbody>tr.view,
+    table.fold-table1>tbody>tr.view1 {
+      transition: .3s
+    }
+
+    .fold-content>table>tbody>tr,
+    table.fold-table>tbody>tr.view td,
+    table.fold-table>tbody>tr.view th,
+    table.fold1-table>tbody>tr.view1 td,
+    table.fold-table1>tbody>tr.view1 th {
+      cursor: pointer
+    }
+
+    table.fold-table>tbody>tr.view td:first-child,
+    table.fold-table>tbody>tr.view th:first-child,
+    table.fold-table1>tbody>tr.view1 td:first-child,
+    table.fold-table1>tbody>tr.view1 th:first-child {
+      position: relative;
+      padding-left: 20px
+    }
+
+    table.fold-table>tbody>tr.view td:first-child:before,
+    table.fold-table>tbody>tr.view th:first-child:before,
+    table.fold-table1>tbody>tr.view1 td:first-child:before,
+    table.fold-table1>tbody>tr.view1 th:first-child:before {
+      position: absolute;
+      top: 50%;
+      left: -15px;
+      width: 50px;
+      height: 16px;
+      margin-top: -8px;
+      font: 20px fontawesome;
+      content: "\f0d7";
+      transition: .3s;
+      color: red
+    }
+
+    table.fold-table>tbody>tr.view:nth-child(4n-1),
+    table.fold-table1>tbody>tr.view1:nth-child(4n-1) {
+      background: #f4f4f4
+    }
+
+    .fold-content>table>tbody>tr:hover,
+    table.fold-table>tbody>tr.view:hover {
+      background: #ddd
+    }
+
+    table.fold-table>tbody>tr.view.open {
+      background: #e5e5e6;
+      color: #000
+    }
+
+    table.fold-table>tbody>tr.view.open td:first-child:before,
+    table.fold-table>tbody>tr.view.open th:first-child:before,
+    table.fold-table1>tbody>tr.view1.open1 td:first-child:before,
+    table.fold-table1>tbody>tr.view1.open1 th:first-child:before {
+      transform: rotate(-180deg);
+      color: #000
+    }
+
+    .visible-small,
+    table.fold-table>tbody>tr.fold,
+    table.fold-table1>tbody>tr.fold1 {
+      display: none
+    }
+
+    table.fold-table>tbody>tr.fold.open,
+    table.fold-table1>tbody>tr.fold1.open1 {
+      display: table-row
+    }
+
+    .fold-content h3 {
+      margin-top: 0;
+      font-size: 16px
+    }
+
+    .fold-content>table {
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .2)
+    }
+
+    .fold-content>table>tbody>tr:nth-child(2n) {
+      background: #eee
+    }
+
+    .visible-big {
+      display: block
+    }
+
+    .totalbook {
+      display: flex;
+      align-items: center;
+      margin: 3px 0
+    }
+
+    .totalbook .totalbookchild {
+      margin-left: 10px
+    }
+
+    .totalbook .totalbookchild h6 {
+      font-size: 14px
+    }
+
+    .divide {
+      margin: -9px 0 0 10px;
+      font-weight: 400;
+      font-size: 18px;
+      opacity: .6
+    }
+
+    .monthexp {
+      color: red
+    }
+
+    .totalbook .totalbookchild:first-child {
+      margin-left: 0
+    }
+
+    .side-menu li.sideactive2 {
+      background: var(--shicol);
+      position: relative
+    }
+
+    .side-menu li.sideactive2 a {
+      color: var(--shicol)
+    }
+
+    .financialtrsticky {
+      position: sticky;
+      top: 0;
+      z-index: 99
+    }
+
+    #emptotaldata {
+      text-align: center;
+      margin: 0 auto;
+      border: 1px solid #e0e0e0;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      display: none
+    }
+
+    #emptotaldata .totalbook {
+      justify-content: center
+    }
+
+    @media only screen and (max-width:1170px) {
+
+      .newsec,
+      .table-container {
+        width: 100%;
+        max-width: 100%
+      }
+    }
+
+    @media only screen and (max-width:768px) {
+      #emptotaldata .totalbookhead {
+        font-size: 13px
+      }
+
+      .scroll-right {
+        right: -12px
+      }
+
+      .scroll-left {
+        left: 20px
+      }
+
+      .maintablewrap table tfoot tr td,
+      .maintablewrap table thead th {
+        padding: 8px 12px;
+        font-size: 13px
+      }
+
+      .fold-table tbody tr td {
+        padding: 6px 12px !important
+      }
+
+      table.fold-table>tbody>tr.view td:first-child:before,
+      table.fold-table>tbody>tr.view th:first-child:before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 20px;
+        height: 16px;
+        margin-top: -8px;
+        font: 18px fontawesome;
+        content: "\f0d7";
+        transition: .3s;
+        color: red
+      }
+    }
+
+    @media only screen and (min-width:1600px) {
+
+      .newsec,
+      .table-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto
+      }
+    }
+
+
+
+
+
+  <script>
+    $(function() {
+      $(".fold-table1 tr.view1").on("click", function() {
+        if ($(this).hasClass("open1")) {
+          $(this).removeClass("open1").next(".fold1").removeClass("open1");
+          $(this).removeClass("financialtrsticky1");
+        } else {
+          $(".fold-table1 tr.view1").removeClass("open1").next(".fold1").removeClass("open1").removeClass("financialtrsticky1");
+          $(this).addClass("open1").next(".fold1").addClass("open1");
+          $(".fold-table1 tr.view1.open1").addClass("financialtrsticky1");
         }
-
-        .form-item input,.form-item select {
-            display: block;
-            background: transparent;
-            border: solid 1px #000;
-            transition: all .3s ease;
-            padding: 0 15px;
-            border-radius: 5px !important;
-        }
-
-        .form-item label{
-            position: absolute;
-            cursor: text;
-            z-index: 2;
-            top: 10px;
-            left: 10px;
-            font-weight: 600;
-            font-size: 14px;
-            background: #fff;
-            padding: 0 10px;
-            transition: all .3s ease;
-            font-size: 11px;
-            top: -8px;
-            color: #1B6C9F;
-        }
-         
-        form label{
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* 
-        .form-item input:focus+label,
-        .form-item input:valid+label {
-            font-size: 11px;
-            top: -8px;
-            color: #1B6C9F;
-        } 
-        */
-        /* 
-        .form-item input:focus+label {
-            color: #1B6C9F
-        } 
-        */
-
-        .form-item input:focus,.form-item select:focus {
-            border-color: #1B6C9F
-        }
-
-        .form-label {
-            margin-bottom: 0px !important;
-        }
-
-        .form-control,
-        .form-control-lg {
-            border-radius: 0px !important;
-        }
-
-        .modal {
-            overflow: auto;
-        }
-
-        .modal-content {
-            border-radius: 20px !important;
-            overflow: hidden;
-        }
-
-        .modal-header {
-            background: aliceblue;
-        }
-
-        .form-label {
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .row>* {
-            padding: 5px !important;
-        }
-
-        .form-control {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .form-control:focus {
-            box-shadow: 0 0 0 0px #1B6C9F !important;
-        }
-
-        .bttm-btn {
-            font-weight: 500 !important;
-            padding: 5px 8px !important;
-            font-size: 13px !important;
-            border-radius: 20px !important;
-        }
-
-        .btnwraps,
-        .Ubsubmitbtn {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .btncheckboxs input {
-            margin-left: 20px;
-        }
-
-        .btnwraps .btn {
-            margin-left: 20px;
-        }
-
-        .btn-close:focus {
-            box-shadow: 0 0 0 0 !important;
-        }
-
-        .btn-primary {
-            background-color: #1B6C9F !important;
-            border-color: #1B6C9F !important;
-        }
-
-        .form-control:disabled,
-        .form-control[readonly] {
-            background-color: transparent !important;
-            opacity: 1;
-        }
-
-        .form-check-label {
-            font-size: 14px !important;
-            font-weight: 500;
-            margin-left: 5px;
-        }
-
-        .modal-header {
-            padding: 5px 1rem;
-        }
-
-        .modal-body {
-            padding: 20px 20px 0px 20px !important;
-        }
-
-        .modal-footer {
-            border-top: 1px solid white !important;
-        }
-
-        form select {
-            color: grey !important;
-        }
-
-        form select option {
-            color: black !important;
-            font-weight: 500;
-        }
-
-        form input[type="file"] {
-            color: grey !important;
-        }
-
-        .amountbtn{
-            width: 50%;
-            text-align: center;
-            border-radius: 5px;
-        }
-
-        @media (min-width: 576px) {
-            .hrloginedit {
-                max-width: 575px !important;
-            }
-        }
-
-        @media only screen and (max-width:768px) {
-            .btncheckboxs input {
-                margin-left: 10px;
-            }
-        }
-    </style>
+      });
+    });
+  </script> 
 
 
 
 
 
 
-<!--////////////// superadmin all models /////////////////// -->
 
-    <!-- superadmin BOOKING FILTER Start-->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content custom-modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">FILTER DATA</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterBookingDateStart">Booking Date Start</label>
-                                    <input type="date" class="form-control form-control-lg custom-input"
-                                        id="filterBookingDateStart">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterBookingDateEnd">Booking Date End</label>
-                                    <input type="date" class="form-control form-control-lg custom-input"
-                                        id="filterBookingDateEnd">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterID">ID</label>
-                                    <input type="text" class="form-control form-control-lg custom-input" id="filterID">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterMonth">Month</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterMonth">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterBuilder">Builder Name</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterBuilder">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterProject">Project Name</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterProject">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterCustumername">Customer Name</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterCustumername">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterContactnumber">Contact No.</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterContactnumber">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterEmail">Email Id</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterEmail">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterType">Unit Type</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterType">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterUnit">Unit No.</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterUnit">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterSize">Unit Size</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterSize">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterAgreement">Agreement Value</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterAgreement">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterCommission">Commission %</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterCommission">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterTrevenue">Total Revenue</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterTrevenue">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterCashBack">CashBack %</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterCashBack">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterActualRevenue">Actual Revenue</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterActualRevenue">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterStatus">Status</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterStatus">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterReceived">Received Amt.</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterReceived">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterSales">Sales person</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterSales">
-                                </div>
-                            </div>
+<div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="maintablewrap">
+            <table class="fold-table" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Financial Year Exp.</th>
+                  <th>Facebook</th>
+                  <th>Google</th>
+                  <th>HR</th>
+                  <th>IT</th>
+                  <th>SHI</th>
+                  <th>Accounts</th>
+                  <th>Others</th>
+                  <th>Salary</th>
+                  <th>Incentive</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="group-header view">
+                  <td class="financialyear">2023/2024</td>
+                  <td>35000000</td>
+                  <td>30000000</td>
+                  <td>12000</td>
+                  <td>5000000</td>
+                  <td>100</td>
+                  <td>100000000</td>
+                  <td>100000000</td>
+                  <td>76200</td>
+                  <td>439812</td>
+                </tr>
+                <tr class="fold">
+                  <td colspan="20">
+                    <div class="fold-content">
+                      <div class="table-wrap">
+                        <div class="table-container">
+                          <table class="fold-table1" cellspacing="0" style="width: 100%">
 
+                            <tbody>
+                              <tr class="view1">
+                                <td colspan="9">
+                                  <div class="newsec">
+                                    <h3>March 2026 Exp : <span class="monthexp">90000</span> </h3>
+                                    <div class="totalbook">
+                                      <div class="totalbookchild">
+                                        <h6>Facebook: <span class="monthexp">90000</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Google: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>HR: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>IT: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>SHI: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Accounts: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Incentive: <span class="monthexp"> </span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Others: <span class="monthexp">0</span></h6>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr class="fold1">
+                                <td colspan="20">
+                                  <div class="fold-content">
+                                    <div class="table-wrap">
+                                      <div class="table-container">
+                                        <table class="small-friendly" cellspacing="0" style="width: 100%">
+                                          <thead>
+                                            <tr>
+                                              <th>ID</th>
+                                              <th>Expenses Date</th>
+                                              <th>Expenses Month</th>
+                                              <th>User Name</th>
+                                              <th>Expenses Amount</th>
+                                              <th>Expenses Source</th>
+                                              <th>Source Project</th>
+                                              <th>Project Name</th>
+                                              <th>Invoice</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody id="expenses">
+                                            <tr>
+                                              <td>1</td>
+                                              <td>2024-01-01</td>
+                                              <td>January</td>
+                                              <td>John Doe</td>
+                                              <td>$250.00</td>
+                                              <td>Office Supplies</td>
+                                              <td>Project X</td>
+                                              <td>ABC Project</td>
+                                              <td><a href="#">0001</a></td>
+                                            </tr>
+                                            <tr>
+                                              <td>2</td>
+                                              <td>2024-01-05</td>
+                                              <td>January</td>
+                                              <td>Jane Smith</td>
+                                              <td>$150.00</td>
+                                              <td>Travel</td>
+                                              <td>Project Y</td>
+                                              <td>XYZ Project</td>
+                                              <td><a href="#">0002</a></td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr class="view1">
+                                <td colspan="9">
+                                  <div class="newsec">
+                                    <h3>March 2026 Exp : <span class="monthexp">90000</span> </h3>
+                                    <div class="totalbook">
+                                      <div class="totalbookchild">
+                                        <h6>Facebook: <span class="monthexp">90000</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Google: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>HR: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>IT: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>SHI: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Accounts: <span class="monthexp">0</span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Incentive: <span class="monthexp"> </span></h6>
+                                      </div>
+                                      <div class="divide">|</div>
+                                      <div class="totalbookchild">
+                                        <h6>Others: <span class="monthexp">0</span></h6>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr class="fold1">
+                                <td colspan="20">
+                                  <div class="fold-content">
+                                    <div class="table-wrap">
+                                      <div class="table-container">
+                                        <table class="small-friendly" cellspacing="0" style="width: 100%">
+                                          <thead>
+                                            <tr>
+                                              <th>ID</th>
+                                              <th>Expenses Date</th>
+                                              <th>Expenses Month</th>
+                                              <th>User Name</th>
+                                              <th>Expenses Amount</th>
+                                              <th>Expenses Source</th>
+                                              <th>Source Project</th>
+                                              <th>Project Name</th>
+                                              <th>Invoice</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody id="expenses">
+                                            <tr>
+                                              <td>1</td>
+                                              <td>2024-01-01</td>
+                                              <td>January</td>
+                                              <td>John Doe</td>
+                                              <td>$250.00</td>
+                                              <td>Office Supplies</td>
+                                              <td>Project X</td>
+                                              <td>ABC Project</td>
+                                              <td><a href="#">0001</a></td>
+                                            </tr>
+                                            <tr>
+                                              <td>2</td>
+                                              <td>2024-01-05</td>
+                                              <td>January</td>
+                                              <td>Jane Smith</td>
+                                              <td>$150.00</td>
+                                              <td>Travel</td>
+                                              <td>Project Y</td>
+                                              <td>XYZ Project</td>
+                                              <td><a href="#">0002</a></td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
+                      </div>
                     </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-        <!-- superadmin  BOOKING FILTER end-->
-
-    <!-- superadmin booking EDIT FILTER Start -->
-    <div class="modal fade" tabindex="-1" id="editUserModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit This Booking</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="edit-user-form" name="myform" class="p-2" novalidate="">
-                        <input type="hidden" name="id" id="id">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bdate">Booking date</label>
-                                        <input type="date" name="bdate" id="bdate" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Date is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bmonth">Booking month</label>
-                                        <input type="month" name="bmonth" id="bmonth"
-                                            class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Month is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="developer" id="developer"
-                                            class="form-control form-control-lg" required>
-                                        <label for="developer">Builder Name</label>
-                                        <div class="invalid-feedback">Builder name is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="bproject" id="bproject"
-                                            class="form-control form-control-lg" required>
-                                        <label for="bproject">Project name</label>
-                                        <div class="invalid-feedback">Project name is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="username" name="cname" id="cname"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cname">Customer name</label>
-                                        <div class="invalid-feedback">Customer name is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="cnumber" id="cnumber"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cnumber">Customer no.</label>
-                                        <div class="invalid-feedback">Contact Number is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="email" name="cemail" id="cemail"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cemail">E-mail</label>
-                                        <div class="invalid-feedback">E-mail is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="tproject" id="tproject"
-                                            class="form-control form-control-lg" required>
-                                        <label for="tproject">Project type</label>
-                                        <div class="invalid-feedback">Project Type is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="unitno" id="unitno"
-                                            class="form-control form-control-lg" required>
-                                        <label for="unitno">Unit no</label>
-                                        <div class="invalid-feedback">Unit Number is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="psize" id="psize"
-                                            class="form-control form-control-lg" required>
-                                        <label for="psize">Project size</label>
-                                        <div class="invalid-feedback">Project Size is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="cagreement" id="cagreement"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cagreement">Agreement value</label>
-                                        <div class="invalid-feedback">Agreement Value is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="ccashback" id="ccashback"
-                                            class="form-control form-control-lg" onkeyup="updateCalculate(this.value)"
-                                            required>
-                                        <label for="ccashback">Commission %</label>
-                                        <div class="invalid-feedback">Commission % is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="crevenue" id="crevenue"
-                                            class="form-control form-control-lg" required>
-                                        <label for="crevenue">Total revenue</label>
-                                        <div class="invalid-feedback">Total Revenue Amount is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="cccashback" id="cccashback"
-                                            class="form-control form-control-lg" onkeyup="updateCalculate(this.value)"
-                                            required>
-                                        <label for="cccashback">CashBack %</label>
-                                        <div class="invalid-feedback">CashBack % is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="ccrevenue" id="ccrevenue"
-                                            class="form-control form-control-lg" required>
-                                        <label for="ccrevenue">Actual Revenue</label>
-                                        <div class="invalid-feedback">Actual Revenue Amount is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="brecived" id="brecived"
-                                            class="form-control form-control-lg disable" readonly>
-                                        <label for="brecived">Received Amount</label>
-                                        <div class="invalid-feedback">Received Amt. is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="invoice_raised" id="invoice_raised"
-                                            class="form-control form-control-lg">
-                                        <label for="invoice_raised">Invoice Received Amt.</label>
-                                    </div>
-                                </div>
-
-                                <!-- raised invoice -->
-                                <div class="col-lg-12">
-                                    <div class="btnwraps btncheckboxs">
-                                        <input type="checkbox" class="form-check-input" name="update_invoice_checkbox"
-                                            id="update_invoice_checkbox">
-                                        <label class="form-check-label" for="update-invoice-checkbox">Raised
-                                            Invoice</label>
-                                        <!-- Checkbox for updating user table -->
-
-                                        <input type="checkbox" class="form-check-input" name="update_user_checkbox"
-                                            id="update_user_checkbox">
-                                        <label class="form-check-label" for="update-user-checkbox">Update In
-                                            User</label>
-                                        <!-- xtra -->
-
-                                        <input type="checkbox" class="form-check-input" name="update_user_checkbox"
-                                            id="update_user_checkbox">
-                                        <label class="form-check-label" for="update-user-checkbox">Cashback
-                                            received</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="btnwraps">
-                                        <input type="checkbox" class="btn-check Processing" name="cstatus"
-                                            id="btn-check-3-outlined" value="Processing" required>
-                                        <label class="btn btn-outline-primary bttm-btn" for="btn-check-3-outlined"
-                                            style="margin-left: 0px;">Processing</label>
-
-                                        <input type="radio" class="btn-check Received" name="cstatus"
-                                            id="2success-outlined" value="Received" required>
-                                        <label class="btn btn-outline-success bttm-btn"
-                                            for="2success-outlined">Received</label>
-
-                                        <input type="radio" class="btn-check Cancled" name="cstatus"
-                                            id="2danger-outlined" value="Cancled" required>
-                                        <label class="btn btn-outline-danger bttm-btn"
-                                            for="2danger-outlined">Cancled</label>
-                                        <div class="invalid-feedback">Please Select the staus of booking!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="Ubsubmitbtn">
-                                        <input type="submit" value="Update Booking" class="btn btn-success btn-block"
-                                            id="edit-user-btn" onclick="validateForm()">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-        <!-- superadmin booking EDIT FILTER end -->
-
-    <!-- superadmin Add New BOOKING Start -->
-    <div class="modal fade" tabindex="-1" id="addNewUserModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Booking</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="add-user-form" name="myform" class="p-2" novalidate>
-                        <div class="container">
-                            <div class="row">
-
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bdate">Booking date</label>
-                                        <input type="date" name="bdate" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Date is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bmonth">Booking month</label>
-                                        <input type="month" name="bmonth" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Month is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="developer">Builder name</label>
-                                        <input type="text" name="developer" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Builder name is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bproject">Project name</label>
-                                        <input type="text" name="bproject" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Project name is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cname">Customer name</label>
-                                        <input type="username" name="cname" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Customer name is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cnumber">Contact no.</label>
-                                        <input type="number" name="cnumber" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Contact Number is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cemail">E-mail</label>
-                                        <input type="email" name="cemail" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">E-mail is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="tproject">Project type</label>
-                                        <input type="text" name="tproject" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Project Type is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="unitno">Unit no.</label>
-                                        <input type="text" name="unitno" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Unit Number is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="psize">Project size</label>
-                                        <input type="number" name="psize" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Project Size is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cagreement">Agreement Value</label>
-                                        <input type="number" name="cagreement" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Agreement Value is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="ccashback">Commission %</label>
-                                        <input type="text" name="ccashback" class="form-control form-control-lg"
-                                            onkeyup="addCalculate(this.value)" required>
-                                        <div class="invalid-feedback">Commission % is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="crevenue">Revenue Amount</label>
-                                        <input type="number" name="crevenue" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Revenue Amount is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cccashback">Cashback %</label>
-                                        <input type="text" name="cccashback" class="form-control form-control-lg"
-                                            onkeyup="addCalculate(this.value)" required>
-                                        <div class="invalid-feedback">Cashback % is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="ccrevenue">Revenue Amount</label>
-                                        <input type="number" name="ccrevenue" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Actual Amount is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="brecived">Received Amt.</label>
-                                        <input type="number" name="brecived" class="form-control form-control-lg">
-                                        <div class="invalid-feedback">Enter Received Amt. is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="btnwraps">
-                                        <input type="checkbox" class="btn-check Processing" name="cstatus"
-                                            id="btn-check-2-outlined" value="Processing" checked>
-                                        <label class="btn btn-outline-primary bttm-btn"
-                                            for="btn-check-2-outlined">Processing</label>
-
-                                        <input type="radio" class="btn-check Received" name="cstatus"
-                                            id="success-outlined" value="Received">
-                                        <label class="btn btn-outline-success bttm-btn"
-                                            for="success-outlined">Received</label>
-
-                                        <input type="radio" class="btn-check Cancled" name="cstatus"
-                                            id="danger-outlined" value="Cancled">
-                                        <label class="btn btn-outline-danger bttm-btn"
-                                            for="danger-outlined">Cancled</label>
-                                        <div class="invalid-feedback">Status is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="Ubsubmitbtn">
-                                        <input type="submit" value="Add Booking" class="btn btn-primary btn-block"
-                                            id="add-user-btn">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Add New BOOKING End -->
-
-    <!-- superadmin EXPENSES FILTER Start-->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container p-0">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Expenses Date">Expenses Date</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesDate">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Expenses Month">Expenses Month</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesMonth">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="UserName">User Name</label>
-                                <input type="text" class="form-control form-control-lg " id="UserName">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="ExpensesAmount">Expenses Amount</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesAmount">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Expenses Source">Expenses Source</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesSource">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Source Project">Source Project</label>
-                                <input type="text" class="form-control form-control-lg " id="SourceProject">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Project Name">Project Name</label>
-                                <input type="text" class="form-control form-control-lg " id="ProjectName">
-                            </div>
-                        </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin EXPENSES FILTER Start-->
-
-    <!-- superadmin Add new EXPENSES FILTER start-->
-    <div class="modal fade" tabindex="-1" id="addNewUserModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Expenses</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="add-user-form" name="myform" class="p-2" method="POST" enctype="multipart/form-data">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="bdate">Booking date</label>
-                                <input type="date" name="bdate" id="dateid" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Date is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="bmonth">Booking month</label>
-                                <input type="month" name="bmonth" id="monthid" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Month is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="developer">Employee name</label>
-                                <input type="text" name="developer" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Employee name is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="ExpensesValue">Expenses value</label>
-                                <input type="number" name="cagreement" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Agreement Value is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Project Name">Project name</label>
-                                <input type="text" name="tproject" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Source Project is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="DeveloperName">Developer Name</label>
-                                <input type="text" name="unitno" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Source Project Name is required!</div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-md-6 mb-2">
-                            <div class="form-item">
-                               <label for="cname">Expenses name</label>
-                               <select name="cname" class="form-control form-control-lg">
-                                   <option value="">Choose expense type</option>
-                                   <option value="Facebook">Facebook</option>
-                                   <option value="Google">Google</option>
-                                   <option value="IT">Developer</option>
-                                   <option value="SHI">SearchHomesIndia</option>
-                                   <option value="Accounts">Accounts</option>
-                                   <option value="HR">HR</option>
-                                   <option value="Others">Others</option>
-                               </select>
-                               <div class="invalid-feedback">Expenses Source is required!</div>
-                           </div>
-                       </div>
-
-                            <div class="col-lg-6 mb-2">
-                             <div class="form-item">
-                                <label for="Assign User">Assign User</label>
-                                <select name="assign" id="assign" class="form-control form-control-lg">
-                                    <option value="">Choose User</option>
-                                    <option value="rakesh66088">Rakesh</option>
-                                    <option value="rahul00761">Rahul Prsad</option>
-                                    <option value="raghuc1053">Pratham Raja</option>
-                                </select>
-                                <div class="invalid-feedback">Assign User is required!</div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 mb-2">
-                            <!-- <div class="form-item"> -->
-                               <label for="Upload Invoice">Upload Invoice</label>
-                               <input type="file" name="bproject" class="form-control form-control-lg" required>
-                               <div class="invalid-feedback">Upload Invoice is required!</div>
-                           <!-- </div> -->
-                       </div>
-
-                            <div class="col-lg-12">
-                                <div class="Ubsubmitbtn">
-                                    <input type="submit" name="add" value="Add Expenses"
-                                        class="btn btn-primary btn-block" id="add-user-btn">
-                                </div>
-                            </div>
-                        </div>
-                     </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Add new EXPENSES FILTER end-->
-
-    <!-- superadmin Incentive tracker Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Month">Month</label>
-                                <input type="text" class="form-control form-control-lg" id="Month">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Generated Revenue">Generated revenue</label>
-                                <input type="text" class="form-control form-control-lg" id="generatedamt">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Recent Pay">Recent pay</label>
-                                <input type="text" class="form-control form-control-lg" id="RecentPay">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Remaining amount">Remaining amount</label>
-                                <input type="text" class="form-control form-control-lg" id="Remainingamt">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="User name">User name</label>
-                                <input type="text" class="form-control form-control-lg" id="Username">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Booking number">Booking number</label>
-                                <input type="text" class="form-control form-control-lg" id="Bookingno">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Sent amount">Sent amount</label>
-                                <input type="text" class="form-control form-control-lg" id="Sentamount">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Incentive tracker Filter end -->
- 
-    <!-- superadmin Payment tracker Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Overallearn">Overall earn</label>
-                                <input type="text" class="form-control form-control-lg" id="Overallearn">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Overallpaid">Overall paid</label>
-                                <input type="text" class="form-control form-control-lg" id="Overallpaid">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Advancepay">Advance pay</label>
-                                <input type="text" class="form-control form-control-lg" id="Advancepay">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Remaningpayment">Remaning payment</label>
-                                <input type="text" class="form-control form-control-lg" id="Remaningpay">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Username">User name</label>
-                                <input type="text" class="form-control form-control-lg" id="Username">
-                            </div>
-                        </div>
-                            <div class="col-md-12 mb-2">
-                              <div class="form-item">
-                                <label for="Bookingnumber">Booking number</label>
-                                <input type="text" class="form-control form-control-lg" id="Bookingno">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Payment tracker Filter ed -->
-
-    <!-- superadmin company assets] Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employeename">Employee name</label>
-                                <input type="text" class="form-control form-control-lg" id="Employeename">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employeeid">Employee id</label>
-                                <input type="text" class="form-control form-control-lg" id="Employeeid">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Phonenumber">Phone number</label>
-                                <input type="text" class="form-control form-control-lg" id="Phoneno">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Laptopid">Laptop id</label>
-                                <input type="text" class="form-control form-control-lg" id="Laptopid">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Officelocation">Office location</label>
-                                <input type="text" class="form-control form-control-lg" id="location">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Simcard">Sim card</label>
-                                <input type="text" class="form-control form-control-lg" id="Simcard">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Companylaptop">Company laptop</label>
-                                <input type="text" class="form-control form-control-lg" id="Companylap">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Laptopcharger">Laptop charger</label>
-                                <input type="text" class="form-control form-control-lg" id="Laptopcharger">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Companymouse">Company mouse</label>
-                                <input type="text" class="form-control form-control-lg" id="Companymouse">
-                            </div>
-                        </div>
-                            <div class="col-md-12 mb-2">
-                               <div class="form-item">
-                                <label for="Datesignature">Date signature</label>
-                                <input type="text" class="form-control form-control-lg" id="Datesignature">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin company assets Filter end -->
-
-    <!-- superadmin User Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="filterID">
-                                    <label for="ID">ID</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="EmployeeId">
-                                    <label for="EmployeeId">Employee Id</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="DateOfJoining">
-                                    <label for="DOJ">Date Of Joining</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="DateOfBirth">
-                                    <label for="DOB">Date Of Birth</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="username">
-                                    <label for="Username">User name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="email">
-                                    <label for="EmailId">Email Id</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Contactnumber">
-                                    <label for="Contact No.">Contact No.</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Password">
-                                    <label for="Password">Password</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="inhandsalary">
-                                    <label for="Ihs">In hand salary</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="designation">
-                                    <label for="Designation">Designation</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="firstamount">
-                                    <label for="1stamount">1st amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="scndamount">
-                                    <label for="2nd amount">2nd amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="thirdamount">
-                                    <label for="3rd amount">3rd amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="fourthamount">
-                                    <label for="4th amount">4th amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="fifthamount">
-                                    <label for="5th amount">5th amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="sixthamount">
-                                    <label for="6th amount">6th amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Projectname">
-                                    <label for="ProjectName">Project Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Projecttype">
-                                    <label for="Project Type">Project Type</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="roletype">
-                                    <label for="SearchRoleType">Search Role Type</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="assignuser">
-                                    <label for="SearchAssignType">Search Assign Type</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin User Filter end -->
-
-    <!-- superadmin Calculator Filter start -->
-    <div class="modal fade" id="calculatorModal" tabindex="-1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Incentive Calculator</h5>
-                    <button type="button" class="btn-close close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <form id="calculator-form">
-                            <div class="col-lg-12 mb-4">
-                                <div class="form-item">
-                                <label for="d1">Current Salary :</label>
-                                <input type="number" class="form-control form-control-lg" id="d1" required>
-                            </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-item">
-                                <label for="d2">Generated Revenue :</label>
-                                <input type="number" class="form-control form-control-lg" id="d2" required>
-                            </div>
-                        </div>
-                        </form>
-                        <div class="col-lg-12">
-                            <div class="Ubsubmitbtn">
-                            <div class="border p-2 m-1 bg-success text-white amountbtn">
-                                Amount: ₹<span id="result">0.00</span></div>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="calculator-form" class="btn btn-primary">Calculate</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Calculator Filter end -->
-
-    <!-- //////////////// hr login all models /////////////////-->
-
-    <!-- Hrlogin incentive user Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Filter Data</h5>
-              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="closeFilter"></button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <div class="row">
-                  <!-- Filter inputs -->
-                  <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="ID">ID</label>
-                    <input type="text" class="form-control form-control-lg" id="filterID">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="EmployeeId">Employee Id</label>
-                    <input type="text" class="form-control form-control-lg" id="EmployeeId">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="DateOfJoining">Date Of Joining</label>
-                  <input type="text" class="form-control form-control-lg" id="DateOfJoining">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Date Of Birth">Date Of Birth</label>
-                    <input type="text" class="form-control form-control-lg" id="DateOfBirth">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Username">User name</label>
-                    <input type="text" class="form-control form-control-lg" id="username">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="EmailId">Email Id</label>
-                    <input type="text" class="form-control form-control-lg" id="email">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Contact No">Contact No.</label>
-                    <input type="text" class="form-control form-control-lg" id="Contactnumber">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Password">Password</label>
-                    <input type="text" class="form-control form-control-lg" id="Password">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="In hand salary">In hand salary</label>
-                    <input type="text" class="form-control form-control-lg" id="inhandsalary">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Designation">Designation</label>
-                    <input type="text" class="form-control form-control-lg" id="designation">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="1st amount">1st amount</label>
-                    <input type="text" class="form-control form-control-lg" id="firstamount">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="2nd amount">2nd amount</label>
-                    <input type="text" class="form-control form-control-lg" id="scndamount">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="3rd amount">3rd amount</label>
-                    <input type="text" class="form-control form-control-lg" id="thirdamount">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="4th amount">4th amount</label>
-                    <input type="text" class="form-control form-control-lg" id="fourthamount">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="5th amount">5th amount</label>
-                    <input type="text" class="form-control form-control-lg" id="fifthamount">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="6th amount">6th amount</label>
-                    <input type="text" class="form-control form-control-lg" id="sixthamount">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Project Name">Project Name</label>
-                    <input type="text" class="form-control form-control-lg" id="Projectname">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Project Type">Project Type</label>
-                    <input type="text" class="form-control form-control-lg" id="Projecttype">
-                </div>
-            </div>
-                   <div class="col-md-12 mb-2">                  
-                    <div class="form-item">
-                        <label for="Code">Code</label>
-                    <input type="text" class="form-control form-control-lg" id="Code">
-                </div>
-            </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer" style="margin: 0 auto;">
-              <!-- Close Modal button -->
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
-              <!-- Clear Filters button -->
-              <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-              <!-- Apply Filters button -->
-              <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-            </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>Financial Year Exp.</td>
+                  <td>Facebook</td>
+                  <td>Google</td>
+                  <td>HR</td>
+                  <td>IT</td>
+                  <td>SHI</td>
+                  <td>Accounts</td>
+                  <td>Salary</td>
+                  <td>Incentive</td>
+                  <td>Others</td>
+                </tr>
+              </tfoot>
+            </table>
+            <button class="scroll-left">
+              <i class="bx bx-left-arrow-alt"></i>
+            </button>
+            <button class="scroll-right">
+              <i class="bx bx-right-arrow-alt"></i>
+            </button>
           </div>
         </div>
       </div>
-    <!-- Hrlogin incentive user Filter end -->
-
-    <!-- Hrlogin Edit incentive user Filter start -->
-    <div class="modal fade" tabindex="-1" id="editUserModal">
-        <div class="modal-dialog modal-dialog-centered hrloginedit">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Employee Details</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="edit-user-form" name="myform" class="p-2" novalidate="">
-                        <input type="hidden" name="id" id="id">
-                        <div class="row">
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="date of joining">DOJ</label>
-                                <input type="date" name="doj" id="doj" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Date of Joning is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="date of joining">DOB</label>
-                                <input type="date" name="dob" id="dob" class="form-control form-control-lg"
-                                    placeholder="Enter Last Name" required>
-                                <div class="invalid-feedback">Date of Birth is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Name">Employee Name</label>
-                                <input type="text" name="ename" id="ename" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Employee name is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Email">Employee Email</label>
-                                <input type="text" name="eemail" id="eemail" class="form-control form-control-lg"
-                                   required>
-                                <div class="invalid-feedback">Employee Email is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Number">Employee Number</label>
-                                <input type="tel" name="enumber" id="enumber" class="form-control form-control-lg"
-                                   required>
-                                <div class="invalid-feedback">Employee Number is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Password">Employee Password</label>
-                                <input type="text" name="epass" id="epass" class="form-control form-control-lg"
-                                   required>
-                                <div class="invalid-feedback">Employee Password is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Salary">Employee Salary</label>
-                                <input type="number" name="esalary" id="esalary" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Employee Salary is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Table">Employee Table</label>
-                                <input type="text" name="etable" id="etable" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Table Name is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee ID">Employee ID</label>
-                                <input type="text" name="emid" id="emid" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Employee Id is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="1st Amount">1st Amount</label>
-                                <input type="number" name="amountO" id="amountO" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">1st Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="2nd Amount">2nd Amount</label>
-                                <input type="number" name="amountT" id="amountT" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">2nd Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="3rd Amount">3rd Amount</label>
-                                <input type="number" name="amountTh" id="amountTh" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">3rd Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="4th Amount">4th Amount</label>
-                                <input type="number" name="amountF" id="amountF" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">4th Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="5th Amount">5th Amount</label>
-                                <input type="number" name="amountFf" id="amountFf" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">5th Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="6th Amount">6th Amount</label>
-                                <input type="number" name="amountS" id="amountS" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">6th Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="ProjectName">Project Name</label>
-                                <input type="text" name="project_name" id="project_name"
-                                    class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Project name is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="assignuser">Assign user</label>
-                                <select name="assign_user" id="assign_user"
-                                    class="form-control form-control-lg selection">
-                                    <option value="">Assign User</option>
-                                    <option value="rakesh66088">Rakesh</option>
-                                    <option value="rahul00761">Rahul Prsad</option>
-                                    <option value="raghuc1053">Pratham Raja</option>
-                                </select>
-                                <div class="invalid-feedback">Employee Role Type is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="ProjectType">Project Type</label>
-                                <select name="D_project" id="D_project" class="form-control form-control-lg selection">
-                                    <option value="">Select Project Type</option>
-                                    <option value="mandate">Mandate</option>
-                                    <option value="retail">Retail</option>
-                                </select>
-                                <div class="invalid-feedback">Employee PJT is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-12 mb-2">
-                               <div class="form-item">
-                                <label for="User type">User type</label>
-                                <select name="user_type" id="user_type" class="form-control form-control-lg selection">
-                                    <option value="">Select Role Type</option>
-                                    <option value="manager">Manager</option>
-                                    <option value="teamlead">Team Lead</option>
-                                    <option value="user">User</option>
-                                </select>
-                                <div class="invalid-feedback">Employee Role Type is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-12">
-                                <div class="Ubsubmitbtn">
-                                    <input type="submit" value="Update" class="btn btn-success btn-block"
-                                        id="edit-user-btn">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- Hrlogin Edit incentive user Filter end -->
+  </div>

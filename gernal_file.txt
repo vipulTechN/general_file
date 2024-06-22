@@ -1,1559 +1,972 @@
-<!--////////////// superadmin all models /////////////////// -->
+<div class="submitdetailwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7" id="leftsubmit-dets">
+                    <form method="post" enctype="multipart/form-data" id="submit_propertyid">
+                        {% csrf_token %}
+                        <!-- detail section -->
+                        <div class="datablock">
 
-    <!-- superadmin BOOKING FILTER Start-->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content custom-modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">FILTER DATA</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterBookingDateStart">Booking Date Start</label>
-                                    <input type="date" class="form-control form-control-lg custom-input"
-                                        id="filterBookingDateStart">
-                                </div>
+                            <div class="sub-heading-submit" style="margin-top: 0px;">
+                                <h5> Property details </h5>
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterBookingDateEnd">Booking Date End</label>
-                                    <input type="date" class="form-control form-control-lg custom-input"
-                                        id="filterBookingDateEnd">
+
+                            <div class="fielddets">
+                                <div class="label labelselect">
+                                    Here To<span class="req">*</span>
                                 </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="hereto" value="sell" required class="iamradio"
+                                            checked>
+                                        <label for="sell">Sell</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Rent/Lease" class="iamradio"
+                                            style="cursor: no-drop;">
+                                        <label for="Rent/Lease" id="fielabs">Rent/Lease</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Pg/Colive" class="iamradio"
+                                            style="cursor: no-drop;">
+                                        <label for="Pg/Colive" id="fielabs">Pg/Co-live</label>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterID">ID</label>
-                                    <input type="text" class="form-control form-control-lg custom-input" id="filterID">
+
+                            <div class="fielddets-type">
+                                <div class="label">
+                                    Property Type <span class="req">*</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterMonth">Month</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterMonth">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterBuilder">Builder Name</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterBuilder">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterProject">Project Name</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterProject">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterCustumername">Customer Name</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterCustumername">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterContactnumber">Contact No.</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterContactnumber">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterEmail">Email Id</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterEmail">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterType">Unit Type</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterType">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterUnit">Unit No.</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterUnit">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterSize">Unit Size</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterSize">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterAgreement">Agreement Value</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterAgreement">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterCommission">Commission %</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterCommission">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterTrevenue">Total Revenue</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterTrevenue">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterCashBack">CashBack %</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterCashBack">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterActualRevenue">Actual Revenue</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterActualRevenue">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterStatus">Status</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterStatus">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterReceived">Received Amt.</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterReceived">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterSales">Sales person</label>
-                                    <input type="text" class="form-control form-control-lg custom-input"
-                                        id="filterSales">
+                                <div class="formCom">
+                                    <select name="apartment_type"  onchange="showHideFields(this.value)" onclick="hiddendatablocks(this.value)" required id="id_apartment_type" class="cidrop-input">
+                                        <option value="" selected disabled>Select Type</option>
+                                        <option value="villa">Villa</option>
+                                        <option value="plot" >Plot</option>
+                                        <option value="apartment">Apartment</option>
+                                    </select>
                                 </div>
                             </div>
 
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin  BOOKING FILTER end-->
 
-    <!-- superadmin booking EDIT FILTER Start -->
-    <div class="modal fade" tabindex="-1" id="editUserModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit This Booking</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="edit-user-form" name="myform" class="p-2" novalidate="">
-                        <input type="hidden" name="id" id="id">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bdate">Booking date</label>
-                                        <input type="date" name="bdate" id="bdate" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Date is required!</div>
+                        <!-- location section  -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit">
+                                <h5> Property Location </h5>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    City <span class="req">*</span>
+                                </div>
+                                <div class="cityinput">
+                                    <select name="project_city" id="id_project_city" class="cidrop-input" required>
+                                        <option value="">Select City</option>
+                                        <option value="bengaluru">Bengaluru</option>
+                                        <option value="chennai">Chennai</option>
+                                        <option value="mumbai">Mumbai</option>
+                                        <option value="hyderabad">Hyderabad</option>
+                                        <option value="delhi">Delhi</option>
+                                        <option value="pune">Pune</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Locality <span class="req">*</span>
+                                </div>
+                                <div class="locationinput">
+                                    <input type="text" placeholder="Enter Locality" name="landmark" maxlength="100"
+                                        id="id_landmark" class="cidrop-input" required>
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Name of Project/Society <span class="req">*</span>
+                                </div>
+                                <div class="locationinput">
+                                    <input type="text" placeholder="Property Name.." name="project_society_name"
+                                        class="cidrop-input" maxlength="100" id="id_project_society_name" required>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="hiddendatablock">
+
+                            <!-- property features -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5> Property Features </h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label apartment villa">
+                                                Bedrooms <span class="req">*</span>
+                                            </div>
+                                            <div class="label plot">
+                                                No. of Sides  <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="bedrooms" id="id_bedrooms" class="cidrop-input" required>
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="0">Others</option>
+                                                    <option value="-1">N/A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Balconies <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="balconies" id="id_balconies" class="cidrop-input" required>
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="0">Others</option>
+                                                    <option value="-1">N/A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Bathrooms <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="bathrooms" id="id_bathrooms" class="cidrop-input" required>
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="0">Others</option>
+                                                    <option value="-1">N/A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Total Floor
+                                            </div>
+                                            <div class="locationinput">
+                                                   <select id="id_total_floors" class="cidrop-input" name="total_floors">
+                                                    <option value='totalfloor(0)'>0</option>
+                                                    <option value='totalfloor(1)'>1</option>
+                                                    <option value='totalfloor(2)'>2</option>
+                                                    <option value='totalfloor(3)'>3</option>
+                                                    <option value='totalfloor(4)'>4</option>
+                                                    <option value='totalfloor(5)'>5</option>
+                                                    <option value='totalfloor(6)'>6</option>
+                                                    <option value='totalfloor(7)'>7</option>
+                                                    <option value='totalfloor(8)'>8</option>
+                                                    <option value='totalfloor(9)'>9</option>
+                                                    <option value='totalfloor(10)'>10</option>
+                                                    <option value='totalfloor(11)'>11</option>
+                                                    <option value='totalfloor(12)'>12</option>
+                                                    <option value='totalfloor(13)'>13</option>
+                                                    <option value='totalfloor(14)'>14</option>
+                                                    <option value='totalfloor(15)'>15</option>
+                                                    <option value='totalfloor(16)'>16</option>
+                                                    <option value='totalfloor(17)'>17</option>
+                                                    <option value='totalfloor(18)'>18</option>
+                                                    <option value='totalfloor(19)'>19</option>
+                                                    <option value='totalfloor(20)'>20</option>
+                                                    <option value='totalfloor(21)'>21</option>
+                                                    <option value='totalfloor(22)'>22</option>
+                                                    <option value='totalfloor(23)'>23</option>
+                                                    <option value='totalfloor(24)'>24</option>
+                                                    <option value='totalfloor(25)'>25</option>
+                                                    <option value='totalfloor(26)'>26</option>
+                                                    <option value='totalfloor(27)'>27</option>
+                                                    <option value='totalfloor(28)'>28</option>
+                                                    <option value='totalfloor(29)'>29</option>
+                                                    <option value='totalfloor(30)'>30</option>
+                                                    <option value='totalfloor(31)'>31</option>
+                                                    <option value='totalfloor(32)'>32</option>
+                                                    <option value='totalfloor(33)'>33</option>
+                                                    <option value='totalfloor(34)'>34</option>
+                                                    <option value='totalfloor(35)'>35</option>
+                                                    <option value='totalfloor(36)'>36</option>
+                                                    <option value='totalfloor(37)'>37</option>
+                                                    <option value='totalfloor(38)'>38</option>
+                                                    <option value='totalfloor(39)'>39</option>
+                                                    <option value='totalfloor(40)'>40</option>
+                                                    <option value='totalfloor(41)'>41</option>
+                                                    <option value='totalfloor(42)'>42</option>
+                                                    <option value='totalfloor(43)'>43</option>
+                                                    <option value='totalfloor(44)'>44</option>
+                                                    <option value='totalfloor(45)'>45</option>
+                                                    <option value='totalfloor(46)'>46</option>
+                                                    <option value='totalfloor(47)'>47</option>
+                                                    <option value='totalfloor(48)'>48</option>
+                                                    <option value='totalfloor(49)'>49</option>
+                                                    <option value='totalfloor(50)'>50</option>
+                                                    <option value='totalfloor(51)'>51</option>
+                                                    <option value='totalfloor(52)'>52</option>
+                                                    <option value='totalfloor(53)'>53</option>
+                                                    <option value='totalfloor(54)'>54</option>
+                                                    <option value='totalfloor(55)'>55</option>
+                                                    <option value='totalfloor(56)'>56</option>
+                                                    <option value='totalfloor(57)'>57</option>
+                                                    <option value='totalfloor(58)'>58</option>
+                                                    <option value='totalfloor(59)'>59</option>
+                                                    <option value='totalfloor(60)'>60</option>
+                                                    <option value='totalfloor(61)'>61</option>
+                                                    <option value='totalfloor(62)'>62</option>
+                                                    <option value='totalfloor(63)'>63</option>
+                                                    <option value='totalfloor(64)'>64</option>
+                                                    <option value='totalfloor(65)'>65</option>
+                                                    <option value='totalfloor(66)'>66</option>
+                                                    <option value='totalfloor(67)'>67</option>
+                                                    <option value='totalfloor(68)'>68</option>
+                                                    <option value='totalfloor(69)'>69</option>
+                                                    <option value='totalfloor(70)'>70</option>
+                                                    <option value='totalfloor(71)'>71</option>
+                                                    <option value='totalfloor(72)'>72</option>
+                                                    <option value='totalfloor(73)'>73</option>
+                                                    <option value='totalfloor(74)'>74</option>
+                                                    <option value='totalfloor(75)'>75</option>
+                                                    <option value='totalfloor(76)'>76</option>
+                                                    <option value='totalfloor(77)'>77</option>
+                                                    <option value='totalfloor(78)'>78</option>
+                                                    <option value='totalfloor(79)'>79</option>
+                                                    <option value='totalfloor(80)'>80</option>
+                                                    <option value='totalfloor(81)'>81</option>
+                                                    <option value='totalfloor(82)'>82</option>
+                                                    <option value='totalfloor(83)'>83</option>
+                                                    <option value='totalfloor(84)'>84</option>
+                                                    <option value='totalfloor(85)'>85</option>
+                                                    <option value='totalfloor(86)'>86</option>
+                                                    <option value='totalfloor(87)'>87</option>
+                                                    <option value='totalfloor(88)'>88</option>
+                                                    <option value='totalfloor(89)'>89</option>
+                                                    <option value='totalfloor(90)'>90</option>
+                                                    <option value='totalfloor(91)'>91</option>
+                                                    <option value='totalfloor(92)'>92</option>
+                                                    <option value='totalfloor(93)'>93</option>
+                                                    <option value='totalfloor(94)'>94</option>
+                                                    <option value='totalfloor(95)'>95</option>
+                                                    <option value='totalfloor(96)'>96</option>
+                                                    <option value='totalfloor(97)'>97</option>
+                                                    <option value='totalfloor(98)'>98</option>
+                                                    <option value='totalfloor(99)'>99</option>
+                                                    </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label apartment villa">
+                                                Lifts <span class="req">*</span>
+                                            </div>
+                                            <div class="label plot">
+                                                Is in a gated colony <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="lifts" id="id_lifts" class="cidrop-input" required>
+                                                    <option value="" selected>Select</option>
+                                                    <option value="yes">YES</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Floor No. <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="Floor Number" name="floor_number" min="0"
+                                                required id="id_floor_number" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Total Units <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="Total units" name="total_units" min="0" 
+                                                id="id_total_units" required class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Furnished Status <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="furnished_status" required id="id_furnished_status"
+                                                    class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="furnished">Furnished</option>
+                                                    <option value="semi-furnished">Semi-Furnished</option>
+                                                    <option value="un-furnished">Unfurnished</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Facing
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="facing" id="id_facing" class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="North">North</option>
+                                                    <option value="East">East</option>
+                                                    <option value="South">South</option>
+                                                    <option value="West">West</option>
+                                                    <option value="NorthEast">NorthEast</option>
+                                                    <option value="NorthWest">NorthWest</option>
+                                                    <option value="SouthEast">SouthEast</option>
+                                                    <option value="SouthWest">SouthWest</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label apartment villa">
+                                                No. of Towers
+                                            </div>
+                                            <div class="label plot">
+                                                Width of road facing the plot (in mtr) <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="No of Towers" name="no_of_tower"
+                                                    min="0" id="id_no_of_tower" class= "cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap ">
+                                            <div class="label apartment villa">
+                                                Parking <span class="req">*</span>
+                                            </div>
+                                            <div class="label plot">
+                                                Corner Plot <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="car_parking" required id="id_car_parking"
+                                                    class="cidrop-input">
+                                                    <option value="" selected>Select</option>
+                                                    <option value="yes">YES</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Status Type <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="status" required id="id_status" class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="ongoing">Ongoing</option>
+                                                    <option value="readytomove">Ready To Move</option>
+                                                    <option value="upcoming">UpComing</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- area section  -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5> Area </h5>
+                                </div>
+
+                                <div class="contentwrap apartment plot villa">
+                                    <div class="label apartment villa">
+                                        Carpet Area <span class="req">*</span>
+                                    </div>
+                                    <div class="label plot">
+                                        Plot Size <span class="req">*</span>
+                                    </div>
+                                    <div class="cityinput carpetAreaType shortinputbar">
+                                        <input type="hidden" id="id_carpet_area" name="carpet_area" value="">
+                                        <input type="number" placeholder="Carpet area"  step="0.01"
+                                            id="my_carpet_area" class="cidrop-input" required>
+                                        <select id="carpetAreaType" name="carpetAreaType" class="cidrop-input" required>
+                                            <option value="Sq-ft">Sq-ft</option>
+                                            <option value="Sq-yrd">Sq-yrd</option>
+                                            <option value="Sq-m">Sq-m</option>
+                                            <option value="Acre">Acre</option>
+                                            <option value="Bigha">Bigha</option>
+                                            <option value="Hectare">Hectare</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Kanal">Kanal</option>
+                                            <option value="Biswa1">Biswa1</option>
+                                            <option value="Biswa2">Biswa2</option>
+                                            <option value="Ground">Ground</option>
+                                            <option value="Aankadam">Aankadam</option>
+                                            <option value="Rood">Rood</option>
+                                            <option value="Chatak">Chatak</option>
+                                            <option value="Kottah">Kottah</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Cent">Cent</option>
+                                            <option value="Perch">Perch</option>
+                                            <option value="Guntha">Guntha</option>
+                                            <option value="Are">Are</option>
+                                        </select>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bmonth">Booking month</label>
-                                        <input type="month" name="bmonth" id="bmonth"
-                                            class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Month is required!</div>
+                                <div class="contentwrap apartment plot villa">
+                                    <div class="label apartment villa">
+                                        Super Area <span class="req">*</span>
+                                    </div>
+                                    <div class="label plot">
+                                        Price/Sq.Ft. <span class="req">*</span>
+                                    </div>
+                                    <div class = "locationinput carpetAreaType shortinputbar">
+                                        <input type="hidden" id="id_super_area"  name="super_area" value="">
+                                        <input type="number" placeholder="Super area" step="0.01"
+                                            required id="my_super_area" class="cidrop-input">
+                                        <select id="superAreaType" name="superAreaType" class="cidrop-input" required>
+                                            <option value="Sq-ft">Sq-ft</option>
+                                            <option value="Sq-yrd">Sq-yrd</option>
+                                            <option value="Sq-m">Sq-m</option>
+                                            <option value="Acre">Acre</option>
+                                            <option value="Bigha">Bigha</option>
+                                            <option value="Hectare">Hectare</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Kanal">Kanal</option>
+                                            <option value="Biswa1">Biswa1</option>
+                                            <option value="Biswa2">Biswa2</option>
+                                            <option value="Ground">Ground</option>
+                                            <option value="Aankadam">Aankadam</option>
+                                            <option value="Rood">Rood</option>
+                                            <option value="Chatak">Chatak</option>
+                                            <option value="Kottah">Kottah</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Cent">Cent</option>
+                                            <option value="Perch">Perch</option>
+                                            <option value="Guntha">Guntha</option>
+                                            <option value="Are">Are</option>
+                                        </select>
                                     </div>
                                 </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="developer" id="developer"
-                                            class="form-control form-control-lg" required>
-                                        <label for="developer">Builder Name</label>
-                                        <div class="invalid-feedback">Builder name is required!</div>
+                                
+                                <div class="contentwrap apartment plot villa">
+                                    <div class="label apartment villa">
+                                        Developement Area<span class="req">*</span>
                                     </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="bproject" id="bproject"
-                                            class="form-control form-control-lg" required>
-                                        <label for="bproject">Project name</label>
-                                        <div class="invalid-feedback">Project name is required!</div>
+                                    <div class="label plot">
+                                        Total Area<span class="req">*</span>
                                     </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="username" name="cname" id="cname"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cname">Customer name</label>
-                                        <div class="invalid-feedback">Customer name is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="cnumber" id="cnumber"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cnumber">Customer no.</label>
-                                        <div class="invalid-feedback">Contact Number is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="email" name="cemail" id="cemail"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cemail">E-mail</label>
-                                        <div class="invalid-feedback">E-mail is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="tproject" id="tproject"
-                                            class="form-control form-control-lg" required>
-                                        <label for="tproject">Project type</label>
-                                        <div class="invalid-feedback">Project Type is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="unitno" id="unitno"
-                                            class="form-control form-control-lg" required>
-                                        <label for="unitno">Unit no</label>
-                                        <div class="invalid-feedback">Unit Number is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="psize" id="psize"
-                                            class="form-control form-control-lg" required>
-                                        <label for="psize">Project size</label>
-                                        <div class="invalid-feedback">Project Size is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="cagreement" id="cagreement"
-                                            class="form-control form-control-lg" required>
-                                        <label for="cagreement">Agreement value</label>
-                                        <div class="invalid-feedback">Agreement Value is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="ccashback" id="ccashback"
-                                            class="form-control form-control-lg" onkeyup="updateCalculate(this.value)"
-                                            required>
-                                        <label for="ccashback">Commission %</label>
-                                        <div class="invalid-feedback">Commission % is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="crevenue" id="crevenue"
-                                            class="form-control form-control-lg" required>
-                                        <label for="crevenue">Total revenue</label>
-                                        <div class="invalid-feedback">Total Revenue Amount is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="text" name="cccashback" id="cccashback"
-                                            class="form-control form-control-lg" onkeyup="updateCalculate(this.value)"
-                                            required>
-                                        <label for="cccashback">CashBack %</label>
-                                        <div class="invalid-feedback">CashBack % is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="ccrevenue" id="ccrevenue"
-                                            class="form-control form-control-lg" required>
-                                        <label for="ccrevenue">Actual Revenue</label>
-                                        <div class="invalid-feedback">Actual Revenue Amount is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="brecived" id="brecived"
-                                            class="form-control form-control-lg disable" readonly>
-                                        <label for="brecived">Received Amount</label>
-                                        <div class="invalid-feedback">Received Amt. is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <input type="number" name="invoice_raised" id="invoice_raised"
-                                            class="form-control form-control-lg">
-                                        <label for="invoice_raised">Invoice Received Amt.</label>
-                                    </div>
-                                </div>
-
-                                <!-- raised invoice -->
-                                <div class="col-lg-12">
-                                    <div class="btnwraps btncheckboxs">
-                                        <input type="checkbox" class="form-check-input" name="update_invoice_checkbox"
-                                            id="update_invoice_checkbox">
-                                        <label class="form-check-label" for="update-invoice-checkbox">Raised
-                                            Invoice</label>
-                                        <!-- Checkbox for updating user table -->
-
-                                        <input type="checkbox" class="form-check-input" name="update_user_checkbox"
-                                            id="update_user_checkbox">
-                                        <label class="form-check-label" for="update-user-checkbox">Update In
-                                            User</label>
-                                        <!-- xtra -->
-
-                                        <input type="checkbox" class="form-check-input" name="update_user_checkbox"
-                                            id="update_user_checkbox">
-                                        <label class="form-check-label" for="update-user-checkbox">Cashback
-                                            received</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="btnwraps">
-                                        <input type="checkbox" class="btn-check Processing" name="cstatus"
-                                            id="btn-check-3-outlined" value="Processing" required>
-                                        <label class="btn btn-outline-primary bttm-btn" for="btn-check-3-outlined"
-                                            style="margin-left: 0px;">Processing</label>
-
-                                        <input type="radio" class="btn-check Received" name="cstatus"
-                                            id="2success-outlined" value="Received" required>
-                                        <label class="btn btn-outline-success bttm-btn"
-                                            for="2success-outlined">Received</label>
-
-                                        <input type="radio" class="btn-check Cancled" name="cstatus"
-                                            id="2danger-outlined" value="Cancled" required>
-                                        <label class="btn btn-outline-danger bttm-btn"
-                                            for="2danger-outlined">Cancled</label>
-                                        <div class="invalid-feedback">Please Select the staus of booking!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="Ubsubmitbtn">
-                                        <input type="submit" value="Update Booking" class="btn btn-success btn-block"
-                                            id="edit-user-btn" onclick="validateForm()">
+                                    <div  class="locationinput carpetAreaType shortinputbar">
+                                        <input type="hidden" id="id_development_area"  name="development_area" value="">
+                                        <input type="number" placeholder="Developement area"  step="0.01"
+                                        id="my_development_area" required class="cidrop-input">
+                                        <select id="devAreaType" name="devAreaType" class="cidrop-input" required>
+                                            <option value="Sq-ft">Sq-ft</option>
+                                            <option value="Sq-yrd">Sq-yrd</option>
+                                            <option value="Sq-m">Sq-m</option>
+                                            <option value="Acre">Acre</option>
+                                            <option value="Bigha">Bigha</option>
+                                            <option value="Hectare">Hectare</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Kanal">Kanal</option>
+                                            <option value="Biswa1">Biswa1</option>
+                                            <option value="Biswa2">Biswa2</option>
+                                            <option value="Ground">Ground</option>
+                                            <option value="Aankadam">Aankadam</option>
+                                            <option value="Rood">Rood</option>
+                                            <option value="Chatak">Chatak</option>
+                                            <option value="Kottah">Kottah</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Cent">Cent</option>
+                                            <option value="Perch">Perch</option>
+                                            <option value="Guntha">Guntha</option>
+                                            <option value="Are">Are</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Property Availability -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5> Transaction Type, Property Availability</h5>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-6 apartment villa">    
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Age of Construction
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="text" placeholder="In months or Years" name="age_of_construction"
+                                            maxlength="100" id="id_age_of_construction" class="cidrop-input">
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Possession Date
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="date" name="possession_date" id="id_possession_date" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Project Rera Id
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="text" placeholder="Rera Id" name="project_rera_id" maxlength="100"
+                                                    id="id_project_rera_id" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Builder Name
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="text" placeholder="Builder name" name="builder_name"
+                                                    maxlength="100" id="id_builder_name" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 apartment villa plot">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Approval Status
+                                            </div>
+                                            <div class="cityinput">
+                                                <select name="approval_status" id="id_approval_status" class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="others">Others</option>
+                                                    <option value="BBMP">BBMP Approved</option>
+                                                    <option value="DTCP">DTCP Approved</option>
+                                                    <option value="reraapproved">RERA Approved</option>
+                                                    <option value="bda_bmrda">BDA/BMRDA Approved</option>
+                                                    <option value="notapproved">Not Approved</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price Details -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Price Details And Address</h5>
+                                </div>
+
+                                <div class="contentwrap Pricingdets apartment plot">
+                                    <div class="label">
+                                        Expected Price <span class="req">*</span>
+                                    </div>
+                                    <div class="cityinput">
+                                        <input type="text" placeholder="Pricing" name="property_price" maxlength="30"
+                                            required id="id_property_price" class="cidrop-input">
+                                        <input type="checkbox" id="negotiable-checkbox" disabled>
+                                        <label for="negotiable-checkbox" id="labelprice">Is Price Negotiable</label>
+                                    </div>
+                                </div> 
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Address <span class="req">*</span>
+                                    </div>
+                                    <div class="cityinput">
+                                        <input type="text" placeholder="Address & Pincode" name="address"
+                                            maxlength="255" required id="id_address" class="cidrop-input">
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap apartment plot">
+                                    <div class="label apartment villa">
+                                        About Project
+                                    </div>
+                                    <div class="label plot">
+                                        Amenities
+                                    </div>
+                                    <div class="cityinput">
+                                        <textarea name="about_project" placeholder="Describe in detail" maxlength="300"
+                                            id="id_about_project" class="cidrop-input"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- images section -->
+                            <div class="datablock">
+
+                                <div class="sub-heading-submit">
+                                    <h5>Images</h5>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Cover Image <span class="req">*</span>
+                                    </div>
+                                    <div class="locationinput">
+                                        <input type="file" name="project_cover_img" accept="image/*"
+                                            id="id_project_cover_img" class="cidrop-input">
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Image No.1
+                                        <input type="hidden" name="images-TOTAL_FORMS" value="5"
+                                            id="id_images-TOTAL_FORMS">
+                                        <input type="hidden" name="images-INITIAL_FORMS" value="0"
+                                            id="id_images-INITIAL_FORMS">
+                                        <input type="hidden" name="images-MIN_NUM_FORMS" value="0"
+                                            id="id_images-MIN_NUM_FORMS">
+                                        <input type="hidden" name="images-MAX_NUM_FORMS" value="5"
+                                            id="id_images-MAX_NUM_FORMS">
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select name="images-0-image_type" id="id_images-0-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="property">Property Image</option>
+                                                    <option value="floorplan">Floorplan Image</option>
+                                                    <option value="masterplan">Masterplan Image</option>
+                                                    <option value="location">Location Map Image</option>
+                                                    <option value="plot">Plot Image</option>
+                                                    <option value="1bhk">1 BHK Image</option>
+                                                    <option value="2bhk">2 BHK Image</option>
+                                                    <option value="3bhk">3 BHK Image</option>
+                                                    <option value="4bhk">4 BHK Image</option>
+                                                    <option value="5bhk">5 BHK Image</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-0-image" accept="image/*"
+                                                    id="id_images-0-image" class="cidrop-input">
+                                            </div>
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-0-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-0-DELETE"
+                                                    id="id_images-0-DELETE"><input type="hidden" name="images-0-id"
+                                                    id="id_images-0-id"><input type="hidden"
+                                                    name="images-0-property_post" id="id_images-0-property_post">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Image No. 2
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select name="images-1-image_type" id="id_images-1-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="property">Property Image</option>
+                                                    <option value="floorplan">Floorplan Image</option>
+                                                    <option value="masterplan">Masterplan Image</option>
+                                                    <option value="location">Location Map Image</option>
+                                                    <option value="plot">Plot Image</option>
+                                                    <option value="1bhk">1 BHK Image</option>
+                                                    <option value="2bhk">2 BHK Image</option>
+                                                    <option value="3bhk">3 BHK Image</option>
+                                                    <option value="4bhk">4 BHK Image</option>
+                                                    <option value="5bhk">5 BHK Image</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-1-image" accept="image/*"
+                                                    id="id_images-1-image" class="cidrop-input">
+                                            </div>
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-1-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-1-DELETE"
+                                                    id="id_images-1-DELETE"><input type="hidden" name="images-1-id"
+                                                    id="id_images-1-id"><input type="hidden"
+                                                    name="images-1-property_post" id="id_images-1-property_post">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Image No. 3
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <select name="images-2-image_type" id="id_images-2-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="property">Property Image</option>
+                                                    <option value="floorplan">Floorplan Image</option>
+                                                    <option value="masterplan">Masterplan Image</option>
+                                                    <option value="location">Location Map Image</option>
+                                                    <option value="plot">Plot Image</option>
+                                                    <option value="1bhk">1 BHK Image</option>
+                                                    <option value="2bhk">2 BHK Image</option>
+                                                    <option value="3bhk">3 BHK Image</option>
+                                                    <option value="4bhk">4 BHK Image</option>
+                                                    <option value="5bhk">5 BHK Image</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-2-image" accept="image/*"
+                                                    id="id_images-2-image" class="cidrop-input">
+                                            </div>
+
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-2-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-2-DELETE"
+                                                    id="id_images-2-DELETE"><input type="hidden" name="images-2-id"
+                                                    id="id_images-2-id"><input type="hidden"
+                                                    name="images-2-property_post" id="id_images-2-property_post">
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Image No.4
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <select name="images-3-image_type" id="id_images-3-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="property">Property Image</option>
+                                                    <option value="floorplan">Floorplan Image</option>
+                                                    <option value="masterplan">Masterplan Image</option>
+                                                    <option value="location">Location Map Image</option>
+                                                    <option value="plot">Plot Image</option>
+                                                    <option value="1bhk">1 BHK Image</option>
+                                                    <option value="2bhk">2 BHK Image</option>
+                                                    <option value="3bhk">3 BHK Image</option>
+                                                    <option value="4bhk">4 BHK Image</option>
+                                                    <option value="5bhk">5 BHK Image</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-3-image" accept="image/*"
+                                                    id="id_images-3-image" class="cidrop-input">
+                                            </div>
+
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-3-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-3-DELETE"
+                                                    id="id_images-3-DELETE"><input type="hidden" name="images-3-id"
+                                                    id="id_images-3-id"><input type="hidden"
+                                                    name="images-3-property_post" id="id_images-3-property_post">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Image No.5
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <select name="images-4-image_type" id="id_images-4-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="property">Property Image</option>
+                                                    <option value="floorplan">Floorplan Image</option>
+                                                    <option value="masterplan">Masterplan Image</option>
+                                                    <option value="location">Location Map Image</option>
+                                                    <option value="plot">Plot Image</option>
+                                                    <option value="1bhk">1 BHK Image</option>
+                                                    <option value="2bhk">2 BHK Image</option>
+                                                    <option value="3bhk">3 BHK Image</option>
+                                                    <option value="4bhk">4 BHK Image</option>
+                                                    <option value="5bhk">5 BHK Image</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-4-image" accept="image/*"
+                                                    id="id_images-4-image" class="cidrop-input">
+                                            </div>
+
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-4-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-4-DELETE"
+                                                    id="id_images-4-DELETE"><input type="hidden" name="images-4-id"
+                                                    id="id_images-4-id"><input type="hidden"
+                                                    name="images-4-property_post" id="id_images-4-property_post">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- submit section  -->
+                            <div class="datablock mt-4">
+                                <button type="submit" class="submitproperty" id="submit_buttonid">Submit</button>
+                            </div>
+
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin booking EDIT FILTER end -->
+                 </div>
 
-    <!-- superadmin Add New BOOKING Start -->
-    <div class="modal fade" tabindex="-1" id="addNewUserModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Booking</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="add-user-form" name="myform" class="p-2" novalidate>
-                        <div class="container">
-                            <div class="row">
-
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bdate">Booking date</label>
-                                        <input type="date" name="bdate" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Date is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bmonth">Booking month</label>
-                                        <input type="month" name="bmonth" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Month is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="developer">Builder name</label>
-                                        <input type="text" name="developer" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Builder name is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="bproject">Project name</label>
-                                        <input type="text" name="bproject" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Project name is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cname">Customer name</label>
-                                        <input type="username" name="cname" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Customer name is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cnumber">Contact no.</label>
-                                        <input type="number" name="cnumber" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Contact Number is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cemail">E-mail</label>
-                                        <input type="email" name="cemail" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">E-mail is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="tproject">Project type</label>
-                                        <input type="text" name="tproject" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Project Type is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="unitno">Unit no.</label>
-                                        <input type="text" name="unitno" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Unit Number is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="psize">Project size</label>
-                                        <input type="number" name="psize" class="form-control form-control-lg" required>
-                                        <div class="invalid-feedback">Project Size is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cagreement">Agreement Value</label>
-                                        <input type="number" name="cagreement" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Agreement Value is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="ccashback">Commission %</label>
-                                        <input type="text" name="ccashback" class="form-control form-control-lg"
-                                            onkeyup="addCalculate(this.value)" required>
-                                        <div class="invalid-feedback">Commission % is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="crevenue">Revenue Amount</label>
-                                        <input type="number" name="crevenue" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Revenue Amount is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="cccashback">Cashback %</label>
-                                        <input type="text" name="cccashback" class="form-control form-control-lg"
-                                            onkeyup="addCalculate(this.value)" required>
-                                        <div class="invalid-feedback">Cashback % is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="ccrevenue">Revenue Amount</label>
-                                        <input type="number" name="ccrevenue" class="form-control form-control-lg"
-                                            required>
-                                        <div class="invalid-feedback">Actual Amount is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="brecived">Received Amt.</label>
-                                        <input type="number" name="brecived" class="form-control form-control-lg">
-                                        <div class="invalid-feedback">Enter Received Amt. is required!</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="btnwraps">
-                                        <input type="checkbox" class="btn-check Processing" name="cstatus"
-                                            id="btn-check-2-outlined" value="Processing" checked>
-                                        <label class="btn btn-outline-primary bttm-btn"
-                                            for="btn-check-2-outlined">Processing</label>
-
-                                        <input type="radio" class="btn-check Received" name="cstatus"
-                                            id="success-outlined" value="Received">
-                                        <label class="btn btn-outline-success bttm-btn"
-                                            for="success-outlined">Received</label>
-
-                                        <input type="radio" class="btn-check Cancled" name="cstatus"
-                                            id="danger-outlined" value="Cancled">
-                                        <label class="btn btn-outline-danger bttm-btn"
-                                            for="danger-outlined">Cancled</label>
-                                        <div class="invalid-feedback">Status is required!</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="Ubsubmitbtn">
-                                        <input type="submit" value="Add Booking" class="btn btn-primary btn-block"
-                                            id="add-user-btn">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Add New BOOKING End -->
-
-    <!-- superadmin EXPENSES FILTER Start-->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container p-0">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Expenses Date">Expenses Date</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesDate">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Expenses Month">Expenses Month</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesMonth">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="UserName">User Name</label>
-                                <input type="text" class="form-control form-control-lg " id="UserName">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="ExpensesAmount">Expenses Amount</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesAmount">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Expenses Source">Expenses Source</label>
-                                <input type="text" class="form-control form-control-lg " id="ExpensesSource">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Source Project">Source Project</label>
-                                <input type="text" class="form-control form-control-lg " id="SourceProject">
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                                 <div class="form-item">
-                                <label for="Project Name">Project Name</label>
-                                <input type="text" class="form-control form-control-lg " id="ProjectName">
-                            </div>
-                        </div>
-
-                        </div>
+                <div class="col-lg-5" id="rightsubmit-dets">
+                    <div class="rightsubmitimg">
+                        <img src="/assets/img/pp-2.png" alt="" style="width: 100%; height: 100%;">
                     </div>
                 </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
+
             </div>
         </div>
     </div>
-    <!-- superadmin EXPENSES FILTER Start-->
 
-    <!-- superadmin Add new EXPENSES FILTER start-->
-    <div class="modal fade" tabindex="-1" id="addNewUserModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Expenses</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="add-user-form" name="myform" class="p-2" method="POST" enctype="multipart/form-data">
-                    <div class="container">
-                        <div class="row">
 
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="bdate">Booking date</label>
-                                <input type="date" name="bdate" id="dateid" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Date is required!</div>
-                            </div>
-                        </div>
 
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="bmonth">Booking month</label>
-                                <input type="month" name="bmonth" id="monthid" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Month is required!</div>
-                            </div>
-                        </div>
 
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="developer">Employee name</label>
-                                <input type="text" name="developer" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Employee name is required!</div>
-                            </div>
-                        </div>
 
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="ExpensesValue">Expenses value</label>
-                                <input type="number" name="cagreement" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Agreement Value is required!</div>
-                            </div>
-                        </div>
 
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Project Name">Project name</label>
-                                <input type="text" name="tproject" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Source Project is required!</div>
-                            </div>
-                        </div>
+    <script>
+        var totalPriceInput = document.getElementById('id_property_price');
+        var negotiableCheckbox = document.getElementById('negotiable-checkbox');
+        var labelprice = document.getElementById('labelprice');
 
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="DeveloperName">Developer Name</label>
-                                <input type="text" name="unitno" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Source Project Name is required!</div>
-                            </div>
-                        </div>
+        totalPriceInput.addEventListener('input', function() {
+            if (totalPriceInput.value.trim() !== '') {
+                negotiableCheckbox.disabled = false;
+                labelprice.style.color="black";
+            } else {
+                negotiableCheckbox.disabled = true;
+                labelprice.style.color="";
+            }
+        });
+    </script>
 
-                        
-                        <div class="col-md-6 mb-2">
-                            <div class="form-item">
-                               <label for="cname">Expenses name</label>
-                               <select name="cname" class="form-control form-control-lg">
-                                   <option value="">Choose expense type</option>
-                                   <option value="Facebook">Facebook</option>
-                                   <option value="Google">Google</option>
-                                   <option value="IT">Developer</option>
-                                   <option value="SHI">SearchHomesIndia</option>
-                                   <option value="Accounts">Accounts</option>
-                                   <option value="HR">HR</option>
-                                   <option value="Others">Others</option>
-                               </select>
-                               <div class="invalid-feedback">Expenses Source is required!</div>
-                           </div>
-                       </div>
+    <script>
+        function updateHiddenInput(){var e=document.getElementById("my_carpet_area").value,t=document.getElementById("carpetAreaType").value;document.getElementById("id_carpet_area").value=e+" "+t}document.getElementById("my_carpet_area").addEventListener("input",updateHiddenInput),document.getElementById("carpetAreaType").addEventListener("change",updateHiddenInput);
+    </script>
+    <script>
+        function updateHiddenInput(){var e=document.getElementById("my_super_area").value,t=document.getElementById("superAreaType").value;document.getElementById("id_super_area").value=e+" "+t}document.getElementById("my_super_area").addEventListener("input",updateHiddenInput),document.getElementById("superAreaType").addEventListener("change",updateHiddenInput);
+    </script>
+    <script>
+        function updateHiddenInput(){var e=document.getElementById("my_development_area").value,t=document.getElementById("devAreaType").value;document.getElementById("id_development_area").value=e+" "+t}document.getElementById("my_development_area").addEventListener("input",updateHiddenInput),document.getElementById("devAreaType").addEventListener("change",updateHiddenInput);
+    </script>
 
-                            <div class="col-lg-6 mb-2">
-                             <div class="form-item">
-                                <label for="Assign User">Assign User</label>
-                                <select name="assign" id="assign" class="form-control form-control-lg">
-                                    <option value="">Choose User</option>
-                                    <option value="rakesh66088">Rakesh</option>
-                                    <option value="rahul00761">Rahul Prsad</option>
-                                    <option value="raghuc1053">Pratham Raja</option>
-                                </select>
-                                <div class="invalid-feedback">Assign User is required!</div>
-                            </div>
-                        </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('id_apartment_type').addEventListener('change', function(event) {
+            showHideFields(event.target.value);
+        });
+    });
 
-                        <div class="col-md-12 mb-2">
-                            <!-- <div class="form-item"> -->
-                               <label for="Upload Invoice">Upload Invoice</label>
-                               <input type="file" name="bproject" class="form-control form-control-lg" required>
-                               <div class="invalid-feedback">Upload Invoice is required!</div>
-                           <!-- </div> -->
-                       </div>
+    function showHideFields(apartmentType) {
+        const villaFields = document.querySelectorAll('.villa');
+        const plotFields = document.querySelectorAll('.plot');
+        const bhkFields = document.querySelectorAll('.apartment');
 
-                            <div class="col-lg-12">
-                                <div class="Ubsubmitbtn">
-                                    <input type="submit" name="add" value="Add Expenses"
-                                        class="btn btn-primary btn-block" id="add-user-btn">
-                                </div>
-                            </div>
-                        </div>
-                     </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Add new EXPENSES FILTER end-->
+        hideFields(villaFields);
+        hideFields(plotFields);
+        hideFields(bhkFields);
 
-    <!-- superadmin Incentive tracker Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Month">Month</label>
-                                <input type="text" class="form-control form-control-lg" id="Month">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Generated Revenue">Generated revenue</label>
-                                <input type="text" class="form-control form-control-lg" id="generatedamt">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Recent Pay">Recent pay</label>
-                                <input type="text" class="form-control form-control-lg" id="RecentPay">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Remaining amount">Remaining amount</label>
-                                <input type="text" class="form-control form-control-lg" id="Remainingamt">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="User name">User name</label>
-                                <input type="text" class="form-control form-control-lg" id="Username">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Booking number">Booking number</label>
-                                <input type="text" class="form-control form-control-lg" id="Bookingno">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                             <div class="form-item">
-                                <label for="Sent amount">Sent amount</label>
-                                <input type="text" class="form-control form-control-lg" id="Sentamount">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Incentive tracker Filter end -->
- 
-    <!-- superadmin Payment tracker Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Overallearn">Overall earn</label>
-                                <input type="text" class="form-control form-control-lg" id="Overallearn">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Overallpaid">Overall paid</label>
-                                <input type="text" class="form-control form-control-lg" id="Overallpaid">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Advancepay">Advance pay</label>
-                                <input type="text" class="form-control form-control-lg" id="Advancepay">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Remaningpayment">Remaning payment</label>
-                                <input type="text" class="form-control form-control-lg" id="Remaningpay">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                              <div class="form-item">
-                                <label for="Username">User name</label>
-                                <input type="text" class="form-control form-control-lg" id="Username">
-                            </div>
-                        </div>
-                            <div class="col-md-12 mb-2">
-                              <div class="form-item">
-                                <label for="Bookingnumber">Booking number</label>
-                                <input type="text" class="form-control form-control-lg" id="Bookingno">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Payment tracker Filter ed -->
+        switch(apartmentType) {
+            case 'villa':
+                showFields(villaFields);
+                console.log("Villa fields shown");
+                break;
+            case 'plot':
+                showFields(plotFields);
+                console.log("Plot fields shown");
+                break;
+            case 'apartment':
+                showFields(bhkFields);
+                console.log("Apartment fields shown");
+                break;
+            default:
+                console.error("Unknown apartment type: " + apartmentType);
+        }
+    }
 
-    <!-- superadmin company assets] Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="ID">ID</label>
-                                <input type="text" class="form-control form-control-lg" id="filterID">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employeename">Employee name</label>
-                                <input type="text" class="form-control form-control-lg" id="Employeename">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employeeid">Employee id</label>
-                                <input type="text" class="form-control form-control-lg" id="Employeeid">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Phonenumber">Phone number</label>
-                                <input type="text" class="form-control form-control-lg" id="Phoneno">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Laptopid">Laptop id</label>
-                                <input type="text" class="form-control form-control-lg" id="Laptopid">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Officelocation">Office location</label>
-                                <input type="text" class="form-control form-control-lg" id="location">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Simcard">Sim card</label>
-                                <input type="text" class="form-control form-control-lg" id="Simcard">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Companylaptop">Company laptop</label>
-                                <input type="text" class="form-control form-control-lg" id="Companylap">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Laptopcharger">Laptop charger</label>
-                                <input type="text" class="form-control form-control-lg" id="Laptopcharger">
-                            </div>
-                        </div>
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Companymouse">Company mouse</label>
-                                <input type="text" class="form-control form-control-lg" id="Companymouse">
-                            </div>
-                        </div>
-                            <div class="col-md-12 mb-2">
-                               <div class="form-item">
-                                <label for="Datesignature">Date signature</label>
-                                <input type="text" class="form-control form-control-lg" id="Datesignature">
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin company assets Filter end -->
+    function hideFields(fields) {
+        fields.forEach(field => {
+            field.classList.add('hidden');
+        });
+    }
 
-    <!-- superadmin User Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Filter Data</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Filter inputs -->
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="filterID">
-                                    <label for="ID">ID</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="EmployeeId">
-                                    <label for="EmployeeId">Employee Id</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="DateOfJoining">
-                                    <label for="DOJ">Date Of Joining</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="DateOfBirth">
-                                    <label for="DOB">Date Of Birth</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="username">
-                                    <label for="Username">User name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="email">
-                                    <label for="EmailId">Email Id</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Contactnumber">
-                                    <label for="Contact No.">Contact No.</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Password">
-                                    <label for="Password">Password</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="inhandsalary">
-                                    <label for="Ihs">In hand salary</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="designation">
-                                    <label for="Designation">Designation</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="firstamount">
-                                    <label for="1stamount">1st amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="scndamount">
-                                    <label for="2nd amount">2nd amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="thirdamount">
-                                    <label for="3rd amount">3rd amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="fourthamount">
-                                    <label for="4th amount">4th amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="fifthamount">
-                                    <label for="5th amount">5th amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="sixthamount">
-                                    <label for="6th amount">6th amount</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Projectname">
-                                    <label for="ProjectName">Project Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="Projecttype">
-                                    <label for="Project Type">Project Type</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="roletype">
-                                    <label for="SearchRoleType">Search Role Type</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <input type="text" class="form-control form-control-lg" id="assignuser">
-                                    <label for="SearchAssignType">Search Assign Type</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin User Filter end -->
-
-    <!-- superadmin Calculator Filter start -->
-    <div class="modal fade" id="calculatorModal" tabindex="-1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Incentive Calculator</h5>
-                    <button type="button" class="btn-close close" data-dismiss="modal" aria-label="Close"
-                        id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <form id="calculator-form">
-                            <div class="col-lg-12 mb-4">
-                                <div class="form-item">
-                                <label for="d1">Current Salary :</label>
-                                <input type="number" class="form-control form-control-lg" id="d1" required>
-                            </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-item">
-                                <label for="d2">Generated Revenue :</label>
-                                <input type="number" class="form-control form-control-lg" id="d2" required>
-                            </div>
-                        </div>
-                        </form>
-                        <div class="col-lg-12">
-                            <div class="Ubsubmitbtn">
-                            <div class="border p-2 m-1 bg-success text-white amountbtn">
-                                Amount: ₹<span id="result">0.00</span></div>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="calculator-form" class="btn btn-primary">Calculate</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- superadmin Calculator Filter end -->
-
-    <!-- //////////////// hr login all models /////////////////-->
-
-    <!-- Hrlogin incentive user Filter start -->
-    <div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Filter Data</h5>
-              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="closeFilter"></button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <div class="row">
-                  <!-- Filter inputs -->
-                  <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="ID">ID</label>
-                    <input type="text" class="form-control form-control-lg" id="filterID">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="EmployeeId">Employee Id</label>
-                    <input type="text" class="form-control form-control-lg" id="EmployeeId">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="DateOfJoining">Date Of Joining</label>
-                  <input type="text" class="form-control form-control-lg" id="DateOfJoining">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Date Of Birth">Date Of Birth</label>
-                    <input type="text" class="form-control form-control-lg" id="DateOfBirth">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Username">User name</label>
-                    <input type="text" class="form-control form-control-lg" id="username">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="EmailId">Email Id</label>
-                    <input type="text" class="form-control form-control-lg" id="email">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Contact No">Contact No.</label>
-                    <input type="text" class="form-control form-control-lg" id="Contactnumber">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Password">Password</label>
-                    <input type="text" class="form-control form-control-lg" id="Password">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="In hand salary">In hand salary</label>
-                    <input type="text" class="form-control form-control-lg" id="inhandsalary">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Designation">Designation</label>
-                    <input type="text" class="form-control form-control-lg" id="designation">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="1st amount">1st amount</label>
-                    <input type="text" class="form-control form-control-lg" id="firstamount">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="2nd amount">2nd amount</label>
-                    <input type="text" class="form-control form-control-lg" id="scndamount">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="3rd amount">3rd amount</label>
-                    <input type="text" class="form-control form-control-lg" id="thirdamount">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="4th amount">4th amount</label>
-                    <input type="text" class="form-control form-control-lg" id="fourthamount">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="5th amount">5th amount</label>
-                    <input type="text" class="form-control form-control-lg" id="fifthamount">
-                </div>
-            </div>
-                 <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="6th amount">6th amount</label>
-                    <input type="text" class="form-control form-control-lg" id="sixthamount">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Project Name">Project Name</label>
-                    <input type="text" class="form-control form-control-lg" id="Projectname">
-                </div>
-            </div>
-                   <div class="col-md-6 mb-2">                  
-                    <div class="form-item">
-                        <label for="Project Type">Project Type</label>
-                    <input type="text" class="form-control form-control-lg" id="Projecttype">
-                </div>
-            </div>
-                   <div class="col-md-12 mb-2">                  
-                    <div class="form-item">
-                        <label for="Code">Code</label>
-                    <input type="text" class="form-control form-control-lg" id="Code">
-                </div>
-            </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer" style="margin: 0 auto;">
-              <!-- Close Modal button -->
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
-              <!-- Clear Filters button -->
-              <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-              <!-- Apply Filters button -->
-              <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    <!-- Hrlogin incentive user Filter end -->
-
-    <!-- Hrlogin Edit incentive user Filter start -->
-    <div class="modal fade" tabindex="-1" id="editUserModal">
-        <div class="modal-dialog modal-dialog-centered hrloginedit">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Employee Details</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="edit-user-form" name="myform" class="p-2" novalidate="">
-                        <input type="hidden" name="id" id="id">
-                        <div class="row">
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="date of joining">DOJ</label>
-                                <input type="date" name="doj" id="doj" class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Date of Joning is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="date of joining">DOB</label>
-                                <input type="date" name="dob" id="dob" class="form-control form-control-lg"
-                                    placeholder="Enter Last Name" required>
-                                <div class="invalid-feedback">Date of Birth is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Name">Employee Name</label>
-                                <input type="text" name="ename" id="ename" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Employee name is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Email">Employee Email</label>
-                                <input type="text" name="eemail" id="eemail" class="form-control form-control-lg"
-                                   required>
-                                <div class="invalid-feedback">Employee Email is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Number">Employee Number</label>
-                                <input type="tel" name="enumber" id="enumber" class="form-control form-control-lg"
-                                   required>
-                                <div class="invalid-feedback">Employee Number is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Password">Employee Password</label>
-                                <input type="text" name="epass" id="epass" class="form-control form-control-lg"
-                                   required>
-                                <div class="invalid-feedback">Employee Password is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Salary">Employee Salary</label>
-                                <input type="number" name="esalary" id="esalary" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Employee Salary is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee Table">Employee Table</label>
-                                <input type="text" name="etable" id="etable" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Table Name is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="Employee ID">Employee ID</label>
-                                <input type="text" name="emid" id="emid" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">Employee Id is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="1st Amount">1st Amount</label>
-                                <input type="number" name="amountO" id="amountO" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">1st Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="2nd Amount">2nd Amount</label>
-                                <input type="number" name="amountT" id="amountT" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">2nd Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="3rd Amount">3rd Amount</label>
-                                <input type="number" name="amountTh" id="amountTh" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">3rd Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="4th Amount">4th Amount</label>
-                                <input type="number" name="amountF" id="amountF" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">4th Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="5th Amount">5th Amount</label>
-                                <input type="number" name="amountFf" id="amountFf" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">5th Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="6th Amount">6th Amount</label>
-                                <input type="number" name="amountS" id="amountS" class="form-control form-control-lg"
-                                    required>
-                                <div class="invalid-feedback">6th Amount is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="ProjectName">Project Name</label>
-                                <input type="text" name="project_name" id="project_name"
-                                    class="form-control form-control-lg" required>
-                                <div class="invalid-feedback">Project name is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="assignuser">Assign user</label>
-                                <select name="assign_user" id="assign_user"
-                                    class="form-control form-control-lg selection">
-                                    <option value="">Assign User</option>
-                                    <option value="rakesh66088">Rakesh</option>
-                                    <option value="rahul00761">Rahul Prsad</option>
-                                    <option value="raghuc1053">Pratham Raja</option>
-                                </select>
-                                <div class="invalid-feedback">Employee Role Type is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-6 mb-2">
-                               <div class="form-item">
-                                <label for="ProjectType">Project Type</label>
-                                <select name="D_project" id="D_project" class="form-control form-control-lg selection">
-                                    <option value="">Select Project Type</option>
-                                    <option value="mandate">Mandate</option>
-                                    <option value="retail">Retail</option>
-                                </select>
-                                <div class="invalid-feedback">Employee PJT is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-12 mb-2">
-                               <div class="form-item">
-                                <label for="User type">User type</label>
-                                <select name="user_type" id="user_type" class="form-control form-control-lg selection">
-                                    <option value="">Select Role Type</option>
-                                    <option value="manager">Manager</option>
-                                    <option value="teamlead">Team Lead</option>
-                                    <option value="user">User</option>
-                                </select>
-                                <div class="invalid-feedback">Employee Role Type is required!</div>
-                            </div>
-                        </div>
-
-                            <div class="col-md-12">
-                                <div class="Ubsubmitbtn">
-                                    <input type="submit" value="Update" class="btn btn-success btn-block"
-                                        id="edit-user-btn">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Hrlogin Edit incentive user Filter end -->
+    function showFields(fields) {
+        fields.forEach(field => {
+            field.classList.remove('hidden');
+        });
+    }
+</script>
+<script>
+    function hiddendatablocks(value) {
+        var hiddenblock = document.getElementById("hiddendatablock");
+        if (value) {
+            hiddenblock.style.display = "block";
+        } else {
+            hiddenblock.style.display = "none";
+        }
+    }
+</script>

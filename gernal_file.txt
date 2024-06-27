@@ -1,157 +1,564 @@
-{%extends "base(Home).html"%}
-{% load static %}
-{% block head_block %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Builder's Commission Services By Search Homes India </title>
-    <meta name="title" content="Exclusive Builder's Commission Services By Search Homes India ">
-    <meta name="description" content="Optimize your real estate investments with Search Homes India’s expert builder’s commission services for developers and exclusive listings for buyers.">
-    <meta name="keywords" content="Property Sales Agent, Real Estate Developer Services, Commission-Based, Real Estate Services, Builder Commission, Project Marketing, Real Estate Investment">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/shiservices.css' %}">
+    <title>Rental Agreement Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        #header1 {top: 0px!important;}
-        #home_decore_main{margin-top: 65px;}
+        .agreemnettop {
+            width: 100%;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        .agreemnettop img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #agreementPreview span{
+            font-weight: 600;
+            color: black!important;
+        }
+
+        #agreementPreview p{
+            color: rgba(0, 0, 0, 0.788);
+        }
+
     </style>
-{% endblock %}
-{%block body_block%}
-<main id="home_decore_main">
-    <div class="homebanner">
-        <img src="{% static 'images/buildercommission_lap.jpg' %}" alt="HomeDecor_LaptopImg" id="HomeDecor_LaptopImg">
-        <img src="{% static 'images/buildercommission_mob.jpg' %}" alt="HomeDecor_MobileImg" id="HomeDecor_MobileImg">
-        <button type="button" class="Bannerbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">I'm
-            interested</button>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 mt-3">
-                <div class="topline">
-                    <h1>
-                        Partner with Us to Showcase Your Property
-                    </h1>
-                    <h6>
-                        To get your listings published on our platform, contact our partnership team with your property details. We'll assist with tailored marketing strategies upon approval.To get your listings published on our platform, contact our partnership team with your property details. We'll assist with tailored marketing strategies upon approval.
-                    </h6>
-                </div>
-            </div>
+</head>
 
-            <div class="col-lg-12 mt-4">
-                <div class="benefitbox">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="leftpara">
-                                <h5>Benefits</h5>
-                                <ul>
-                                    <li>
-                                        Increased Sales Opportunities
-                                    </li>
-                                    <li>
-                                        Brand Enhancement
-                                    </li>
-                                    <li>
-                                        Sell Your Property at Maximum Price
-                                    </li>
-                                    <li>
-                                        Cost-Effective Marketing Research
-                                    </li>
-                                    <li>
-                                        Valuation Certificate
-                                    </li>
-                                    <li>
-                                        Property Valuation
-                                    </li>
-                                    <li>
-                                        Pre-approved Home loan
-                                    </li>
-                                    <li>
-                                        Legal “NOC” of the valuation
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="rightpara">
-                                <h5>Why choose Search Homes India</h5>
-                                <ul>
-                                    <li>
-                                        Extensive Reach
-                                    </li>
-                                    <li>
-                                        Enhanced Visibility
-                                    </li>
-                                    <li>
-                                        User-Friendly
-                                    </li>
-                                    <li>
-                                        Data-Driven Insights
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<body>
+
+    <div class="container  p-5">
+        <h1>Rental Agreement Form</h1>
+        <form id="rentalForm">
+            <!-- basic information details -->
+            <div class="form-group">
+                <label for="FullName">Full Name:</label>
+                <input type="text" class="form-control" id="FullName" name="FullName" required>
             </div>
-            
-            <div class="col-lg-12 mt-5">
-                <div class="row">
-                    <div class="col-lg-6 text-left">
-                        <div class="leftcontent">
-                            <h3>Get Listed Your Property</h3>
-                            <p>
-                                We're thrilled to collaborate with builders like you and confident that this partnership will be mutually beneficial. Together, we can streamline the home-buying journey for countless buyers in India.
-                            </p>
-                            <button type="button" class="Bannerbtn1" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">I'm interested</button>
-                        </div>
+            <div class="form-group">
+                <label for="Phoneno">Phone no:</label>
+                <input type="number" class="form-control" id="Phoneno" name="Phoneno" required>
+            </div>
+            <div class="form-group">
+                <label for="EmailId">Email Id:</label>
+                <input type="email" class="form-control" id="EmailId" name="EmailId" required>
+            </div>
+            <div class="form-group">
+                <label for="State">State:</label>
+                <input type="text" class="form-control" id="State" name="State" required>
+            </div>
+            <div class="form-group">
+                <label for="City">City:</label>
+                <input type="text" class="form-control" id="City" name="City" required>
+            </div>
+                <div class="form-group">
+                <label for="Stamp">Stamp:</label>
+                <select name="Stamp" id="Stamp" class="form-control" required>
+                    <option value="100" selected>₹100</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="AgreementDur">Agreement Duration:</label>
+                <select name="AgreementDur" id="AgreementDur" class="form-control">
+                    <option disabled="" value="">Other</option>
+                    <option value="1" class="py-2">1 Month</option>
+                    <option value="2" class="py-2">2 Months</option>
+                    <option value="3" class="py-2">3 Months</option>
+                    <option value="4" class="py-2">4 Months</option>
+                    <option value="5" class="py-2">5 Months</option>
+                    <option value="7" class="py-2">7 Months</option>
+                    <option value="8" class="py-2">8 Months</option>
+                    <option value="9" class="py-2">9 Months</option>
+                    <option value="10" class="py-2">10 Months</option>
+                    <option value="12" class="py-2">12 Months</option>
+                    <option value="13" class="py-2">13 Months</option>
+                    <option value="14" class="py-2">14 Months</option>
+                    <option value="15" class="py-2">15 Months</option>
+                    <option value="16" class="py-2">16 Months</option>
+                    <option value="17" class="py-2">17 Months</option>
+                    <option value="18" class="py-2">18 Months</option>
+                    <option value="19" class="py-2">19 Months</option>
+                    <option value="20" class="py-2">20 Months</option>
+                    <option value="21" class="py-2">21 Months</option>
+                    <option value="22" class="py-2">22 Months</option>
+                    <option value="23" class="py-2">23 Months</option>
+                    <option value="24" class="py-2">24 Months</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Iamtla">I am a/an:</label>
+                <select name="Iamtla" id="Iamtla" class="form-control" required>
+                    <option value="">Select type</option>
+                    <option value="Tenant">Tenant</option>
+                    <option value="Landlord">Landlord</option>
+                    <option value="Agent">Agent</option>
+                </select>
+            </div>
+            <!-- Landlord details -->
+            <div class="form-group">
+                <label for="lFullName">Full Name:</label>
+                <input type="text" class="form-control" id="lFullName" name="lFullName" required>
+            </div>
+            <div class="form-group">
+                <label for="lfathername">Father/Mother’s Name:</label>
+                <input type="text" class="form-control" id="lfathername" name="lfathername" required>
+            </div>
+            <div class="form-group">
+                <label for="lPhoneno">Phone no:</label>
+                <input type="number" class="form-control" id="lPhoneno" name="lPhoneno" required>
+            </div>
+            <div class="form-group">
+                <label for="lEmailId">Email Id:</label>
+                <input type="email" class="form-control" id="lEmailId" name="lEmailId" required>
+            </div>
+            <div class="form-group">
+                <label for="PermanentAddress">Permanent Address:</label>
+                <input type="text" class="form-control" id="lPermanentadd" name="lPermanentadd" required>
+            </div>
+            <!-- Tenant details -->
+            <div class="form-group">
+                <label for="tFullName">Full Name:</label>
+                <input type="text" class="form-control" id="tFullName" name="tFullName" required>
+            </div>
+            <div class="form-group">
+                <label for="tfathername">Father/Mother’s Name:</label>
+                <input type="text" class="form-control" id="tfathername" name="tfathername" required>
+            </div>
+            <div class="form-group">
+                <label for="tPhoneno">Phone no:</label>
+                <input type="number" class="form-control" id="tPhoneno" name="tPhoneno" required>
+            </div>
+            <div class="form-group">
+                <label for="tEmailId">Email Id:</label>
+                <input type="email" class="form-control" id="tEmailId" name="tEmailId" required>
+            </div>
+            <div class="form-group">
+                <label for="PermanentAddress">Permanent Address:</label>
+                <input type="text" class="form-control" id="tPermanentadd" name="tPermanentadd" required>
+            </div>
+            <!-- Property details -->
+            <div class="form-group">
+                <label for="propertyAddress">Property Address:</label>
+                <input type="text" class="form-control" id="propertyAddress" name="propertyAddress" required>
+            </div>
+            <div class="form-group">
+                <label for="Houseno">House no:</label>
+                <input type="text" class="form-control" id="Houseno" name="Houseno" required>
+            </div>
+            <div class="form-group">
+                <label for="Locality ">Locality :</label>
+                <input type="text" class="form-control" id="Locality" name="Locality" required>
+            </div>
+            <div class="form-group">
+                <label for="Pincode">Pincode:</label>
+                <input type="text" class="form-control" id="Pincode" name="Pincode" required>
+            </div>
+            <div class="form-group">
+                <label for="FloorNo">Floor No:</label>
+                <select name="FloorNo" id="FloorNo" class="form-control" required>
+                    <option value="">Select type</option>
+                    <option value="G">G</option>
+                    <option value="f1">1</option>
+                    <option value="f2">2</option>
+                    <option value="f3">3</option>
+                    <option value="fOther">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Choosebhk">Choose BHK:</label>
+                <select name="Choosebhk" id="Choosebhk" class="form-control" required>
+                    <option value="">Select type</option>
+                    <option value="1RK">1 RK</option>
+                    <option value="1BHK">1 BHK</option>
+                    <option value="1.5BHK">1.5 BHK</option>
+                    <option value="2BHK">2 BHK</option>
+                    <option value="2.5BHK">2.5 BHK</option>
+                    <option value="3BHK">3 BHK</option>
+                    <option value="3.5BHK">3.5 BHK</option>
+                    <option value="4BHK">4 BHK</option>
+                    <option value="BOther">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address:</label> <br>
+                <input type="checkbox" id="Address" name="Address" required>
+                <label for="Address">Same as Landlord Address</label>
+            </div>
+            <!-- Contract Details -->
+            <div class="form-group">
+                <label for="rent">Rent (Rs per month):</label>
+                <input type="number" class="form-control" id="rent" name="rent" required>
+            </div>
+            <div class="form-group">
+                <label for="startDate">Agreement Start Date:</label>
+                <input type="date" class="form-control" id="startDate" name="startDate" required>
+            </div>
+            <div class="form-group">
+                <label for="PaymentDate">Rent Payment Date:</label>
+                <input type="date" class="form-control" id="PaymentDate" name="PaymentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="securityAmount">Security Amount (Rs):</label>
+                <input type="number" class="form-control" id="securityAmount" name="securityAmount" required>
+            </div>
+            <div class="form-group">
+                <label for="NoticePeriod">Notice Period ( In Months) :</label>
+                <select name="NoticePeriod" id="NoticePeriod" class="form-control" required>
+                    <option value="">Select type</option>
+                    <option value="1Month">1 Month</option>
+                    <option value="2Month">2 Month</option>
+                    <option value="3Month">3 Month</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="previewAgreement()">Preview Agreement</button>
+        </form>
+
+        <div class="modal  fade" id="agreementModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Preview Agreement</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="rightcontentimg">
-                            <img src="{% static 'images/Business_sideimg.svg' %}" alt="Inteior-svg-img">
-                        </div>
+                    <div class="modal-body">
+                    <div id="previewSection" style="display: none;">
+                        <div id="agreementPreview" class="bg-light p-3 border rounded"></div>
+                        <button class="btn btn-success mt-3" onclick="generatePDF()">Generate PDF</button>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="homedecor_footer d-flex align-items-center justify-content-center text-center">
-        <h2>Showcase Your Properties to a Target Audience!</h2>
-        <div class="homedecor_footer_line1"></div>
-        <div class="homedecor_footer_line2"></div>
-    </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Reach Out To Us</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="form" id="form" method="post" enctype="multipart/form-data" action="{% url 'builder_commission_view' %}">
-                        {% csrf_token %}
-                        <div class="form-input">
-                            <label>Name</label>
-                            <input type="text" class="input" name="name" required>
-                        </div>
-                        <div class="form-input">
-                            <label>Phone Number</label>
-                            <input type="number" class="input" name="phone_number" required>
-                        </div>
-                        <div class="form-input">
-                            <label>Email</label>
-                            <input type="email" class="input" name="email" required>
-                        </div>
-                        <div class="textarea">
-                            <label>Is there anything else you would like to tell us?</label>
-                            <textarea name="other_question"></textarea>
-                        </div>
-                        <button class="submit" type="submit">Submit</button>
-                    </form>
+
+    <template id="agreementTemplate">
+        <div class="agreementTemplateclas">
+            <div class="agreemnettop">
+                <img src="./Differentform/Rentagreement/rentimg.png" alt="ra_stamp_default">
+            </div>
+            <div class="agreemnetmid">
+                <p>Property Address: <span class="Commonheading">Flat No:</span><span id="HousenoPreview"></span>,<span
+                        id="propertyAddressPreview"></span>
+                    ,<span id="LocalityPreview"></span>,<span id="PincodePreview"></span>,<span
+                        id="CityPreview"></span>,<span id="StatePreview"></span>(
+                    <span id="Commonheading">House Type:</span>
+                    <span id="ChoosebhkPreview"></span>,<span id="Commonheading">Floor
+                        no.</span><span id="FloorNoPreview"></span>)
+                </p>
+                <p>Rent: Rs <span id="rentPreview"></span> per month from <span id="startDatePreview"></span></p>
+                <p>Period of Lease: Eleven (11) months (<span id="startDate1Preview"></span>to <span
+                        id="endDatePreview"></span>)</p>
+                <p>Security Amount: Rs <span id="securityAmountPreview"></span></p>
+                <p>Electricity/Water Charges: As per Meters payable as per the billing cycle paid by Lessee before
+                    the due dates.</p>
+                <p>This Lease Deed/Rent Agreement is executed at <span id="Cityrent1Preview"></span>.</p>
+                <p style="text-align: center; font-style: bold;">Between</p>
+                <p>Mr./Mrs. <span id="lFullNamePreview"></span> So/Do Mr. <span id="lfathernamePreview"></span>
+                    R/o <span id="lPermanentaddPreview"></span> (after this called the Lessor No. 1 or the First
+                    Party)</p>
+                <p style="text-align: center; font-style: bold;">And</p>
+                <p>Mr./Mrs. <span id="tFullNamePreview"></span> So/Do Mr. <span id="tfathernamePreview"></span>
+                    R/o <span id="tPermanentaddPreview"></span> (from now on called the Second Party).Whereas the
+                    Lessor(s) are jointly the lawful owners in possession of the premises located at <span
+                        id="propertyAddressPeriodPreview"></span> (from now on called the 'demised premises'). The
+                    expression Lessor(s) and Lessee shall mean and include their respective heirs, successors,
+                    representatives, and assignees. Whereas on the request of the Lessee, the Lessor(s) have agreed
+                    to let out the said demised premises to the LESSEE, and the LESSEE has agreed to take it on rent
+                    w.e.f. <span id="startDate2Preview"></span> for its bonafide residential use. Whereas the
+                    LESSOR(S) has represented that the said demised premises are free from all encumbrances and the
+                    LESSOR(S) has a clean and unrestricted right to the said demised premises. Whereas the Lessor(s)
+                    and Lessee both represented that they are legally competent to enter into this Lease Agreement
+                    on the terms and conditions contained herein.</p>
+                <p>1. That the second party shall pay the monthly rent of Rs <span id="rentPeriodPreview"></span> in
+                    respect of the demised premises located at <span class="Commonheading">Flat No:</span><span
+                        id="Houseno1Preview"></span>,<span id="propertyAddress1Preview"></span>
+                    ,<span id="Locality1Preview"></span>,<span id="Pincode1Preview"></span>,<span
+                        id="City1Preview"></span>,<span id="State1Preview"></span>(<span id="Commonheading">House
+                        Type:</span><span id="Choosebhk1Preview"></span>,<span id="Commonheading">Floor
+                        no.</span><span id="FloorNo1Preview"></span>). The rent shall be paid per month in advance
+                    through advance rental on or before the
+                    <span id="PaymentDatePreview"></span> day of each English calendar month to each of
+                    Lessor(s) / First Party in the proportion as agreed by the First Party amongst themselves. In case
+                    of
+                    TDS deduction, the Lessee shall furnish the TDS
+                    certificate to the Lessor(s) at the end of each calendar quarter well within time to enable the
+                    Lessor(s) to file his income tax return within the stipulated timeframe. Each of the parties
+                    will bear the consequences for any non-compliance on account of the tax liability of its part.
+                </p>
+                <p>2. That the second party has deposited a sum of Rs <span id="securityAmountPeriodPreview"></span>
+                    as an interest refundable security deposit, which will be refunded (Interest) by the First Party
+                    at the time of vacating the demised premises after deducting any outstanding rent, electricity,
+                    water (unless electricity and water charges if to be borne by lessor(s)), sewerage and
+                    maintenance charges, bills, etc., if any, which are payable by the Lessee at the time of
+                    vacating the demised premises. Lessor(s) shall have the right to adjust all the dues including
+                    but not limited to rent, maintenance, electricity, water, sewerage, etc. of the notice period
+                    from the Refundable Security deposit except the electricity and water charges if to be borne by
+                    Lessor(s).</p>
+                <p>3. The electricity and water charges will be paid timely and regularly every month by the Lessee
+                    as per actual bills provided by the service provider. A copy of the payment receipts will be
+                    provided by the Lessee to the Lessor(s) on demand.</p>
+                <p>4. That the Lessor(s) shall hand over the premises to the Lessee in a habitable condition</p>
+                <p>5. That in case any damage is caused by the LESSEE to the aforesaid premises, fixtures, fittings,
+                    etc.(except normal wear and tear), the LESSEE shall be liable to make good the same to ensure
+                    that those is restored in the same condition as they were at the time of signing of this lease
+                    other than the changes made by the LESSEE with the consent of the LESSOR(S). In case of LESSEE
+                    fails to do so, LESSOR(S) shall be entitled to deduct the costs of doing the same from the
+                    interest free security deposit.</p>
+                <p>6. That after the expiry of the monthly rent shall be increased at the escalation of —-or at
+                    mutually agreed by all the parties at the time of renewal in the discussion as per prevailing
+                    market conditions.</p>
+                <p>7. That the Second Party shall have no right, to make any addition or alteration in the said
+                    demised premises except furnishings. The Lessor(s) shall not be liable to pay any charges
+                    against the expenses incurred by the Lessee for any additional furnishing at the demised
+                    premises.</p>
+                <p>8. That the Second Party shall have no right to sub-let the whole or part of demised premises to
+                    any other person or entity at any time. Further, The Lessor(s) or his authorized representative
+                    has the right to visit the demised premises on any working day during business hours after
+                    obtaining the Lessee’s permission.</p>
+                <p>9. The demised premises shall be used by the Lessee in a cordial and civilized manner without
+                    causing any nuisance or disturbance to the other occupants of the building complex. The Lessee
+                    shall use the demised premises for its bonafide legal purposes and shall not do or cause any
+                    actions or activities of illegal, immoral, or unsocial nature in the said demised premises and
+                    will not create any nuisance to the neighborhood in any manner whatsoever.</p>
+                <p>10. That day-to-day repair such as fuses, leakage of water taps, replacement of defective MCBs,
+                    Bulbs, Tube lights, Tube light Fittings, connecting sanitary pipes, doors, door locks, etc.
+                    shall be done by the Lessee at its own costs. However, major repairs such as leakage from the
+                    wall/ceiling, etc. would be rectified by the Lessor(s) on the request of the Lessee.</p>
+                <p>11. That in case the Lessee defaults in payment of rent for any month or commits any breach of
+                    any of the terms and conditions of this deed, the LESSOR(S) shall be entitled to get back the
+                    possession of the demised premises after providing reasonable notice to the Lessee. In such
+                    case, notice to the lessee shall be given by each of the Lessor(s) / First Party.</p>
+                <p>12. The Lessee shall make sure that all the payments have been made regularly by them to the
+                    Service Providers or Government Authorities on account of any services utilized by them or
+                    taxes/levies demanded by or payable to Government Authorities on account of their transactions.
+                    The Lessee shall be liable at all times even after vacation of the said residential space for
+                    dues if any arising from the tenure of occupation of the Lessee which is liable to be paid by
+                    the Lessee.</p>
+                <p>13. Any outstanding amount towards rental or maintenance, if not settled by the Lessee, will be
+                    adjusted from the security deposit of <span id="securityAmountPeriod1Preview"></span> provided
+                    to the LESSOR(S)
+                    . The notice period to be served by either party would be of <span id="NoticePeriodPreview"></span>.
+                    Either the LESSOR(S) or the LESSEE may terminate this
+                    agreement without assigning any reasons whatsoever by giving two month’s advance notice to the
+                    other party. The respective notices shall be sent and provided to each of the parties at their
+                    aforesaid addresses mentioned above.</p>
+                <p>14. The Lessor(s) will ensure that all outstanding bills/ charges on the above said demised
+                    premises on account of electricity, water, and any other incidentals prior to the start of lease
+                    from <span id="rentPeriod1Preview"></span> are settled and paid. Any payment on account of the
+                    above pertaining to the period
+                    before the start of lease w.e.f. <span id="rentPeriod2Preview"></span> will be settled by the
+                    Lessor(s). In the unlikely
+                    instance that the connection/s for electricity or water is disconnected due to non-payment or
+                    negligence of the LESSEE, the charges to restoring such connections shall be borne fully by the
+                    LESSEE and if not paid the same can be deducted from the security deposit provided to the
+                    Lessor(s).</p>
+                <p>15. That after the expiry of this Lease Deed, if the LESSOR(S) does not wish to renew it or to
+                    continue further, the Lessee is bound to vacate the demised premises immediately upon expiry of
+                    the lease to the Lessor(s) in all good faith and handover the peaceful possession to the
+                    Lessor(s) failing which the Lessee will pay damages at the rate of double the monthly rent as
+                    stipulated in this Deed.</p>
+                <p>16. That the Lessor(s)/ his authorized agents shall acknowledge and give valid & duly stamped
+                    receipts as and when requested by the LESSEE as conclusive proof of rent payments on demand from
+                    the Lessee. The registration charges and stamp duty expenses will be shared by all parties in an
+                    equal ratio.</p>
+                <p>17. It is further agreed between the parties that in case of any dispute the <span
+                        id="CityrentPreview"></span> court shall
+                    have the exclusive jurisdiction over the disputes.</p>
+                <p>18. This Deed shall be governed by and interpreted by the laws of India. All disputes,
+                    differences, disagreements, controversies, or claims arising out of or in connection with this
+                    Deed, including the validity, effect, and interpretation thereof, shall, at the request of
+                    either party, be referred to the sole arbitrator mutually appointed by all the parties, who
+                    shall conduct the arbitration proceedings in English and under the provisions of the Arbitration
+                    and Conciliation Act, 1996, or any amendment or statutory modification or
+                    replacement/substitution thereof. Any award made by the arbitrator shall be final and binding on
+                    the Parties. The cost and expenses of the arbitration proceedings, including fees of the
+                    arbitrators, shall be borne equally by the Parties. The venue of arbitration shall be as
+                    mutually decided by the parties.</p>
+                <p>19. Without any prejudice to a Party’s other rights and claims under this Lease or otherwise, if
+                    one party breaches any of its representations, obligations, warranties, covenants or
+                    undertakings or violates any provision hereunder, it shall indemnify and keep the other Party
+                    and/or service providers harmless against all direct damages and costs suffered or borne by
+                    it/them thereby including but not limited to costs incurred in defending all claims/actions, or
+                    proceedings that may arise or may be otherwise necessary to ensure exclusive, quiet and peaceful
+                    access, occupation and use of the Leased Premises by this Deed. Without prejudice to other
+                    rights enjoyed by either Party (non-defaulting Party) under the Deed and Applicable Laws, the
+                    other Party (Defaulting Party) shall be responsible for and will indemnify against all claims,
+                    demands, suits, proceedings, judgments, direct damage, and relevant costs that the
+                    non-defaulting Party may suffer or incur in connection with loss of life and/or personal injury
+                    to the occupants of the Leased Premises and/or damage to the Building if the same arise from any
+                    wrongful/negligent act or omission of the defaulting Party.</p>
+                <p>20. <b> Force Majeure</b>: If the whole or any part of the said Premises shall at any time during
+                    the term of the lease be destroyed or damaged due to any force majeure circumstances including
+                    storm, tempest, flood, Act of God, an act of terrorism, war or any other irresistible force or
+                    the Lessee is deprived of the use of the said Premises for reasons not attributable to the
+                    Lessee, the Lessor(s) hereby undertakes to restore the said Premises as expeditiously as
+                    possible or, as the case may be, to remove the impediment in its use and occupation as
+                    expeditiously as possible. Notwithstanding the previous, upon the happening of any such event as
+                    aforesaid, the Lessee shall not be liable to pay Lease Rent during the period the Lessee is
+                    deprived of the use of the said Premises or any part thereof. The Lessee shall also have the
+                    option to terminate the Lease after the event by giving one month’s notice and without payment
+                    of any rent in lieu thereof and without incurring any liability to pay any other amount
+                    whatsoever to the Lessor(s).</p>
+                <p>21. <b>Notice</b>: Any notice or communication to be addressed by one party to the other shall be
+                    in writing and shall be served at the addresses as given hereinabove by registered post with A/D
+                    or at such other addresses as may be notified in writing by one party to another. Any change in
+                    such address shall be promptly notified to the other party in writing.</p>
+                <p>22. <b>Miscellaneous :</b>
+                    <br><br>
+                    1. This Lease Agreement constitutes the entire agreement concerning the subject matter between
+                    the Lessor(s) and the Lessee and supersedes any prior representations or agreements, whether
+                    written or oral between the Lessor(s) and Lessee. No modification or amendment of this Agreement
+                    or waiver of any of its provisions shall be binding upon the parties hereto unless made in
+                    writing and duly signed by all the Parties. <br>
+                    2. If any provision of this Agreement is unenforceable, the remaining provisions shall remain in
+                    full force and effect. <br>
+                    3. Leegality.com is the e-witness to this rental agreement.
+                </p>
+                <div class="agreementbtm d-flex justify-content-between mt-5">
+                    <p>Signature of the Lessor(s) / First Party</p>
+                    <p>Signature of the Lessee / Second Party</p>
                 </div>
             </div>
         </div>
-    </div>
-</main>
-{% endblock %} 
+    </template>
+
+
+
+    <script>
+        function previewAgreement() {
+            const form = document.getElementById('rentalForm');
+            if (form.checkValidity()) {
+                const formData = new FormData(form);
+                ///////////basic details/////////
+                const FullName = formData.get('FullName');
+                const Phoneno = formData.get('Phoneno');
+                const EmailId = formData.get('EmailId');
+                const State = formData.get('State');
+                const City = formData.get('City');
+                const Stamp = formData.get('Stamp');
+                // const AgreementDur = formData.get('AgreementDur');
+                const Iamtla = formData.get('Iamtla');
+                ////////////landlord details/////////
+                const lFullName = formData.get('lFullName');
+                const lfathername = formData.get('lfathername');
+                const lPhoneno = formData.get('lPhoneno');
+                const lEmailId = formData.get('lEmailId');
+                const lPermanentadd = formData.get('lPermanentadd');
+                ///////////tenant detail/////////////
+                const tFullName = formData.get('tFullName');
+                const tfathername = formData.get('tfathername');
+                const tPhoneno = formData.get('tPhoneno');
+                const tEmailId = formData.get('tEmailId');
+                const tPermanentadd = formData.get('tPermanentadd');
+                ///////////////propertydetails/////////////
+                const propertyAddress = formData.get('propertyAddress');
+                const Houseno = formData.get('Houseno');
+                const Locality = formData.get('Locality');
+                const Pincode = formData.get('Pincode');
+                const FloorNo = formData.get('FloorNo');
+                const Choosebhk = formData.get('Choosebhk');
+                /////////// Contract Details///////////
+                const rent = formData.get('rent');
+                const startDate = formData.get('startDate');
+                const PaymentDate = formData.get('PaymentDate');
+                const securityAmount = formData.get('securityAmount');
+                const NoticePeriod = formData.get('NoticePeriod');
+                // <---------------------------->
+                const template = document.getElementById('agreementTemplate').content.cloneNode(true);
+                ///////////basic details/////////
+                // template.querySelector('#FullNamePreview').textContent = FullName;
+                // template.querySelector('#PhonenoPreview').textContent = Phoneno;
+                // template.querySelector('#EmailIdPreview').textContent = EmailId;
+                template.querySelector('#StatePreview').textContent = State;
+                template.querySelector('#State1Preview').textContent = State;
+                template.querySelector('#CityPreview').textContent = City;
+                template.querySelector('#City1Preview').textContent = City;
+                template.querySelector('#Cityrent1Preview').textContent = City;
+                template.querySelector('#CityrentPreview').textContent = City;
+                // template.querySelector('#StampPreview').textContent = Stamp;
+                // template.querySelector('#AgreementDurPreview').textContent = AgreementDur;
+                // template.querySelector('#IamtlaPreview').textContent = Iamtla;
+                ////////////landlord details/////////
+                template.querySelector('#lFullNamePreview').textContent = lFullName;
+                template.querySelector('#lfathernamePreview').textContent = lfathername;
+                // template.querySelector('#lPhonenoPreview').textContent = lPhoneno;
+                // template.querySelector('#lEmailIdPreview').textContent = lEmailId;
+                template.querySelector('#lPermanentaddPreview').textContent = lPermanentadd;
+                ////////////tenant details/////////
+                template.querySelector('#tFullNamePreview').textContent = tFullName;
+                template.querySelector('#tfathernamePreview').textContent = tfathername;
+                // template.querySelector('#tPhonenoPreview').textContent = tPhoneno;
+                // template.querySelector('#tEmailIdPreview').textContent = tEmailId;
+                template.querySelector('#tPermanentaddPreview').textContent = tPermanentadd;
+                ///////////////propertydetails/////////////
+                template.querySelector('#propertyAddressPreview').textContent = propertyAddress;
+                template.querySelector('#propertyAddress1Preview').textContent = propertyAddress;
+                template.querySelector('#HousenoPreview').textContent = Houseno;
+                template.querySelector('#Houseno1Preview').textContent = Houseno;
+                template.querySelector('#LocalityPreview').textContent = Locality;
+                template.querySelector('#Locality1Preview').textContent = Locality;
+                template.querySelector('#PincodePreview').textContent = Pincode;
+                template.querySelector('#Pincode1Preview').textContent = Pincode;
+                template.querySelector('#FloorNoPreview').textContent = FloorNo;
+                template.querySelector('#FloorNo1Preview').textContent = FloorNo;
+                template.querySelector('#ChoosebhkPreview').textContent = Choosebhk;
+                template.querySelector('#Choosebhk1Preview').textContent = Choosebhk;
+                /////////// Contract Details///////////
+                template.querySelector('#rentPreview').textContent = rent;
+                template.querySelector('#propertyAddressPeriodPreview').textContent = propertyAddress;
+                // template.querySelector('#propertyAddressRentPreview').textContent = propertyAddress;
+                template.querySelector('#startDatePreview').textContent = startDate;
+                template.querySelector('#startDate1Preview').textContent = startDate;
+                template.querySelector('#startDate2Preview').textContent = startDate;
+                template.querySelector('#rentPeriodPreview').textContent = startDate;
+                template.querySelector('#rentPeriod1Preview').textContent = startDate;
+                template.querySelector('#rentPeriod2Preview').textContent = startDate;
+                template.querySelector('#PaymentDatePreview').textContent = PaymentDate;
+                template.querySelector('#securityAmountPreview').textContent = securityAmount;
+                template.querySelector('#securityAmountPeriodPreview').textContent = securityAmount;
+                template.querySelector('#securityAmountPeriod1Preview').textContent = securityAmount;
+                // template.querySelector('#securityAmountPeriod2Preview').textContent = securityAmount;
+                template.querySelector('#NoticePeriodPreview').textContent = NoticePeriod;
+                const preview = document.getElementById('agreementPreview');
+                preview.innerHTML = '';
+                preview.appendChild(template);
+                document.getElementById('previewSection').style.display = 'block';
+                var myModal = new bootstrap.Modal(document.getElementById('agreementModal'));
+                myModal.show();
+            } else {
+                form.reportValidity();
+            }
+              // Show the modal
+        }
+
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const agreementElement = document.getElementById('agreementPreview');
+
+            await html2canvas(agreementElement).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = 210;
+                const imgHeight = canvas.height * imgWidth / canvas.width;
+                doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                doc.addImage(imgData, 'PNG', 1, 1, imgWidth, imgHeight);
+                doc.save('rental_agreement.pdf');
+            });
+        }
+
+    </script>
+</body>
+
+</html>

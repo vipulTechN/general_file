@@ -1,33 +1,43 @@
-###############################  pdf Function()
-function generatePDF() {
-            // Get the agreement element
-            const template = document.getElementById('agreementTemplate');
-            const agreementElement = document.importNode(template.content, true).querySelector('.agreementTemplateclas');
-            // Options for html2pdf
-            const opt = {
-                margin: 0.5,       // Top, right, bottom, left
-                filename: 'rental_agreement.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-            };
-            // Debugging step: Log the agreementElement
-            console.log(agreementElement);
-            // Generate PDF
-            html2pdf().set(opt).from(agreementElement).save().then(() => {
-                console.log('PDF generated successfully');
-            }).catch((error) => {
-                console.error('Error generating PDF:', error);
-            });
-        }
+///article page html update
 
-################################ pdf CDN Convertor Load these Scripts in Bottom before Function
-<!-- Include html2canvas JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Include jsPDF JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- Include html2pdf JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <!-- Include Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+<div class="row">
+            <div class="col-lg-4">
+                <div class="midlefty">
+                    <img src="/static/images/stayupdatedrealestate.webp"                    
+                     alt="blog static img">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                        <div class="midrighty">
+                        </div>
+            </div>
+</div>
+///article page css update
+
+.blog-item .blog-bottom {
+    padding: 35px 15px 50px 30px;
+    /* position: relative; */
+}
+.blog-item {
+    height: 475px;
+    position: relative;
+    margin-bottom: 50px;
+    box-shadow: 3px 3px 5px #9796968c;
+    border-radius: 65px 65px 0 0;
+    background-color: #fff8dc;
+    transform: scale(1);
+    transition: .3s ease-in-out;
+}
+.sameliforbl {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 10px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, .39);
+}
+@media only screen and (max-width: 767px) {
+    .sameliforbl {
+        display: block;
+        height: auto;
+    }
+}

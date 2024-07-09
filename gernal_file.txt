@@ -1,3 +1,95 @@
- 
+//common css for sell ,rent ,pg
+        #amountresult{
+            font-size:13px;
+            color: black;
+            margin-bottom: 0px;
+        }
 
+//rent
+
+<input type="hidden" name="min_price_filter" step="0.01" id="id_min_price_filter" required/>
+<input type="number" id="moneyInput" placeholder="Min. Pricing" required oninput="formatMoney()" class="cidrop-input"/>
+<p id="amountresult"></p>
+
+<script>
+                                        function formatMoney() {
+                                            let money = document.getElementById('moneyInput').value;
+                                            money = parseFloat(money);
+
+                                            if (isNaN(money) || money < 0) {
+                                                document.getElementById('amountresult').innerText = 'Please enter a valid positive number.';
+                                                // rent 
+                                                document.getElementById('id_min_price_filter').value = '';
+                                                return;
+                                            }
+
+                                            let formattedMoney = money.toLocaleString('en-US', { maximumFractionDigits: 2 });
+                                            let unit = '';
+
+                                            if (money >= 1e9) {
+                                                formattedMoney = (money / 1e9).toLocaleString('en-US', { maximumFractionDigits: 2 });
+                                                unit = ' Billion';
+                                            } else if (money >= 1e7) {
+                                                formattedMoney = (money / 1e7).toLocaleString('en-US', { maximumFractionDigits: 2 });
+                                                unit = ' Cr.';
+                                            } else if (money >= 1e5) {
+                                                formattedMoney = (money / 1e5).toLocaleString('en-US', { maximumFractionDigits: 2 });
+                                                unit = ' Lakh';
+                                            } else if (money >= 1e6) {
+                                                formattedMoney = (money / 1e6).toLocaleString('en-US', { maximumFractionDigits: 2 });
+                                                unit = ' Million';
+                                            } else if (money >= 1e3) {
+                                                formattedMoney = (money / 1e3).toLocaleString('en-US', { maximumFractionDigits: 2 });
+                                                unit = ' Thousand';
+                                            }
+                                            document.getElementById('amountresult').innerText = `Property Amt.: ${formattedMoney}${unit}`;
+                                            //rent
+                                            document.getElementById('id_min_price_filter').value = formattedMoney + unit;
+                                        }
+                                    </script> 
+
+
+
+//pg
+
+<input type="hidden" name="min_price" value="0" required id="id_min_price">
+<input type="number" id="moneyInput" placeholder="Min. Pricing" required oninput="formatMoney()" class="cidrop-input"/>
+<p id="amountresult"></p>
  
+<script>
+function formatMoney() {
+    let money = document.getElementById('moneyInput').value;
+    money = parseFloat(money);
+
+    if (isNaN(money) || money < 0) {
+        document.getElementById('amountresult').innerText = 'Please enter a valid positive number.';
+        // pg 
+        document.getElementById('id_min_price').value = '';
+        return;
+    }
+
+    let formattedMoney = money.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    let unit = '';
+
+    if (money >= 1e9) {
+        formattedMoney = (money / 1e9).toLocaleString('en-US', { maximumFractionDigits: 2 });
+        unit = ' Billion';
+    } else if (money >= 1e7) {
+        formattedMoney = (money / 1e7).toLocaleString('en-US', { maximumFractionDigits: 2 });
+        unit = ' Cr.';
+    } else if (money >= 1e5) {
+        formattedMoney = (money / 1e5).toLocaleString('en-US', { maximumFractionDigits: 2 });
+        unit = ' Lakh';
+    } else if (money >= 1e6) {
+        formattedMoney = (money / 1e6).toLocaleString('en-US', { maximumFractionDigits: 2 });
+        unit = ' Million';
+    } else if (money >= 1e3) {
+        formattedMoney = (money / 1e3).toLocaleString('en-US', { maximumFractionDigits: 2 });
+        unit = ' Thousand';
+    }
+
+    document.getElementById('amountresult').innerText = `Property Amt.: ${formattedMoney}${unit}`;
+    // pg 
+    document.getElementById('id_min_price').value = formattedMoney + unit;
+}
+</script>

@@ -5,10 +5,8 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <style>
     #header1 {top: 0px!important;}
-    .submitdetailwrap{margin-top: 65px;}
-    .active, .btnsss:hover {
-    background: transparent!important;
-    }
+    .submitdetailwrap {margin-top: 65px;}
+    .active, .btnsss:hover {background: transparent!important;}
 
     .hidden { 
       display: none;
@@ -71,6 +69,7 @@
     <div class="submitdetailwrap">
         <div class="container srpcontain">
             <div class="row">
+                
                 <div class="col-lg-7" id="leftsubmit-dets">
                     <form method="post" enctype="multipart/form-data" id="submit_propertyid">
                         {% csrf_token %}
@@ -83,6 +82,28 @@
 
                             <div class="fielddets">
                                 <div class="label labelselect">
+                                    I am <span class="req">*</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="owner" required 
+                                            id="id_u_property_type_1" class="iamradio" checked>
+                                        <label for="id_u_property_type_1"> Owner</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="agent" required 
+                                            id="id_u_property_type_2" class="iamradio">
+                                        <label for="id_u_property_type_2" id="fielabs">Agent</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="builder" required
+                                            id="id_u_property_type_3" class="iamradio">
+                                        <label for="id_u_property_type_3" id="fielabs">Builder</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fielddets">
+                                <div class="label labelselect">
                                     Here To<span class="req">*</span>
                                 </div>
                                 <ul>
@@ -93,12 +114,12 @@
                                     </li>
                                     <li>
                                         <input type="radio" name="hereto" value="Rent/Lease" class="iamradio"
-                                            style="cursor: no-drop;">
+                                            style="cursor: no-drop;" disabled>
                                         <label for="Rent/Lease" id="fielabs">Rent/Lease</label>
                                     </li>
                                     <li>
                                         <input type="radio" name="hereto" value="Pg/Colive" class="iamradio"
-                                            style="cursor: no-drop;">
+                                            style="cursor: no-drop;" disabled>
                                         <label for="Pg/Colive" id="fielabs">Pg/Co-live</label>
                                     </li>
                                 </ul>
@@ -239,111 +260,11 @@
                                     <div class="col-lg-6 apartment villa">
                                         <div class="contentwrap">
                                             <div class="label">
-                                                Total Floor
+                                                Total Floors <span class="req">*</span> 
                                             </div>
                                             <div class="locationinput">
-                                                   <select id="id_total_floors" class="cidrop-input" name="total_floors">
-                                                    <option value='totalfloor(0)'>0</option>
-                                                    <option value='totalfloor(1)'>1</option>
-                                                    <option value='totalfloor(2)'>2</option>
-                                                    <option value='totalfloor(3)'>3</option>
-                                                    <option value='totalfloor(4)'>4</option>
-                                                    <option value='totalfloor(5)'>5</option>
-                                                    <option value='totalfloor(6)'>6</option>
-                                                    <option value='totalfloor(7)'>7</option>
-                                                    <option value='totalfloor(8)'>8</option>
-                                                    <option value='totalfloor(9)'>9</option>
-                                                    <option value='totalfloor(10)'>10</option>
-                                                    <option value='totalfloor(11)'>11</option>
-                                                    <option value='totalfloor(12)'>12</option>
-                                                    <option value='totalfloor(13)'>13</option>
-                                                    <option value='totalfloor(14)'>14</option>
-                                                    <option value='totalfloor(15)'>15</option>
-                                                    <option value='totalfloor(16)'>16</option>
-                                                    <option value='totalfloor(17)'>17</option>
-                                                    <option value='totalfloor(18)'>18</option>
-                                                    <option value='totalfloor(19)'>19</option>
-                                                    <option value='totalfloor(20)'>20</option>
-                                                    <option value='totalfloor(21)'>21</option>
-                                                    <option value='totalfloor(22)'>22</option>
-                                                    <option value='totalfloor(23)'>23</option>
-                                                    <option value='totalfloor(24)'>24</option>
-                                                    <option value='totalfloor(25)'>25</option>
-                                                    <option value='totalfloor(26)'>26</option>
-                                                    <option value='totalfloor(27)'>27</option>
-                                                    <option value='totalfloor(28)'>28</option>
-                                                    <option value='totalfloor(29)'>29</option>
-                                                    <option value='totalfloor(30)'>30</option>
-                                                    <option value='totalfloor(31)'>31</option>
-                                                    <option value='totalfloor(32)'>32</option>
-                                                    <option value='totalfloor(33)'>33</option>
-                                                    <option value='totalfloor(34)'>34</option>
-                                                    <option value='totalfloor(35)'>35</option>
-                                                    <option value='totalfloor(36)'>36</option>
-                                                    <option value='totalfloor(37)'>37</option>
-                                                    <option value='totalfloor(38)'>38</option>
-                                                    <option value='totalfloor(39)'>39</option>
-                                                    <option value='totalfloor(40)'>40</option>
-                                                    <option value='totalfloor(41)'>41</option>
-                                                    <option value='totalfloor(42)'>42</option>
-                                                    <option value='totalfloor(43)'>43</option>
-                                                    <option value='totalfloor(44)'>44</option>
-                                                    <option value='totalfloor(45)'>45</option>
-                                                    <option value='totalfloor(46)'>46</option>
-                                                    <option value='totalfloor(47)'>47</option>
-                                                    <option value='totalfloor(48)'>48</option>
-                                                    <option value='totalfloor(49)'>49</option>
-                                                    <option value='totalfloor(50)'>50</option>
-                                                    <option value='totalfloor(51)'>51</option>
-                                                    <option value='totalfloor(52)'>52</option>
-                                                    <option value='totalfloor(53)'>53</option>
-                                                    <option value='totalfloor(54)'>54</option>
-                                                    <option value='totalfloor(55)'>55</option>
-                                                    <option value='totalfloor(56)'>56</option>
-                                                    <option value='totalfloor(57)'>57</option>
-                                                    <option value='totalfloor(58)'>58</option>
-                                                    <option value='totalfloor(59)'>59</option>
-                                                    <option value='totalfloor(60)'>60</option>
-                                                    <option value='totalfloor(61)'>61</option>
-                                                    <option value='totalfloor(62)'>62</option>
-                                                    <option value='totalfloor(63)'>63</option>
-                                                    <option value='totalfloor(64)'>64</option>
-                                                    <option value='totalfloor(65)'>65</option>
-                                                    <option value='totalfloor(66)'>66</option>
-                                                    <option value='totalfloor(67)'>67</option>
-                                                    <option value='totalfloor(68)'>68</option>
-                                                    <option value='totalfloor(69)'>69</option>
-                                                    <option value='totalfloor(70)'>70</option>
-                                                    <option value='totalfloor(71)'>71</option>
-                                                    <option value='totalfloor(72)'>72</option>
-                                                    <option value='totalfloor(73)'>73</option>
-                                                    <option value='totalfloor(74)'>74</option>
-                                                    <option value='totalfloor(75)'>75</option>
-                                                    <option value='totalfloor(76)'>76</option>
-                                                    <option value='totalfloor(77)'>77</option>
-                                                    <option value='totalfloor(78)'>78</option>
-                                                    <option value='totalfloor(79)'>79</option>
-                                                    <option value='totalfloor(80)'>80</option>
-                                                    <option value='totalfloor(81)'>81</option>
-                                                    <option value='totalfloor(82)'>82</option>
-                                                    <option value='totalfloor(83)'>83</option>
-                                                    <option value='totalfloor(84)'>84</option>
-                                                    <option value='totalfloor(85)'>85</option>
-                                                    <option value='totalfloor(86)'>86</option>
-                                                    <option value='totalfloor(87)'>87</option>
-                                                    <option value='totalfloor(88)'>88</option>
-                                                    <option value='totalfloor(89)'>89</option>
-                                                    <option value='totalfloor(90)'>90</option>
-                                                    <option value='totalfloor(91)'>91</option>
-                                                    <option value='totalfloor(92)'>92</option>
-                                                    <option value='totalfloor(93)'>93</option>
-                                                    <option value='totalfloor(94)'>94</option>
-                                                    <option value='totalfloor(95)'>95</option>
-                                                    <option value='totalfloor(96)'>96</option>
-                                                    <option value='totalfloor(97)'>97</option>
-                                                    <option value='totalfloor(98)'>98</option>
-                                                    <option value='totalfloor(99)'>99</option>
-                                                    </select>
+                                                <input type="number" placeholder="Total floors" name="total_floors" min="0" 
+                                                id="id_total_floors" required class="cidrop-input">
                                             </div>
                                         </div>
                                     </div>
@@ -415,14 +336,14 @@
                                             <div class="locationinput">
                                                 <select name="facing" id="id_facing" class="cidrop-input">
                                                     <option value="" selected>Select Type</option>
-                                                    <option value="North">North</option>
-                                                    <option value="East">East</option>
-                                                    <option value="South">South</option>
-                                                    <option value="West">West</option>
-                                                    <option value="NorthEast">NorthEast</option>
-                                                    <option value="NorthWest">NorthWest</option>
-                                                    <option value="SouthEast">SouthEast</option>
-                                                    <option value="SouthWest">SouthWest</option>
+                                                    <option value="north">North</option>
+                                                    <option value="east">East</option>
+                                                    <option value="south">South</option>
+                                                    <option value="west">West</option>
+                                                    <option value="northeast">NorthEast</option>
+                                                    <option value="southeast">SouthEast</option>
+                                                    <option value="northwest">NorthWest</option>
+                                                    <option value="southwest">SouthWest</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -438,7 +359,7 @@
                                             </div>
                                             <div class="locationinput">
                                                 <input type="number" placeholder="No of Towers" name="no_of_tower"
-                                                    min="0" id="id_no_of_tower" class= "cidrop-input">
+                                                    min="0" id="id_no_of_tower" class= "cidrop-input" required>
                                             </div>
                                         </div>
                                     </div>
@@ -525,10 +446,10 @@
 
                                 <div class="contentwrap apartment plot villa">
                                     <div class="label apartment villa">
-                                        Super Area <span class="req">*</span>
+                                        SBA/ Plot Area<span class="req">*</span>
                                     </div>
                                     <div class="label plot">
-                                        Price/Sq.Ft. <span class="req">*</span>
+                                        Price <span class="req">*</span>
                                     </div>
                                     <div class = "locationinput carpetAreaType shortinputbar">
                                         <input type="hidden" id="id_super_area"  name="super_area" value="">
@@ -657,7 +578,7 @@
                                                 Approval Status
                                             </div>
                                             <div class="cityinput">
-                                                <select name="approval_status" id="id_approval_status" class="cidrop-input">
+                                                <select name="approval_status" id="id_approval_status" class="cidrop-input" required>
                                                     <option value="" selected>Select Type</option>
                                                     <option value="others">Others</option>
                                                     <option value="BBMP">BBMP Approved</option>
@@ -683,7 +604,7 @@
                                         Expected Price <span class="req">*</span>
                                     </div>
                                     <div class="cityinput">
-                                        <input type="hidden" name="property_price" maxlength="30"required id="id_property_price">
+                                        <input type="hidden" name="property_price" maxlength="30" id="id_property_price">
                                         <input type="number" id="moneyInput" placeholder="Pricing" required oninput="formatMoney()" class="cidrop-input"/>
                                         <p id="amountresult"></p>
                                         <input type="checkbox" id="negotiable-checkbox" disabled>
@@ -1003,7 +924,6 @@
         var totalPriceInput = document.getElementById('id_property_price');
         var negotiableCheckbox = document.getElementById('negotiable-checkbox');
         var labelprice = document.getElementById('labelprice');
-    
         totalPriceInput.addEventListener('input', function() {
             if (totalPriceInput.value.trim() !== '') {
                 negotiableCheckbox.disabled = false;

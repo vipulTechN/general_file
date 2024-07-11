@@ -24,3 +24,161 @@
 24. terms
 25. testimonial
 26. user_login
+
+
+.label {
+    margin: 30px 0px;
+}
+
+.locationinput {
+    display: flex;
+    justify-content: space-evenly;
+}
+.locationinput img {
+    width: 100px;
+    height: 100px;
+}
+
+.hidden { 
+      display: none;
+    }
+
+    .error {
+     border: 1px solid red;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 0.9em;
+    }
+
+    .success-message {
+        color: green;
+        font-size: 0.9em;
+    }
+
+    .addrembtn{
+        display: flex;
+        align-items: center;
+    }
+
+    .addrembtn button{
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: 3px 20px;
+        margin-top: 12px;
+        font-size: 10px;
+    }
+
+    #add-button{
+        background-color: green;
+    }
+
+    #remove-button{
+        background-color: red;
+    }
+
+    .field{
+        margin-top: 20px;
+    }
+
+<p class="error-message hidden" id="error-message">Please check the image size or upload an image below 500KB.</p>
+<p class="success-message hidden" id="success-message">Looks Good</p>
+<div class="addrembtn">
+ <button id="add-button" type="button">+ Add image</button>
+ <button id="remove-button" class="hidden" type="button">- Remove image</button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const addButton = document.getElementById("add-button");
+    const removeButton = document.getElementById("remove-button");
+    const errorMessage = document.getElementById("error-message");
+    const successMessage = document.getElementById("success-message");
+    let currentUpload = 1;
+  
+    const handleFileChange = (event) => {
+      const fileInput = event.target;
+      document.querySelectorAll('.success').forEach(input => input.classList.remove("success"));
+  
+      if (fileInput.files[0].size <= 512000) {
+        fileInput.classList.remove("error");
+        errorMessage.classList.add("hidden");
+        successMessage.classList.remove("hidden");
+        fileInput.classList.add("success");
+        checkInputsVisibility();
+      } else {
+        fileInput.classList.add("error");
+        errorMessage.classList.remove("hidden");
+        successMessage.classList.add("hidden");
+      }
+    };
+  
+    const addNextUploadField = () => {
+      const currentFileInput = document.getElementById(`id_images-${currentUpload - 1}-image`);
+  
+      if (currentFileInput.files.length > 0 && currentFileInput.files[0].size <= 512000) {
+        const nextUpload = currentUpload + 1;
+        if (nextUpload <= 5) {
+          document.getElementById(`upload-${nextUpload}`).classList.remove("hidden");
+          currentUpload = nextUpload;
+          removeButton.classList.remove("hidden");
+        }
+        toggleAddButton();
+        errorMessage.classList.add("hidden");
+        successMessage.classList.add("hidden");
+      } else {
+        currentFileInput.classList.add("error");
+        errorMessage.classList.remove("hidden");
+        successMessage.classList.add("hidden");
+      }
+    };
+  
+    const removeLastUploadField = () => {
+      if (currentUpload > 1) {
+        const lastUploadField = document.getElementById(`id_images-${currentUpload - 1}-image`);
+        lastUploadField.value = "";
+        lastUploadField.classList.remove("error");
+        lastUploadField.classList.remove("success");
+        currentUpload--;
+        document.getElementById(`upload-${currentUpload + 1}`).classList.add("hidden");
+        if (currentUpload === 1) {
+          removeButton.classList.add("hidden");
+        }
+        toggleAddButton();
+        errorMessage.classList.add("hidden");
+        successMessage.classList.add("hidden");
+      }
+    };
+  
+    const toggleAddButton = () => {
+      if (currentUpload < 5) {
+        addButton.classList.remove("hidden");
+      } else {
+        addButton.classList.add("hidden");
+      }
+    };
+  
+    const checkInputsVisibility = () => {
+      for (let i = 0; i < 5; i++) {
+        const uploadField = document.getElementById(`upload-${i + 1}`);
+        const fileInput = document.getElementById(`id_images-${i}-image`);
+  
+        if (fileInput.files.length > 0 || fileInput.previousElementSibling.tagName === "IMG") {
+          uploadField.classList.remove("hidden");
+        } else {
+          uploadField.classList.add("hidden");
+        }
+      }
+    };
+  
+    for (let i = 0; i < 5; i++) {
+      document.getElementById(`id_images-${i}-image`).addEventListener("change", handleFileChange);
+    }
+  
+    addButton.addEventListener("click", addNextUploadField);
+    removeButton.addEventListener("click", removeLastUploadField);
+    checkInputsVisibility();
+  });
+</script>

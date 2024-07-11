@@ -1,0 +1,516 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent newsubmit</title>
+    <link rel="stylesheet" href="{% static 'css/newsubmit.css' %}">
+    <style>
+        #header {
+            background-color: #1b6c9f !important;
+            position: fixed;
+            top: 0px;
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 100% !important;
+            }
+        }
+    </style>
+{% endblock %}
+{%block body_block%}
+    <div class="submitdetailwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7" id="leftsubmit-dets">
+                    <form method="post" enctype="multipart/form-data" id="submit_propertyid">
+                        {% csrf_token %}
+                        <!-- detail section -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit" style="margin-top: 0px">
+                                <h5>Property details</h5>
+                            </div>
+
+                            <div class="fielddets">
+                                <div class="label labelselect">
+                                    I am <span class="req">*</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="owner" required id="id_u_property_type_1"
+                                        class="iamradio"  {% if property.u_property_type == 'owner' %} checked {% endif %}>
+                                        <label for="id_u_property_type_1"> Owner</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="agent" required id="id_u_property_type_2"
+                                        class="iamradio" {% if property.u_property_type == 'agent' %} checked {% endif %}>
+                                        <label for="id_u_property_type_2" id="fielabs">Agent</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="builder" required
+                                        id="id_u_property_type_3" class="iamradio" {% if property.u_property_type == 'builder' %} checked {% endif %}>
+                                        <label for="id_u_property_type_3" id="fielabs">Builder</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fielddets">
+                                <div class="label labelselect">
+                                    Here To<span class="req">*</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="hereto" value="sell" class="iamradio"
+                                            style="cursor: no-drop" />
+                                        <label for="sell">Sell</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Rent/Lease" required class="iamradio"
+                                            checked />
+                                        <label for="Rent/Lease" id="fielabs">Rent/Lease</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Pg/Colive" class="iamradio"
+                                            style="cursor: no-drop" />
+                                        <label for="Pg/Colive" id="fielabs">Pg/Co-live</label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="fielddets-type">
+                                <div class="label">
+                                    Property Type <span class="req">*</span>
+                                </div>
+                                <div class="formCom">
+                                        <select name="total_rooms" required id="id_total_rooms"  class="cidrop-input">
+                                            <option value="" {% if property.total_rooms == '' %} selected {% endif %}>Apartment Type</option>
+
+                                            <option value="1RK" {% if property.total_rooms == '1RK' %} selected {% endif %}>1 RK</option>
+                       
+                                            <option value="1BHK" {% if property.total_rooms == '1BHK' %} selected {% endif %}>1 BHK</option>
+                       
+                                            <option value="2BHK" {% if property.total_rooms == '2BHK' %} selected {% endif %}>2 BHK</option>
+                       
+                                            <option value="3BHK" {% if property.total_rooms == '3BHK' %} selected {% endif %}>3 BHK</option>
+                       
+                                            <option value="4BHK" {% if property.total_rooms == '4BHK' %} selected {% endif %}>4 BHK</option>
+                       
+                                            <option value="5BHK" {% if property.total_rooms == '5BHK' %} selected {% endif %}>5 BHK</option>
+                       
+                                            <option value="villa" {% if property.total_rooms == 'villa' %} selected {% endif %}>Villa</option>
+                       
+                                            <option value="commercialspace" {% if property.total_rooms == 'commercialspace' %} selected {% endif %}>Commercial Space</option>
+                                         </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- location section  -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit">
+                                <h5>Property Location</h5>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    City <span class="req">*</span>
+                                </div>
+                                <div class="cityinput">
+                                    <select name="project_city" id="id_project_city" required class="cidrop-input">
+
+                                        <option value="bengaluru" {% if property.project_city == 'bengaluru' %} selected {% endif %}>Bengaluru</option>
+           
+                                        <option value="chennai" {% if property.project_city == 'chennai' %} selected {% endif %}>Chennai</option>
+                              
+                                        <option value="mumbai" {% if property.project_city == 'mumbai' %} selected {% endif %}>Mumbai</option>
+                              
+                                        <option value="hyderabad" {% if property.project_city == 'hyderabad' %} selected {% endif %}>Hyderabad</option>
+                              
+                                        <option value="delhi" {% if property.project_city == 'delhi' %} selected {% endif %}>Delhi</option>
+                              
+                                        <option value="pune" {% if property.project_city == 'pune' %} selected {% endif %}>Pune</option>
+                              
+                                        <option value="allindia" {% if property.project_city == 'allindia' %} selected {% endif %}>All India</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Locality <span class="req">*</span>
+                                </div>
+                                <div class="locationinput">
+                                    <input type="text" placeholder="Enter Locality" name="landmark" maxlength="100" required
+                                    id="id_landmark" value="{{ property.landmark }}" class="cidrop-input">
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Name of Project/Society <span class="req">*</span>
+                                </div>
+                                <div class="locationinput">
+                                    <input type="text" placeholder="Society name" name="r_property_name" maxlength="40"
+                                        required id="id_r_property_name" class="cidrop-input"  value="{{ property.r_property_name }}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="hiddendatablock">
+                            <!-- property features -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Property Features</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Available from <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="available_from" required id="id_available_from" class="cidrop-input">
+                                                    <option value="" {% if property.available_from == '' %} selected {% endif %}>Available from</option>
+
+                                                    <option value="immediate" {% if property.available_from == 'immediate' %} selected {% endif %}>Immediate</option>
+
+                                                    <option value="within15days" {% if property.available_from == 'within15days' %} selected {% endif %}>With In 15 Days</option>
+
+                                                    <option value="within1month" {% if property.available_from == 'within1month' %} selected {% endif %}>With In 1 Month</option>
+
+                                                    <option value="morethan1month" {% if property.available_from == 'morethan1month' %} selected {% endif %}>More Than 1 Month</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Floor No. <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="Floor No." name="floor_number" min="0"
+                                                    id="id_floor_number" required class="cidrop-input" value="{{ property.floor_number }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Furnished Status <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="furnished_status" id="id_furnished_status" required class="cidrop-input">
+                                                    <option value="furnished" {% if property.furnished_status == 'furnished' %} selected {% endif %}>Furnished</option>
+
+                                                    <option value="semi-furnished" {% if property.furnished_status == 'semi-furnished' %} selected {% endif %}>Semi-Furnished</option>
+
+                                                    <option value="unfurnished" {% if property.furnished_status == 'unfurnished' %} selected {% endif %}>Unfurnished</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Available for <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="available_for" required id="id_available_for" class="cidrop-input">
+                                                    <option value="" {% if property.available_for == '' %} selected {% endif %}>Available for</option>
+
+                                                    <option value="family" {% if property.available_for == 'family' %} selected {% endif %}>Family</option>
+
+                                                    <option value="bachelors" {% if property.available_for == 'bachelors' %} selected {% endif %}>Bachelors</option>
+
+                                                    <option value="familybachelors" {% if property.available_for == 'familybachelors' %} selected {% endif %}>Family/Bachelors</option>
+
+                                                    <option value="company-guests" {% if property.available_for == 'company-guests' %} selected {% endif %}>Company Guests</option>
+
+                                                    <option value="commercial" {% if property.available_for == 'commercial' %} selected {% endif %}>Commercial</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Lifts <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="lifts" id="id_lifts" class="cidrop-input" required>
+                                                    <option value="" {% if property.lifts == '' %} selected {% endif %}>Select</option>
+
+                                                    <option value="yes" {% if property.lifts == 'yes' %} selected {% endif %}>YES</option>
+
+                                                    <option value="no" {% if property.lifts == 'no' %} selected {% endif %}>No</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Facing <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="facing" required id="id_facing" class="cidrop-input">
+                                                    <option value="" {% if property.facing == '' %} selected {% endif %}>Select facing</option>
+
+                                                    <option value="north" {% if property.facing == 'north' %} selected {% endif %}>North</option>
+
+                                                    <option value="south" {% if property.facing == 'south' %} selected {% endif %}>South</option>
+
+                                                    <option value="east" {% if property.facing == 'east' %} selected {% endif %}>East</option>
+
+                                                    <option value="west" {% if property.facing == 'west' %} selected {% endif %}>West</option>
+
+                                                    <option value="northeast" {% if property.facing == 'NorthEast' %} selected {% endif %}>NorthEast</option>
+                                                    
+                                                    <option value="southeast" {% if property.facing == 'SouthEast' %} selected {% endif %}>SouthEast</option>
+                                                    
+                                                    <option value="southwest" {% if property.facing == 'SouthWest' %} selected {% endif %}>SouthWest</option>
+                                                    
+                                                    <option value="northwest" {% if property.facing == 'NorthWest' %} selected {% endif %}>NorthWest</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Ac Rooms <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="ac_rooms" required id="id_ac_rooms" class="cidrop-input">
+                                                    <option value="" {% if property.ac_rooms == '' %} selected {% endif %}> Ac Rooms</option>
+           
+                                                    <option value="yes" {% if property.ac_rooms == 'yes' %} selected {% endif %}>YES</option>
+                                          
+                                                    <option value="no" {% if property.ac_rooms == 'no' %} selected {% endif %}>NO</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Power Backup <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="power_backup" required id="id_power_backup" class="cidrop-input">
+
+                                                    <option value="" {% if property.power_backup == '' %} selected {% endif %}>Select Type</option>
+
+                                                    <option value="yes" {% if property.power_backup == 'yes' %} selected {% endif %}>YES</option>
+
+                                                    <option value="no" {% if property.power_backup == 'no' %} selected {% endif %}>NO</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Property Availability -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Transaction Type, Property Availability</h5>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Age of Construction
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Age of Construction" name="age_of_construction" min="0" value="{{ property.age_of_construction }}" id="id_age_of_construction" class="cidrop-input"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price Details -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Price Details And Address</h5>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Min. Pricing(/month) <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder=" Min. Pricing" name="min_price_filter"
+                                                    step="0.01" required id="id_min_price_filter" value="{{ property.min_price_filter }}"
+                                                    class="cidrop-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Max. Pricing(/month)
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Max. Pricing" name="max_price_filter" value="{{ property.max_price_filter }}"
+                                                    step="0.01" id="id_max_price_filter" class="cidrop-input"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Security Deposit <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" required placeholder="Security Deposit"
+                                                    name="security_deposit" step="0.01" id="id_security_deposit"
+                                                    class="cidrop-input" value="{{ property.security_deposit }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Maintenance Cost
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Security Deposit"
+                                                    name="maintenance_cost" step="0.01" id="id_maintenance_cost"
+                                                    class="cidrop-input" value="{{ property.maintenance_cost }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Notice Period
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Notice Period" name="notice_period" min="0" id="id_notice_period" class="cidrop-input" value="{{ property.notice_period }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Amenities
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="text" placeholder="Amenities" name="amenities"
+                                                    maxlength="300" id="id_amenities" class="cidrop-input" value="{{ property.amenities }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Address <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="text" placeholder="Address & pincode" name="address" maxlength="255" required id="id_address" class="cidrop-input" value="{{ property.address }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">Description</div>
+                                            <div class="cityinput">
+                                                <textarea name="discription" placeholder="For Good Response describe"
+                                                    id="id_discription" class="cidrop-input">{{ property.discription }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- images section -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Images</h5>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Cover Image
+                                    </div>
+                                    <div class="locationinput">
+                                        {% if property.get_cover_img_url %}
+                                            <img src="{{ property.get_cover_img_url }}" alt="Current Image">
+                                        {% else %}
+                                            <span>No cover image available</span>
+                                        {% endif %}
+                                        <input type="file" name="project_cover_img" accept="image/*" id="id_project_cover_img" class="cidrop-input">
+                                    </div>
+                                </div>
+                                {{ form.image_formset.management_form }}
+                                {% for form in form.image_formset %}
+                                <div class="field">
+                                    <div class="label">Image No-{{ forloop.counter }}</div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                {% if form.instance.image %}
+                                                    <img src="{{ form.instance.image.url }}" alt="Current Image" style="width: 50%;">
+                                                {% else %}
+                                                    <span>No image available</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-lg-6">
+                                                {{ form.image_type }}
+                                            </div>
+                                            <div class="col-lg-6">
+                                                {{ form.image }}
+                                            </div>
+                                            <div class="col-lg-12 mt-2">
+                                                {{ form.DELETE }}
+                                                {{ form.id }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- submit section  -->
+                            <div class="datablock mt-4">
+                                <button type="submit" class="submitproperty" id="submit_buttonid">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-5" id="rightsubmit-dets">
+                    <div class="rightsubmitimg">
+                        <img src="{% static 'images/pp-2.png' %}" alt="propertyimg" style="width: 100%; height: 100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/newsubmit.js' %}"></script>
+
+{% endblock %}

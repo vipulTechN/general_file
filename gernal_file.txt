@@ -182,3 +182,42 @@
     checkInputsVisibility();
   });
 </script>
+
+
+
+
+/////////////////////////////////////length of all models 
+project_society_name = models.CharField(max_length=100, null=True, blank=True)
+    project_cover_img = models.ImageField(upload_to='property_images/', blank=True, null=True)
+    def get_cover_img_url(self):
+        if self.project_cover_img and hasattr(self.project_cover_img, 'url'):
+            return self.project_cover_img.url
+        else:
+            return None  # Or return a default image URL or handle the case as per your requirement
+    apartment_type = models.CharField(max_length=60, choices=APARTMENT_TYPE_CHOICES, null=True, blank=True)
+    apartment_type_bhk = models.CharField(max_length=60, choices=APARTMENT_TYPE_BHK, null=True, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, null=True, blank=True)
+    super_area = models.CharField(max_length=30, null=True, blank=True)
+    carpet_area = models.CharField(max_length=30, null=True, blank=True)
+    furnished_status = models.CharField(max_length=20, choices=FURNISHED_STATUS_CHOICES, null=True, blank=True)
+    approval_status = models.CharField(max_length=60, null=True, blank=True)
+    project_city = models.CharField(max_length=60, choices=PROPERTY_CITY, default='allindia')
+    possession_date = models.DateField(blank=True, null=True)
+    address = models.CharField(max_length=255, verbose_name='Address', null=True, blank=True)
+    landmark = models.CharField(max_length=100, verbose_name='Landmark', null=True, blank=True)
+    total_floors = models.PositiveSmallIntegerField(null=True, blank=True)
+    floor_number = models.PositiveSmallIntegerField(default=0, null=True, blank=True)
+    total_units = models.PositiveSmallIntegerField(null=True, blank=True)
+    development_area = models.CharField(max_length=30, null=True, blank=True)
+    no_of_tower = models.PositiveSmallIntegerField(null=True, blank=True)
+    project_rera_id = models.CharField(max_length=100, null=True, blank=True)
+    car_parking = models.CharField(max_length=20, choices=PARKING, null=True, blank=True)
+    property_price = models.CharField(max_length=30, null=True, blank=True)
+    builder_name = models.CharField(max_length=100, null=True, blank=True)
+    bedrooms = models.CharField(max_length=20, choices=BEDROOM_COUNT, null=True, blank=True)
+    balconies = models.CharField(max_length=20, choices=BALCONY_COUNT, null=True, blank=True)
+    bathrooms = models.CharField(max_length=20, choices=BATHROOM_COUNT, null=True, blank=True)
+    lifts = models.CharField(max_length=30, choices=LIFT_TYPE, null=True, blank=True)
+    facing = models.CharField(max_length=30, null=True, blank=True)
+    age_of_construction = models.CharField(max_length=100, null=True, blank=True)
+    about_project = models.TextField(max_length=300, null=True, blank=True)

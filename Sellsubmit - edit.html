@@ -1,0 +1,808 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell newsubmit</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/newsubmit.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <style>
+        #header {
+            background-color: #1B6C9F !important;
+            position: fixed;
+            top: 0px;
+        }
+        .hidden { 
+            display: none;
+         }
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 100% !important;
+            }
+        }
+    </style>
+{% endblock %}
+{%block body_block%}
+    <div class="submitdetailwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7" id="leftsubmit-dets">
+                    <form method="post" enctype="multipart/form-data" id="submit_propertyid">
+                        {% csrf_token %}
+                        <!-- detail section -->
+                        <div class="datablock">
+
+                            <div class="sub-heading-submit" style="margin-top: 0px;">
+                                <h5> Property details </h5>
+                            </div>
+                            <div class="fielddets">
+                                <div class="label labelselect">
+                                    I am <span class="req">*</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="owner" required id="id_u_property_type_1"
+                                        class="iamradio"  {% if property.u_property_type == 'owner' %} checked {% endif %}>
+                                        <label for="id_u_property_type_1"> Owner</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="agent" required id="id_u_property_type_2"
+                                        class="iamradio" {% if property.u_property_type == 'agent' %} checked {% endif %}>
+                                        <label for="id_u_property_type_2" id="fielabs">Agent</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="builder" required
+                                        id="id_u_property_type_3" class="iamradio" {% if property.u_property_type == 'builder' %} checked {% endif %}>
+                                        <label for="id_u_property_type_3" id="fielabs">Builder</label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="fielddets">
+                                <div class="label labelselect">
+                                    Here To<span class="req">*</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="hereto" value="sell" required class="iamradio"
+                                            checked>
+                                        <label for="sell">Sell</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Rent/Lease" class="iamradio"
+                                            style="cursor: no-drop;">
+                                        <label for="Rent/Lease" id="fielabs">Rent/Lease</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Pg/Colive" class="iamradio"
+                                            style="cursor: no-drop;">
+                                        <label for="Pg/Colive" id="fielabs">Pg/Co-live</label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="fielddets-type">
+                                <div class="label">
+                                    Property Type <span class="req">*</span>
+                                </div>
+                                <div class="formCom">
+                                    <select name="apartment_type"  onchange="showHideFields(this.value)" onclick="hiddendatablocks(this.value)" required id="id_apartment_type" class="cidrop-input">
+                                        <option value="" {% if property.apartment_type == '' %} selected {% endif %}> Select Type</option>
+
+                                        <option value="villa" {% if property.apartment_type == 'villa' %} selected {% endif %}>Villa</option>
+            
+                                        <option value="plot" {% if property.apartment_type == 'plot' %} selected {% endif %}>Plot</option>
+            
+                                        <option value="apartment" {% if property.apartment_type == 'apartment' %} selected {% endif %}>apartment</option>
+            
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- location section  -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit">
+                                <h5> Property Location </h5>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    City <span class="req">*</span>
+                                </div>
+                                <div class="cityinput">
+                                    <select name="project_city" id="id_project_city" class="cidrop-input" required>
+
+                                        <option value="" {% if property.project_city == '' %} selected {% endif %}>Select City</option>
+
+                                        <option value="bengaluru" {% if property.project_city == 'bengaluru' %} selected {% endif %}>Bengaluru</option>
+
+                                        <option value="chennai" {% if property.project_city == 'chennai' %} selected {% endif %}>Chennai</option>
+
+                                        <option value="mumbai" {% if property.project_city == 'mumbai' %} selected {% endif %}>Mumbai</option>
+
+                                        <option value="hyderabad" {% if property.project_city == 'hyderabad' %} selected {% endif %}>Hyderabad</option>
+
+                                        <option value="delhi" {% if property.project_city == 'delhi' %} selected {% endif %}>Delhi</option>
+
+                                        <option value="pune" {% if property.project_city == 'pune' %} selected {% endif %}>Pune</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Locality <span class="req">*</span>
+                                </div>
+                                <div class="locationinput">
+                                        <input type="text" placeholder="Enter Locality" name="landmark" maxlength="100" required
+                                        id="id_landmark"  value="{{ property.landmark }}" class="cidrop-input">
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Name of Project/Society <span class="req">*</span>
+                                </div>
+                                <div class="locationinput">
+                                        <input type="text" placeholder="Society name" name="project_society_name" maxlength="100"
+                                        required id="id_project_society_name" value="{{ property.project_society_name }}" class="cidrop-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="hiddendatablock">
+
+                            <!-- property features -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5> Property Features </h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Apartment Type <span class="req">*</span>
+                                            </div>
+                                            
+                                            <div class="locationinput">
+                                                <select name="apartment_type_bhk" id="id_apartment_type_bhk" class="cidrop-input" required>
+
+                                                    <option value="" {% if property.bedrooms == '' %} selected {% endif %}>Select Bedrooms</option>
+
+                                                    <option value="1bhk" {% if property.bedrooms == '1' %} selected {% endif %}>1 BHK</option>
+
+                                                    <option value="2bhk" {% if property.bedrooms == '2' %} selected {% endif %}>2 BHK</option>
+
+                                                    <option value="3bhk" {% if property.bedrooms == '3' %} selected {% endif %}>3 BHK</option>
+
+                                                    <option value="4bhk" {% if property.bedrooms == '4' %} selected {% endif %}>4 BHK</option>
+
+                                                    <option value="5bhk" {% if property.bedrooms == '5' %} selected {% endif %}>5 BHK</option>
+
+                                                    <option value="0" {% if property.bedrooms == '0' %} selected {% endif %}>Others</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label apartment villa">
+                                                Bedrooms <span class="req">*</span>
+                                            </div>
+                                            <div class="label plot">
+                                                No. of Sides  <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="bedrooms" id="id_bedrooms" class="cidrop-input" required>
+                                                    <option value="" {% if property.bedrooms == '' %} selected {% endif %}>Select Bedrooms</option>
+
+                                                    <option value="1" {% if property.bedrooms == '1' %} selected {% endif %}>1</option>
+
+                                                    <option value="2" {% if property.bedrooms == '2' %} selected {% endif %}>2</option>
+
+                                                    <option value="3" {% if property.bedrooms == '3' %} selected {% endif %}>3</option>
+
+                                                    <option value="4" {% if property.bedrooms == '4' %} selected {% endif %}>4</option>
+
+                                                    <option value="5" {% if property.bedrooms == '5' %} selected {% endif %}>5</option>
+
+                                                    <option value="0" {% if property.bedrooms == '0' %} selected {% endif %}>Others</option>
+
+                                                    <option value="-1" {% if property.bedrooms == '-1' %} selected {% endif %}>N/A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Balconies <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="balconies" id="id_balconies" class="cidrop-input" required>
+                                                    <option value="" {% if property.balconies == '' %} selected {% endif %}>Select Balconies</option>
+
+                                                    <option value="1" {% if property.balconies == '1' %} selected {% endif %}>1</option>
+
+                                                    <option value="2" {% if property.balconies == '2' %} selected {% endif %}>2</option>
+
+                                                    <option value="3" {% if property.balconies == '3' %} selected {% endif %}>3</option>
+
+                                                    <option value="4" {% if property.balconies == '4' %} selected {% endif %}>4</option>
+
+                                                    <option value="5" {% if property.balconies == '5' %} selected {% endif %}>5</option>
+
+                                                    <option value="0" {% if property.balconies == '0' %} selected {% endif %}>Others</option>
+
+                                                    <option value="-1" {% if property.balconies == '-1' %} selected {% endif %}>N/A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Bathrooms <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="bathrooms" id="id_bathrooms" class="cidrop-input" required>
+                                                    <option value="" {% if property.bathrooms == '' %} selected {% endif %}>Select Bathrooms</option>
+
+                                                    <option value="1" {% if property.bathrooms == '1' %} selected {% endif %}>1</option>
+
+                                                    <option value="2" {% if property.bathrooms == '2' %} selected {% endif %}>2</option>
+
+                                                    <option value="3" {% if property.bathrooms == '3' %} selected {% endif %}>3</option>
+
+                                                    <option value="4" {% if property.bathrooms == '4' %} selected {% endif %}>4</option>
+
+                                                    <option value="5" {% if property.bathrooms == '5' %} selected {% endif %}>5</option>
+
+                                                    <option value="0" {% if property.bathrooms == '0' %} selected {% endif %}>Others</option>
+
+                                                    <option value="-1" {% if property.bathrooms == '-1' %} selected {% endif %}>N/A</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Total Floor
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="Total floors" name="total_floors" min="0" 
+                                                 id="id_total_floors" value="{{ property.total_floors }}" required class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label apartment villa">
+                                                Lifts <span class="req">*</span>
+                                            </div>
+                                            <div class="label plot">
+                                                Is in a gated colony <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="lifts" id="id_lifts" class="cidrop-input" required>
+                                                    <option value="" {% if property.lifts == '' %} selected {% endif %}>Select</option>
+
+                                                    <option value="yes" {% if property.lifts == 'yes' %} selected {% endif %}>YES</option>
+
+                                                    <option value="no" {% if property.lifts == 'no' %} selected {% endif %}>No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Floor No. <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="Floor Number" name="floor_number" min="0" required
+                                                id="id_floor_number" value="{{ property.floor_number }}" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Total Units <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="Total units" name="total_units" min="0" 
+                                                 id="id_total_units" value="{{ property.total_units }}" required class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Furnished Status <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="furnished_status" required id="id_furnished_status"
+                                                    class="cidrop-input">
+                                                    <option value="" {% if property.furnished_status == '' %} selected {% endif %}>Select Status</option>
+
+                                                    <option value="furnished" {% if property.furnished_status == 'furnished' %} selected {% endif %}>Furnished</option>
+                        
+                                                    <option value="semi-furnished" {% if property.furnished_status == 'semi-furnished' %} selected {% endif %}>Semi-Furnished</option>
+                        
+                                                    <option value="unfurnished" {% if property.furnished_status == 'unfurnished' %} selected {% endif %}>Unfurnished</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Facing
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="facing" id="id_facing" class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="North">North</option>
+                                                    <option value="East">East</option>
+                                                    <option value="South">South</option>
+                                                    <option value="West">West</option>
+                                                    <option value="NorthEast">NorthEast</option>
+                                                    <option value="NorthWest">NorthWest</option>
+                                                    <option value="SouthEast">SouthEast</option>
+                                                    <option value="SouthWest">SouthWest</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label apartment villa">
+                                                No. of Towers
+                                            </div>
+                                            <div class="label plot">
+                                                Width of road facing the plot (in mtr) <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="No of Towers" name="no_of_tower"
+                                                    min="0" id="id_no_of_tower" class= "cidrop-input" value="{{ property.no_of_tower }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap ">
+                                            <div class="label apartment villa">
+                                                Parking <span class="req">*</span>
+                                            </div>
+                                            <div class="label plot">
+                                                Corner Plot <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="car_parking" required id="id_car_parking"
+                                                    class="cidrop-input">
+                                                    <option value="" {% if property.car_parking == '' %} selected {% endif %}>Select Type</option>
+
+                                                    <option value="yes" {% if property.car_parking == 'yes' %} selected {% endif %}>YES</option>
+
+                                                    <option value="no" {% if property.car_parking == 'no' %} selected {% endif %}>No</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Status Type <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="status" required id="id_status" class="cidrop-input">
+                                                    <option value="" {% if property.status == '' %} selected {% endif %}> Select Status</option>
+
+                                                    <option value="ongoing" {% if property.status == 'ongoing' %} selected {% endif %}>Ongoing</option>
+                        
+                                                    <option value="readytomove" {% if property.status == 'readytomove' %} selected {% endif %}>Ready To Move</option>
+                        
+                                                    <option value="upcoming" {% if property.status == 'upcoming' %} selected {% endif %}>UpComing</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- area section  -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5> Area </h5>
+                                </div>
+
+                                <div class="contentwrap apartment plot villa">
+                                    <div class="label apartment villa">
+                                        Carpet Area <span class="req">*</span>
+                                    </div>
+                                    <div class="label plot">
+                                        Plot Size <span class="req">*</span>
+                                    </div>
+                                    <div class="cityinput carpetAreaType shortinputbar">
+                                        <input type="hidden" id="id_carpet_area" name="carpet_area" value="">
+                                        <input type="number" placeholder="Carpet area"  step="0.01"
+                                            id="my_carpet_area" class="cidrop-input" required value="{{ property.carpet_area }}">
+                                        <select id="carpetAreaType" name="carpetAreaType" class="cidrop-input" required>
+                                            <option value="Sq-ft">Sq-ft</option>
+                                            <option value="Sq-yrd">Sq-yrd</option>
+                                            <option value="Sq-m">Sq-m</option>
+                                            <option value="Acre">Acre</option>
+                                            <option value="Bigha">Bigha</option>
+                                            <option value="Hectare">Hectare</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Kanal">Kanal</option>
+                                            <option value="Biswa1">Biswa1</option>
+                                            <option value="Biswa2">Biswa2</option>
+                                            <option value="Ground">Ground</option>
+                                            <option value="Aankadam">Aankadam</option>
+                                            <option value="Rood">Rood</option>
+                                            <option value="Chatak">Chatak</option>
+                                            <option value="Kottah">Kottah</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Cent">Cent</option>
+                                            <option value="Perch">Perch</option>
+                                            <option value="Guntha">Guntha</option>
+                                            <option value="Are">Are</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap apartment plot villa">
+                                    <div class="label apartment villa">
+                                        Super Area <span class="req">*</span>
+                                    </div>
+                                    <div class="label plot">
+                                        Price/Sq.Ft. <span class="req">*</span>
+                                    </div>
+                                    <div class = "locationinput carpetAreaType shortinputbar">
+                                        <input type="hidden" id="id_super_area"  name="super_area" value="">
+                                        <input type="number" placeholder="Super area" step="0.01"
+                                            required id="my_super_area" class="cidrop-input" value="{{ property.super_area }}">
+                                        <select id="superAreaType" name="superAreaType" class="cidrop-input" required>
+                                            <option value="Sq-ft">Sq-ft</option>
+                                            <option value="Sq-yrd">Sq-yrd</option>
+                                            <option value="Sq-m">Sq-m</option>
+                                            <option value="Acre">Acre</option>
+                                            <option value="Bigha">Bigha</option>
+                                            <option value="Hectare">Hectare</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Kanal">Kanal</option>
+                                            <option value="Biswa1">Biswa1</option>
+                                            <option value="Biswa2">Biswa2</option>
+                                            <option value="Ground">Ground</option>
+                                            <option value="Aankadam">Aankadam</option>
+                                            <option value="Rood">Rood</option>
+                                            <option value="Chatak">Chatak</option>
+                                            <option value="Kottah">Kottah</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Cent">Cent</option>
+                                            <option value="Perch">Perch</option>
+                                            <option value="Guntha">Guntha</option>
+                                            <option value="Are">Are</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="contentwrap apartment plot villa">
+                                    <div class="label apartment villa">
+                                        Developement Area<span class="req">*</span>
+                                    </div>
+                                    <div class="label plot">
+                                        Total Area<span class="req">*</span>
+                                    </div>
+                                    <div  class="locationinput carpetAreaType shortinputbar">
+                                        <input type="hidden" id="id_development_area"  name="development_area" value="">
+                                        <input type="number" placeholder="Developement area"  step="0.01"
+                                        id="my_development_area" required class="cidrop-input" value="{{ property.development_area }}">
+                                        <select id="devAreaType" name="devAreaType" class="cidrop-input" required>
+                                            <option value="Sq-ft">Sq-ft</option>
+                                            <option value="Sq-yrd">Sq-yrd</option>
+                                            <option value="Sq-m">Sq-m</option>
+                                            <option value="Acre">Acre</option>
+                                            <option value="Bigha">Bigha</option>
+                                            <option value="Hectare">Hectare</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Kanal">Kanal</option>
+                                            <option value="Biswa1">Biswa1</option>
+                                            <option value="Biswa2">Biswa2</option>
+                                            <option value="Ground">Ground</option>
+                                            <option value="Aankadam">Aankadam</option>
+                                            <option value="Rood">Rood</option>
+                                            <option value="Chatak">Chatak</option>
+                                            <option value="Kottah">Kottah</option>
+                                            <option value="Marla">Marla</option>
+                                            <option value="Cent">Cent</option>
+                                            <option value="Perch">Perch</option>
+                                            <option value="Guntha">Guntha</option>
+                                            <option value="Are">Are</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Property Availability -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5> Transaction Type, Property Availability</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 apartment villa">    
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Age of Construction
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="text" placeholder="In months or Years" name="age_of_construction"
+                                             maxlength="100" id="id_age_of_construction"  value="{{ property.age_of_construction }}" class="cidrop-input">
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Possession Date
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="date" name="possession_date" id="id_possession_date" value="{{ property.possession_date|date:'Y-m-d' }}" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa plot">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Project Rera Id
+                                            </div>
+                                            <div class="cityinput">
+                                                    <input type="text" placeholder="Rera Id" name="project_rera_id" maxlength="100"
+                                                    id="id_project_rera_id"  value="{{ property.project_rera_id }}" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 apartment villa">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Builder Name
+                                            </div>
+                                            <div class="cityinput">
+                                                    <input type="text" placeholder="Builder name" name="builder_name" maxlength="100"
+                                                     id="id_builder_name"  value="{{ property.builder_name }}" class="cidrop-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 apartment villa plot">    
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Approval Status
+                                            </div>
+                                            <div class="cityinput">
+                                                <select name="approval_status" id="id_approval_status" class="cidrop-input">
+                                                    <option value="others" {% if property.approval_status == 'others' %} selected {% endif %}>Others</option>
+                                                    <option value="BBMP" {% if property.approval_status == 'BBMP' %} selected {% endif %}>BBMP Approved</option>
+                                                    <option value="DTCP" {% if property.approval_status == 'DTCP' %} selected {% endif %}>DTCP Approved</option>
+                                                    <option value="reraapproved" {% if property.approval_status == 'reraapproved' %} selected {% endif %}>RERA Approved</option>
+                                                    <option value="bda_bmrda" {% if property.approval_status == 'bda_bmrda' %} selected {% endif %}>BDA/BMRDA Approved</option>
+                                                    <option value="notapproved" {% if property.approval_status == 'notapproved' %} selected {% endif %}>Not Approved</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price Details -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Price Details And Address</h5>
+                                </div>
+
+                                <div class="contentwrap Pricingdets apartment plot">
+                                    <div class="label">
+                                        Expected Price <span class="req">*</span>
+                                    </div>
+                                    <div class="cityinput">
+                                            <input type="text" placeholder="Pricing" name="property_price" maxlength="30" required
+                                            id="id_property_price"  value="{{ property.property_price }}" class="cidrop-input">
+                                            <input type="checkbox" id="negotiable-checkbox" disabled>
+                                            <label for="negotiable-checkbox" id="labelprice">Is Price Negotiable</label>
+                                    </div>
+                                </div> 
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Address <span class="req">*</span>
+                                    </div>
+                                    <div class="cityinput">
+                                        <input type="text" placeholder="Address & Pincode" name="address"
+                                            maxlength="255" required id="id_address" class="cidrop-input" value="{{ property.address }}">
+                                    </div>
+                                </div>
+
+                                <div class="contentwrap apartment plot">
+                                    <div class="label apartment villa">
+                                        About Project
+                                    </div>
+                                    <div class="label plot">
+                                        Amenities
+                                    </div>
+                                    <div class="cityinput">
+                                        <textarea name="about_project" placeholder="Describe in detail" maxlength="300"
+                                            id="id_about_project" class="cidrop-input">{{ property.about_project }}</textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- images section -->
+                            <div class="datablock">
+
+                                <div class="sub-heading-submit">
+                                    <h5>Images</h5>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Cover Image <span class="req">*</span>
+                                    </div>
+                                    <div class="locationinput">
+                                        {% if property.get_cover_img_url %}
+                                            <img src="{{ property.get_cover_img_url }}" alt="Current Image">
+                                        {% else %}
+                                            <!-- Display a placeholder image or a message when no image is present -->
+                                            <span>No cover image available</span>
+                                        {% endif %}
+
+                                        <input type="file" name="project_cover_img" accept="image/*" id="id_project_cover_img" class="cidrop-input">
+
+                                    </div>
+                                </div>
+
+                                {% for form in form.image_formset %}
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Image-{{ forloop.counter }}
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                {% if form.instance.image %}
+                                                    <img src="{{ form.instance.image.url }}" alt="Current Image" style="width: 50%;">
+                                                {% else %}
+                                                    <span>No image available</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-lg-6">
+                                                {{ form.image }}
+                                            </div>
+                                            <div class="col-lg-12 mt-2">
+                                                {{ form.DELETE }}
+                                                {{ form.id }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>     
+                                {% endfor %}
+
+                            </div>
+
+                            <!-- submit section  -->
+                            <div class="datablock mt-4">
+                                <button type="submit" class="submitproperty" id="submit_buttonid">Submit</button>
+                            </div>
+
+                        </div>
+                    </form>
+                 </div>
+
+                <div class="col-lg-5" id="rightsubmit-dets">
+                    <div class="rightsubmitimg">
+                        <img src="/assets/img/pp-2.png" alt="" style="width: 100%; height: 100%;">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{% static 'js/newsubmit.js' %}"></script> -->
+<script>
+    var totalPriceInput = document.getElementById('id_property_price');
+    var negotiableCheckbox = document.getElementById('negotiable-checkbox');
+    var labelprice = document.getElementById('labelprice');
+
+    totalPriceInput.addEventListener('input', function() {
+        if (totalPriceInput.value.trim() !== '') {
+            negotiableCheckbox.disabled = false;
+            labelprice.style.color="black";
+        } else {
+            negotiableCheckbox.disabled = true;
+            labelprice.style.color="";
+        }
+    });
+</script>
+
+<!-- <script>
+    function updateHiddenInput(){var e=document.getElementById("my_carpet_area").value,t=document.getElementById("carpetAreaType").value;document.getElementById("id_carpet_area").value=e+" "+t}document.getElementById("my_carpet_area").addEventListener("input",updateHiddenInput),document.getElementById("carpetAreaType").addEventListener("change",updateHiddenInput);
+</script>
+<script>
+   function updateHiddenInput(){var e=document.getElementById("my_super_area").value,t=document.getElementById("superAreaType").value;document.getElementById("id_super_area").value=e+" "+t}document.getElementById("my_super_area").addEventListener("input",updateHiddenInput),document.getElementById("superAreaType").addEventListener("change",updateHiddenInput);
+</script>
+<script>
+    function updateHiddenInput(){var e=document.getElementById("my_development_area").value,t=document.getElementById("devAreaType").value;document.getElementById("id_development_area").value=e+" "+t}document.getElementById("my_development_area").addEventListener("input",updateHiddenInput),document.getElementById("devAreaType").addEventListener("change",updateHiddenInput);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('id_apartment_type').addEventListener('change', function(event) {
+            showHideFields(event.target.value);
+        });
+    });
+
+    function showHideFields(apartmentType) {
+        const villaFields = document.querySelectorAll('.villa');
+        const plotFields = document.querySelectorAll('.plot');
+        const bhkFields = document.querySelectorAll('.apartment');
+
+        hideFields(villaFields);
+        hideFields(plotFields);
+        hideFields(bhkFields);
+
+        switch(apartmentType) {
+            case 'villa':
+                showFields(villaFields);
+                // console.log("Villa fields shown");
+                break;
+            case 'plot':
+                showFields(plotFields);
+                // console.log("Plot fields shown");
+                break;
+            case 'apartment':
+                showFields(bhkFields);
+                // console.log("Apartment fields shown");
+                break;
+            default:
+                // console.error("Unknown apartment type: " + apartmentType);
+        }
+    }
+
+    function hideFields(fields) {
+        fields.forEach(field => {
+            field.classList.add('hidden');
+        });
+    }
+
+    function showFields(fields) {
+        fields.forEach(field => {
+            field.classList.remove('hidden');
+        });
+    }
+</script> -->
+{% endblock %}

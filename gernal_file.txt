@@ -219,3 +219,83 @@ project_society_name = models.CharField(max_length=100, null=True, blank=True)
     facing = models.CharField(max_length=30, null=True, blank=True)
     age_of_construction = models.CharField(max_length=100, null=True, blank=True)
     about_project = models.TextField(max_length=300, null=True, blank=True)
+
+
+
+
+//////////////////////// RENTAL MODELS ?///??????????????
+user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='rental_properties', default=None)
+    show_in_slider = models.BooleanField(default=False, verbose_name='Show in Homepage Slider')
+    show_in_tranding_slider = models.BooleanField(default=False, verbose_name='Show in Homepage Slider Top')
+    slug = models.SlugField(max_length=550, default="", null=True) #This slug is used for showing the property name and location in the url.
+    u_property_type = models.CharField(max_length=20, choices=USER_CHOICES)
+    r_property_type = models.CharField(max_length=20, choices=PROPERTY_CHOICES, default='rental')
+    r_property_name = models.CharField(max_length=40)
+    project_cover_img = models.ImageField(upload_to='rental_property_images/', blank=True, null=True)
+    def get_cover_img_url(self):
+        if self.project_cover_img and hasattr(self.project_cover_img, 'url'):
+            return self.project_cover_img.url
+        else:
+            return None  # Or return a default image URL or handle the case as per your requirement
+    total_rooms = models.CharField(max_length=20, choices=ROOM_CHOICES)
+    min_price_filter = models.DecimalField(max_digits=10, decimal_places=2)
+    max_price_filter = models.DecimalField(max_digits=10, decimal_places=2, default=True, blank=True)
+    security_deposit = models.DecimalField(max_digits=10, decimal_places=2)
+    maintenance_cost = models.DecimalField(max_digits=10, decimal_places=2, default=True, blank=True)
+    furnished_status = models.CharField(max_length=20, choices=FURNISHED_STATUS_CHOICES, default='furnished')
+    age_of_construction = models.CharField(max_length=100, null=True, blank=True)
+    project_city = models.CharField(max_length=60, choices=PROPERTY_CITY, default='allindia')
+    facing = models.CharField(max_length=20, choices=FACING_CHOICES)
+    notice_period = models.IntegerField(blank=True, null=True)
+    power_backup = models.CharField(max_length=20, choices=POWER_BACKUP)
+    ac_rooms = models.CharField(max_length=10, choices=AC_ROOM)
+    available_for = models.CharField(max_length=20, choices=AVAILABLE_FOR_CHOICES)
+    lifts = models.CharField(max_length=20, choices=LIFT)
+    floor_number = models.PositiveSmallIntegerField(default=0)
+    available_from = models.CharField(max_length=20, choices=AVAILABLE_FROM)
+    discription = models.TextField(default=True, blank=True)
+    address = models.CharField(max_length=255, verbose_name='Address', default='')
+    landmark = models.CharField(max_length=100, verbose_name='Landmark', default='')
+    amenities = models.CharField(max_length=300, blank=True, null=True)
+
+  /////////////////PG MODELS Value ?????????????
+  user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='pg_properties', default=None)
+    show_in_slider = models.BooleanField(default=False, verbose_name='Show in Homepage Slider')
+    show_in_tranding_slider = models.BooleanField(default=False, verbose_name='Show in Homepage Slider Top')
+    slug = models.SlugField(max_length=550, default="", null=True) #This slug is used for showing the property name and location in the url.
+    u_property_type = models.CharField(max_length=20, choices=USER_CHOICES)
+    r_property_type = models.CharField(max_length=20, choices=PROPERTY_CHOICES, default='pg')
+    pg_property_name = models.CharField(max_length=100)
+    project_cover_img = models.ImageField(upload_to='pg_property_images/', blank=True, null=True)
+    def get_cover_img_url(self):
+        if self.project_cover_img and hasattr(self.project_cover_img, 'url'):
+            return self.project_cover_img.url
+        else:
+            return None  # Or return a default image URL or handle the case as per your requirement
+    min_price = models.IntegerField(default=0)
+    max_price = models.IntegerField(default=True, blank=True)
+    maintenance_cost = models.DecimalField(max_digits=10, decimal_places=2, default=True, blank=True)
+    has_wifi = models.BooleanField(default=False)
+    has_gym = models.BooleanField(default=False)
+    has_parking = models.BooleanField(default=False)
+    has_security = models.BooleanField(default=False)
+    has_refrigerator = models.BooleanField(default=False)
+    has_washingmachine = models.BooleanField(default=False)
+    has_powerbackup = models.BooleanField(default=False)
+    has_water = models.BooleanField(default=False)
+    has_electricity = models.BooleanField(default=False)
+    project_city = models.CharField(max_length=60, choices=PROPERTY_CITY, default='allindia')
+    available_from = models.CharField(max_length=20, choices=AVAILABLE_FROM, default='immediate')
+    floor_number = models.PositiveSmallIntegerField(default=True, blank=True)
+    security_deposit = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    discription = models.TextField(default='Dicription Will be here')
+    address = models.CharField(max_length=255, verbose_name='Address', default='')
+    landmark = models.CharField(max_length=100, verbose_name='Landmark', default='')
+    food_availability = models.CharField(max_length=20, choices=FOOD_AVAILABILITY, default='veg')
+    pg_for = models.CharField(max_length=20, choices=PG_FOR)
+    sharing_type = models.IntegerField(choices=SHARING_TYPE_CHOICES)
+    lifts = models.CharField(max_length=20, choices=LIFT)
+    ac_rooms = models.CharField(max_length=20, choices=AC_ROOM)
+    amenities = models.CharField(max_length=300, blank=True, null=True)
+    #Time stamp for showing at what time the particular property has been listen in the site.
+    timestamp = models.DateTimeField(auto_now=True)

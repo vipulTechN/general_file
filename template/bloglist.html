@@ -1,0 +1,161 @@
+{%extends "base(Home).html"%}
+{% load static %}
+
+{% block head_block %}
+
+<title>Latest Real Estate News, Articles, And Market Update</title>
+<meta name="description" content="Unlock Real Estate Success With Our latest Real Estate News, Articles, and Market Insights. Stay
+Informed With Market Updates For Smart Property Decisions.">
+<meta name="keywords" content="real estate news, real estate market update, property insights, latest real estate news">
+
+<link href="https://static.searchhomesindia.com/css/blog.css" rel="stylesheet">
+<style>
+    #header1 {top: 0px!important;}
+    .wrapper{margin-top: 65px;}
+    .truncate {overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;word-wrap: break-word;}
+.button-container{margin-bottom:20px;display:flex;justify-content:center}.filter-btn{padding:10px 20px;margin-right:10px;border:none;cursor:pointer;background-color:#f0f0f0;border-radius:4px;transition:background-color .5s,color .5s}.filter-btn.activeblog{background-color:#c90505;color:#fff}.item{transition:transform .5s,opacity .5s}.item.hidden{display:none}.ribbon-2{--f:10px;--r:15px;--t:10px;position:absolute;inset:var(--t) calc(-1*var(--f)) auto auto;padding:0 10px var(--f) calc(10px + var(--r));clip-path:polygon(0 0,100% 0,100% calc(100% - var(--f)),calc(100% - var(--f)) 100%,calc(100% - var(--f)) calc(100% - var(--f)),0 calc(100% - var(--f)),var(--r) calc(50% - var(--f)/ 2));background:#bd1550;color:#fff;box-shadow:0 calc(-1*var(--f)) 0 inset #0005;z-index:999}
+</style>
+{% endblock %}
+{%block body_block%}
+
+    <div class="main">
+ 
+    <div class="wrapper">
+         <div class="hero"><h2><a href="#">Your Ultimate Hub for Real Estate Trends and Market Updates</a></h2>
+         </div>
+    <div class="page-title-area page-title-img-blog">
+        <div class="container">
+            <div class="page-title-item">
+                <h1>Real Estate News &amp; Articles</h1>
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li style="font-size: 16px; font-weight: 800;">
+                        >
+                    </li>
+                    <li>Articles</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+       </div>
+
+<section class="pt-100 pb-70">
+    <div class="headforall">
+        <h3>Hot News &amp; Trends</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 ">
+                <div class="midlefty">
+                    <img src="https://static.searchhomesindia.com/images/stayupdatedrealestate.webp" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                        <div class="midrighty">
+                            <ul>  
+                                 <!-- =============for loop from here start========= -->
+                                 {% for trend in sell_properties reverse %}
+                                    <li class="sameliforbl" >
+                                        <div class="leftblog">
+                                            <!-- ======== small heading======== -->
+                                        <a href="{% url 'blog_details' slug=trend.slug %}">
+                                            <h5> {{ forloop.counter }}. {{ trend.small_blog_name }} </h5>
+                                        </a>
+                                        <!-- =============small discription========= -->
+                                        <p class="truncate" data-max-words="20">{{ trend.blog_description|safe }}</p>
+                                        <a href="{% url 'blog_details' slug=trend.slug %}"><button class="newbtn">Read More</button></a>
+                                        </div>
+                                        <div class="rightblog">
+                                            <a href="{% url 'blog_details' slug=trend.slug %}"><img src="{{ trend.blog_image.url }}" alt=""></a>
+                                        </div>
+                                    </li>
+                                 {% endfor %}
+                                 <!-- =============for loop from here end========= -->
+                           
+                            </ul>
+                        </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog-area pt-100 pb-70">
+    <div class="headforall">
+        <h3 style="color: black;">Discover the Latest News and Articles Here</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="button-container ">
+                    <button class="filter-btn activeblog" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="article">Article</button>
+                    <button class="filter-btn" data-filter="news">News</button>
+                </div>
+            </div>
+            <!-- ==================for loop start from here ============== -->
+            {% for blogdata in blog_data %}
+                <div class="col-lg-4 col-sm-12 item {{ blogdata.select_blog_type }}">
+                    <div class="blog-item">
+                        <div class="ribbon-2" style="text-transform: capitalize;">{{ blogdata.select_blog_type }}</div>
+                        <div class="blog-top">
+                            <a href="{% url 'blog_details' slug=blogdata.slug %}">
+                                <img src="{{ blogdata.blog_image.url }}" alt="best pubs near me">
+                            </a>
+                            <span>{{ blogdata.formatted_date }}</span>
+                        </div>
+                        <div class="blog-bottom">
+                            <!-- ===========small heading============ -->
+                            <h3>
+                                <a href="{% url 'blog_details' slug=blogdata.slug %}">{{ blogdata.small_blog_name }}</a>
+                            </h3>
+                            <!-- ===========small discription============ -->
+                            <p class="truncate" data-max-words="20">{{ blogdata.blog_description|safe }}</p>
+                            <a class="cmn-btn" href="{% url 'blog_details' slug=blogdata.slug %}">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- ==================for loop end from here ============== -->
+
+        </div>
+    </div>
+</section>
+</div>
+<script>
+    // In your JavaScript (you can include it in your template or a separate file)
+document.addEventListener("DOMContentLoaded", function() {
+  var truncateElements = document.querySelectorAll(".truncate");
+  
+  truncateElements.forEach(function(element) {
+    var maxWords = parseInt(element.getAttribute("data-max-words"), 10);
+    var words = element.textContent.split(" ").slice(0, maxWords).join(" ");
+    element.textContent = words + " ...";
+  });
+});
+
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelector('.filter-btn.activeblog').classList.remove('activeblog');
+                button.classList.add('activeblog');
+                filterItems(button.getAttribute('data-filter'));
+            });
+        });
+
+        const filterItems = (filter) => {
+            items.forEach(item => {
+                item.classList.toggle('hidden', filter !== 'all' && !item.classList.contains(filter));
+            });
+        };
+    });
+
+</script>
+
+{% endblock %}

@@ -1,4 +1,0 @@
-User-Agent: *
-Disallow:/SHIProj/SHIApp/models.py
-Disallow:/SHIProj/SHIApp/static
-Sitemap: https://www.searchhomesindia.com/sitemap.xml

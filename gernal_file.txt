@@ -1,46 +1,265 @@
-?????????????????????  HTML CODE ???????????????
-<div class="wd100">
-                    <div id="otpForm">
-                    <label name="Phone Number">Phone Number*</label>
-                    <input placeholder="Client No.*" type="tel" name="cphone"  min="10" max="10" maxlength="10" onkeyup ="sendOTP(this.value)" required>
-                    </div>
-                    <div id="otpResult"></div>
-                    <input type="text" id="otpInput" placeholder="Enter OTP" required>
-                    <button onclick="verifyOTP()" style="background-color: lightgreen;font-weight: 600;">Verify OTP</button>
-                    <p id="otpResult1"></p>
-                </div>
- /////////////////// JACASCRIPT //////////////////
- var otpG = Math.floor(1000 + Math.random() * 9000).toString();
-    function sendOTP() {
-  var mobileNumber = document.querySelector('input[name="cphone"]').value;
+////css////
+<style>
+            #sendotpdiv,#verifyotpdiv{
+              display: flex;
+            }
+            .sendotp,.verifyotp{
+              padding:5px!important;
+              height: 20px;
+              border: none;
+              margin-top: 6px!important;
+              border-radius: 5px;
+              margin-left: 0!important;
+              white-space: nowrap;
+              background-color: #1b6c9f;
+              color: #fff;
+              font-size: 8px;
+            }
+</style>
 
-  var xhttp = new XMLHttpRequest();
+////////////////////////////////////html//////////////////////////////////////////////////
+      
+<fieldset>
+            <label for="phone">CONTACT NUMBER</label>
+            <span id="sendotpdiv">
+              <input type="text" id="userphone3" name="mobile" class="form-control form-control-lg thick" placeholder="Enter Number*" 
+              maxlength="10" onkeypress="return /[0-9]/i.test(event.key)" required="" spellcheck="false" data-ms-editor="true">
+              <button type="button" class="sendotp" onclick="sendOtp()">Send OTP</button>
+            </span>
+            <span id="verifyotpdiv" style="display: none;">
+              <input type="text" id="otpinput" name="otp" class="form-control form-control-lg thick" placeholder="Enter OTP*" 
+              maxlength="6" onkeypress="return /[0-9]/i.test(event.key)" required="" spellcheck="false" data-ms-editor="true">
+              <button type="button" class="verifyotp" onclick="verifyOtp()">Verify OTP</button>
+            </span>
+            <div id="otpResult" style="font-size: 10px;"></div>
+            <div id="phoneError" style="color: red; font-size: 10px; display: none;"></div>
+            <div id="otpError" style="color: red; font-size: 10px; display: none;"></div>
+            <div id="otpSuccess" style="color: green; font-size: 10px; display: none;"></div>
+             <!-- Contact valid or invalid checker div's -->
+             <div class="valid-feedback" id="isphonevalid3" style="color: green; font-size: 10px; display: none;">
+              Looks good!
+            </div>
+            <div class="invalid-feedback" id="isphoneinvalid3" style="color: red; font-size: 10px; display: none;">
+              Please Enter a valid Contact Number.
+            </div>
+</fieldset>
+          
 
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = this.responseText;
+//////////////////////////////// OTP js/////////////////////////////////////////
 
-      // Check if the response contains a success message
-      if (response.includes("success")) {
-        document.getElementById("otpResult").innerText = "OTP sent successfully!";
-      } else {
-        document.getElementById("otpResult").innerText = "Failed to send OTP.";
-      }
-      // You can perform further actions based on the response
-    }
-  };
+  let otpSent = false;
+  let otpVerified = false;
+  let generatedOtp = "";
 
-  var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values="+otpG+"&route=otp&numbers=" + encodeURIComponent(mobileNumber);
-  xhttp.open("GET", url, true);
-  xhttp.send();
-}
-function verifyOTP() { 
-  var enteredOTP = document.getElementById("otpInput").value;
-//   var sentOTP = localStorage.getItem("sentOTP");
-
-  if (enteredOTP === otpG) {
-    document.getElementById("otpResult1").innerText = "OTP verification successful!";
-  } else {
-    document.getElementById("otpResult1").innerText = "OTP verification failed.";
+  function generateOtp() {
+    return Math.floor(1000 + Math.random() * 9000).toString();
   }
+
+  function sendOtp() {
+    const userPhone = document.getElementById('userphone3').value;
+
+    if (userPhone === "") {
+      document.getElementById('userphone3').style.borderBottom = '2px solid red';
+      document.getElementById('phoneError').innerText = 'Enter your phone number to send OTP';
+      document.getElementById('phoneError').style.display = 'block';
+    } else {
+      generatedOtp = generateOtp();
+      otpSent = true;
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = this.responseText;
+          if (response.includes("success")) {
+            document.getElementById('otpResult').style.color = 'green';
+            document.getElementById('otpResult').innerText = 'OTP sent successfully!';
+          } else {
+            document.getElementById('otpResult').style.color = 'red';
+            document.getElementById("otpResult").innerText = "Failed to send OTP.";
+          }
+        }
+        else {
+            document.getElementById('otpResult').style.color = 'red';
+            document.getElementById("otpResult").innerText = "Failed to send OTP.";
+        }
+      };
+
+      var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values=" + generatedOtp + "&route=otp&numbers=" + encodeURIComponent(userPhone);
+      xhttp.open("GET", url, true);
+      xhttp.send();
+
+      document.getElementById('sendotpdiv').style.display = 'none';
+      document.getElementById('verifyotpdiv').style.display = 'flex';
+      document.getElementById('phoneError').style.display = 'none';
+    }
+  }
+
+  function verifyOtp() {
+    const otp = document.getElementById('otpinput').value;
+
+    if (otp === "") {
+      document.getElementById('otpinput').style.borderBottom = '2px solid red';
+      document.getElementById('otpError').innerText = 'Enter the OTP to verify';
+      document.getElementById('otpError').style.display = 'block';
+    } else if (otp === generatedOtp) {
+      otpVerified = true;
+      document.getElementById('otpError').style.display = 'none';
+      document.getElementById('otpinput').style.borderBottom = '';
+      document.getElementById('otpSuccess').innerText = 'OTP verified successfully!';
+      document.getElementById('otpSuccess').style.display = 'block';
+      document.getElementById('otpResult').style.display = 'none';
+      document.getElementById('otpinput').setAttribute('readonly', true);
+    } else {
+      document.getElementById('otpinput').style.borderBottom = '2px solid red';
+      document.getElementById('otpError').innerText = 'Invalid OTP, please try again.';
+      document.getElementById('otpError').style.display = 'block';
+      document.getElementById('otpSuccess').style.display = 'none';
+    }
+  }
+
+  document.getElementById('contactsubmit3').addEventListener('click', function(event) {
+    const userPhone = document.getElementById('userphone3').value;
+
+    if (userPhone === "") {
+      document.getElementById('userphone3').style.borderBottom = '2px solid red';
+      document.getElementById('phoneError').innerText = 'Verify your number';
+      document.getElementById('phoneError').style.display = 'block';
+      event.preventDefault();
+    } else if (!otpSent) {
+      document.getElementById('userphone3').style.borderBottom = '2px solid red';
+      document.getElementById('phoneError').innerText = 'Verify your number';
+      document.getElementById('phoneError').style.display = 'block';
+      event.preventDefault();
+    } else if (!otpVerified) {
+      document.getElementById('otpinput').style.borderBottom = '2px solid red';
+      document.getElementById('otpError').innerText = 'Verify OTP and submit';
+      document.getElementById('otpError').style.display = 'block';
+      event.preventDefault();
+    }
+  });
+
+
+/////////////////////////////////////////// contactform3 js ////////////////////////////////////
+
+const Name3 = document.getElementById("username3"),
+  Email3 = document.getElementById("useremail3"),
+  Phone3 = document.getElementById("userphone3"),
+  Message3 = document.getElementById("usermessage3"),
+  Propdetail3 = document.getElementById("Propdetail3"),
+  Form3 = document.getElementById("PropContactform3"),
+  SubmitButton3 = document.getElementById("contactsubmit3"),
+//   csrftoken3 = document.querySelector("[name=csrfmiddlewaretoken]").value,
+  Namevalid3 = document.getElementById("isnamevalid3"),
+  Nameinvalid3 = document.getElementById("isnameinvalid3"),
+  Emailvalid3 = document.getElementById("isemailvalid3"),
+  Emailinvalid3 = document.getElementById("isemailinvalid3"),
+  Phonevalid3 = document.getElementById("isphonevalid3"),
+  Phoneinvalid3 = document.getElementById("isphoneinvalid3"),
+  Messagevalid3 = document.getElementById("ismessagevalid3"),
+  Messageinvalid3 = document.getElementById("ismessageinvalid3"),
+  SuccessAlert3 = document.getElementById("issuccess3"),
+  FailureAlert3 = document.getElementById("isfailure3");
+(SuccessAlert3.style.display = "none"),
+  (FailureAlert3.style.display = "none"),
+  (Namevalid3.style.display = "none"),
+  (Nameinvalid3.style.display = "none"),
+  (Emailvalid3.style.display = "none"),
+  (Emailinvalid3.style.display = "none"),
+  (Phonevalid3.style.display = "none"),
+  (Phoneinvalid3.style.display = "none"),
+  (Messagevalid3.style.display = "none"),
+  (Messageinvalid3.style.display = "none");
+let validName3 = !1,
+  validEmail3 = !1,
+  validPhone3 = !1,
+  validMessage3 = !1;
+function Refresh() {
+  setTimeout(() => {
+    location.reload();
+  }, 2e4);
 }
+Name3.addEventListener("blur", () => {
+  let e = Name3.value;
+  /^[a-z\sA-z]{3,20}$/.test(e)
+    ? ((Namevalid3.style.display = "block"),
+      (Nameinvalid3.style.display = "none"),
+      (validName3 = !0))
+    : ((Nameinvalid3.style.display = "block"),
+      (Namevalid3.style.display = "none"));
+}),
+  Email3.addEventListener("blur", () => {
+    let e = Email3.value;
+    /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/.test(
+      e
+    )
+      ? ((Emailvalid3.style.display = "block"),
+        (Emailinvalid3.style.display = "none"),
+        (validEmail3 = !0))
+      : ((Emailvalid3.style.display = "none"),
+        (Emailinvalid3.style.display = "block"));
+  }),
+  Phone3.addEventListener("blur", () => {
+    let e = Phone3.value;
+    /^[0-9]{10}$/.test(e)
+      ? ((Phonevalid3.style.display = "block"),
+        (Phoneinvalid3.style.display = "none"),
+        (validPhone3 = !0))
+      : ((Phonevalid3.style.display = "none"),
+        (Phoneinvalid3.style.display = "block"));
+  }),
+  Message3.addEventListener("blur", () => {
+    let e = Message3.value;
+    /[a-zA-Z]/.test(e)
+      ? ((Messagevalid3.style.display = "block"),
+        (Messageinvalid3.style.display = "none"),
+        (validMessage3 = !0))
+      : ((Messagevalid3.style.display = "none"),
+        (Messageinvalid3.style.display = "block"));
+  }),
+  SubmitButton3.addEventListener("click", (e) => {
+    if (
+      (e.preventDefault(),
+      validName3 && validEmail3 && validPhone3 && validMessage3)
+    ) {
+      var l = {
+        Name: Name3.value,
+        Email: Email3.value,
+        Phone: Phone3.value,
+        Message: Message3.value,
+        Propdetail: Propdetail3.value,
+      };
+      const e = {
+        method: "POST",
+        body: JSON.stringify(l),
+        headers: {
+          "content-Type": "application/json",
+          "X-CSRFToken": csrftoken3,
+        },
+      };
+      fetch("/propertycontactdata/", e)
+        .then((e) => e.json())
+        .then((e) => {
+          1 == e.success
+            ? (Form3.reset(),
+              (SuccessAlert3.style.display = "block"),
+              (FailureAlert3.style.display = "none"),
+              Refresh())
+            : 0 == e.success &&
+              (Form3.reset(),
+              (FailureAlert3.style.display = "block"),
+              (SuccessAlert3.style.display = "none"),
+              Refresh());
+        })
+        .catch(() => {
+          Form3.reset(),
+            (FailureAlert3.style.display = "block"),
+            (SuccessAlert3.style.display = "none"),
+            Refresh();
+        });
+    } else
+        (FailureAlert3.style.display = "block"),
+        (SuccessAlert3.style.display = "none");
+        // Refresh();
+  });
+
+          

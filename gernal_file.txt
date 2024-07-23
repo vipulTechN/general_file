@@ -1,31 +1,46 @@
-css
-.rm-col p {
-    text-transform: capitalize;
+?????????????????????  HTML CODE ???????????????
+<div class="wd100">
+                    <div id="otpForm">
+                    <label name="Phone Number">Phone Number*</label>
+                    <input placeholder="Client No.*" type="tel" name="cphone"  min="10" max="10" maxlength="10" onkeyup ="sendOTP(this.value)" required>
+                    </div>
+                    <div id="otpResult"></div>
+                    <input type="text" id="otpInput" placeholder="Enter OTP" required>
+                    <button onclick="verifyOTP()" style="background-color: lightgreen;font-weight: 600;">Verify OTP</button>
+                    <p id="otpResult1"></p>
+                </div>
+ /////////////////// JACASCRIPT //////////////////
+ var otpG = Math.floor(1000 + Math.random() * 9000).toString();
+    function sendOTP() {
+  var mobileNumber = document.querySelector('input[name="cphone"]').value;
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = this.responseText;
+
+      // Check if the response contains a success message
+      if (response.includes("success")) {
+        document.getElementById("otpResult").innerText = "OTP sent successfully!";
+      } else {
+        document.getElementById("otpResult").innerText = "Failed to send OTP.";
+      }
+      // You can perform further actions based on the response
+    }
+  };
+
+  var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values="+otpG+"&route=otp&numbers=" + encodeURIComponent(mobileNumber);
+  xhttp.open("GET", url, true);
+  xhttp.send();
 }
+function verifyOTP() { 
+  var enteredOTP = document.getElementById("otpInput").value;
+//   var sentOTP = localStorage.getItem("sentOTP");
 
-body ol, ul {
-    margin-top: 0;
-    margin-bottom:0px;
-    padding-left:0px;
+  if (enteredOTP === otpG) {
+    document.getElementById("otpResult1").innerText = "OTP verification successful!";
+  } else {
+    document.getElementById("otpResult1").innerText = "OTP verification failed.";
+  }
 }
-
-.rentpgmid ul li {
-    margin-left: 0px;
-    margin-top: 7px;
-    display: flex;
-}
-
-sell detail
-SBA/PLOT SIZE
-DEVELOPMENTAREA
-
-
-Pg detail form
-email add class="form-control form-control-lg thick" 
-
-rent
-#amountresult{
-    font-size: 13px;
-}
-
-remove price negotiable

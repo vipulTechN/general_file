@@ -22,13 +22,13 @@
           <div class="logo">
             <a href="/">
               <div style="width: 144px; height: 35px;">
-                <img src="https://static.searchhomesindia.com/images/shi_logo_white.png" loading="lazy" alt="logo" class="img-fluid">
+                <img data-src="https://static.searchhomesindia.com/images/shi_logo_white.png" loading="lazy" alt="logo" class="img-fluid shilazy-images" decoding="auto" fetchpriority="auto">
               </div>
             </a>
           </div>
           <form action="" method="get">
             <div class="dropdown3 form-select3 forlapcitydrop">
-              <select id="city3" name="project_city" data-target="2" required>
+              <select id="city3" name="project_city" data-target="2" required aria-label="Multiple_City">
                 <option value="" selected disabled>All India</option>
                 <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
                 <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
@@ -99,14 +99,14 @@
               <div class="bg-img" id="home" data-popup="popup-reg" style="cursor:pointer;">
                 <div class="swiper10 mySwiper12 ">
                   <div class="swiper-wrapper s12">
-                    <div class=" swiper-slide ss12">
-                      <img src="https://static.searchhomesindia.com/images/b1.webp" loading="lazy" alt="bannerimg">
+                    <div class="swiper-slide ss12">
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/b1.webp" loading="lazy" alt="bannerimg">
                     </div> <!-- end section -->
-                    <div class=" swiper-slide ss12">
-                      <img src="https://static.searchhomesindia.com/images/b2.webp" alt="bannerimg">
+                    <div class="swiper-slide ss12">
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/b2.webp" loading="lazy" alt="bannerimg">
                     </div> <!-- end section --> 
-                    <div class=" swiper-slide ss12">
-                     <img src="https://static.searchhomesindia.com/images/b3.webp" loading="lazy" alt="bannerimg">
+                    <div class="swiper-slide ss12">
+                     <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/b3.webp" loading="lazy" alt="bannerimg">
                     </div><!-- end section -->
                   </div>
                 </div>
@@ -122,7 +122,7 @@
                 <button type="button" class="btnsss menu--item__one active" onclick="selectPropertyTypee('sell')">Buy</button>
                 <button type="button" class="btnsss menu--item__two" onclick="selectPropertyTypee('rental')">Rent/Lease</button>
                 <button type="button" class="btnsss menu--item__three" onclick="selectPropertyTypee('pg')">PG/Co-living</button>
-                <select id="propertyType" name="r_property_type" style="display: none;">
+                <select id="propertyType" name="r_property_type" style="display: none;" aria-label="Property_type">
                     <option value="sell">Sell</option>
                     <option value="rental">Rental</option>
                     <option value="pg">PG/Coliving</option>
@@ -131,7 +131,7 @@
           </div>
           <div id="down">
             <div id="credential">
-                <select class="dropdown form-select form-selectV" id="city4" name="project_city" data-target="4" required>
+                <select class="dropdown form-select form-selectV" id="city4" name="project_city" data-target="4" required aria-label="Multiple_City_drops">
                         <option value="" selected>All India</option>
                         <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
                         <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
@@ -161,7 +161,7 @@
             <div class="bar bar77" onclick="commonNav('mysidenav1','100%')">
               <form action="" method="get">
                 <div class="dropdown3 form-select3 formobcitydrop">
-                  <select >
+                  <select aria-label="Multiple_City_drops1">
                     <option value="" selected disabled>All India</option>
                     <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
                     <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
@@ -253,31 +253,31 @@
         <div class="swiper4 mySwiper6 ">
           <div class="swiper-wrapper s4">
             <div class=" swiper-slide ss4">
-              <a href="{% url 'city_listings' 'bengaluru' %}" target="_blank"> <img src="https://static.searchhomesindia.com/images/bengaluru.webp"  alt="cityimg"></a>
+              <a href="{% url 'city_listings' 'bengaluru' %}" target="_blank"> <img decoding="auto" fetchpriority="auto"  class="shilazy-images" data-src="https://static.searchhomesindia.com/images/bengaluru.webp"  alt="cityimg"></a>
               <div class="tplocation">
                 <button>Bengaluru</button>
               </div>
             </div> <!-- end section -->
             <div class=" swiper-slide ss4">
-              <a href="{% url 'city_listings' 'chennai' %}" target="_blank"><img src="https://static.searchhomesindia.com/images/chennai.webp" alt="cityimg"></a>
+              <a href="{% url 'city_listings' 'chennai' %}" target="_blank"><img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/chennai.webp" alt="cityimg"></a>
               <div class="tplocation">
                 <button>Chennai</button>
               </div>
             </div> <!-- end section -->
             <div class=" swiper-slide ss4">
-              <a href="{% url 'city_listings' 'hyderabad' %}" target="_blank"><img src="https://static.searchhomesindia.com/images/hyderabad.webp" alt="cityimg"></a>
+              <a href="{% url 'city_listings' 'hyderabad' %}" target="_blank"><img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/hyderabad.webp" alt="cityimg"></a>
               <div class="tplocation">
                 <button>Hyderabad</button>
               </div>
             </div> <!-- end section -->
             <div class=" swiper-slide ss4">
-              <a href="{% url 'city_listings' 'mumbai' %}" target="_blank"><img src="https://static.searchhomesindia.com/images/mumbai.webp" alt="cityimg"></a>
+              <a href="{% url 'city_listings' 'mumbai' %}" target="_blank"><img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/mumbai.webp" alt="cityimg"></a>
               <div class="tplocation">
                 <button>Mumbai</button>
               </div>
             </div> <!-- end section -->
             <div class=" swiper-slide ss4">
-              <a href="{% url 'city_listings' 'pune' %}" target="_blank"><img src="https://static.searchhomesindia.com/images/pune.webp" alt="cityimg"></a>
+              <a href="{% url 'city_listings' 'pune' %}" target="_blank"><img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/pune.webp" alt="cityimg"></a>
               <div class="tplocation">
                 <button>Pune</button>
               </div>
@@ -302,7 +302,7 @@
             <!-- This Slider is for demanding properties -->
             {% for property in trending_properties %}
             <div class=" swiper-slide">
-              <a href="{% url 'property_detail' property.slug %}" target="_blank"> <img src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}"></a>
+              <a href="{% url 'property_detail' property.slug %}" target="_blank"> <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}"></a>
               <h5>{{ property.PropertyName }}</h5>
               <p>{{ property.PropertyAddress }}</p>
               <h6>{{ property.Property_Price }}</h6>
@@ -325,7 +325,7 @@
             <!-- This Slider is for demanding properties -->
             {% for property in sell_properties %}
             <div class=" swiper-slide">
-              <a href="{% url 'property_detail' property.slug %}" target="_blank"> <img src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}"></a>
+              <a href="{% url 'property_detail' property.slug %}" target="_blank"> <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}"></a>
               <h5>{{ property.PropertyName }}</h5>
               <p>{{ property.PropertyAddress }}</p>
               <h6>{{ property.Property_Price }}</h6>
@@ -349,9 +349,9 @@
             <div class=" swiper-slide">
               <a href="{% url 'property_detail' property.slug %}"> 
                 {% if property.project_cover_img %}
-                  <img src="{{ property.project_cover_img.url }}" loading="lazy" alt="{{ property.project_society_name }}">
+                  <img decoding="auto" fetchpriority="auto" data-src="{{ property.project_cover_img.url }}" loading="lazy" alt="{{ property.project_society_name }}" class="shilazy-images">
                 {% else %}
-                    <img src="https://static.searchhomesindia.com/images/noimage.webp" loading="lazy" alt="No images">
+                    <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/noimage.webp" loading="lazy" alt="No images">
                 {% endif %}
               </a>
               <h5>{{ property.project_society_name }}</h5>
@@ -376,9 +376,9 @@
               <div class=" swiper-slide">
                 <a href="{% url 'rental_property_detail' property.slug %}"> 
                   {% if property.project_cover_img %}
-                    <img src="{{ property.project_cover_img.url }}" loading="lazy" alt="{{ property.r_property_name }}">
+                    <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="{{ property.project_cover_img.url }}" loading="lazy" alt="{{ property.r_property_name }}">
                   {% else %}
-                      <img src="https://static.searchhomesindia.com/images/noimage.webp" loading="lazy" alt="No images">
+                    <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/noimage.webp" loading="lazy" alt="No images">
                   {% endif %}
                 </a>
                 <h5>{{ property.r_property_name }}</h5>
@@ -413,7 +413,7 @@
                   <h6>{{ property.Property_Price }}</h6>
                  </div>
                 </div>
-                <img src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}">
+                <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="{{ property.Property_Image.url }}" loading="lazy" alt="{{ property.PropertyName }}">
               </a>
               </div>
               {% endfor %}
@@ -435,13 +435,13 @@
           </div>
           <div class="swiper-wrapper s2">
             <div class=" swiper-slide ss2">
-              <a id="link-apartment" href="https://www.searchhomesindia.com/sell/bengaluru/?project_city=%2Fbengaluru%2F&r_property_type=sell&query=apartment" target="_blank"> <img src="https://static.searchhomesindia.com/images/A1.webp" loading="lazy" alt="filterimg"></a>
+              <a id="link-apartment" href="https://www.searchhomesindia.com/sell/bengaluru/?project_city=%2Fbengaluru%2F&r_property_type=sell&query=apartment" target="_blank"> <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/A1.webp" loading="lazy" alt="filterimg"></a>
             </div> <!-- end section -->
             <div class=" swiper-slide ss2">
-              <a id="link-villa" href="https://www.searchhomesindia.com/sell/bengaluru/?project_city=%2Fbengaluru%2F&r_property_type=sell&query=villa" target="_blank"><img src="https://static.searchhomesindia.com/images/A2.webp" loading="lazy" alt="filterimg"></a>
+              <a id="link-villa" href="https://www.searchhomesindia.com/sell/bengaluru/?project_city=%2Fbengaluru%2F&r_property_type=sell&query=villa" target="_blank"><img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/A2.webp" loading="lazy" alt="filterimg"></a>
             </div><!-- end section -->
             <div class=" swiper-slide ss2">
-              <a id="link-plot" href="https://www.searchhomesindia.com/sell/bengaluru/?project_city=%2Fbengaluru%2F&r_property_type=sell&query=plot" target="_blank"> <img src="https://static.searchhomesindia.com/images/A3.webp" loading="lazy" alt="filterimg"></a>
+              <a id="link-plot" href="https://www.searchhomesindia.com/sell/bengaluru/?project_city=%2Fbengaluru%2F&r_property_type=sell&query=plot" target="_blank"> <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/A3.webp" loading="lazy" alt="filterimg"></a>
             </div><!-- end section -->         
           </div>
           <div class="nextbut swiper-button-next"></div>
@@ -454,7 +454,7 @@
       <!-- right part of middle start=================== -->
       <div class="midright">
         <div class="box1"> <!-- section start======== -->
-          <a href="https://redwingsdesign.com/"><img src="https://static.searchhomesindia.com/images/Interior.jpg" alt="interiorsimg"></a>
+          <a href="https://redwingsdesign.com/"><img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Interior.jpg" alt="interiorsimg"></a>
           {% if request.session.phone_verified %}
                 <a><button id="box1button">Welcome, {{ request.session.phone_number }}!</button></a>
           {% else %}
@@ -462,22 +462,22 @@
           {% endif %}	
         </div><!-- end section ======== -->
         <div class="box2">
-          <a><img src="https://static.searchhomesindia.com/images/invest.jpg" alt="investimg"></a>
+          <a><img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/invest.jpg" alt="investimg"></a>
         </div><!-- end  section ======== -->
         <div class="box3">
           <h6>Top Rated Builders In India</h6>
           <div id="top-builder">
-            <div class="topb"><a><img
-                  src="https://static.searchhomesindia.com/images/prestige.jpg"
+            <div class="topb"><a><img decoding="auto" fetchpriority="auto" class="shilazy-images"
+                  data-src="https://static.searchhomesindia.com/images/prestige.jpg"
                   alt="builderimg"></a></div>
-            <div class="topb"><a><img
-                  src="https://static.searchhomesindia.com/images/godrej.png"
+            <div class="topb"><a><img decoding="auto" fetchpriority="auto" class="shilazy-images"
+                  data-src="https://static.searchhomesindia.com/images/godrej.png"
                   alt="builderimg"></a></div>
-            <div class="topb"><a><img
-                  src="https://static.searchhomesindia.com/images/assetz.jpeg"
+            <div class="topb"><a><img decoding="auto" fetchpriority="auto" class="shilazy-images"
+                  data-src="https://static.searchhomesindia.com/images/assetz.jpeg"
                   alt="builderimg"></a></div>
-            <div class="topb"><a><img
-                  src="https://static.searchhomesindia.com/images/tvs.png"
+            <div class="topb"><a><img decoding="auto" fetchpriority="auto" class="shilazy-images"
+                  data-src="https://static.searchhomesindia.com/images/tvs.png"
                   alt="builderimg"></a></div>
           </div>
         </div><!-- end section ======== -->
@@ -493,40 +493,40 @@
           <div class="swiper mySwiper20">
               <div class="swiper-wrapper s20">
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/prestigeproperties.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/prestigeproperties.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/godrejproperties.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/godrejproperties.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/lodha.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/lodha.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/Century.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Century.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/birlaestates.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/birlaestates.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/brigadegroup.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/brigadegroup.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/Shapoorjipallonji.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Shapoorjipallonji.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/assetz.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/assetz.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/shriramproperites.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/shriramproperites.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/sobha.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/sobha.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/Sowparnika.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Sowparnika.png" loading="lazy" alt="builderimg"/>
                   </div>
                   <div class="swiper-slide ss20">
-                      <img src="https://static.searchhomesindia.com/images/Tatahousing.png" loading="lazy" alt="builderimg" />
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Tatahousing.png" loading="lazy" alt="builderimg"/>
                   </div>
               </div>
               <div class="swiper-button-next topbuilder_next"></div>
@@ -542,12 +542,14 @@
               <div class="row">
                   <div class="section-head col-sm-12">
                       <h4><span>Why Choose</span> Us-</h4>
-                      <p>Transparency, and Tailored Solutions -  That's Our Promise</p>
+                      <p>Transparency, and Tailored Solutions - That's Our Promise</p>
                   </div>
                   <div class="col-lg-4 col-sm-6 box-11">
-                      <div class="item"> <span class="icon feature_box_col_one"><i class="whychoose icon_match"></i></span>
-                          <h6>Free Property Ads/ Cost-free property promotion -</h6>
-                          <p>We offer an extensive range of residential and commercial properties, including apartments, villas, plots, and farmlands. Whether you're buying, selling, or renting, our diverse listings ensure that you find exactly what you're looking for.</p>
+                      <div class="item"> <span class="icon feature_box_col_one">
+                        <i class="whychoose icon_match"></i>
+                      </span>
+                        <h6>Free Property Ads/ Cost-free property promotion - </h6>
+                        <p>We offer an extensive range of residential and commercial properties, including apartments, villas, plots, and farmlands. Whether you're buying, selling, or renting, our diverse listings ensure that you find exactly what you're looking for.</p>
                       </div>
                   </div>
                   <div class="col-lg-4 col-sm-6">
@@ -594,8 +596,8 @@
           <div class="easystep_wrapdiv undefined">
               <div class="easystep_leftsideimg">
                   <section class="easystep_conatiner animate">
-                      <img src="https://static.searchhomesindia.com/images/post-property.png"
-                          class="completeHomeInteriro_completeHome_Image__2_ZVU transformImg">
+                      <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/post-property.png"
+                          class="completeHomeInteriro_completeHome_Image__2_ZVU transformImg" alt="completeHomeInteriro_completeHome_Image__2_ZVU">
                   </section>
               </div>
               <div class="easystep_tabSec">
@@ -653,7 +655,7 @@
               {% for blogdata in blog_data %}
               <div class="swiper-slide ss21">
                   <a href="{% url 'blog_details' slug=blogdata.slug %}">
-                      <img src="{{ blogdata.blog_image.url }}" loading="lazy" alt="news images" />
+                      <img decoding="auto" fetchpriority="auto"  data-src="{{ blogdata.blog_image.url }}" loading="lazy" alt="news images" class="shilazy-images"/>
                       <a href="{% url 'blog_details' slug=blogdata.slug %}">
                           <button class="btn-1">
                               Read more
@@ -922,22 +924,22 @@
                   <div class="swiper mySwiper25">
                       <div class="swiper-wrapper s25">
                           <div class="swiper-slide ss25">
-                            <img src="https://static.searchhomesindia.com/images/unit1.jpg" alt="unitsoldimg">
+                            <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/unit1.jpg" alt="unitsoldimg">
                           </div>
                           <div class="swiper-slide ss25">
-                            <img src="https://static.searchhomesindia.com/images/unit2.jpg" alt="unitsoldimg">
+                            <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/unit2.jpg" alt="unitsoldimg">
                           </div>
                           <div class="swiper-slide ss25">
-                            <img src="https://static.searchhomesindia.com/images/unit3.jpg" alt="unitsoldimg">
+                            <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/unit3.jpg" alt="unitsoldimg">
                           </div>
                           <div class="swiper-slide ss25">
-                            <img src="https://static.searchhomesindia.com/images/unit4.jpg" alt="unitsoldimg">
+                            <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/unit4.jpg" alt="unitsoldimg">
                           </div>
                           <div class="swiper-slide ss25">
-                            <img src="https://static.searchhomesindia.com/images/unit5.jpg" alt="unitsoldimg">
+                            <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/unit5.jpg" alt="unitsoldimg">
                           </div>
                           <div class="swiper-slide ss25">
-                            <img src="https://static.searchhomesindia.com/images/unit6.jpg" alt="unitsoldimg">
+                            <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/unit6.jpg" alt="unitsoldimg">
                         </div>
                       </div>
                       <div class="swiper-button-next happy_dwellers_next"></div>
@@ -957,31 +959,31 @@
   <div class="swiper mySwiper22">
       <div class="swiper-wrapper s20">
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/ANI.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/ANI.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/Businesstandard.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Businesstandard.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/Dailyhunt.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Dailyhunt.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/Financialexpress.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Financialexpress.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/Googlenews.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Googlenews.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/republicnewstoday.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/republicnewstoday.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/Theprint.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Theprint.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/Washington.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Washington.png" loading="lazy" alt="newsmediaimg"/>
           </div>
           <div class="swiper-slide ss20">
-              <img src="https://static.searchhomesindia.com/images/Zee5.png" loading="lazy" alt="newsmediaimg" />
+              <img decoding="auto" fetchpriority="auto" class="shilazy-images" data-src="https://static.searchhomesindia.com/images/Zee5.png" loading="lazy" alt="newsmediaimg"/>
           </div>
       </div>
       <div class="swiper-button-next topbuilder_next"></div>
@@ -997,7 +999,6 @@
   <!-- Vendor JS Files -->
   <script src="https://static.searchhomesindia.com/js/swiper-bundle1.js"></script>
   <script src="https://static.searchhomesindia.com/js/new-index.js"></script>
-  
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // console.log('DOMContentLoaded event fired Index');
@@ -1062,106 +1063,106 @@
               .catch(error => console.error('Error fetching autosuggestions:', error));
       });
   });
-    </script>
-<script>
-  function submitForm() {
-        const propertyType = document.getElementById('propertyType').value;
-        const city = document.getElementById('city4').value;
-        const query = document.getElementById('searchInput').value;
-    
-        if (city === '' || city === 'allindia') {
+  </script>
+  <script>
+    function submitForm() {
+          const propertyType = document.getElementById('propertyType').value;
+          const city = document.getElementById('city4').value;
+          const query = document.getElementById('searchInput').value;
+      
+          if (city === '' || city === 'allindia') {
 
-        return false; // Prevent form submission
+          return false; // Prevent form submission
 
-        } else {
+          } else {
 
-            const trimmedCity = city.replace(/^\/|\/$/g, '');
-            const form = document.getElementById('SearchForm');
-            form.action = `/${propertyType}/${trimmedCity}/`;
-            return true; // Allow form submission
-        }
+              const trimmedCity = city.replace(/^\/|\/$/g, '');
+              const form = document.getElementById('SearchForm');
+              form.action = `/${propertyType}/${trimmedCity}/`;
+              return true; // Allow form submission
+          }
+      }
+  </script>
+  <script>
+    function selectPropertyTypee(value) {
+      document.getElementById('propertyType').value = value;
     }
-</script>
-<script>
-  function selectPropertyTypee(value) {
-    document.getElementById('propertyType').value = value;
-  }
-</script>
+  </script>
 <!-- this is for city wise filter -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('city3').addEventListener('change', function() {
-          const selectedCityUrl = this.value;
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('city3').addEventListener('change', function() {
+            const selectedCityUrl = this.value;
 
-          // Save the selected city in localStorage
-          localStorage.setItem('selectedCity', selectedCityUrl);
+            // Save the selected city in localStorage
+            localStorage.setItem('selectedCity', selectedCityUrl);
 
-          // Redirect to the selected city's listings page
-          if (selectedCityUrl) {
-              window.location.href = selectedCityUrl;
-          } else {
-              // Redirect to the "All India" page
-              window.location.href = '{% url "city_listings" "allindia" %}';
-          }
-      });
+            // Redirect to the selected city's listings page
+            if (selectedCityUrl) {
+                window.location.href = selectedCityUrl;
+            } else {
+                // Redirect to the "All India" page
+                window.location.href = '{% url "city_listings" "allindia" %}';
+            }
+        });
 
-      // Retrieve and set the selected city from localStorage
-      const storedCity = localStorage.getItem('selectedCity');
-      if (storedCity) {
-          document.getElementById('city3').value = storedCity;
-      }
-  });
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('city4').addEventListener('change', function() {
-          const selectedCityUrl = this.value;
-
-          // Save the selected city in localStorage
-          localStorage.setItem('selectedCity', selectedCityUrl);
-
-          // Redirect to the selected city's listings page
-          if (selectedCityUrl) {
-              window.location.href = selectedCityUrl;
-          } else {
-              // Redirect to the "All India" page
-              window.location.href = '{% url "city_listings" "allindia" %}';
-          }
-      });
-
-      // Retrieve and set the selected city from localStorage
-      const storedCity = localStorage.getItem('selectedCity');
-      if (storedCity) {
-          document.getElementById('city4').value = storedCity;
-      }
-  });
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    const voiceSearchBtn = document.getElementById('voiceSearchBtn');
-  
-    voiceSearchBtn.addEventListener('click', function () {
-      if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  
-        recognition.lang = 'en-US';
-  
-        recognition.start();
-  
-        recognition.onresult = function (event) {
-          const result = event.results[0][0].transcript;
-          searchInput.value = result;
-        };
-  
-        recognition.onerror = function (event) {
-          console.error('Speech recognition error:', event.error);
-        };
-      } else {
-        console.error('SpeechRecognition is not supported in this browser.');
-      }
+        // Retrieve and set the selected city from localStorage
+        const storedCity = localStorage.getItem('selectedCity');
+        if (storedCity) {
+            document.getElementById('city3').value = storedCity;
+        }
     });
-  });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('city4').addEventListener('change', function() {
+            const selectedCityUrl = this.value;
+
+            // Save the selected city in localStorage
+            localStorage.setItem('selectedCity', selectedCityUrl);
+
+            // Redirect to the selected city's listings page
+            if (selectedCityUrl) {
+                window.location.href = selectedCityUrl;
+            } else {
+                // Redirect to the "All India" page
+                window.location.href = '{% url "city_listings" "allindia" %}';
+            }
+        });
+
+        // Retrieve and set the selected city from localStorage
+        const storedCity = localStorage.getItem('selectedCity');
+        if (storedCity) {
+            document.getElementById('city4').value = storedCity;
+        }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('searchInput');
+      const voiceSearchBtn = document.getElementById('voiceSearchBtn');
+    
+      voiceSearchBtn.addEventListener('click', function () {
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+          const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    
+          recognition.lang = 'en-US';
+    
+          recognition.start();
+    
+          recognition.onresult = function (event) {
+            const result = event.results[0][0].transcript;
+            searchInput.value = result;
+          };
+    
+          recognition.onerror = function (event) {
+            console.error('Speech recognition error:', event.error);
+          };
+        } else {
+          console.error('SpeechRecognition is not supported in this browser.');
+        }
+      });
+    });
   </script>
   <script>
     function navigateToService(servicePath) {
@@ -1179,49 +1180,49 @@
 
         window.open(newUrl, '_blank');
     }
-</script>
-<script>
-  const citySelects = document.querySelectorAll('.city-select');
-  const links = {
-      apartment: document.getElementById('link-apartment'),
-      villa: document.getElementById('link-villa'),
-      plot: document.getElementById('link-plot')
-  };
+  </script>
+  <script>
+    const citySelects = document.querySelectorAll('.city-select');
+    const links = {
+        apartment: document.getElementById('link-apartment'),
+        villa: document.getElementById('link-villa'),
+        plot: document.getElementById('link-plot')
+    };
 
-  const baseUrl = 'http://192.168.1.11:8000/sell/';
-  const propertyTypes = {
-      apartment: 'apartment',
-      villa: 'villa',
-      plot: 'plot'
-  };
+    const baseUrl = 'http://192.168.1.11:8000/sell/';
+    const propertyTypes = {
+        apartment: 'apartment',
+        villa: 'villa',
+        plot: 'plot'
+    };
 
-  function updateLinksAndURL(city) {
-      for (const [type, link] of Object.entries(links)) {
-          link.href = `${baseUrl}${city}/?project_city=%2F${city}%2F&r_property_type=sell&query=${propertyTypes[type]}`;
-      }
-      // Update the URL without refreshing the page
-      history.pushState({}, '', `http://192.168.1.10:8000/${city}/`);
-  }
+    function updateLinksAndURL(city) {
+        for (const [type, link] of Object.entries(links)) {
+            link.href = `${baseUrl}${city}/?project_city=%2F${city}%2F&r_property_type=sell&query=${propertyTypes[type]}`;
+        }
+        // Update the URL without refreshing the page
+        history.pushState({}, '', `http://192.168.1.10:8000/${city}/`);
+    }
 
-  citySelects.forEach(select => {
-      select.addEventListener('change', function () {
-          const selectedCity = this.value.toLowerCase();
-          updateLinksAndURL(selectedCity);
-      });
-  });
+    citySelects.forEach(select => {
+        select.addEventListener('change', function () {
+            const selectedCity = this.value.toLowerCase();
+            updateLinksAndURL(selectedCity);
+        });
+    });
 
-  // Function to get the city from URL and update dropdowns and links
-  function updateCityFromURL() {
-      const url = new URL(window.location.href);
-      const city = url.pathname.split('/')[1]; // Assumes city is the first part of the path
-      if (city) {
-          citySelects.forEach(select => {
-              select.value = city.toLowerCase();
-          });
-          updateLinksAndURL(city.toLowerCase());
-      }
-  }
+    // Function to get the city from URL and update dropdowns and links
+    function updateCityFromURL() {
+        const url = new URL(window.location.href);
+        const city = url.pathname.split('/')[1]; // Assumes city is the first part of the path
+        if (city) {
+            citySelects.forEach(select => {
+                select.value = city.toLowerCase();
+            });
+            updateLinksAndURL(city.toLowerCase());
+        }
+    }
 
-  window.addEventListener('load', updateCityFromURL);
-</script>
+    window.addEventListener('load', updateCityFromURL);
+  </script>
 {% endblock %} 

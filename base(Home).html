@@ -4,7 +4,7 @@
 <head> 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name= "robots" content= "INDEX, FOLLOW">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
@@ -20,15 +20,15 @@
   </style>
   {% block head_block %}{% endblock %}
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y34E9RMLX9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-Y34E9RMLX9');
-</script>
-<!-- Meta Pixel Code -->
-<script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y34E9RMLX9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y34E9RMLX9');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -40,15 +40,15 @@
   fbq('init', '1526227234871104');
   fbq('track', 'PageView');
   </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11133035839"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11133035839"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'AW-11133035839');
-</script>
+    gtag('config', 'AW-11133035839');
+  </script>
     </head>
     <body oncontextmenu="return false">
       <noscript><img height="1" width="1" style="display:none"
@@ -60,20 +60,20 @@
       </div> -->
       <!-- <div class="ripple"></div> -->
       <section class="call-buton">
-        <a class="cc-calto-action-ripple" href="tel:+9189711785944">
+        <a class="cc-calto-action-ripple" href="tel:+9189711785944" aria-label="User_Call_Button">
           <i class="ShiIcons icon_phonecall45"></i>
       </a>
       </section>
       <header id="header1" class="fixed-top d-flex align-items-center" style="top: -65%;">
-        <div class="navbar1  container d-flex align-items-center justify-content-between">
+        <div class="navbar1 container d-flex align-items-center justify-content-between">
             <a class="logoo" href="/">
-                <img src="https://static.searchhomesindia.com/images/shi_logo.png" loading="lazy" alt="logo" style="width: 144px; height: 40px;">
+                <img data-src="https://static.searchhomesindia.com/images/shi_logo.png" loading="lazy" alt="logo" style="width:144px; height:40px;" decoding="auto" fetchpriority="auto" class="shilazy-images">
             </a>
           <div id="down1">
             <form id="SearchForm1" method="GET">
               {% csrf_token %}
               <div class="bar1">
-                <select class="dropdown1 form-select1" id="city1" name="project_city" data-target="1" required>
+                <select class="dropdown1 form-select1" id="city1" name="project_city" data-target="1" required aria-label="User_project_city">
                   <option value="" selected>All India</option>
                   <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
                   <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
@@ -107,7 +107,7 @@
             <div id="mysidenav1" class="sidenav1">
               <div id="nav3">
                 <div class="dropdown4 form-select3">
-                  <select required data-target="3" class="form-selectV" id="city2" name="project_city">
+                  <select required data-target="3" class="form-selectV" id="city2" name="project_city" aria-label="User_project_city2">
                     <option value="" selected>All India</option>
                     <option value="{% url 'city_listings' 'bengaluru' %}">Bengaluru</option>
                     <option value="{% url 'city_listings' 'chennai' %}">Chennai</option>
@@ -121,15 +121,17 @@
                   <a><button type="button" class="btnsss2 activeElement" onclick="selectPropertyType('sell')">Buy</button></a>
                   <a><button type="button" class="btnsss2 " onclick="selectPropertyType('rental')">Rent/Lease</button></a>
                   <a><button type="button" class="btnsss2 " onclick="selectPropertyType('pg')">Pg/Co-live</button></a>
-                  <select id="propertyType2" name="r_property_type" style="display: none;">
+                  <select id="propertyType2" name="r_property_type" style="display: none;" aria-label="User_Property_Type">
                     <option value="sell">Buy</option>
                     <option value="rental">Rental</option>
                     <option value="pg">PG/Coliving</option>
                 </select>
                 </div>
                 <li>
-                  <input type="text" id="searchInput2" name="query"  placeholder="Search your dream with us">
-                   <button type="submit" onclick="submitForm3()"><i class="ShiIcons icon_search1"></i></button>
+                  <input type="text" id="searchInput2" name="query" placeholder="Search your dream with us">
+                   <button type="submit" onclick="submitForm3()">
+                    <i class="ShiIcons icon_search1"></i>
+                   </button>
                   </li>
               </div>
               <ul id="suggestionsDropdown2" class="suggestion-list" style="max-height: 160px; overflow-y: auto;">
@@ -179,7 +181,7 @@
         <li class="index_menu"><button type="button"><i onclick="commonNav('mysidenav', '300px')" class="ShiIcons icon_toggle"style="cursor: pointer;"></i></button></li>
           <!-- sidebar bar for mobile and desktop start=========== -->
           <div id="mysidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="commonNav('mysidenav', '0px')"><i class="ShiIcons icon_cross"></i></a>
+            <a href="javascript:void(0)" class="closebtn" onclick="commonNav('mysidenav', '0px')" aria-label="Sidenav_Closebtn"><i class="ShiIcons icon_cross"></i></a>
             <!-- this is me -->
             {% if request.session.phone_verified %}
                 <a><h6>Welcome, {{ request.session.phone_number }}!</h6></a>
@@ -222,15 +224,15 @@
                 At Search Homes India, we prioritize building reliable relationships and understanding each customer's needs to streamline buying or selling property. We are committed to excellence and dedicated to ensuring a seamless and impactful experience for every transaction.
               </p>
               <div class="footer-social ">
-                <a class="aq" href="https://www.instagram.com/searchhomesindia_/?igshid=7ipgwp7nfpjf"
+                <a class="aq" href="https://www.instagram.com/searchhomesindia_/?igshid=7ipgwp7nfpjf" aria-label="Instagram"
                   style="background-color: rgb(255,0,148);" target="_blank"><i class="ShiIcons icon_inst"></i></a>
-                <a class="aq" href="https://www.facebook.com/searchhomesindia"
+                <a class="aq" href="https://www.facebook.com/searchhomesindia" aria-label="Facebook"
                   style="background-color: rgb(21,162,250);" target="_blank"><i class="ShiIcons icon_face"></i></a>
-                <a class="aq" href="https://twitter.com/SearchhomesIndi" style="background-color: rgb(29,161,242);" target="_blank"><i
+                <a class="aq" href="https://twitter.com/SearchhomesIndi" aria-label="Twitter" style="background-color: rgb(29,161,242);" target="_blank"><i
                     class="ShiIcons icon_twit"></i></a>
-                <a class="aq" href="https://in.linkedin.com/company/search-homes-india" style="background-color: rgb(0,119,181);"
+                <a class="aq" href="https://in.linkedin.com/company/search-homes-india" aria-label="Linkedin" style="background-color: rgb(0,119,181);"
                    target="_blank"><i class="ShiIcons1 icon_link"></i></a>
-                <a class="aq" href="https://www.youtube.com/channel/UCL-jPeknKXvpJG10vDw6cCg"
+                <a class="aq" href="https://www.youtube.com/channel/UCL-jPeknKXvpJG10vDw6cCg" aria-label="Youtube"
                   style="background-color:rgb(255,0,0);" target="_blank"><i class="ShiIcons icon_yout"></i></a>
                 <a class="aq"
                   href="https://api.whatsapp.com/send?phone=919035579996&text=Hi%3B%20Can%20we%20have%20a%20small%20conversation"
@@ -329,8 +331,36 @@
 </script>
 <!-- interakt WhatsApp Script End -->
   <!--===== REQUIRED JS =====-->
-
   <script src="https://static.searchhomesindia.com/js/new-header.js"></script>
+  <!-- image data src script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const lazyImages = document.querySelectorAll(".shilazy-images");
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const img = entry.target;
+                  img.src = img.dataset.src;
+                  img.onload = () => {
+                      img.classList.remove("shiimg-loading");
+                  };
+                  img.onerror = () => {
+                    img.classList.remove("shiimg-loading");
+                    img.src = "./assets/img/p1_500.jpg";
+                  };
+                  observer.unobserve(img);
+              }
+          });
+      },{
+          rootMargin: "0px 0px 50px 0px",
+          threshold: 0.01
+      });
+      lazyImages.forEach(image => {
+          image.classList.add("shiimg-loading");
+          imageObserver.observe(image);
+      });
+    });
+  </script>
   <script>
     const startButton = document.getElementById('startButton');
     const searchInput = document.getElementById('searchInput');
@@ -384,26 +414,25 @@
       // propright end==============================
   </script>
   <!-- this script is for dropdown cahge city -->
-<script>
-    $(document).ready(function() {
-        // Get the initial selected value
-        const initialVal = $('select[name="project_city"]').val();
+  <script>
+      $(document).ready(function() {
+          // Get the initial selected value
+          const initialVal = $('select[name="project_city"]').val();
 
-        // Set the initial value for all dropdowns with the same data-target
-        $('select[name="project_city"]').each(function() {
-            const target = $(this).data('target');
-            $('select[name="project_city"][data-target="' + target + '"]').val(initialVal);
-        });
+          // Set the initial value for all dropdowns with the same data-target
+          $('select[name="project_city"]').each(function() {
+              const target = $(this).data('target');
+              $('select[name="project_city"][data-target="' + target + '"]').val(initialVal);
+          });
 
-        // Update other dropdowns when a dropdown changes
-        $('select[name="project_city"]').change(function() {
-            const currentVal = $(this).val();
-            const target = $(this).data('target');
-            $('select[name="project_city"][data-target="' + target + '"]').val(currentVal);
-        });
-    });
-</script>
-
+          // Update other dropdowns when a dropdown changes
+          $('select[name="project_city"]').change(function() {
+              const currentVal = $(this).val();
+              const target = $(this).data('target');
+              $('select[name="project_city"][data-target="' + target + '"]').val(currentVal);
+          });
+      });
+  </script>
   <!-- this script is for form filter submit -->
   <script>
     function submitForm2() {
@@ -474,7 +503,7 @@
             document.getElementById('city1').value = storedCity;
         }
     });
-</script>
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('city2').addEventListener('change', function() {
@@ -498,8 +527,8 @@
             document.getElementById('city2').value = storedCity;
         }
     });
-</script>
-<script>
+  </script>
+  <script>
   document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('propertyType1').addEventListener('change', function() {
           const selectedCityUrl = this.value;
@@ -514,7 +543,7 @@
           document.getElementById('propertyType1').value = storedCity;
       }
   });
-</script>
+  </script>
   <script>
     function selectPropertyType(value) {
       document.getElementById('propertyType2').value = value;

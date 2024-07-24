@@ -67,7 +67,7 @@
       <header id="header1" class="fixed-top d-flex align-items-center" style="top: -65%;">
         <div class="navbar1 container d-flex align-items-center justify-content-between">
             <a class="logoo" href="/">
-                <img data-src="https://static.searchhomesindia.com/images/shi_logo.png" loading="lazy" alt="logo" style="width:144px; height:40px;" decoding="auto" fetchpriority="auto" class="shilazy-images">
+                <img data-src="https://static.searchhomesindia.com/images/shi_logo.png"  alt="logo" style="width:144px; height:40px;" decoding="auto" fetchpriority="auto" class="shilazy-images">
             </a>
           <div id="down1">
             <form id="SearchForm1" method="GET">
@@ -312,376 +312,40 @@
       </div>
     </div>
     <!-- footer end================================================ -->
-<!-- interakt WhatsApp Script Start -->
-<script>
-  (function(w,d,s,c,r,a,m){
-    w['KiwiObject']=r;
-    w[r]=w[r] || function () {
-      (w[r].q=w[r].q||[]).push(arguments)};
-    w[r].l=1*new Date();
-      a=d.createElement(s);
-      m=d.getElementsByTagName(s)[0];
-    a.async=1;
-    a.src=c;
-    m.parentNode.insertBefore(a,m)
-  })(window,document,'script',"https://app.interakt.ai/kiwi-sdk/kiwi-sdk-17-prod-min.js?v="+ new Date().getTime(),'kiwi');
-  window.addEventListener("load",function () {
-    kiwi.init('', '28QIIr5jYVQ75UHmnqrDyJW6u6ejbx8D', {});
-  });
-</script>
-<!-- interakt WhatsApp Script End -->
+  <!-- interakt WhatsApp Script Start -->
+    <script>
+      (function(w,d,s,c,r,a,m){
+        w['KiwiObject']=r;
+        w[r]=w[r] || function () {
+          (w[r].q=w[r].q||[]).push(arguments)};
+        w[r].l=1*new Date();
+          a=d.createElement(s);
+          m=d.getElementsByTagName(s)[0];
+        a.async=1;
+        a.src=c;
+        m.parentNode.insertBefore(a,m)
+      })(window,document,'script',"https://app.interakt.ai/kiwi-sdk/kiwi-sdk-17-prod-min.js?v="+ new Date().getTime(),'kiwi');
+      window.addEventListener("load",function () {
+        kiwi.init('', '28QIIr5jYVQ75UHmnqrDyJW6u6ejbx8D', {});
+      });
+    </script>
+  <!-- interakt WhatsApp Script End -->
   <!--===== REQUIRED JS =====-->
   <script src="https://static.searchhomesindia.com/js/new-header.js"></script>
   <!-- image data src script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const lazyImages = document.querySelectorAll(".shilazy-images");
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  const img = entry.target;
-                  img.src = img.dataset.src;
-                  img.onload = () => {
-                      img.classList.remove("shiimg-loading");
-                  };
-                  img.onerror = () => {
-                    img.classList.remove("shiimg-loading");
-                    img.src = "./assets/img/p1_500.jpg";
-                  };
-                  observer.unobserve(img);
-              }
-          });
-      },{
-          rootMargin: "0px 0px 50px 0px",
-          threshold: 0.01
-      });
-      lazyImages.forEach(image => {
-          image.classList.add("shiimg-loading");
-          imageObserver.observe(image);
-      });
-    });
-  </script>
-  <script>
-    const startButton = document.getElementById('startButton');
-    const searchInput = document.getElementById('searchInput');
-
-    let recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.lang = 'en-US'; // Set the language for speech recognition
-
-    recognition.onresult = function(event) {
-      const result = event.results[event.results.length - 1];
-      const transcript = result[0].transcript;
-      searchInput.value = transcript; // Input the recognized speech into the search input
-    };
-
-    recognition.onend = function() {
-      startButton.textContent = '....';
-    };
-
-    startButton.addEventListener('click', function() {
-      if (recognition.running) {
-        recognition.stop();
-        startButton.textContent = '....';
-      } else {
-        recognition.start();
-        startButton.textContent = '...';
-        searchInput.value = 'Listening...';
-      }
-    });
-  </script>
-  <script>
-    // property-right start==============================
-    $(document).ready(function () {
-        $(window).scroll(function () {
-          var scrollY = $(window).scrollTop();
-          if (scrollY > 0) {  
-            $(".propdetail-right").css("top","75px");
-            $(".propdetail-right").css("position", "sticky");
-          } 
-          if (scrollY >= 900) {  
-            $(".propdetail-right").css("top", "130px");
-          }
-          else if (scrollY >= 2500) {  
-            $(".propdetail-right").css("position", "sticky");
-          }
-        else{
-          $(".propdetail-right").css("display", "flow");
-              }
-        });
-      });
-      // propright end==============================
-  </script>
+  <script>document.addEventListener("DOMContentLoaded",function(){let e=document.querySelectorAll(".shilazy-images"),s=new IntersectionObserver((e,s)=>{e.forEach(e=>{if(e.isIntersecting){let i=e.target;i.src=i.dataset.src,i.onload=()=>{i.classList.remove("shiimg-loading")},i.onerror=()=>{i.classList.remove("shiimg-loading"),i.src="./assets/img/p1_500.jpg"},s.unobserve(i)}})},{rootMargin:"0px 0px 50px 0px",threshold:.01});e.forEach(e=>{e.classList.add("shiimg-loading"),s.observe(e)})});</script>
+  <script>const startButton=document.getElementById("startButton"),searchInput=document.getElementById("searchInput");let recognition=new webkitSpeechRecognition;recognition.continuous=!0,recognition.interimResults=!0,recognition.lang="en-US",recognition.onresult=function(t){let n=t.results[t.results.length-1],e=n[0].transcript;searchInput.value=e},recognition.onend=function(){startButton.textContent="...."},startButton.addEventListener("click",function(){recognition.running?(recognition.stop(),startButton.textContent="...."):(recognition.start(),startButton.textContent="...",searchInput.value="Listening...")});</script>
+  <script>$(document).ready(function(){$(window).scroll(function(){var i=$(window).scrollTop();i>0&&($(".propdetail-right").css("top","75px"),$(".propdetail-right").css("position","sticky")),i>=900?$(".propdetail-right").css("top","130px"):i>=2500?$(".propdetail-right").css("position","sticky"):$(".propdetail-right").css("display","flow")})});</script>
   <!-- this script is for dropdown cahge city -->
-  <script>
-      $(document).ready(function() {
-          // Get the initial selected value
-          const initialVal = $('select[name="project_city"]').val();
-
-          // Set the initial value for all dropdowns with the same data-target
-          $('select[name="project_city"]').each(function() {
-              const target = $(this).data('target');
-              $('select[name="project_city"][data-target="' + target + '"]').val(initialVal);
-          });
-
-          // Update other dropdowns when a dropdown changes
-          $('select[name="project_city"]').change(function() {
-              const currentVal = $(this).val();
-              const target = $(this).data('target');
-              $('select[name="project_city"][data-target="' + target + '"]').val(currentVal);
-          });
-      });
-  </script>
+  <script>$(document).ready(function(){let t=$('select[name="project_city"]').val();$('select[name="project_city"]').each(function(){let e=$(this).data("target");$('select[name="project_city"][data-target="'+e+'"]').val(t)}),$('select[name="project_city"]').change(function(){let t=$(this).val(),e=$(this).data("target");$('select[name="project_city"][data-target="'+e+'"]').val(t)})});</script>
   <!-- this script is for form filter submit -->
-  <script>
-    function submitForm2() {
-          const propertyType = document.getElementById('propertyType1').value;
-          const city = document.getElementById('city1').value;
-          const query = document.getElementById('searchInput1').value;
-  
-          if (city === '' || city === 'allindia') {
-
-            return false; // Prevent form submission
-
-          } else {
-
-              const trimmedCity = city.replace(/^\/|\/$/g, '');
-              const form = document.getElementById('SearchForm1');
-              form.action = `/${propertyType}/${trimmedCity}/`;
-              return true; // Allow form submission
-          }
-
-          // const form = document.getElementById('SearchForm1');
-          // form.action = `/${propertyType}/${city}/`;
-          // form.submit();
-      }
-  </script>
-  <script>
-    function submitForm3() {
-          const propertyType = document.getElementById('propertyType2').value;
-          const city = document.getElementById('city2').value;
-          const query = document.getElementById('searchInput2').value;
-
-          if (city === '' || city === 'allindia') {
-
-            return false; // Prevent form submission
-
-            } else {
-
-              const trimmedCity = city.replace(/^\/|\/$/g, '');
-              const form = document.getElementById('SearchForm2');
-              form.action = `/${propertyType}/${trimmedCity}/`;
-              return true; // Allow form submission
-            }
-  
-          // const form = document.getElementById('SearchForm2');
-          // form.action = `/${propertyType}/${city}/`;
-          // form.submit();
-      }
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('city1').addEventListener('change', function() {
-            const selectedCityUrl = this.value;
-
-            // Save the selected city in localStorage
-            localStorage.setItem('selectedCity', selectedCityUrl);
-
-            // Redirect to the selected city's listings page
-            if (selectedCityUrl) {
-                window.location.href = selectedCityUrl;
-            } else {
-                // Redirect to the "All India" page
-                window.location.href = '{% url "city_listings" "allindia" %}';
-            }
-        });
-
-        // Retrieve and set the selected city from localStorage
-        const storedCity = localStorage.getItem('selectedCity');
-        if (storedCity) {
-            document.getElementById('city1').value = storedCity;
-        }
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('city2').addEventListener('change', function() {
-            const selectedCityUrl = this.value;
-
-            // Save the selected city in localStorage
-            localStorage.setItem('selectedCity', selectedCityUrl);
-
-            // Redirect to the selected city's listings page
-            if (selectedCityUrl) {
-                window.location.href = selectedCityUrl;
-            } else {
-                // Redirect to the "All India" page
-                window.location.href = '{% url "city_listings" "allindia" %}';
-            }
-        });
-
-        // Retrieve and set the selected city from localStorage
-        const storedCity = localStorage.getItem('selectedCity');
-        if (storedCity) {
-            document.getElementById('city2').value = storedCity;
-        }
-    });
-  </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('propertyType1').addEventListener('change', function() {
-          const selectedCityUrl = this.value;
-
-          // Save the selected city in localStorage
-          localStorage.setItem('selectedCity44', selectedCityUrl);
-      });
-
-      // Retrieve and set the selected city from localStorage
-      const storedCity = localStorage.getItem('selectedCity44');
-      if (storedCity) {
-          document.getElementById('propertyType1').value = storedCity;
-      }
-  });
-  </script>
-  <script>
-    function selectPropertyType(value) {
-      document.getElementById('propertyType2').value = value;
-    }
-  </script>
-  <script>
-    function selectPropertyTypen(value) {
-      document.getElementById('propertyType3').value = value;
-    }
-  </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // console.log('DOMContentLoaded event fired'); 
-    const searchInput1 = document.getElementById('searchInput1');
-    const searchInput2 = document.getElementById('searchInput2');
-    const propertyTypeDropdown1 = document.getElementById('propertyType1');
-    const propertyTypeDropdown2 = document.getElementById('propertyType2');
-    const cityDropdown1 = document.getElementById('city1');
-    const cityDropdown2 = document.getElementById('city2');
-    const suggestionsDatalist1 = document.getElementById('suggestionsDropdown1');
-    const suggestionsDatalist2 = document.getElementById('suggestionsDropdown2'); // Assuming you have a second datalist element for the second form
-    // const closeBtn1 = suggestionsDropdown1.querySelector('.close-button');
-    const uniqueSuggestions = new Set();
-    // console.log(searchInput1, propertyTypeDropdown1, cityDropdown1, suggestionsDatalist1);
-    // console.log(searchInput2, propertyTypeDropdown2, cityDropdown2, suggestionsDatalist2);
-    // console.log(searchInput3, propertyTypeDropdown3, cityDropdown3, suggestionsDatalist3);
-
-    searchInput1.addEventListener('input', function() {
-        const query = this.value;
-        const rPropertyType = propertyTypeDropdown1.value;
-        const projectCity = cityDropdown1.value;
-
-        // Clear previous suggestions when the input is empty
-        if (query === '') {
-          uniqueSuggestions.clear();
-          suggestionsDropdown1.innerHTML = '';
-          suggestionsDropdown1.style.display = 'none';
-          // closeBtn1.style.display = 'none';
-          return;
-        }
-
-        // Make an AJAX request to get autosuggestions
-        fetch(`/get_autosuggestions/?query=${encodeURIComponent(query)}&r_property_type=${encodeURIComponent(rPropertyType)}&project_city=${encodeURIComponent(projectCity)}`, {
-              headers: {
-                  'Accept': 'application/json',
-              },
-          })
-          .then(response => {
-              // console.log('Response status:', response.status);
-              return response.json();
-          })
-            .then(data => {
-              // console.log('Data received:', data);
-                // Clear previous suggestions when receiving new suggestions
-                uniqueSuggestions.clear();
-                suggestionsDropdown1.innerHTML = '';
-
-                if (data && data.suggestions) {
-                  data.suggestions.forEach(suggestion => {
-                    if (!uniqueSuggestions.has(suggestion)) {
-                      uniqueSuggestions.add(suggestion);
-
-                      const listItem = document.createElement('li');
-                      listItem.textContent = suggestion;
-                      listItem.addEventListener('click', function() {
-                        // Set the selected suggestion in the input field
-                        searchInput1.value = suggestion;
-                        // Clear the suggestion list
-                        suggestionsDropdown1.innerHTML = '';
-                      });
-                      suggestionsDropdown1.appendChild(listItem);
-                    }
-                  });
-                  // closeBtn1.style.display = uniqueSuggestions.size > 0 ? 'block' : 'none';
-                } else {
-                  console.error('Invalid JSON structure in response:', data);
-              }
-                    // Display the suggestion list only if there are suggestions
-              suggestionsDropdown1.style.display = data && data.suggestions && data.suggestions.length > 0 ? 'block' : 'none';
-            })
-            .catch(error => console.error('Error fetching autosuggestions:', error));
-    });
-    searchInput2.addEventListener('input', function() {
-        const query = this.value;
-        const rPropertyType = propertyTypeDropdown2.value;
-        const projectCity = cityDropdown2.value;
-
-        // Clear previous suggestions when the input is empty
-        if (query === '') {
-          uniqueSuggestions.clear();
-          suggestionsDropdown2.innerHTML = '';
-          suggestionsDropdown2.style.display = 'none';
-          // closeBtn1.style.display = 'none';
-          return;
-        }
-
-        // Make an AJAX request to get autosuggestions
-        fetch(`/get_autosuggestions/?query=${encodeURIComponent(query)}&r_property_type=${encodeURIComponent(rPropertyType)}&project_city=${encodeURIComponent(projectCity)}`, {
-              headers: {
-                  'Accept': 'application/json',
-              },
-          })
-          .then(response => {
-              // console.log('Response status:', response.status);
-              return response.json();
-          })
-            .then(data => {
-              // console.log('Data received:', data);
-                // Clear previous suggestions when receiving new suggestions
-                uniqueSuggestions.clear();
-                suggestionsDropdown2.innerHTML = '';
-
-                if (data && data.suggestions) {
-                  data.suggestions.forEach(suggestion => {
-                    if (!uniqueSuggestions.has(suggestion)) {
-                      uniqueSuggestions.add(suggestion);
-
-                      const listItem = document.createElement('li');
-                      listItem.textContent = suggestion;
-                      listItem.addEventListener('click', function() {
-                        // Set the selected suggestion in the input field
-                        searchInput2.value = suggestion;
-                        // Clear the suggestion list
-                        suggestionsDropdown2.innerHTML = '';
-                      });
-                      suggestionsDropdown2.appendChild(listItem);
-                    }
-                  });
-                  // closeBtn1.style.display = uniqueSuggestions.size > 0 ? 'block' : 'none';
-                } else {
-                  console.error('Invalid JSON structure in response:', data);
-              }
-                    // Display the suggestion list only if there are suggestions
-              suggestionsDropdown2.style.display = data && data.suggestions && data.suggestions.length > 0 ? 'block' : 'none';
-            })
-            .catch(error => console.error('Error fetching autosuggestions:', error));
-    });
-});
-  </script>
+  <script>function submitForm2(){let e=document.getElementById("propertyType1").value,t=document.getElementById("city1").value;if(document.getElementById("searchInput1").value,""===t||"allindia"===t)return!1;{let l=t.replace(/^\/|\/$/g,""),n=document.getElementById("SearchForm1");return n.action=`/${e}/${l}/`,!0}}</script>
+  <script>function submitForm3(){let e=document.getElementById("propertyType2").value,t=document.getElementById("city2").value;if(document.getElementById("searchInput2").value,""===t||"allindia"===t)return!1;{let l=t.replace(/^\/|\/$/g,""),n=document.getElementById("SearchForm2");return n.action=`/${e}/${l}/`,!0}}</script>
+  <script>document.addEventListener("DOMContentLoaded",function(){document.getElementById("city1").addEventListener("change",function(){let e=this.value;localStorage.setItem("selectedCity",e),e?window.location.href=e:window.location.href='{% url "city_listings" "allindia" %}'});let e=localStorage.getItem("selectedCity");e&&(document.getElementById("city1").value=e)});</script>
+  <script>document.addEventListener("DOMContentLoaded",function(){document.getElementById("city2").addEventListener("change",function(){let e=this.value;localStorage.setItem("selectedCity",e),e?window.location.href=e:window.location.href='{% url "city_listings" "allindia" %}'});let e=localStorage.getItem("selectedCity");e&&(document.getElementById("city2").value=e)});</script>
+  <script>document.addEventListener("DOMContentLoaded",function(){document.getElementById("propertyType1").addEventListener("change",function(){let e=this.value;localStorage.setItem("selectedCity44",e)});let e=localStorage.getItem("selectedCity44");e&&(document.getElementById("propertyType1").value=e)});</script>
+  <script>document.addEventListener("DOMContentLoaded",function(){let e=document.getElementById("searchInput1"),t=document.getElementById("searchInput2"),n=document.getElementById("propertyType1"),s=document.getElementById("propertyType2"),r=document.getElementById("city1"),i=document.getElementById("city2");document.getElementById("suggestionsDropdown1"),document.getElementById("suggestionsDropdown2");let o=new Set;e.addEventListener("input",function(){let t=this.value,s=n.value,i=r.value;if(""===t){o.clear(),suggestionsDropdown1.innerHTML="",suggestionsDropdown1.style.display="none";return}fetch(`/get_autosuggestions/?query=${encodeURIComponent(t)}&r_property_type=${encodeURIComponent(s)}&project_city=${encodeURIComponent(i)}`,{headers:{Accept:"application/json"}}).then(e=>e.json()).then(t=>{o.clear(),suggestionsDropdown1.innerHTML="",t&&t.suggestions?t.suggestions.forEach(t=>{if(!o.has(t)){o.add(t);let n=document.createElement("li");n.textContent=t,n.addEventListener("click",function(){e.value=t,suggestionsDropdown1.innerHTML=""}),suggestionsDropdown1.appendChild(n)}}):console.error("Invalid JSON structure in response:",t),suggestionsDropdown1.style.display=t&&t.suggestions&&t.suggestions.length>0?"block":"none"}).catch(e=>console.error("Error fetching autosuggestions:",e))}),t.addEventListener("input",function(){let e=this.value,n=s.value,r=i.value;if(""===e){o.clear(),suggestionsDropdown2.innerHTML="",suggestionsDropdown2.style.display="none";return}fetch(`/get_autosuggestions/?query=${encodeURIComponent(e)}&r_property_type=${encodeURIComponent(n)}&project_city=${encodeURIComponent(r)}`,{headers:{Accept:"application/json"}}).then(e=>e.json()).then(e=>{o.clear(),suggestionsDropdown2.innerHTML="",e&&e.suggestions?e.suggestions.forEach(e=>{if(!o.has(e)){o.add(e);let n=document.createElement("li");n.textContent=e,n.addEventListener("click",function(){t.value=e,suggestionsDropdown2.innerHTML=""}),suggestionsDropdown2.appendChild(n)}}):console.error("Invalid JSON structure in response:",e),suggestionsDropdown2.style.display=e&&e.suggestions&&e.suggestions.length>0?"block":"none"}).catch(e=>console.error("Error fetching autosuggestions:",e))})});</script>
+  <script>function selectPropertyType(e){document.getElementById("propertyType2").value=e}</script>
+  <script>function selectPropertyTypen(e){document.getElementById("propertyType3").value=e}</script>
 </body>
 </html>

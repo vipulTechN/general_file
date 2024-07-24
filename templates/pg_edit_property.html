@@ -1,0 +1,702 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pg newsubmit</title>
+    <link rel="stylesheet" href="https://static.searchhomesindia.com/css/newsubmit.css">
+    <link rel="stylesheet" href="https://static.searchhomesindia.com/css/style.css">
+    <style>
+        #header {
+            background-color: #1B6C9F !important;
+            position: fixed;
+            top: 0px;
+        }
+        .locationinput img{
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+        }
+        @media (min-width: 1200px) {
+            .srpcontain {
+                max-width: 100% !important;
+            }
+        }
+          /* Container for the entire form */
+#property-edit-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for the image field */
+.property-image-field {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Change background color on hover */
+.property-image-field:hover {
+    background-color: #f1f1f1;
+}
+
+/* Label for the image */
+.property-image-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Container for the image and input fields */
+.property-locationinput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* Styling for inputs */
+.property-inputs input[type="file"],
+.property-inputs input[type="text"],
+.property-inputs select {
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+/* Responsive layout */
+@media (max-width: 768px) {
+    .property-locationinput {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    /* Styling for inputs */
+.property-inputs input[type="file"],
+.property-inputs input[type="text"],
+.property-inputs select {
+    width: 100%;
+    }
+}
+
+/* Image display */
+.property-image-display img {
+    width: 100px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+/* Input focus styles */
+.property-inputs input:focus,
+.property-inputs select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Styling for the add image button */
+#property-add-image-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#property-add-image-button:hover {
+    background-color: #0056b3;
+}
+
+/* Hide the forms for additional images initially */
+.property-image-field.hidden {
+    display: none;
+}
+
+/* Button for delete action */
+.property-delete-label {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.property-delete-label:hover {
+    background-color: #c82333;
+}
+
+/* General text input styles */
+/* .property-inputs {
+    width: 100%;
+} */
+.property-inputs a{word-break: break-all;}
+/* Container for the entire cover image section */
+.cover-image-contentwrap {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 5%;
+}
+
+/* Label for the cover image */
+.cover-image-contentwrap .cover-image-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Container for the image and input fields */
+.cover-image-contentwrap .cover-image-locationinput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .cover-image-contentwrap .cover-image-locationinput {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Image display */
+.cover-image-contentwrap .cover-image-img {
+    width: 100px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+/* Styling for the message when no image is available */
+.cover-image-contentwrap .cover-image-placeholder {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-right: 20px;
+}
+
+/* Styling for file input */
+.cover-image-contentwrap .cover-image-input {
+    width: 100%; /* 100% width for responsiveness */
+    max-width: 100%; /* Ensuring it doesn't overflow the container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Input focus styles */
+.cover-image-contentwrap .cover-image-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+    </style>
+{% endblock %}
+{%block body_block%}
+    <div class="submitdetailwrap">
+        <div class="container srpcontain">
+            <div class="row">
+                <div class="col-lg-7" id="leftsubmit-dets">
+                    <form method="post" enctype="multipart/form-data" id="submit_propertyid">
+                    {% csrf_token %}
+
+                    <div class="datablock">
+                        <div class="sub-heading-submit" style="margin-top: 0px;">
+                            <h5> Property details </h5>
+                        </div>
+                        <div class="fielddets">
+                            <div class="label labelselect">
+                                I am <span class="req">*</span>
+                            </div>
+                            <ul>
+                                <li>
+                                    <input type="radio" name="u_property_type" value="owner" required id="id_u_property_type_1"
+                                    class="iamradio"  {% if property.u_property_type == 'owner' %} checked {% endif %}>
+                                    <label for="id_u_property_type_1"> Owner</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="u_property_type" value="agent" required id="id_u_property_type_2"
+                                    class="iamradio" {% if property.u_property_type == 'agent' %} checked {% endif %}>
+                                    <label for="id_u_property_type_2" id="fielabs">Agent</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="u_property_type" value="builder" required id="id_u_property_type_3"
+                                    class="iamradio" {% if property.u_property_type == 'builder' %} checked {% endif %}>
+                                    <label for="id_u_property_type_3" id="fielabs">Builder</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fielddets">
+                            <div class="label labelselect">
+                                Here To
+                            </div>
+                            <ul>
+                                <li>
+                                    <input type="radio" name="hereto" value="sell" class="iamradio"
+                                    style="cursor: no-drop;" disabled>
+                                    <label for="sell">Sell</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="hereto" value="Rent/Lease" class="iamradio"
+                                    style="cursor: no-drop;" disabled>
+                                    <label for="Rent/Lease" id="fielabs">Rent/Lease</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="hereto" value="Pg/Colive" required class="iamradio"
+                                    checked>
+                                    <label for="Pg/Colive" id="fielabs">Pg/Co-live</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="contentwrap">
+                            <div class="label">
+                                Sharing Type
+                            </div> 
+                            <div class="locationinput">
+                                <select name="sharing_type" required id="id_sharing_type" class="cidrop-input">
+                                    <option value="" {% if property.sharing_type == '' %} selected {% endif %}>Sharing Type</option>
+                                    <option value="1" {% if property.sharing_type == 1 %} selected {% endif %}>1</option>
+                                    <option value="2" {% if property.sharing_type == 2 %} selected {% endif %}>2</option>
+                                    <option value="3" {% if property.sharing_type == 3 %} selected {% endif %}>3</option>
+                                    <option value="4" {% if property.sharing_type == 4 %} selected {% endif %}>4</option>
+                                    <option value="5" {% if property.sharing_type == 5 %} selected {% endif %}>5</option>
+                                    <option value="0" {% if property.sharing_type == 0 %} selected {% endif %}>All</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="datablock">
+
+                        <div class="sub-heading-submit">
+                            <h5> Property Location </h5>
+                        </div>
+
+                        <div class="contentwrap">
+                            <div class="label">
+                                City
+                            </div>
+                            <div class="cityinput">
+                                <select name="project_city" id="id_project_city" class="cidrop-input" required>
+                                    <option value="bengaluru" {% if property.project_city == 'bengaluru' %} selected {% endif %}>Bengaluru</option>
+                                    <option value="chennai" {% if property.project_city == 'chennai' %} selected {% endif %}>Chennai</option>
+                                    <option value="mumbai" {% if property.project_city == 'mumbai' %} selected {% endif %}>Mumbai</option>
+                                    <option value="hyderabad" {% if property.project_city == 'hyderabad' %} selected {% endif %}>Hyderabad</option>
+                                    <option value="delhi" {% if property.project_city == 'delhi' %} selected {% endif %}>Delhi</option>
+                                    <option value="pune" {% if property.project_city == 'pune' %} selected {% endif %}>Pune</option>
+                                    <option value="allindia" {% if property.project_city == 'allindia' %} selected {% endif %}>All India</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="contentwrap">
+                            <div class="label">
+                                Locality
+                            </div>
+                            <div class="locationinput">
+                                <input type="text" placeholder="Enter Locality" name="landmark" maxlength="100"
+                                    id="id_landmark" class="cidrop-input" value="{{ property.landmark }}" required>
+                            </div>
+                        </div>
+
+                        <div class="contentwrap">
+                            <div class="label">
+                                Name of Project/Society
+                            </div>
+                            <div class="locationinput">
+                                <input type="text" placeholder="Pg name" name="pg_property_name"
+                                    class="cidrop-input" maxlength="100" id="id_pg_property_name" value="{{ property.pg_property_name }}" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="hiddendatablockkkk">
+
+                        <!-- Pg Features -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit">
+                                <h5> Pg Features </h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Status Type
+                                        </div>
+                                        <div class="locationinput">
+                                            <select name="available_from" class="cidrop-input" id="id_available_from">
+                                                <option value="immediate" {% if property.available_from == 'immediate' %} selected {% endif %}>Immediate</option>
+                                                <option value="within15days" {% if property.available_from == 'within15days' %} selected {% endif %}>Within 15 Days</option>
+                                                <option value="within1month" {% if property.available_from == 'within1month' %} selected {% endif %}>Within 1 Month</option>
+                                                <option value="morethan1month" {% if property.available_from == 'morethan1month' %} selected {% endif %}>More Than 1 Month</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Available for*
+                                        </div>
+                                        <div class="locationinput">
+                                            <select name="pg_for" required id="id_pg_for" class="cidrop-input">
+                                                <option value="" {% if property.pg_for == '' %} selected {% endif %}>Pg/co-live for</option>
+                                                <option value="girls" {% if property.pg_for == 'girls' %} selected {% endif %}>Girls</option>
+                                                <option value="boys" {% if property.pg_for == 'boys' %} selected {% endif %}>Boys</option>
+                                                <option value="colive" {% if property.pg_for == 'colive' %} selected {% endif %}>Co-live</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Food Availability*
+                                        </div>
+                                        <div class="locationinput">
+                                            <select name="food_availability" id="id_food_availability"
+                                                class="cidrop-input" required>
+                                                <option value="veg" {% if property.food_availability == 'veg' %} selected {% endif %}>Veg</option>
+                                                <option value="veg/non-veg" {% if property.food_availability == 'veg/non-veg' %} selected {% endif %}>Veg/Non-Veg</option>
+                                                <option value="none" {% if property.food_availability == 'none' %} selected {% endif %}>None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Floor No.
+                                        </div>
+                                        <div class="locationinput">
+                                            <input type="number" placeholder="Floor No." name="floor_number"  min="0"
+                                             id="id_floor_number" value="{{ property.floor_number }}" class="cidrop-input">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Lifts
+                                        </div>
+                                        <div class="cityinput">
+                                            <select name="lifts" required id="id_lifts" class="cidrop-input">
+                                                <option value="" {% if property.lifts == '' %} selected {% endif %}>Select</option>
+                                                <option value="yes" {% if property.lifts == 'yes' %} selected {% endif %}>YES</option>
+                                                <option value="no" {% if property.lifts == 'no' %} selected {% endif %}>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Ac Rooms
+                                        </div>
+                                        <div class="cityinput">
+                                            <select name="ac_rooms" required id="id_ac_rooms" class="cidrop-input">
+                                                <option value="" {% if property.ac_rooms == '' %} selected {% endif %}> Ac Rooms</option>
+                                                <option value="yes" {% if property.ac_rooms == 'yes' %} selected {% endif %}>YES</option>
+                                                <option value="no" {% if property.ac_rooms == 'no' %} selected {% endif %}>NO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Extra Amnities
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="text" placeholder="Extra Aminities" name="amenities"
+                                                maxlength="300" id="id_amenities" class="cidrop-input" value="{{ property.amenities }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Select Aminities
+                                        </div>
+                                        <div class="cityinput amenitiesfield">
+                                          <div class="row">
+                                            <div class="col-lg-2">
+                                            <label for="id_has_wifi">1. Wifi</label>
+                                            <input type="checkbox" name="has_wifi" id="id_has_wifi" class="iamradio1" {% if property.has_wifi %} checked {% endif %}>
+                                            </div>
+                                            <div class="col-lg-3">
+                                            <label for="id_has_refrigerator">2. Refrigerator</label>
+                                            <input type="checkbox" name="has_refrigerator" id="id_has_refrigerator" class="iamradio1" {% if property.has_refrigerator %} checked {% endif %}>
+                                            </div>
+                                            <div class="col-lg-3">
+                                            <label for="id_has_security">3. Security</label>
+                                            <input type="checkbox" name="has_security" class="iamradio1" id="id_has_security" {% if property.has_security %} checked {% endif %}>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <label for="id_has_powerbackup">4. PowerBackup</label>
+                                                <input type="checkbox" name="has_powerbackup" id="id_has_powerbackup" class="iamradio1" {% if property.has_powerbackup %} checked {% endif %}>                
+                                            </div>
+                                            
+                                        <div class="col-lg-2">
+                                            <label for="id_has_gym">5. Gym</label>
+                                            <input type="checkbox" name="has_gym" id="id_has_gym" class="iamradio1" {% if property.has_gym %} checked {% endif %}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label for="id_has_washingmachine">6. Was. Machine</label>
+                                            <input type="checkbox" name="has_washingmachine" class="iamradio1" id="id_has_washingmachine" {% if property.has_washingmachine %} checked {% endif %}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                           <label for="id_has_water">7. Water</label>
+                                            <input type="checkbox" name="has_water" id="id_has_water" class="iamradio1" {% if property.has_water %} checked {% endif %}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label for="id_has_electricity">8. Electricity</label>
+                                            <input type="checkbox" name="has_electricity" id="id_has_electricity" class="iamradio1" {% if property.has_electricity %} checked {% endif %}>
+                                        </div>
+                                        
+                                        <div class="col-lg-3">
+                                            <label for="id_has_parking">9. Parking</label>
+                                            <input type="checkbox" name="has_parking" id="id_has_parking" class="iamradio1" {% if property.has_parking %} checked {% endif %}>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Price Details -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit">
+                                <h5>Price Details And Address</h5>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Min. Pricing*
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="number" placeholder=" Min. Pricing" name="min_price"
+                                                required id="id_min_price" class="cidrop-input" value="{{ property.min_price }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Max. Pricing*
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="number" placeholder="Max. Pricing" name="max_price"
+                                                id="id_max_price" class="cidrop-input" value="{{ property.max_price }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Security Deposit*
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="number" placeholder="Security Deposit" name="security_deposit"
+                                                step="0.01" required id="id_security_deposit"
+                                                class="cidrop-input" value="{{ property.security_deposit }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Maintenance cost
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="number" placeholder="maintenance cost" name="maintenance_cost"
+                                                step="0.01" id="id_maintenance_cost" class="cidrop-input" value="{{ property.maintenance_cost }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Description
+                                        </div>
+                                        <div class="cityinput">
+                                            <textarea name="discription" placeholder="Few Good words" cols="40"
+                                                rows="10" required id="id_discription" class="cidrop-input">{{ property.discription }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="contentwrap">
+                                        <div class="label">
+                                            Address
+                                        </div>
+                                        <div class="cityinput">
+                                            <input type="text" placeholder="Address & pincode" name="address" maxlength="255" required id="id_address" class="cidrop-input" value="{{ property.address }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- images section -->
+                        <div class="datablock">
+
+                            <div class="sub-heading-submit">
+                                <h5>Images</h5>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Cover Image
+                                </div>
+                                <div class="locationinput">
+                                    {% if property.get_cover_img_url %}
+                                        <img src="{{ property.get_cover_img_url }}" alt="Current Image">
+                                    {% else %}
+                                        <!-- Display a placeholder image or a message when no image is present -->
+                                        <span>No cover image available</span>
+                                    {% endif %}
+                                    <!-- Input field to upload a new image -->
+                                    <input type="file" name="project_cover_img" accept="image/*" id="id_project_cover_img" class="cidrop-input">
+                                </div>
+                            </div> 
+                            <div id="property-edit-container">
+                                {{ formset.management_form }}
+                                <div id="existing-images">
+                                    <h3>Gallery Images</h3>
+                                    {% for form in formset %}
+                                        <div class="property-image-field image-field{% if not form.instance.image %} hidden{% endif %}">
+                                            <div class="property-image-label">Image No-{{ forloop.counter }}</div>
+                                            <div class="property-locationinput">
+                                                <div class="col-lg-3 property-image-display">
+                                                    {% if form.instance.image %}
+                                                        <img src="{{ form.instance.image.url }}" alt="Current Image" id="id_images-{{ forloop.counter0 }}-image_display">
+                                                    {% else %}
+                                                        <span>No image available</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-lg-9 property-inputs">
+                                                    {{ form.image_type }} <br>
+                                                    {{ form.image }} <br>
+                                                    <label for="id_images-{{ forloop.counter0 }}-DELETE" class="property-delete-label">Delete</label>
+                                                    {{ form.DELETE }} <br>
+                                                    {{ form.id }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div id="new-images"></div>
+                                <button type="button" id="property-add-image-button">Add Image</button>
+                                <p id="image-limit-message" class="hidden" style="color: red;">You have reached your image limit.</p>
+                            </div>                                                                                        
+                        </div>
+                        <!-- submit section  -->
+                        <div class="datablock mt-4">
+                          <button type="submit" class="submitproperty" id="submit_buttonid">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+                <div class="col-lg-5" id="rightsubmit-dets">
+                    <div class="rightsubmitimg">
+                        <img src="https://static.searchhomesindia.com/images/pp-2.png" alt="propertyimg" style="width: 100%; height: 100%" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://static.searchhomesindia.com/js/newsubmit.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        let formsetPrefix = '{{ formset.prefix }}';
+        let totalForms = parseInt('{{ formset.total_form_count }}', 10);
+        let maxForms = 5;
+        let existingImageCount = document.querySelectorAll('#existing-images .image-field:not(.hidden)').length;
+        let emptyForm = '{{ formset.empty_form.as_p|escapejs }}';
+        let newImageCount = 0;
+    
+        function updateAddButtonVisibility() {
+            let visibleImageCount = document.querySelectorAll('.image-field:not(.hidden)').length + newImageCount;
+            let addButton = document.getElementById('property-add-image-button');
+            let limitMessage = document.getElementById('image-limit-message');
+    
+            console.log("Visible image count: ", visibleImageCount);  // Debugging log
+    
+            if (visibleImageCount >= maxForms) {
+                addButton.classList.add('hidden');
+                limitMessage.classList.remove('hidden');
+            } else {
+                addButton.classList.remove('hidden');
+                limitMessage.classList.add('hidden');
+            }
+        }
+    
+        document.getElementById('property-add-image-button').addEventListener('click', function() {
+            let nextHiddenField = document.querySelector('#existing-images .image-field.hidden');
+            if (nextHiddenField) {
+                nextHiddenField.classList.remove('hidden');
+            } else {
+                if (newImageCount < maxForms - totalForms) {
+                    let newFormHtml = emptyForm.replace(/__prefix__/g, totalForms + newImageCount);
+                    let div = document.createElement('div');
+                    div.innerHTML = newFormHtml;
+                    div.classList.add('property-image-field', 'mt-4');
+                    document.getElementById('new-images').appendChild(div);
+                    newImageCount++;
+                }
+            }
+            updateAddButtonVisibility();
+        });
+    
+        updateAddButtonVisibility();
+    });
+    </script>
+{% endblock %}

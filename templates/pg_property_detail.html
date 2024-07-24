@@ -1,0 +1,782 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+<title>Find Your Premium PG/Co-living in {{ pg_property.project_city }} with Fully Furnished </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keyword" content="Premium PG, fully furnished, Wi-Fi, meals, housekeeping, tech parks, public transport, working professionals, students">
+<meta name="description" content="Find You PG/Coliving Comfort with Wi-Fi, meals, and housekeeping. Close to tech parks and public transport. Ideal for working professionals and students.">
+<link rel="stylesheet" type="text/css" href="https://static.searchhomesindia.com/css/details_property.css" />
+<link rel="stylesheet" href="https://static.searchhomesindia.com/css/popupform.css">
+<style>
+     #header1 {top: 0px!important;border-bottom-left-radius:0px;border-bottom-right-radius:0px;}.propertydetails{margin-top: 65px;}.nextbut, .prevbut {background-color: transparent;border: none;}.rentpgmid ul li p{word-break:break-all!important;width: 76%;}
+     #sendotpdiv,#verifyotpdiv{
+              display: flex;
+            }
+            .sendotp,.verifyotp{
+              padding:5px!important;
+              height: 20px;
+              border: none;
+              margin-top: 6px!important;
+              border-radius: 5px;
+              margin-left: 0!important;
+              white-space: nowrap;
+              background-color: #1b6c9f;
+              color: #fff;
+              font-size: 8px;
+            }
+</style>
+{% endblock %}
+{%block body_block%}
+{% csrf_token %}
+
+<div class="propdetial-wrapper">
+<div class="propertydetails">
+<div class="propdetail">
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example propdetail-left" tabindex="0">
+    <div class="propbannerimg" id="all-images">
+      <div class="propdetleft-up">
+        <h5 class="Projimg">Image 1</h5>
+        <div class="projsharing">
+          <button onclick="shareOnWhatsApp()">
+          <i type="submit" class="ShiIcons icon_share1"></i>
+          </button>
+          </div>
+        {% if pg_property.project_cover_img %}
+            <img src="{{ pg_property.project_cover_img.url }}" alt="Propert Image" class="image-click shadowvm">
+        {% else %}
+            <img src="https://static.searchhomesindia.com/images/noimage.webp" alt="Image 2" class="image-click shadowvm">
+        {% endif %}
+      </div>
+      <!-- The modal -->
+      <div id="myModal" class="modal" style="z-index:599;">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+      </div>
+
+      <div class="propdetleft-down">
+        <li class="propdetleft-downT">
+          <h5 class="Projimg">Image 2</h5>
+          <img src="{% static  'images/noimage.webp'%}" alt="Image 2" class="image-click shadowvm">
+        </li>
+        <li class="propdetleft-downB" onclick="commonNav('mysidenav2', '100%')">
+            <img src="{% static  'images/common_gallery.webp' %}" alt="gallery images" class="shadowvm">
+          <span class="image-count">
+            <i type="submit" class="ShiIcons icon_gallery" style="margin-bottom:60px;"> </i>
+            <h4>More Photos </h4>
+            <!-- for rent and for pg -->
+          </span>
+        </li>
+      </div>
+    </div>
+    <!-- property image gallery swiper start ========================================== -->
+    <div id="mysidenav2" class="sidenav2">
+      <div class="sidenavhead-wrapper">
+        <li><a href="javascript:void(0)" class="closebtn2" onclick="commonNav('mysidenav2', '0%')"><i
+              class="ShiIcons icon_cross1"></i></a></li>
+      </div>
+      <li><a href="javascript:void(0)" class="closebtn2 cbmv" onclick="commonNav('mysidenav2', '0%')"><i
+            class="ShiIcons icon_cross1"></i></a></li>
+      <div class="horizontalswiper">
+        <li class="hshighlight">
+          <h6>Top highlights</h6>
+        </li>
+        <div id="hshighlight1">
+          {% if pg_property.images.all %}
+            {% for image in pg_property.images.all %}
+              <a href="#{{ image.image_type }}{{ forloop.counter }}"><button class="btns" type="submit">{{ image.image_type }}</button></a>
+            {% endfor %}
+            {% else %}
+            <a href="#noimage"><button class="btns" type="submit">Request Photos</button></a>
+        {% endif %}
+          </div>
+        </div>
+
+ <!--this is different-->
+{% if pg_property.images.all %}
+<div class="swipewrapper">
+  <div class="swiper9 mySwiper11">
+    <div class="swiper-wrapper s11">
+      {% for image in pg_property.images.all %}
+        <div class="swiper-slide ss11">
+          {% if image.image %}
+            <a href="#." id="{{ image.image_type }}{{ forloop.counter }}"> 
+              <img src="{{ image.image.url }}" title="{{ image.image_type }}" alt="{{ image.image_type }}"> 
+            </a>
+          {% else %}
+              <!-- Handle the case when the image is not present -->
+              <span>No image available</span>
+          {% endif %}
+        </div> <!-- end section -->
+      {% endfor %}
+    </div>
+    <div class=" nextbut1 swiper-button-next"></div>
+    <div class=" prevbut1 swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+{% else %}
+        <div class="swipewrapper">
+          <div class="swiper9 mySwiper11">
+            <div class="swiper-wrapper s11">
+                <div class="swiper-slide ss11">
+                    <a href="#." id="noimage"> 
+                      <img src="https://static.searchhomesindia.com/images/noimage.webp" title="No image" alt="Request Image"> 
+                    </a>
+                </div> <!-- end section -->
+            </div>
+            <div class=" nextbut1 swiper-button-next"></div>
+            <div class=" prevbut1 swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+        {% endif %}
+    </div>
+    <!-- property image gallery swiper end========================================== -->
+    <div class="right-listsection">
+      <div class="right-top">
+        <div class="rt1" style="width: 50%;">
+          <h4>{{ pg_property.pg_property_name }}</h4>
+          <div class="rt1inline">
+            <i class="ShiIcons icon_location"></i>
+            <b style="margin-left:2px;">{{ pg_property.project_city }}</b>
+          </div>
+        </div>
+        <div class="rightprice" style="width: 50%;">
+          <h5><b> Price:</b> <strong id="main_price"></strong></h5>
+          <span><b> Locality: </b></span> <span class="localit">{{ pg_property.landmark }}</span>
+        </div>
+      </div>
+
+   <!-- right mid part for rent==== -->
+
+      <div class="right-middle forpg" style="padding: 7px 0px;">
+        <div class="rm-box" style="width:100%;">
+          
+          <div class="rm-row">
+            <div class="rm-col">
+              <h6>Sharing Type</h6>
+              <p> {{ pg_property.sharing_type }}</p>
+            </div> <span class="vermid">|</span>
+            <div class="rm-col">
+              <h6>FOOD AVAILABILITY</h6>
+              <p>{{ pg_property.food_availability }}</p>
+            </div> <span class="vermid">|</span>
+            <div class="rm-col">
+              <h6>Security Deposit</h6>
+              <p id="security_price"></p>
+            </div>
+          </div>
+
+          <div class="rm-row">
+            <div class="rm-col">
+              <h6>Available for</h6>
+              <p>{{ pg_property.pg_for }}</p>
+            </div> <span class="vermid">|</span>
+            <div class="rm-col">
+              <h6>Available From</h6>
+              <p>{{ pg_property.available_from }}</p>
+            </div> <span class="vermid">|</span>
+            <div class="rm-col">
+              <h6>Floor Number</h6>
+              <p>{{ pg_property.floor_number }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="right-bottom">
+            <button class="rbbutton" type="submit" onclick="openForm()">Contact owner</button>
+            <a href="/home-loan/"><button class="rbbutton" type="submit">Check loan eligibility</button></a>
+      </div>
+
+    </div>
+    <!-- ======= Header ======= -->
+
+    <nav id="navbar-example2" class="propdethead">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link active" href="#Overview">Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#floorplan" onclick="commonNav('mysidenav2', '100%')">Gallery & Plans</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#trending">Trending Properties</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact" onclick="openForm()">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#Faq">Faq's</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- right mid part for rent deatils==== -->
+           <div class="rentandPgwrap" id="Overview">
+            <div class="rentpgtop">
+              <h2>More Details</h2>
+            </div>
+            <div class="rentpgmid">
+              <ul>
+                <li> 
+                  <span class="rentpgmore">Min. Pricing : </span>
+                  <p id="id_min_price"> ₹ </p>
+                </li>
+                <li> 
+                  <span class="rentpgmore">Max. Pricing : </span>
+                  <p id="max_price_1"></p>
+                </li>
+                <li> 
+                  <span class="rentpgmore">Maintenance : </span>
+                  <p id="maintenance_is_1"></p>
+                </li>
+                <li> 
+                  <span class="rentpgmore">Ac Rooms : </span>
+                  <p>{{ pg_property.ac_rooms }}</p>
+                </li>
+                  <li> 
+                    <span class="rentpgmore">Lifts : </span>
+                    <p>{{ pg_property.lifts }}</p>
+                  </li>
+                  <li> 
+                    <span class="rentpgmore">Amenities : </span>
+                    <p>{{ pg_property.amenities }}</p>
+                  </li>
+                  <li> 
+                    <span class="rentpgmore">Address : </span>
+                    <p>{{ pg_property.address }}</p>
+                  </li>
+              </ul>
+              <span> 
+                <span class="rentpgmore">Description : </span>
+                <p> {{ pg_property.discription }}</p>
+              </span>
+            </div> 
+         </div>
+    <!-- =========Trending properties========= -->
+        <section class="trendingprop" id="trending">
+            <div class="header__center">Trending properties</div>
+            <div class="swiper11 mySwiper13 ">
+            <div class="swiper-wrapper s13">
+
+                {% for image in sell_properties %}
+                <div class=" swiper-slide ss13">
+                <a href="{% url 'property_detail' image.slug %}" title="{{image.slug}}">
+                    <img src="{{ image.Property_Image.url }}" alt="trending properties">
+                <div class="tplocation">
+                    <button>
+                    <h4>{{ image.PropertyName }}</h4>
+                    <p>Price: {{ image.Property_Price }}</p>
+                    </button>
+                </div>
+                </a>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="nextbut swiper-button-next"></div>
+            <div class="prevbut swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            </div>
+        </section>
+    <!-- =====Trending properties end========== -->
+    <!-- ======Similar Porject======== -->
+    <section class="similarproject">
+        <div class="header__center">Most Similar Projects</div>
+        <div class="swiper12 mySwiper14">
+        <div class="swiper-wrapper s14">
+            {% for image in trending_properties %}
+            <div class=" swiper-slide ss14">
+            <a href="{% url 'property_detail' image.slug %}"> <img src="{{ image.Property_Image.url }}" alt="similar Property"></a>
+            <div class="tplocation1">
+                <button>
+                <h4>{{ image.PropertyName }}</h4>
+                <p><span>Price:</span>{{ image.Property_Price }}</p>
+                <p class="gototop"><span>BHK:</span> {{ image.BHK }}</p>
+                </button>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="nextbut swiper-button-next"></div>
+        <div class="prevbut swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        </div>
+    </section>
+  </div>
+
+  <div class="propdetail-right">
+    <div class="container shiform" id="contact">
+      <form action="" class="needs-validation post-form" id="PropContactform3" novalidate>
+        <div class="brand-logo"><img src="https://static.searchhomesindia.com/images/shi_logo_small.png" alt=""></div>
+        <div class="inputs">
+
+          <fieldset>
+            <input type="hidden" name="project" id="Propdetail3" value="{{ pg_property.pg_property_name }} PG"
+              style="border: none;">
+              <input type="hidden" name="user" id="usernumber3" value="{{ pg_property.user }}"
+                  style="border: none;">
+            <label for="name">USERNAME</label>
+            <input type="text" id="username3" name="name" class="form-control form-control-lg thick"
+              placeholder="Enter Name*" required="">
+            <!-- Name valid or invalid checker div's -->
+            <div class="valid-feedback" id="isnamevalid3" style="color: green; font-size: 10px; display: none;">
+              Looks good!
+            </div>
+            <div class="invalid-feedback" id="isnameinvalid3" style="color: red; font-size: 10px; display: none;">
+              Please Enter a valid Name.
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <label for="email">EMAIL</label>
+            <input type="email" class="form-control form-control-lg thick" id="useremail3" name="email" placeholder="Enter Email*" size="40" required="" />
+            <!-- Email validation alert boxes. -->
+            <div class="valid-feedback" id="isemailvalid3" style="color: green; font-size: 10px; display: none;">
+              Looks good!
+            </div>
+            <div class="invalid-feedback" id="isemailinvalid3" style="color: red; font-size: 10px; display: none;">
+              Please Enter a valid Email-Address.
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <input type="hidden" id="userphone3hide" name="userphone3hide">
+            <label for="phone">CONTACT NUMBER</label>
+            <span id="sendotpdiv">
+              <input type="text" id="userphone3" name="mobile" class="form-control form-control-lg thick" placeholder="Enter Number*" 
+              maxlength="10" onkeypress="return /[0-9]/i.test(event.key)" required="" spellcheck="false" data-ms-editor="true">
+              <button type="button" class="sendotp" onclick="sendOtp()">Send OTP</button>
+            </span>
+            <span id="verifyotpdiv" style="display: none;">
+              <input type="text" id="otpinput" name="otp" class="form-control form-control-lg thick" placeholder="Enter OTP*" 
+              maxlength="6" onkeypress="return /[0-9]/i.test(event.key)" required="" spellcheck="false" data-ms-editor="true">
+              <button type="button" class="verifyotp" onclick="verifyOtp()">Verify OTP</button>
+            </span>
+            <div id="otpResult" style="font-size: 10px;"></div>
+            <div id="phoneError" style="color: red; font-size: 10px; display: none;"></div>
+            <div id="otpError" style="color: red; font-size: 10px; display: none;"></div>
+            <div id="otpSuccess" style="color: green; font-size: 10px; display: none;"></div>
+             <!-- Contact valid or invalid checker div's -->
+             <div class="valid-feedback" id="isphonevalid3" style="color: green; font-size: 10px; display: none;">
+              Looks good!
+            </div>
+            <div class="invalid-feedback" id="isphoneinvalid3" style="color: red; font-size: 10px; display: none;">
+              Please Enter a valid Contact Number.
+            </div>
+        </fieldset>
+
+          <fieldset>
+            <label for="message">MESSAGE</label>
+            <textarea type=text name="message" id="usermessage3" class="form-control form-control-lg thick" cols=4
+              placeholder="Write Message*" spellcheck="false" data-ms-editor="true"></textarea>
+            <!-- Message valid or invalid checker div's -->
+            <div class="valid-feedback" id="ismessagevalid3" style="color: green; font-size: 10px; display: none;">
+              Looks good!
+            </div>
+            <div class="invalid-feedback" id="ismessageinvalid3"
+              style="color: red; font-size: 10px; display: none;">
+              Please Enter a valid Message.
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="row" style="margin-right: 0; margin-left: 0; padding-bottom: 5px;">
+              <!-- Alert blocks to show the alerts regarding the submission of the form -->
+              <!-- success alert block -->
+              <div class="alert alert-success alert-dismissible" role="alert" id="issuccess3"
+                style="margin-bottom: 0px; font-size: 10px; display: none;">
+                <strong>ThankYou for your response!</strong> Our team will get back to you soon.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <!-- failure alert block -->
+              <div class="alert alert-danger alert-dismissible" role="alert" id="isfailure3"
+                style="margin-bottom: 0px; font-size: 10px; display: none;">
+                <strong>Something went wrong!</strong> Please fill the details properly.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+            <button type="submit" id="contactsubmit3" name="btn_submit"
+              onclick="PostAPICall('PropContactform3')">SEND MESSAGE</button>
+          </fieldset>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ================QndA================== -->
+
+ <section class="QndA" id="Faq">
+  <div class="header__center headerforall" >Frequently Asked Question</div>
+  <div class="container QndA1">
+    <div class="row">
+  <div class="new_body">
+    <div class="jsn-bootstrap3">
+      <div class="row updatediv24">
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: How do I contact you to get a quote?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="aNEiDc">
+              <p>Ans: You can contact us via our website contact form or by phone to get a quote.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: How important is location when buying a house ?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="5WadYJ">
+              <p>Ans: Location impacts the value and features of a home in many ways. Location of a house reflects
+                the convenience and access to amenities. Living in a good location, you can have easy access to
+                entertainment, schools, hospitals and so on. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jsn-bootstrap3">
+      <div id="sa5mE5" class="row updatediv24">
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: Why it is important to do site visit?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="VW7ZTg">
+              <p>Ans: It is important to do a site visit before confirming any property in order to understand the
+                details of the property and it's surroundings.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: How many properties can I own at a time?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="wBlOIC">
+              <p>Ans: You can own as many properties as you want. They're all yours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jsn-bootstrap3">
+      <div id="5KOuNU" class="row updatediv24">
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: Do you offer home loan services?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="704DnC">
+              <p>Ans: Yes, we have all the services that can help you to relate with lenders in order to get your
+                home loan. And our services start from helping to find an appropriate house and then negotiating
+                with the bank on your behalf.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: How long does it take to get a home loan?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="LXNTYT">
+              <p>Ans: Generally, it takes about 1 to 2 weeks for your home loan to be sanctioned based on your
+                eligibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jsn-bootstrap3">
+      <div id="KNeXtz" class="row updatediv24">
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: what is purpose of registration to buy property?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="cMW1Nk">
+              <p> Ans: Registering a property legalizes that you have complete and valid ownership of the property,
+                and it provides you with the title of possession of the property.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: How to do the registration of the property?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="ieNYqQ">
+              <p>Ans: Property Registration in India is compulsory under section 17 of the Indian Registration Act,
+                1908. The registration of property is to be done in the Registrar's Offices by the Sub-Registrar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jsn-bootstrap3">
+      <div id="ZPFXfi" class="row updatediv24">
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: What are the documents required for registration?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="JRlCLh">
+              <p>Ans: 1. Khata and tax determination receipt issued by BBMP or corporation <br>
+                2. An affidavit <br>
+                3. Sanction plan or Conversion certificate, if the property is on converted land <br>
+                4. Title deed or allotment order or possession certificate or sales document, if property is given
+                by government department or agencies <br>
+                5. PAN issued by Income Tax Department or Form 60 and 61 if the property values more than 5 lakhs
+                <br>
+                6. Declaration in form 1 under the Karnataka Stamps Rules 1977</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
+          <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+            <h5 >Q: how to check construction quality of a house?</h5>
+          </div>
+          <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+            <div class="wr_text" id="9DBIs7">
+              <p>Ans: 1. Investigate the soil. <br>
+                2. Determine the structure design. <br>
+                3. Check the concrete mix. <br>
+                4. Inspect the wall thickness. <br>
+                5. Ensure safety features. <br>
+                6. Look for paint and plastering quality.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+ </section>
+
+</div>
+</div>
+<!-- popupForm for all details pages  -->
+<section>
+  <div class="col-md-4 careerform1">
+    <div class="brand-logo" style="display: flow;"><img src="https://static.searchhomesindia.com/images/shi_logo_small.png" alt="shi_logo_small"></div>
+      <div class="crossbtns" onclick="closeForm()">x</div>
+      <form id="PropContactform2">
+        <input type="hidden" name="project" id="Propdetail2" value="{{ pg_property.pg_property_name }} PG"
+              style="border: none;">
+          <input type="hidden" name="user" id="usercontact2" value="{{ pg_property.user }}"
+              style="border: none;">
+          <div class="form-group">
+              <label for="exampleInputName">Full Name</label>
+              <input type="text" id="username2" name="name"  class="form-control" placeholder="Enter your name" required>
+              <!-- Name valid or invalid checker div's -->
+              <div class="valid-feedback" id="isnamevalid2" style="color: green;font-size: 10px;">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" id="isnameinvalid2" style="color: red;font-size: 10px;">
+                Please Enter a valid Name.
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1" >Email address</label>
+              <input type="email" id="useremail2" name="email"  class="form-control" aria-describedby="emailHelp" placeholder="Enter your email address" required>
+              <!-- Email valid or invalid checker div's -->
+              <div class="valid-feedback" id="isemailvalid2" style="color: green;font-size: 10px;">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" id="isemailinvalid2" style="color: red;font-size: 10px;">
+                Please Enter a valid Name.
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="example-tel-input" >Mobile No.</label>
+              <input class="form-control"  type="tel" name="mobile" id="userphone2" placeholder="Mobile No." required>
+              <!-- Phone valid or invalid checker div's -->
+              <div class="valid-feedback" id="isphonevalid2" style="color: green;font-size: 10px;">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" id="isphoneinvalid2" style="color: red;font-size: 10px;">
+                Please Enter a valid Name.
+              </div>
+          </div>
+              <!-- <div class="form-group">
+                  <label for="inputCity">City</label>
+                  <input class="form-control"  type="text" value="" id="example-tel-input" placeholder="City" required>
+              </div> -->
+              <div class="form-group">
+                <label for="example-tel-input">Message</label>
+                <textarea placeholder="Message"  class="form-control" id="usermessage2" rows="2" required style="height: auto;"></textarea>
+                <!-- Message valid or invalid checker div's -->
+                <div class="valid-feedback" id="ismessagevalid2" style="color: green;font-size: 10px;">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" id="ismessageinvalid2" style="color: red;font-size: 10px;">
+                  Please Enter a valid Name.
+                </div>
+            </div>
+            <div class="row" style="margin-right: 0;
+                    margin-left: 0; padding-bottom: 5px;">
+              <!-- Alert blocks to show the alerts regarding the submission of the form -->
+              <!-- success alert block -->
+              <div class="alert alert-success alert-dismissible" role="alert" id="issuccess2"
+                style="margin-bottom:0;font-size: 10px;">
+                <strong>ThankYou for your response!</strong> Our team will get back to you soon.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <!-- failure alert block -->
+              <div class="alert alert-danger alert-dismissible" role="alert" id="isfailure2"
+                style="margin-bottom:0;font-size: 10px;">
+                <strong>Something went wrong!</strong> Please fill the details properly.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          <button type="submit" class="careersub" id="contactsubmit2" name="btn_submit" onclick="PostAPICall('PropContactform2')">Submit</button>
+      </form>
+  </div>
+</section>
+<!-- popupForm for all details pages  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="{% static 'js/PropertyContactCheck3.min.js' %}"></script>
+<script src="https://static.searchhomesindia.com/js/PropContactcheck2.min.js"></script>
+<script src="https://static.searchhomesindia.com/js/swiper-bundle1.js"></script>
+<script src="https://static.searchhomesindia.com/js/details_property.js"></script>
+<script>
+  function formatMoney(money, elementId) {
+      money = parseFloat(money);
+  
+      if (isNaN(money) || money < 0) {
+          document.getElementById(elementId).innerText = 'Please enter a valid positive number.';
+          return;
+      }
+  
+      let formattedMoney = money.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      let unit = '';
+  
+      if (money >= 1e9) {
+          formattedMoney = (money / 1e9).toLocaleString('en-US', { maximumFractionDigits: 2 });
+          unit = ' Billion';
+      } else if (money >= 1e7) {
+          formattedMoney = (money / 1e7).toLocaleString('en-US', { maximumFractionDigits: 2 });
+          unit = ' Cr.';
+      } else if (money >= 1e5) {
+          formattedMoney = (money / 1e5).toLocaleString('en-US', { maximumFractionDigits: 2 });
+          unit = ' Lakh';
+      } else if (money >= 1e6) {
+          formattedMoney = (money / 1e6).toLocaleString('en-US', { maximumFractionDigits: 2 });
+          unit = ' Million';
+      } else if (money >= 1e3) {
+          formattedMoney = (money / 1e3).toLocaleString('en-US', { maximumFractionDigits: 2 });
+          unit = ' Thousand';
+      }
+  
+      document.getElementById(elementId).innerText = `₹ ${formattedMoney}${unit}`;
+  }
+  // Example usage with predefined values
+  formatMoney('{{ pg_property.min_price }}', 'id_min_price');
+  formatMoney('{{ pg_property.min_price }}', 'main_price');
+  formatMoney('{{ pg_property.security_deposit }}', 'security_price');
+  formatMoney('{{ pg_property.max_price }}', 'max_price_1');
+  formatMoney('{{ pg_property.maintenance_cost }}', 'maintenance_is_1');
+  </script>
+  <script>
+    let otpSent = false;
+  let otpVerified = false;
+  let generatedOtp = "";
+
+  function generateOtp() {
+    return Math.floor(1000 + Math.random() * 9000).toString();
+  }
+
+  function sendOtp() {
+    const userPhone = document.getElementById('userphone3').value;
+
+    if (userPhone === "") {
+      document.getElementById('userphone3').style.borderBottom = '2px solid red';
+      document.getElementById('phoneError').innerText = 'Enter your phone number to send OTP';
+      document.getElementById('phoneError').style.display = 'block';
+    } else {
+      generatedOtp = generateOtp();
+      otpSent = true;
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = this.responseText;
+          if (response.includes("success")) {
+            document.getElementById('otpResult').style.color = 'green';
+            document.getElementById('otpResult').innerText = 'OTP sent successfully!';
+          } else {
+            document.getElementById('otpResult').style.color = 'red';
+            document.getElementById("otpResult").innerText = "Failed to send OTP.";
+          }
+        }
+        else {
+            document.getElementById('otpResult').style.color = 'red';
+            document.getElementById("otpResult").innerText = "Failed to send OTP.";
+        }
+      };
+
+      var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values=" + generatedOtp + "&route=otp&numbers=" + encodeURIComponent(userPhone);
+      xhttp.open("GET", url, true);
+      xhttp.send();
+
+      document.getElementById('sendotpdiv').style.display = 'none';
+      document.getElementById('verifyotpdiv').style.display = 'flex';
+      document.getElementById('phoneError').style.display = 'none';
+    }
+  }
+
+  function verifyOtp() {
+    const otp = document.getElementById('otpinput').value;
+
+    if (otp === "") {
+      document.getElementById('otpinput').style.borderBottom = '2px solid red';
+      document.getElementById('otpError').innerText = 'Enter the OTP to verify';
+      document.getElementById('otpError').style.display = 'block';
+    } else if (otp === generatedOtp) {
+      otpVerified = true;
+      document.getElementById('otpError').style.display = 'none';
+      document.getElementById('otpinput').style.borderBottom = '';
+      document.getElementById('otpSuccess').innerText = 'OTP verified successfully!';
+      document.getElementById('otpSuccess').style.display = 'block';
+      document.getElementById('otpResult').style.display = 'none';
+      document.getElementById('otpinput').setAttribute('readonly', true);
+      document.getElementById('userphone3hide').value = document.getElementById('userphone3').value;
+    } else {
+      document.getElementById('otpinput').style.borderBottom = '2px solid red';
+      document.getElementById('otpError').innerText = 'Invalid OTP, please try again.';
+      document.getElementById('otpError').style.display = 'block';
+      document.getElementById('otpSuccess').style.display = 'none';
+    }
+  }
+
+  document.getElementById('contactsubmit3').addEventListener('click', function(event) {
+    const userPhone = document.getElementById('userphone3').value;
+
+    if (userPhone === "") {
+      document.getElementById('userphone3').style.borderBottom = '2px solid red';
+      document.getElementById('phoneError').innerText = 'Verify your number';
+      document.getElementById('phoneError').style.display = 'block';
+      event.preventDefault();
+    } else if (!otpSent) {
+      document.getElementById('userphone3').style.borderBottom = '2px solid red';
+      document.getElementById('phoneError').innerText = 'Verify your number';
+      document.getElementById('phoneError').style.display = 'block';
+      event.preventDefault();
+    } else if (!otpVerified) {
+      document.getElementById('otpinput').style.borderBottom = '2px solid red';
+      document.getElementById('otpError').innerText = 'Verify OTP and submit';
+      document.getElementById('otpError').style.display = 'block';
+      event.preventDefault();
+    }
+  });
+  </script>
+
+{% endblock %}

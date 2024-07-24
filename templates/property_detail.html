@@ -1,0 +1,2066 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+
+{% if Prop_Data.Property_Price %}
+<title>{{ Prop_Data.PageTitle }}</title>
+<meta name="keyword" content="{{ Prop_Data.MetaKeyword }}">
+<meta name="description" content="{{ Prop_Data.MetaDescription }}">
+{% else %}
+<title>{{ user_post.project_society_name }} | {{ user_post.apartment_type }} | in {{ user_post.project_city }}</title>
+<meta name="description" content="{{ user_post.project_society_name }} - Find the ideal {{ user_post.apartment_type }} and {{ user_post.property_price }} in Landmark {{ user_post.project_city }}. 
+Well connected and tailored to your needs. Seize the best opportunity now.">
+{% endif %}
+<link rel="stylesheet" type="text/css" href="https://static.searchhomesindia.com/css/details_property.css" />
+<link rel="stylesheet" href="https://static.searchhomesindia.com/css/popupform.css">
+<!-- Schecma Code Start -->
+{% if Prop_Data.Property_Price %}
+<meta name="dc.title" content="{{ Prop_Data.PageTitle }}">
+<meta name="dc.description" content="{{ Prop_Data.MetaDescription }}">
+<meta name="dc.source" content="https://www.searchhomesindia.com/">
+<meta name="dc.language" content="en_US">
+<meta name="description" content="{{ Prop_Data.MetaDescription }}">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://www.searchhomesindia.com/viewproperty/{{ Prop_Data.slug }}">
+<meta property="og:site_name" content="Search Homes India">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="article:author" content=" https://www.facebook.com/searchhomesindia?mibextid=ZbWKwL">
+<meta property="article:publisher" content=" https://www.facebook.com/searchhomesindia?mibextid=ZbWKwL ">
+<meta property="article:section" content="Why Choose {{ Prop_Data.PropertyName }} ?">
+<meta property="og:title" content="{{ Prop_Data.PageTitle }}">
+<meta property="og:description" content="{{ Prop_Data.MetaDescription }}">
+<meta property="og:image" content="https://www.searchhomesindia.com/{{ Prop_Data.Property_Image.url }}">
+<meta property="og:image:secure_url" content="https://www.searchhomesindia.com/{{ Prop_Data.Property_Image.url }}">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="750">
+<meta property="og:image:alt" content="{{ Prop_Data.PropertyName }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="SearchhomesIndi">
+<meta name="twitter:creator" content="SearchhomesIndi">
+<meta name="twitter:title" content="{{ Prop_Data.PageTitle }}">
+<meta name="twitter:description" content="{{ Prop_Data.MetaDescription }}">
+<meta name="twitter:image" content="https://www.searchhomesindia.com/{{ Prop_Data.Property_Image.url }}">
+
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"SaleEvent","name":"Avail Offers &amp; Deals","description":"{{ Prop_Data.MetaDescription }}","image":"https://www.searchhomesindia.com/{{ Prop_Data.Property_Image.url }}","url":"https://www.searchhomesindia.com/viewproperty/{{ Prop_Data.slug }}","startDate":"{{ Prop_Data.timestamp }}","eventStatus":"https:\/\/schema.org\/EventScheduled","eventAttendanceMode":"MixedEventAttendanceMode","location":[{"@type":"VirtualLocation","url":"https://www.searchhomesindia.com/viewproperty/{{ Prop_Data.slug }}"},{"@type":"Place","name":"{{ Prop_Data.PropertyName }}","address":"{{ Prop_Data.PropertyAddress }}"}],"offers":{"@type":"Offer","name":"Call us at 89711785944","category":"Primary","price":"{{ Prop_Data.Property_Price }}","priceCurrency":"INR","url":"https://www.searchhomesindia.com/viewproperty/{{ Prop_Data.slug }}","availability":"InStock","validFrom":"{{ Prop_Data.timestamp }}"},"performer":{"@type":"Person","name":"{{ Prop_Data.PropertyName }}"},"organizer":{"@type":"Organization","name":"Search Homes India","url":"https://www.searchhomesindia.com/"}}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ Prop_Data.PropertyAddress }}"
+  },
+  "image": "https://www.searchhomesindia.com/{{ Prop_Data.Property_Image.url }}",
+  "description": "{{ Prop_Data.MetaDescription }}",
+  "name": "{{ Prop_Data.PropertyName }}",
+  "telephone": "89711785944"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/", 
+  "@type": "Product", 
+  "name": "{{ Prop_Data.PropertyName }}",
+  "image": "https://www.searchhomesindia.com/{{ Prop_Data.Property_Image.url }}",
+  "description": "{{ Prop_Data.MetaDescription }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ Prop_Data.BuilderName }}"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.searchhomesindia.com/viewproperty/{{ Prop_Data.slug }}",
+    "priceCurrency": "INR",
+    "lowPrice": "{{ Prop_Data.Property_Price }}",
+    "highPrice": "{{ Prop_Data.Property_Price }}"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4",
+    "ratingCount": "127"
+  }
+}
+</script>
+{% else %}
+<meta name="twitter:card" content="summary">
+{% endif %}
+<!-- Schecma Code Start End -->
+<style>
+     #header1 {top: 0px!important;border-bottom-left-radius:0px;border-bottom-right-radius:0px;}.propertydetails{margin-top: 19px;}.box {width: 100%;margin: 0 auto;background-clip: padding-box;text-align: center;}.button {font-size: 12px;padding: 2px;color: #fff;font-weight: 600;background-color: #1B6C9F;border-radius: 20px/50px;text-decoration: none;cursor: pointer;transition: all 0.3s ease-out;}.button:hover {background: #06D85F;color: #fff;}.overlay {position: fixed;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0, 0, 0, 0.7);transition: opacity 500ms;visibility: hidden;opacity: 0;}.overlay:target {visibility: visible;opacity: 1;}.popup {margin: 70px auto;padding: 20px;background: #fff;border-radius: 5px;width: 30%;position: relative;transition: all 5s ease-in-out;}.popup .close {position: absolute;top: -9px;right: 7px;transition: all 200ms;font-size: 30px;font-weight: bold;text-decoration: none;color: #333;}.popup .close:hover {color: red;}.popup .content {max-height: 30%;overflow: auto;}@media screen and (max-width: 700px){.popup{width: 70%;}.propertydetails{margin-top: 65px;}}.nextbut, .prevbut {background-color: transparent;border: none;}.overlayx {display: none;}
+</style>
+{% endblock %}
+{%block body_block%}
+{% csrf_token %}
+<div class="propdetial-wrapper">
+  <div class="propertydetails">
+    <div class="propdetail">
+      <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example propdetail-left" tabindex="0">
+        <div class="propbannerimg" id="all-images">
+          <div class="propdetleft-up">
+            <h5 class="Projimg">Property Image</h5>
+            <div class="projsharing">
+              <button onclick="shareOnWhatsApp()">
+              <i type="submit" class="ShiIcons icon_share1"></i>
+              </button>
+              </div>
+            {% if Prop_Data.Property_Image %}
+              <img src="{{ Prop_Data.Property_Image.url }}" alt="Image 2" class="image-click shadowvm">
+            {% elif user_post.project_cover_img %}
+              <img src="{{ user_post.project_cover_img.url }}" alt="Image 2" class="image-click shadowvm">
+            {% else %}
+              <img src="https://static.searchhomesindia.com/images/noimage.webp" alt="Image 2" class="image-click shadowvm">
+            {% endif %}
+          </div>
+          <!-- The modal -->
+          <div id="myModal" class="modal" style="z-index:599;">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modalImg">
+          </div>
+
+          <div class="propdetleft-down">
+            <li class="propdetleft-downT">
+              <h5 class="Projimg">Image</h5>
+              {% if Prop_Data.Master_Plan %}
+                <img src="{{ Prop_Data.Master_Plan.url }}" alt="Image 2" class="image-click shadowvm">
+              {% elif user_post.Master_Plan %}
+                <img src="{{ user_post.Master_Plan.url }}" alt="Image 2" class="image-click shadowvm">
+              {% else %}
+                <img src="https://static.searchhomesindia.com/images/noimage.webp" alt="Image 2" class="image-click shadowvm">
+              {% endif %}
+            </li>
+            <li class="propdetleft-downB" onclick="commonNav('mysidenav2', '100%')">
+              <img src="https://static.searchhomesindia.com/images/common_gallery.webp" alt="propertyimage" class="shadowvm">
+              <span class="image-count">
+                <i type="submit" class="ShiIcons icon_gallery" style="margin-bottom:70px;"> </i>
+                <h5>MasterPlan <br> & More Photos </h5>
+              </span>
+            </li>
+          </div>
+        </div>
+
+        <!-- property image gallery swiper start ========================================== -->
+        <div id="mysidenav2" class="sidenav2">
+          <div class="sidenavhead-wrapper">
+            <a href="javascript:void(0)" class="closebtn2" onclick="commonNav('mysidenav2', '0%')"><i
+                  class="ShiIcons icon_cross1"></i></a>
+          </div>
+          <a href="javascript:void(0)" class="closebtn2 cbmv" onclick="commonNav('mysidenav2', '0%')"><i
+                class="ShiIcons icon_cross1"></i></a>
+          <div class="horizontalswiper">
+            <div class="hshighlight">
+              <h6>Top highlights</h6>
+            </div>
+            <div id="hshighlight1">
+            {% if Prop_Data.Property_Image %}
+
+                {% if MultipleImageGallery %}
+                <a href="#Gallery"><button class="btns hsactive" type="submit" onclick="showSwipess(1)">Gallery</button></a>
+                {% else %}
+                <a href="#Gallery"><button class="btns hsactive" type="submit" onclick="showSwipess(1)">Gallery</button></a>
+                {% endif %}
+                {% if Prop_Data.Master_Plan %}
+                <a href="#MasterPlan"><button class="btns" type="submit" onclick="showSwipess(2)">Master Plan</button></a>
+                {% endif %}
+                {% if Prop_Data.Typical_Plan %}
+                <a href="#TypicalPlan"><button class="btns" type="submit" onclick="showSwipess(3)">Typical Plan</button></a>
+                {% endif %}
+                {% if Prop_Data.Location_Map %}
+                <a href="#Location"><button class="btns" type="submit" onclick="showSwipess(4)">Location</button></a>
+                {% endif %}
+                {% if Prop_Data.ExOneBHK %}
+                  <a href="#1Bhk"><button class="btns" type="submit" onclick="showSwipess(5)">1 Bhk</button></a>
+                {% endif %}
+                {% if Prop_Data.ExTwoBHK %}
+                  <a href="#2Bhk"><button class="btns" type="submit" onclick="showSwipess(6)">2 Bhk</button></a>
+                {% endif %}
+                {% if Prop_Data.ExThreeBHK %}
+                  <a href="#3Bhk"><button class="btns" type="submit" onclick="showSwipess(7)">3 Bhk</button></a>
+                {% endif %}
+                {% if Prop_Data.ExFourBHK %}
+                  <a href="#4Bhk"><button class="btns" type="submit" onclick="showSwipess(8)">4 Bhk</button></a>
+                {% endif %}
+                {% if Prop_Data.Plot_Price %}
+                  <a href="#plot"><button class="btns" type="submit" onclick="showSwipess(9)">Plot</button></a>
+                {% endif %}
+                {% if Prop_Data.Villa_Price %}
+                  <a href="#villa"><button class="btns" type="submit" onclick="showSwipess(10)">villa</button></a>
+                {% endif %}
+                <!-- This is for posted Property  -->
+                {% elif user_post.project_society_name %}
+                    {% for image in user_post.images.all %}
+                      <a href="#{{ image.image_type }}{{ forloop.counter }}"><button class="btns" type="submit">{{ image.image_type }}</button></a>
+                    {% endfor %}
+                {% else %}
+                      <a href="#noimage"><button class="btns" type="submit">Request Photos</button></a>
+                {% endif %}
+            </div>
+          </div>
+
+          {% if Prop_Data.Property_Image %}
+              <!-- this swiper is for Sell gallery  -->
+              {% if MultipleImageGallery %}
+                <div class="swipewrapper" id="Gallery">
+                  <div class="swiper9 mySwiper11 ">
+                    <div class="swiper-wrapper s11">
+                      {% for GalleryImage in MultipleImageGallery reversed %}
+                      <div class=" swiper-slide ss11">
+                        <img src="{{ GalleryImage.Gallery_Image.url }}" loading="lazy" alt="{{ GalleryImage.ImageAlt_Tag }}" style="object-fit: fill;">
+                      </div> <!-- end section -->
+                      {% endfor %}
+                    </div>
+                    <div class=" nextbut1 swiper-button-next"></div>
+                    <div class=" prevbut1 swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="swipewrapper" id="Gallery">
+                  <div class="swiper9 mySwiper11 ">
+                    <div class="swiper-wrapper s11">
+                      <div class=" swiper-slide ss11">
+                        <img src="{% static '/images/noimage.webp' %}" loading="lazy" alt="Default Image" style="object-fit: fill;">
+                      </div> <!-- end section -->
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+
+              <!-- This is for masterplan image -->
+              {% if Prop_Data.Master_Plan %}
+                <div class="swipewrapper singleimg" id="MasterPlan" style="display: none;">
+                  <div class=" swiper-slide ss11">
+                    <img src="{{ Prop_Data.Master_Plan.url }}" loading="lazy"
+                        alt="{{ Prop_Data.masterPlan_altTag }}" style="object-fit: fill;">
+                  </div> <!-- end section -->
+                </div>
+              {% endif %}
+
+              <!-- This is for Typical image -->
+              {% if Prop_Data.Typical_Plan %}
+                <div class="swipewrapper singleimg" id="TypicalPlan" style="display: none;">
+                  <div class=" swiper-slide ss11">
+                    <img
+                        src="{{ Prop_Data.Typical_Plan.url }}"
+                        loading="lazy" alt="{{ Prop_Data.Typical_Plan.url }}" style="object-fit: fill;">
+                  </div> <!-- end section -->
+                </div>
+              {% endif %}
+
+              <!-- This is for Location image -->
+              {% if Prop_Data.Location_Map %}
+                <div class="swipewrapper singleimg" id="Location" style="display: none;">
+                  <div class=" swiper-slide ss11">
+                  <img
+                        src="{{ Prop_Data.Location_Map.url }}"
+                        loading="lazy" alt="{{ Prop_Data.locationPlan_altTag }}" style="object-fit: fill;">
+                  </div> <!-- end section -->
+                </div>
+              {% endif %}
+
+              <!-- This is for 1BHK image -->
+              {% if Prop_Data.ExOneBHK %}
+                  <div class="swipewrapper" id="1bhkdetails" style="display: none;">
+                    <div class="swiper9 mySwiper11 ">
+                      <div class="swiper-wrapper s11">
+                    {% for imgk in multiple1BHK reversed %}
+                        <div class=" swiper-slide ss11">
+                          <a id="Livingroom"> <img src="{{ imgk.Floor_1BHK.url }}" loading="lazy" alt="{{ imgk.altTag1BHK }}" style="object-fit: fill;"></a>
+                          <div class="EachSqDetail">
+                            <ul>
+                              <li class="EachSqft">
+                                <h6>Carpet Area</h6>
+                                <h5>{{ imgk.CarpetArea1BHK }}</h5>
+                              </li>
+                              <li class="EachSqft">
+                                <h6>Price Details</h6>
+                                <h5>₹ {{ imgk.Price1BHK }}</h5>
+                              </li>
+                            </ul>
+                          </div>
+                        </div> <!-- end section -->
+                    {% endfor %}
+                      </div>
+                      <div class=" nextbut1 swiper-button-next"></div>
+                      <div class=" prevbut1 swiper-button-prev"></div>
+                      <div class="swiper-pagination"></div>
+                    </div>
+                  </div>
+              {% endif %}
+
+              <!-- This is for 2BHK image -->
+              {% if Prop_Data.ExTwoBHK %}
+                <div class="swipewrapper" id="2bhkdetails" style="display: none;">
+                  <div class="swiper9 mySwiper11 ">
+                    <div class="swiper-wrapper s11">
+                      {% for imgk2 in multiple2BHK reversed %}
+                      <div class=" swiper-slide ss11">
+                        <a id="Livingroom"> 
+                          <img src="{{ imgk2.Floor_2BHK.url }}" loading="lazy" alt="{{ imgk2.altTag2BHK }}" style="object-fit: fill;">
+                        </a>
+                        <div class="EachSqDetail">
+                          <ul>
+                            <li class="EachSqft">
+                              <h6>Carpet Area</h6>
+                              <h5>{{ imgk2.CarpetArea2BHK }}</h5>
+                            </li>
+                            <li class="EachSqft">
+                              <h6>Bhk Price</h6>
+                              <h5>₹ {{ imgk2.Price2BHK }}</h5>
+                            </li>
+                          </ul>
+                        </div>
+                      </div> <!-- end section -->
+                      {% endfor %}
+                    </div>
+                    <div class=" nextbut1 swiper-button-next"></div>
+                    <div class=" prevbut1 swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              {% endif %}
+
+              <!-- This is for 3BHK image -->
+              {% if Prop_Data.ExThreeBHK %}
+                <div class="swipewrapper" id="3bhkdetails" style="display: none;">
+                  <div class="swiper9 mySwiper11 ">
+                    <div class="swiper-wrapper s11">
+                      {% for imgk3 in multiple3BHK reversed %}
+                        <div class=" swiper-slide ss11">
+                          
+                            <img src="{{ imgk3.Floor_3BHK.url }}" loading="lazy" alt="{{ imgk3.altTag3BHK }}" style="object-fit: fill;">
+                         
+                          <div class="EachSqDetail">
+                            <ul>
+                              <li class="EachSqft">
+                                <h6>Carpet Area</h6>
+                                <h5>{{ imgk3.CarpetArea3BHK }}</h5>
+                              </li>
+                              <li class="EachSqft">
+                                <h6>Bhk Price</h6>
+                                <h5>₹ {{ imgk3.Price3BHK }}</h5>
+                              </li>
+                            </ul>
+                          </div>
+                        </div> <!-- end section -->
+                      {% endfor %}
+                    </div>
+                    <div class=" nextbut1 swiper-button-next"></div>
+                    <div class=" prevbut1 swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              {% endif %}
+
+              <!-- This is for 4BHK image -->
+              {% if Prop_Data.ExFourBHK %}
+                <div class="swipewrapper" id="4bhkdetails" style="display: none;">
+                  <div class="swiper9 mySwiper11 ">
+                    <div class="swiper-wrapper s11">
+                      {% for imgk4 in multiple4BHK reversed %}
+                        <div class=" swiper-slide ss11">
+                          <a id="Livingroom"> 
+                            <img src="{{ imgk4.Floor_4BHK.url }}" loading="lazy" alt="{{ imgk4.altTag4BHK }}" style="object-fit: fill;">
+                          </a>
+                          <div class="EachSqDetail">
+                            <ul>
+                              <li class="EachSqft">
+                                <h6>Carpet Area</h6>
+                                <h5>{{ imgk4.CarpetArea4BHK }}</h5>
+                              </li>
+                              <li class="EachSqft">
+                                <h6>Bhk Price</h6>
+                                <h5>₹ {{ imgk4.Price4BHK }}</h5>
+                              </li>
+                            </ul>
+                          </div>
+                        </div> <!-- end section -->
+                      {% endfor %}
+                    </div>
+                    <div class=" nextbut1 swiper-button-next"></div>
+                    <div class=" prevbut1 swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              {% endif %}
+
+              <!-- This is for Plot image -->
+              {% if Prop_Data.Plot_Price %}
+                <div class="swipewrapper" id="5bhkdetails" style="display: none;">
+                  <div class="swiper9 mySwiper11 ">
+                    <div class="swiper-wrapper s11">
+                      <div class=" swiper-slide ss11">
+                        
+                          <img src="{{ Prop_Data.Plot.url }}" loading="lazy" alt="Plot" style="object-fit: fill;">
+                      
+                        <div class="EachSqDetail">
+                          <ul>
+                            <li class="EachSqft">
+                              <h6>Plot Area</h6>
+                              <h5>{{ Prop_Data.Plot_Area }}</h5>
+                            </li>
+                            <li class="EachSqft">
+                              <h6>Plot Price</h6>
+                              <h5>₹ {{ Prop_Data.Plot_Price }}</h5>
+                            </li>
+                          </ul>
+                        </div>
+                      </div> <!-- end section -->
+                    </div>
+                    <div class=" nextbut1 swiper-button-next"></div>
+                    <div class=" prevbut1 swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              {% endif %}
+
+              <!-- This is for Villa image -->
+              {% if Prop_Data.Villa_Price %}
+                <div class="swipewrapper" id="villadetails" style="display: none;">
+                  <div class="swiper9 mySwiper11 ">
+                    <div class="swiper-wrapper s11">
+                      <div class=" swiper-slide ss11">
+                        <a id="Livingroom"> 
+                          <img src="{{ Prop_Data.Villa.url }}" loading="lazy" alt="villa" style="object-fit: fill;">
+                        </a>
+                        <div class="EachSqDetail">
+                          <ul>
+                            <li class="EachSqft">
+                              <h6>Carpet Area</h6>
+                              <h5>{{ Prop_Data.Villa_Area }}</h5>
+                            </li>
+                            <li class="EachSqft">
+                              <h6>Bhk Price</h6>
+                              <h5>₹ {{ Prop_Data.Villa_Price }}</h5>
+                            </li>
+                          </ul>
+                        </div>
+                      </div> <!-- end section -->
+                    </div>
+                    <div class=" nextbut1 swiper-button-next"></div>
+                    <div class=" prevbut1 swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              {% endif %}
+
+          {% elif user_post.project_society_name %}
+              <div class="swipewrapper">
+                <div class="swiper9 mySwiper11">
+                  <div class="swiper-wrapper s11">
+                    {% for image in user_post.images.all %}
+                        {% if image.image %}
+                          <div class="swiper-slide ss11">
+                            <a id="{{ image.image_type }}{{ forloop.counter }}"> 
+                              <img src="{{ image.image.url }}" title="{{ image.image_type }}" alt="{{ image.image_type }}" style="object-fit: fill;"> 
+                            </a>
+                          </div> <!-- end section -->
+                        {% else %}
+                          <div class="swiper-slide ss11">
+                            <a id="noimage"> 
+                              <img src="https://static.searchhomesindia.com/images/noimage.webp" title="no image found" alt="no image" style="object-fit: fill;"> 
+                            </a>
+                          </div> <!-- end section -->
+                        {% endif %}
+                    {% endfor %}
+                  </div>
+                  <div class=" nextbut1 swiper-button-next"></div>
+                  <div class=" prevbut1 swiper-button-prev"></div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+              
+          {% else %}
+              <p>Sorry Somthing Went Wrong</p>
+          {% endif %}
+
+        </div>
+        <!-- property image gallery swiper end========================================== -->
+        
+
+        <div class="right-listsection">
+          <div class="right-top">
+            <div class="rt1" style="width: 50%;">
+              <h4>
+                {% if Prop_Data.PropertyName %}
+                <span>{{ Prop_Data.PropertyName }}</span>
+                {% elif user_post.project_society_name %}
+                <span>{{ user_post.project_society_name }}</span>
+                {% else %}
+                <span>On Request</span>
+                {% endif %}
+              </h4>       
+              <div class="rt1inline">
+                <i class="ShiIcons icon_location"></i>
+                <b style="margin-left:20px;">
+                  {% if Prop_Data.Location %}
+                  <span>{{ Prop_Data.Location }}</span>
+                  {% elif user_post.project_city %}
+                  <span>{{ user_post.project_city }}</span>
+                  {% else %}
+                  <span>On Request</span>
+                  {% endif %}
+                </b>
+              </div>
+            </div>
+            <div class="rightprice" style="width: 50%;margin-top: 2%;">
+              <h6><b> Price:</b>
+                <strong>
+                  {% if Prop_Data.Property_Price %}
+                  <span>{{ Prop_Data.Property_Price }}</span>
+                  {% elif user_post.property_price %}
+                  <span id="property_price_current"></span>
+                  {% else %}
+                  <span>On Request</span>
+                  {% endif %}
+                </strong>
+              <!-- <span style="font-size: 15px;">Onwards*</span> -->
+            </h6>
+              <span><b> Address: </b></span> <span class="localit"> 
+                {% if Prop_Data.PropertyAddress %}
+                  <span>{{ Prop_Data.PropertyAddress }}</span>
+                  {% elif user_post.address %}
+                  <span>{{ user_post.address }}</span>
+                  {% else %}
+                  <span>On Request</span>
+                  {% endif %}
+              </span>
+            </div>
+          </div>
+
+          <!-- right mid part for seller and for post property==== -->
+          {% if user_post.apartment_type == "apartment" or Prop_Data.SubPropType == "Apartment" %}
+          <div class="right-middle forselling">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Configurations</h6>
+                  {% if Prop_Data.BHK %}
+                  <p>{{ Prop_Data.BHK }}</p>
+                  {% elif user_post.apartment_type %}
+                  <p>{{ user_post.apartment_type }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Status</h6> 
+                  <!-- <p>Ready to move</p> -->
+                  {% if Prop_Data.PropertyStatus %}
+                  <p>{{ Prop_Data.PropertyStatus }}</p>
+                  {% elif user_post.status %}
+                  <p>{{ user_post.status }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <!-- <p>1205 sqft</p> -->
+                  {% if Prop_Data.super_area %}
+                  <h6>SBA/Plot Size</h6>
+                  <p>{{ Prop_Data.super_area }}</p>
+                  {% elif user_post.super_area %}
+                  <h6>SBA/Plot Size</h6>
+                  <p>{{ user_post.super_area }}</p>
+                  {% else %}
+                  <h6>SBA/Plot Size</h6>
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>DevelopmentArea</h6>
+                  <!-- <p>23 Acres</p> -->
+                  {% if Prop_Data.Project_Area %}
+                  <p>{{ Prop_Data.Project_Area }}</p>
+                  {% elif user_post.development_area %}
+                  <p>{{ user_post.development_area }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>PROJECT RERA ID</h6>
+                  <a href="#ReraNo" id="rerabutton">
+                      <div class="box button">
+                          RERA NUMBER
+                      </div>
+                  </a>
+                  <div id="ReraNo" class="overlay overlayx">
+                      <div class="popup">
+                          <a class="close" id="closerera">&times;</a>
+                          <div class="content">
+                              {% if Prop_Data.ReraNo %}
+                              <span>{{ Prop_Data.ReraNo }}</span>
+                              {% elif user_post.project_rera_id %}
+                              <span>{{ user_post.project_rera_id }}</span>
+                              {% else %}
+                              <span>On Request</span>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+              </div><span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Possession date</h6>
+                  <!-- <p>11/11/2023</p> -->
+                  {% if Prop_Data.PossessionDate %}
+                  <p>{{ Prop_Data.PossessionDate }}</p>
+                  {% elif user_post.possession_date %}
+                  <p>{{ user_post.possession_date }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Total floors</h6>
+                  <!-- <p>11 Floors</p> -->
+                  {% if Prop_Data.No_of_Floor %}
+                  <p>{{ Prop_Data.No_of_Floor }} Floors</p>
+                  {% elif user_post.total_floors %}
+                  <p>{{ user_post.total_floors }} Floors</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total units</h6>
+                  <!-- <p>20 Units</p> -->
+                  {% if Prop_Data.NoOfUnits %}
+                  <p>{{ Prop_Data.NoOfUnits }} Units</p>
+                  {% elif user_post.total_units %}
+                  <p>{{ user_post.total_units }} Units</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>No.of Tower</h6>
+                  <!-- <p>8 Tower</p> -->
+                  {% if Prop_Data.No_of_Tower %}
+                  <p>{{ Prop_Data.No_of_Tower }} Tower</p>
+                  {% elif user_post.no_of_tower %}
+                  <p>{{ user_post.no_of_tower }} Tower</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Floor Number</h6>
+                  <!-- <p>Rera</p> -->
+                  {% if Prop_Data.Property_Type %}
+                  <p>{{ Prop_Data.Property_Type }} </p>
+                  {% elif user_post.floor_number %}
+                  <p>{{ user_post.floor_number }} </p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Furnished Status</h6>
+                  <!-- <p>Furnished</p> -->
+                  {% if Prop_Data.furnished_status %}
+                  <p>{{ Prop_Data.furnished_status }} </p>
+                  {% elif user_post.furnished_status %}
+                  <p>{{ user_post.furnished_status }} </p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <button onclick="myFunction()" id="myBtn">Read more</button>
+                </div>
+              </div>
+              <span id="dots"></span> <span id="more">
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Bedrooms</h6>
+                    <!-- <p>3</p> -->
+                    {% if Prop_Data.bedrooms %}
+                    <p>{{ Prop_Data.bedrooms }} Beds</p>
+                    {% elif user_post.bedrooms %}
+                    <p>{{ user_post.bedrooms }} Beds</p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Bathrooms/Balcony</h6>
+                    <!-- <p> 1 / 2</p> -->
+                    {% if Prop_Data.bathrooms %}
+                    <p>{{ Prop_Data.bathrooms }} Bath / {{ Prop_Data.balconies }} Balc</p>
+                    {% elif user_post.bathrooms %}
+                    <p>{{ user_post.bathrooms }} Bath / {{ user_post.balconies }} Balc</p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Parking</h6>
+                    {% if Prop_Data.PropertyName %}
+                    <!-- <p>{{ Prop_Data.car_parking }}</p> -->
+                    <p>Yes</p>
+                    {% elif user_post.car_parking %}
+                    <p>{{ user_post.car_parking }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Lifts</h6>
+                    <!-- <p>1</p> -->
+                    {% if Prop_Data.lifts %}
+                    <p>{{ Prop_Data.lifts }}</p>
+                    {% elif user_post.lifts %}
+                    <p>{{ user_post.lifts }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Facing</h6>
+                    <!-- <p>West</p> -->
+                    {% if Prop_Data.facing %}
+                    <p>{{ Prop_Data.facing }}</p>
+                    {% elif user_post.facing %}
+                    <p>{{ user_post.facing }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Age of Construction </h6>
+                    <!-- <p>2 years</p> -->
+                    {% if Prop_Data.age_of_construction %}
+                    <p>{{ Prop_Data.age_of_construction }}</p>
+                    {% elif user_post.age_of_construction %}
+                    <p>{{ user_post.age_of_construction }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </span>
+
+            </div>
+          </div>
+          {% elif user_post.apartment_type == "plot" or Prop_Data.SubPropType == "Villa" %}
+          <div class="right-middle forplot">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>No. of Sides</h6>
+                  <p>{{ user_post.bedrooms }} Sides</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Is in a gated colony</h6>
+                  <p>{{ user_post.lifts }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total Units</h6>
+                  <p>{{ user_post.total_units }} Units</p>
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Facing</h6>
+                  <p>{{ user_post.facing }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Width of road </h6>
+                  <p>{{ user_post.no_of_tower }} Tower</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Corner Plot</h6>
+                  <p>{{ user_post.car_parking }}</p>
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Status Type</h6>
+                  <p>{{ user_post.status }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Plot Size</h6>
+                  <p>{{ user_post.carpet_area }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Price/Sqft</h6>
+                  <p>{{ user_post.super_area }}</p>
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Total Area</h6>
+                  <p>{{ user_post.development_area }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Approval Status</h6>
+                  <p>{{ user_post.approval_status }}</p>
+                </div>
+                <span class="vermid">|</span>
+                <div class="rm-col">
+                  <button onclick="myFunction()" id="myBtn">Read more</button>
+                </div>
+              </div>
+
+              <span id="dots"></span> <span id="more">
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Project Rera Id</h6>
+                    <p>{{ user_post.project_rera_id }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Possession date</h6>
+                    <p>{{ user_post.possession_date }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                  </div>
+                </div>
+              </span>
+
+            </div>
+          </div>
+          {% else %}
+          <div class="right-middle forvilla">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Apartment/BHk Type</h6>
+                  <p>{{ user_post.apartment_type }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Bedrooms</h6>
+                  <p>{{ user_post.bedrooms }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Bathrooms</h6>
+                  <p>{{ user_post.bathrooms }}</p>
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Balconies</h6>
+                  <p>{{ user_post.balconies }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Super BuildUp Area </h6>
+                  <p>{{ user_post.carpet_area }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Plot Area</h6>
+                  <p>{{ user_post.super_area }}</p>
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Furnished Status</h6>
+                  <p>{{ user_post.furnished_status }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Facing</h6>
+                  <p>{{ user_post.facing }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Parking</h6>
+                  <p>{{ user_post.car_parking }}</p>
+                </div>
+              </div>
+
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Status Type</h6>
+                  <p>{{ user_post.status }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total floors</h6>
+                  <p>{{ user_post.total_floors }} Floors</p>
+                </div>
+                <span class="vermid">|</span>
+                <div class="rm-col">
+                  <button onclick="myFunction()" id="myBtn">Read more</button>
+                </div>
+              </div>
+              <span id="dots"></span> <span id="more">
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Approval Status</h6>
+                    <p>{{ user_post.approval_status }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Total units</h6>
+                    <p>{{ user_post.total_units }} Units</p>
+                  </div><span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Developement Area</h6>
+                    <p>{{ user_post.development_area }}</p>
+                  </div>
+                </div>
+
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Project Rera Id</h6>
+                    <p>{{ user_post.project_rera_id }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Possession date</h6>
+                    <p>{{ user_post.possession_date }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Age of Construction </h6>
+                    <p>{{ user_post.age_of_construction }}</p>
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div>
+          {% endif %}
+
+          <div class="right-bottom">
+            <button class="rbbutton" type="submit" onclick="openForm()"> Contact Owner</button>
+            <a href="/home-loan/"><button class="rbbutton" type="submit">Check Loan Eligibility</button></a>
+          </div>
+        </div>
+        
+        <!-- ======= Header ======= -->
+        {% if Prop_Data.PropertyName %}
+        <nav id="navbar-example2" class="propdethead">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" href="#Overview">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Aminities">Amenities</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#floorplan" onclick="commonNav('mysidenav2', '100%')">Gallery & Plans</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Specification">Specification</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#trending">Trending Properties</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#location">Location</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Faq" onclick="openForm()">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        {% elif user_post.project_society_name %}
+          <span></span>
+        {% else %}
+          <p>On Request</p>
+        {% endif %}
+
+        <!-- right mid part for selling deatils==== -->
+        {% if Prop_Data.PropertyName %}
+        <div class="sellingwrap">
+          <section id="Overview" class="Descriptionsec">
+            <div class="container">
+              {% if Prop_Data.PropertyName %}
+                <div class="row">
+                  <div class="col-lg-12 DescriptionMain">
+                    <div class="descriptiontop">
+                      <div class="brand-logo"><img src="{{ Prop_Data.BuilderName.Logo.url }}" class="imgx" alt="brand-logo" style="height: 53px;"></div>
+                      <h3>Why Choose {{ Prop_Data.PropertyName }}?</h3>
+                    </div>
+                    <hr>
+                    </hr>
+                    <div class="maincontent">
+                      <ul>
+                        {% for dic in description %}
+                        <li class="Contentli">
+                          <p><i class="ShiIcons3 icon_thumG"></i> {{ dic.disc }}
+                          </p>
+                        </li>
+                        <hr>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div> 
+              {% endif %}
+
+              <div class="row ">
+                <div class="col-lg-12 DescriptionMain1">
+                  <div class="buttonwrap" id="up1">
+                    {% if Prop_Data.PropertyName %}
+                      {% if Prop_Data.ExOneBHK %}
+                      <a href="#1bhk"><button class="btnsss1 neonn" type="submit" onclick="showPricing(1)">1 BHK</button></a>
+                      {% else %}
+                      <a href="#1bhk"><button class="btnsss1 neonn" type="submit" onclick="showPricing(1)">Other</button></a>
+                      {% endif %}
+                      {% if Prop_Data.ExTwoBHK %}
+                      <a href="#2bhk"><button class="btnsss1" type="submit" onclick="showPricing(2)">2 BHK</button></a>
+                      {% endif %}
+                      {% if Prop_Data.ExThreeBHK %}
+                      <a href="#3bhk"><button class="btnsss1" type="submit" onclick="showPricing(3)">3 BHK</button></a>
+                      {% endif %}
+                      {% if Prop_Data.ExFourBHK %}
+                      <a href="#4bhk"><button class="btnsss1" type="submit" onclick="showPricing(4)">4 BHK</button></a>
+                      {% endif %}
+                      {% if Prop_Data.ExFiveBHK %}
+                      <a href="#5bhk"><button class="btnsss1" type="submit" onclick="showPricing(5)">5 BHK</button></a>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                  {% if Prop_Data.PropertyName %}
+                  <div class="bhkpricing">
+                      {% if Prop_Data.ExOneBHK %}
+                      <div class="bhkpricewrapp " id="oneBHKDetails">
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Starting Price</h6>
+                            <h5><span style="font-size:30px; font-weight:600; color: #1faac9; margin-right: 4px;">₹</span>
+                              {{ Prop_Data.ExOneBHK }}</h5>
+                          </div>
+                        </div>
+                        <div class="Dristibutline"></div>
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Super Build-Up Area</h6>
+                            <h5 style="margin-top: 13px;"><i class="ShiIcons icon_home " style="margin-right: 10px;"></i>
+                              {{Prop_Data.OneBHKArea}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% else %}
+                      <div class="bhkpricewrapp " id="oneBHKDetails">
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Starting Price</h6>
+                            <h5><span
+                                style="font-size:30px; font-weight:600; color: #1faac9; margin-right: 4px;">₹</span>On
+                              Request</h5>
+                          </div>
+                        </div>
+                        <div class="Dristibutline"></div>
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Super Build-Up Area</h6>
+                            <h5 style="margin-top: 13px;"><i class="ShiIcons icon_home "
+                                style="margin-right: 10px;"></i>On Request</h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% if Prop_Data.ExTwoBHK %}
+                      <div class="bhkpricewrapp " id="twoBHKDetails" style="display: none;">
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Starting Price</h6>
+                            <h5><span
+                                style="font-size:30px; font-weight:600; color: #1faac9; margin-right: 4px;">₹</span>
+                                {{ Prop_Data.ExTwoBHK }}</h5>
+                          </div>
+                        </div>
+                        <div class="Dristibutline"></div>
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Super Build-Up Area</h6>
+                            <h5 style="margin-top: 13px;"><i class="ShiIcons icon_home " style="margin-right: 10px;"></i>
+                              {{Prop_Data.TwoBHKArea}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% if Prop_Data.ExThreeBHK %}
+                      <div class="bhkpricewrapp " id="threeBHKDetails" style="display: none;">
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Starting Price</h6>
+                            <h5><span style="font-size:30px; font-weight:600; color: #1faac9; margin-right: 4px;">₹</span>
+                              {{ Prop_Data.ExThreeBHK }}
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="Dristibutline"></div>
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Super Build-Up Area</h6>
+                            <h5 style="margin-top: 13px;"><i class="ShiIcons icon_home "
+                                style="margin-right: 10px;"></i>{{Prop_Data.ThreeBHKArea}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% if Prop_Data.ExFourBHK %}
+                      <div class="bhkpricewrapp " id="fourBHKDetails" style="display: none;">
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Starting Price</h6>
+                            <h5><span style="font-size:30px; font-weight:600; color: #1faac9; margin-right: 4px;">₹</span>
+                              {{ Prop_Data.ExFourBHK }}
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="Dristibutline"></div>
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Super Build-Up Area</h6>
+                            <h5 style="margin-top: 13px;"><i class="ShiIcons icon_home "
+                                style="margin-right: 10px;"></i>{{Prop_Data.FourBHKArea}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% if Prop_Data.ExFiveBHK %}
+                      <div class="bhkpricewrapp " id="fiveBHKDetails" style="display: none;">
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Starting Price</h6>
+                            <h5><span
+                                style="font-size:30px; font-weight:600; color: #1faac9; margin-right: 4px;">₹</span>
+                                {{ Prop_Data.ExFourBHK }}
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="Dristibutline"></div>
+                        <div class="bhkpricing1">
+                          <div class="bhkindivisual1">
+                            <h6>Super Build-Up Area</h6>
+                            <h5 style="margin-top: 13px;"><i class="ShiIcons icon_home "
+                                style="margin-right: 10px;"></i>{{Prop_Data.FourBHKArea}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                  </div>
+                  {% endif %}
+                  <div class="Enquirybutton">
+                    <button type="button" onclick="openForm()">Enquiry Us</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        {% elif user_post.project_society_name %}
+          {% if user_post.about_project %}
+            <div class="rentandPgwrap" id="Overview" >
+              <div class="rentpgtop">
+                <h4>About Property</h4>
+              </div>
+              <div class="rentpgmid">
+                <p style="text-align: justify;word-break: break-all;">{{ user_post.about_project }}</p>
+              </div> 
+              </div>
+          {% else %}
+            <span></span>
+          {% endif %}
+        {% endif %}
+
+        <!-- =======Aminities===== -->
+        <div class="containeraminities" id="Aminities">
+          <div class="header__center">Amenities</div><br>
+
+          <div class="services-inner">
+
+            {% if Prop_Data.PropertyName %}
+            {% if Prop_Data.PropertyName == "Butterfly Avenue" %}
+            <div class="services-box">
+                     <img class="lazy-load" src="{% static 'images/play.jpeg' %}" alt="aminities" width="100" height="100">
+                  <h3 class="services-title">Kids Play Area</h3>
+                </div>
+              {% else %}
+                  <div class="services-box">
+                    <i class="Amenitiesicon icon_clubhouse"></i>                   
+                  <h3 class="services-title">Club House</h3>
+                </div>
+              {% endif %}
+          {% endif %}
+
+            <div class="services-box">
+                <i class="Amenitiesicon icon_Maintenance"></i>
+              <h3 class="services-title">Maintenance</h3>
+            </div>
+
+            <div class="services-box">
+                <i class="Amenitiesicon icon_Water"></i>
+              <h3 class="services-title">24/7 Water Supply</h3>
+            </div>
+
+            <div class="services-box">
+                <i class="Amenitiesicon icon_Security"></i>
+              <h3 class="services-title">Security</h3>
+            </div>
+
+            <div class="services-box">
+                <i class="Amenitiesicon icon_Power"></i>
+              <h3 class="services-title">Power Backup</h3>
+            </div>
+            {% if Prop_Data.PropertyName %}
+            <div class="services-box">
+                <i class="Amenitiesicon icon_Citizen"></i>
+              <h3 class="services-title">Senior Citizen Park</h3>
+            </div>
+            {% elif user_post.project_society_name %}
+              <span></span>
+            {% else %}
+              <p>On Request</p>
+            {% endif %}
+
+            {% if Prop_Data.PropertyName %}
+            {% if Prop_Data.PropertyName == "Butterfly Avenue" %}
+                <p></p>
+            {% else %}
+            <div class="services-box">
+                <i class="Amenitiesicon icon_Indoor"></i>
+              <h3 class="services-title">Indoor Games</h3>
+            </div>
+            {% endif %}
+        {% endif %}
+      
+        {% if Prop_Data.PropertyName %}
+        {% if Prop_Data.PropertyName == "Butterfly Avenue" %}
+            <p></p>
+        {% else %}
+        <div class="services-box">
+            <i class="Amenitiesicon icon_Swimming"></i>
+          <h3 class="services-title">Swimming Pool</h3>
+        </div>
+        {% endif %}
+        {% endif %}    
+      
+        {% if Prop_Data.PropertyName %}
+        {% if Prop_Data.PropertyName == "Butterfly Avenue" %}
+            <p></p>
+        {% else %}
+         {% if Prop_Data.PropertyName %}
+          {% if Prop_Data.PropertyName == "I Rise Plots" %}
+          <div class="services-box">
+                  <img class="lazy-load" src="{% static 'images/play.jpeg' %}" alt="aminities" width="100" height="100">
+                <h3 class="services-title">Kids Play Area</h3>
+              </div>
+            {% else %}
+                <div class="services-box">
+            <i class="Amenitiesicon icon_Parking"></i>
+          <h3 class="services-title">Parking Area</h3>
+        </div>
+            {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %} 
+      
+        {% if Prop_Data.PropertyName %}
+        {% if Prop_Data.PropertyName == "Butterfly Avenue" %}
+            <p></p>
+        {% else %}
+        <div class="services-box">
+            <i class="Amenitiesicon icon_GYM"></i>
+          <h3 class="services-title">GYM Facilities</h3>
+        </div>
+        {% endif %}
+        {% endif %} 
+      
+        {% if Prop_Data.PropertyName %}
+        {% if Prop_Data.PropertyName == "Butterfly Avenue" %}
+            <p></p>
+        {% else %}
+        <div class="services-box">
+            <i class="Amenitiesicon icon_Park"></i>
+          <h3 class="services-title">Pet Park Area</h3>
+        </div>
+        {% endif %}
+        {% endif %} 
+      
+        {% if Prop_Data.PropertyName %}
+        {% if Prop_Data.PropertyName == "Butterfly Avenue" %}
+            <p></p>
+        {% else %}
+        <div class="services-box">
+            <i class="Amenitiesicon icon_Outdoor"></i>
+          <h3 class="services-title">Outdoor Games</h3>
+        </div>
+        {% endif %}
+        {% endif %}     
+    
+          </div>
+        </div>
+
+        <!-- ========comment block======== -->
+        {% if Prop_Data.PropertyName %}
+        <div class="comment_block" id="Specification">
+          <div class="header__center">Project Specification</div>
+          <!-- new comment -->
+          <div class="new_comment">
+            <!-- build comment -->
+            <ul class="user_comment">
+              <!-- current #{user} avatar -->
+              {% if Prop_Data.Plot_Price %}
+              <li>
+                  <i class="Amenitiesicon icon_structure"></i> 
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Infrastructure %}
+                    <li class="liforstructure">{{ Prop_Structure.Infrastructure }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li><br>
+              {% else %}
+              <li>
+                  <i class="Amenitiesicon icon_infra"></i>
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Structure %}
+                    <li class="liforstructure">{{ Prop_Structure.Structure }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li><br>
+              {% endif%}
+<!-- start user replies -->
+              {% if Prop_Data.Plot_Price %}
+              <li>
+                <!-- current #{user} avatar -->
+                  <i class="Amenitiesicon icon_landscape"></i> 
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Landscapedfeatures %}
+                    <li class="liforstructure">{{ Prop_Structure.Landscapedfeatures }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li><br>
+              {% else %}
+              <li>
+                <!-- current #{user} avatar -->
+                  <i class="Amenitiesicon icon_door"></i>
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Doors %}
+                    <li class="liforstructure">{{ Prop_Structure.Doors }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li><br>
+              {% endif %}
+<!-- start user replies -->
+              {% if Prop_Data.Plot_Price %}
+              <li>
+                <!-- current #{user} avatar -->
+                  <i class="Amenitiesicon icon_conservation"></i> 
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Waterconservation %}
+                    <li class="liforstructure">{{ Prop_Structure.Waterconservation }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li><br>
+              {% else %}
+              <li>
+                <!-- current #{user} avatar -->
+                  <i class="Amenitiesicon icon_tiles"></i>
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Flooring %}
+                    <li class="liforstructure">{{ Prop_Structure.Flooring }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li><br>
+              {% endif %}
+              <li>
+                <!-- current #{user} avatar -->
+                  <i class="Amenitiesicon icon_wash"></i>
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Plumbing %}
+                    <li class="liforstructure">{{ Prop_Structure.Plumbing }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- new comment -->
+          <div class="new_comment">
+            <!-- build comment -->
+            <ul class="user_comment">
+              <!-- current #{user} avatar -->
+                <i class="Amenitiesicon icon_golden"></i>
+              <div class="comment_body">
+                <ul class="ulforstructure">
+                  {% for Prop_Structure in projectStructure %}
+                  {% if Prop_Structure.Electrical %}
+                  <li class="liforstructure">{{ Prop_Structure.Electrical }}</li>
+                  {% else %}
+                  <li></li>
+                  {% endif %}
+                  {% endfor %}
+                </ul>
+              </div><br><br>
+              <!-- start user replies -->
+              <li>
+                <!-- current #{user} avatar -->
+                  <i class="Amenitiesicon icon_camera"></i> 
+                <div class="comment_body">
+                  <ul class="ulforstructure">
+                    {% for Prop_Structure in projectStructure %}
+                    {% if Prop_Structure.Security %}
+                    <li class="liforstructure">{{ Prop_Structure.Security }}</li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li><br><br>
+            </ul>
+          </div>
+        </div>
+        {% elif user_post.project_society_name %}
+          <span></span>
+        {% else %}
+          <p>On Request</p>
+        {% endif %}
+
+        <!-- ============nearby location================== -->
+        {% if Prop_Data.PropertyName %}
+        <section>
+          <div class="header__center headerforall">Nearby Locations</div>
+          <div class="container nearby">
+            <div class="row">
+              <div class="divScroll">
+                <ul>
+                  {% for Facilities in nearbylocation%}
+                  <li class="updatediv22">
+                    <i class="ShiIcons3 icon_thumG"></i> {{Facilities.locationdis}}
+                  </li>
+                  {% endfor %}
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        {% elif user_post.project_society_name %}
+          <span></span>
+        {% else %}
+          <p>On Request</p>
+        {% endif %}
+        <!-- =========Trending properties========= -->
+        <section class="trendingprop" id="trending">
+          <div class="header__center">Trending properties</div>
+          <div class="swiper11 mySwiper13 ">
+            <div class="swiper-wrapper s13">
+
+              {% for image in sell_properties %}
+              <div class=" swiper-slide ss13">
+                <a href="{% url 'property_detail' image.slug %}" title="{{image.slug}}">
+                   <img src="{{ image.Property_Image.url }}" alt="trending properties">
+                <div class="tplocation">
+                  <button>
+                    <h4>{{ image.PropertyName }}</h4>
+                    <p>Price: {{ image.Property_Price }}</p>
+                  </button>
+                </div>
+              </a>
+              </div>
+              {% endfor %}
+
+            </div>
+            <div class="nextbut swiper-button-next"></div>
+            <div class="prevbut swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </section>
+        <!-- =====Trending properties end========== -->
+
+        <!-- ======Similar Porject======== -->
+        <section class="similarproject">
+          <div class="header__center">Most Similar Projects</div>
+          <div class="swiper12 mySwiper14">
+            <div class="swiper-wrapper s14">
+              {% for image in trending_properties %}
+              <div class=" swiper-slide ss14">
+                <a href="{% url 'property_detail' image.slug %}"> <img src="{{ image.Property_Image.url }}" alt="similar Property"></a>
+                <div class="tplocation1">
+                  <button>
+                    <h4>{{ image.PropertyName }}</h4>
+                    <p><span>Price:</span>{{ image.Property_Price }}</p>
+                    <p class="gototop"><span>BHK:</span> {{ image.BHK }}</p>
+                     <!-- <p class="gototop"><span>Carpet Area:</span> {{ image.Project_Area }}</p> -->
+                  </button>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="nextbut swiper-button-next"></div>
+            <div class="prevbut swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="propdetail-right">
+        <div class="container shiform" id="contact">
+          <form action="" class="needs-validation post-form" id="PropContactform3" novalidate>
+            {% csrf_token %}
+            <div class="brand-logo"><img src="https://static.searchhomesindia.com/images/shi_logo_small.png" alt="brand-logo"></div>
+            <!-- <div class="brand-title">SearchHomesIndia</div> -->
+            <div class="inputs">
+
+              <fieldset>
+                {% if Prop_Data.PropertyName %}
+                <input type="hidden" name="project" id="Propdetail3" value="{{ Prop_Data.PropertyName }}"
+                  style="border: none;">
+                <input type="hidden" name="username" id="usernumber3"  placeholder="Your name" tabindex="1" value="8147267372" required>
+                {% elif user_post.project_society_name %}
+                <input type="hidden" name="project" id="Propdetail3" value="{{ user_post.project_society_name }} Posted"
+                  style="border: none;">
+                  <input type="hidden" name="user" id="usernumber3" value="{{ user_post.user }}"
+                  style="border: none;">
+                {% else %}
+                <input type="hidden" name="project" id="Propdetail3" value="Sorry No Property Name Found"
+                  style="border: none;">
+                  <input type="hidden" name="username" id="usernumber3"  placeholder="Your name" tabindex="1" value="8147267372" required>
+                {% endif %}
+                <label for="name">USERNAME</label>
+                <input type="text" id="username3" name="name" class="form-control form-control-lg thick"
+                  placeholder="Enter Name*" required="">
+                <!-- Name valid or invalid checker div's -->
+                <div class="valid-feedback" id="isnamevalid3" style="color: green; font-size: 10px; display: none;">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" id="isnameinvalid3" style="color: red; font-size: 10px; display: none;">
+                  Please Enter a valid Name.
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <label for="email">EMAIL</label>
+                <input type="email" id="useremail3" name="email" class="form-control form-control-lg thick" placeholder="Enter Email*" size="40" required="" />
+                <!-- Email validation alert boxes. -->
+                <div class="valid-feedback" id="isemailvalid3" style="color: green; font-size: 10px; display: none;">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" id="isemailinvalid3" style="color: red; font-size: 10px; display: none;">
+                  Please Enter a valid Email-Address.
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <label for="phone">CONTACT NUMBER</label>
+                <input type=Conatact id="userphone3" name="mobile" class="form-control form-control-lg thick"
+                  placeholder="Enter Number*" maxlength="10" onkeypress="return /[0-9]/i.test(event.key)" required=""
+                  spellcheck="false" data-ms-editor="true">
+                <!-- Contact valid or invalid checker div's -->
+                <div class="valid-feedback" id="isphonevalid3" style="color: green; font-size: 10px; display: none;">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" id="isphoneinvalid3" style="color: red; font-size: 10px; display: none;">
+                  Please Enter a valid Contact Number.
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <label for="message">MESSAGE</label>
+                <textarea type=text name="message" id="usermessage3" class="form-control form-control-lg thick" cols=4
+                  placeholder="Write Message*" spellcheck="false" data-ms-editor="true"></textarea>
+                <!-- Message valid or invalid checker div's -->
+                <div class="valid-feedback" id="ismessagevalid3" style="color: green; font-size: 10px; display: none;">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" id="ismessageinvalid3"
+                  style="color: red; font-size: 10px; display: none;">
+                  Please Enter a valid Message.
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <div class="row" style="margin-right: 0; margin-left: 0; padding-bottom: 5px;">
+                  <!-- Alert blocks to show the alerts regarding the submission of the form -->
+                  <!-- success alert block -->
+                  <div class="alert alert-success alert-dismissible" role="alert" id="issuccess3"
+                    style="margin-bottom: 0px; font-size: 10px; display: none;">
+                    <strong>ThankYou for your response!</strong> Our team will get back to you soon.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  <!-- failure alert block -->
+                  <div class="alert alert-danger alert-dismissible" role="alert" id="isfailure3"
+                    style="margin-bottom: 0px; font-size: 10px; display: none;">
+                    <strong>Something went wrong!</strong> Please fill the details properly.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+                <button type="submit" id="contactsubmit3" name="btn_submit"
+                  onclick="PostAPICall('PropContactform3')">SEND MESSAGE</button>
+              </fieldset>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============location and map============== -->
+    {% if Prop_Data.PropertyName %}
+    <section class="mapndlocation" id="location">
+      <div class="header__center headerforall">Location and Map</div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" id="location12">
+            {% if Prop_Data.Google_Map %}
+            <div class="panel-body">
+              <iframe src="{{ Prop_Data.Google_Map }}" allow="autoplay; muted" loading="lazy" width="100%" height="450"
+                frameborder="0" allowfullscreen></iframe>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    {% elif user_post.project_society_name %}
+      <span></span>
+    {% else %}
+      <p>On Request</p>
+    {% endif %}
+
+    <!-- =============QndA================= -->
+    <section class="QndA">
+      <div class="header__center headerforall">Frequently Asked Question</div>
+      <div class="container QndA1">
+        <div class="row">
+          <div class="new_body">
+            <div class="jsn-bootstrap3">
+              <div class="row updatediv24">
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: How do I contact you to get a quote?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="aNEiDc">
+                      <p>Ans: You can contact us via our website contact form or by phone to get a quote.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: How important is location when buying a house ?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="5WadYJ">
+                      <p>Ans: Location impacts the value and features of a home in many ways. Location of a house
+                        reflects
+                        the convenience and access to amenities. Living in a good location, you can have easy access to
+                        entertainment, schools, hospitals and so on. </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="jsn-bootstrap3">
+              <div id="sa5mE5" class="row updatediv24">
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: Why it is important to do site visit?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="VW7ZTg">
+                      <p>Ans: It is important to do a site visit before confirming any property in order to understand
+                        the
+                        details of the property and it's surroundings.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: How many properties can I own at a time?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="wBlOIC">
+                      <p>Ans: You can own as many properties as you want. They're all yours.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="jsn-bootstrap3">
+              <div id="5KOuNU" class="row updatediv24">
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: Do you offer home loan services?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="704DnC">
+                      <p>Ans: Yes, we have all the services that can help you to relate with lenders in order to get
+                        your
+                        home loan. And our services start from helping to find an appropriate house and then negotiating
+                        with the bank on your behalf.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: How long does it take to get a home loan?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="LXNTYT">
+                      <p>Ans: Generally, it takes about 1 to 2 weeks for your home loan to be sanctioned based on your
+                        eligibility.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="jsn-bootstrap3">
+              <div id="KNeXtz" class="row updatediv24">
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: what is purpose of registration to buy property?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="cMW1Nk">
+                      <p> Ans: Registering a property legalizes that you have complete and valid ownership of the
+                        property,
+                        and it provides you with the title of possession of the property.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: How to do the registration of the property?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="ieNYqQ">
+                      <p>Ans: Property Registration in India is compulsory under section 17 of the Indian Registration
+                        Act,
+                        1908. The registration of property is to be done in the Registrar's Offices by the
+                        Sub-Registrar.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="jsn-bootstrap3">
+              <div id="ZPFXfi" class="row updatediv24">
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: What are the documents required for registration?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="JRlCLh">
+                      <p>Ans: 1. Khata and tax determination receipt issued by BBMP or corporation <br>
+                        2. An affidavit <br>
+                        3. Sanction plan or Conversion certificate, if the property is on converted land <br>
+                        4. Title deed or allotment order or possession certificate or sales document, if property is
+                        given
+                        by government department or agencies <br>
+                        5. PAN issued by Income Tax Department or Form 60 and 61 if the property values more than 5
+                        lakhs
+                        <br>
+                        6. Declaration in form 1 under the Karnataka Stamps Rules 1977
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-heading updatediv23">
+                    <h5>Q: how to check construction quality of a house?</h5>
+                  </div>
+                  <div class="jsn-bootstrap3 wr-element-container wr-element-text">
+                    <div class="wr_text" id="9DBIs7">
+                      <p>Ans: 1. Investigate the soil. <br>
+                        2. Determine the structure design. <br>
+                        3. Check the concrete mix. <br>
+                        4. Inspect the wall thickness. <br>
+                        5. Ensure safety features. <br>
+                        6. Look for paint and plastering quality.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============About ==================== -->
+    {% if Prop_Data.PropertyName %}
+      <section class="About mt-3">
+        {% if aboutBuilder %}
+          <div class="header__center headerforall">About Builder</div>
+        {% elif user_post.about_project %}
+          <div class="header__center headerforall">About</div>
+        {% else %}
+          <span></span>
+        {% endif %}
+        <div class="container" >
+          <div class="row">
+
+            {% if aboutBuilder %}
+              <div  class="col-lg-12 p-4" style="box-shadow: 0px 0px 0px 1px #00000036;">
+                {% for propdata in aboutBuilder %}
+                  <p style="text-align: justify;">{{ propdata.about_builder }}</p> 
+                {% endfor %}
+              </div>
+            {% elif user_post.about_project %}
+              <div  class="col-lg-12 p-4" style="box-shadow: 0px 0px 0px 1px #00000036;">
+                <p style="text-align: justify;">{{ user_post.about_project }} Acres</p>
+              </div>
+            {% else %}
+              <span></span>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% elif user_post.project_society_name %}
+      <span></span>
+    {% else %}
+      <p>On Request</p>
+    {% endif %}
+
+  </div>
+</div>
+<!-- popupForm for all details pages  -->
+<section>
+  <div class="col-md-4 careerform1">
+    <div class="brand-logo" style="display: flow;"><img src="https://static.searchhomesindia.com/images/shi_logo_small.png" alt="shi_logo_small"></div>
+      <div class="crossbtns" onclick="closeForm()">x</div>
+      <form id="PropContactform2">
+        {% if Prop_Data.PropertyName %}
+        <input type="hidden" name="project" id="Propdetail2" value="{{ Prop_Data.PropertyName }}"
+          style="border: none;">
+          <input type="hidden" name="username" id="usercontact2"  placeholder="Your name" tabindex="1" value="8147267372" required>
+        {% elif user_post.project_society_name %}
+        <input type="hidden" name="project" id="Propdetail2" value="{{ user_post.project_society_name }} Posted"
+          style="border: none;">
+          <input type="hidden" name="user" id="usercontact2" value="{{ user_post.user }}"
+          style="border: none;">
+        {% else %}
+        <input type="hidden" name="project" id="Propdetail2" value="Sorry No Property Name Found"
+          style="border: none;">
+        <input type="hidden" name="username" id="usercontact2"  placeholder="Your name" tabindex="1" value="8147267372" required>
+        {% endif %}
+          <div class="form-group">
+              <label for="exampleInputName">Full Name</label>
+              <input type="text" id="username2" name="name"  class="form-control" placeholder="Enter your name" required>
+              <!-- Name valid or invalid checker div's -->
+              <div class="valid-feedback" id="isnamevalid2" style="color: green;font-size: 10px;">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" id="isnameinvalid2" style="color: red;font-size: 10px;">
+                Please Enter a valid Name.
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1" >Email address</label>
+              <input type="email" id="useremail2" name="email"  class="form-control" aria-describedby="emailHelp" placeholder="Enter your email address" required>
+              <!-- Email valid or invalid checker div's -->
+              <div class="valid-feedback" id="isemailvalid2" style="color: green;font-size: 10px;">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" id="isemailinvalid2" style="color: red;font-size: 10px;">
+                Please Enter a valid Name.
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="example-tel-input" >Mobile No.</label>
+              <input class="form-control"  type="tel" name="mobile" id="userphone2" placeholder="Mobile No." required>
+              <!-- Phone valid or invalid checker div's -->
+              <div class="valid-feedback" id="isphonevalid2" style="color: green;font-size: 10px;">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" id="isphoneinvalid2" style="color: red;font-size: 10px;">
+                Please Enter a valid Name.
+              </div>
+          </div>
+              <!-- <div class="form-group">
+                  <label for="inputCity">City</label>
+                  <input class="form-control"  type="text" value="" id="example-tel-input" placeholder="City" required>
+              </div> -->
+              <div class="form-group">
+                <label for="example-tel-input">Message</label>
+                <textarea placeholder="Message"  class="form-control" id="usermessage2" rows="2" required style="height: auto;"></textarea>
+                <!-- Message valid or invalid checker div's -->
+                <div class="valid-feedback" id="ismessagevalid2" style="color: green;font-size: 10px;">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" id="ismessageinvalid2" style="color: red;font-size: 10px;">
+                  Please Enter a valid Name.
+                </div>
+            </div>
+            <div class="row" style="margin-right: 0;
+                    margin-left: 0; padding-bottom: 5px;">
+              <!-- Alert blocks to show the alerts regarding the submission of the form -->
+              <!-- success alert block -->
+              <div class="alert alert-success alert-dismissible" role="alert" id="issuccess2"
+                style="margin-bottom:0;font-size: 10px;">
+                <strong>ThankYou for your response!</strong> Our team will get back to you soon.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <!-- failure alert block -->
+              <div class="alert alert-danger alert-dismissible" role="alert" id="isfailure2"
+                style="margin-bottom:0;font-size: 10px;">
+                <strong>Something went wrong!</strong> Please fill the details properly.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          <button type="submit" class="careersub" id="contactsubmit2" name="btn_submit" onclick="PostAPICall('PropContactform2')">Submit</button>
+      </form>
+  </div>
+</section> 
+<!-- popupForm for all details pages  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://static.searchhomesindia.com/js/PropertyContactCheck3.min.js"></script>
+<script src="https://static.searchhomesindia.com/js/PropContactcheck2.min.js"></script>
+<script src="https://static.searchhomesindia.com/js/swiper-bundle1.js"></script>
+<script src="https://static.searchhomesindia.com/js/details_property.js"></script>
+<!-- LeadRat API -->
+<script>
+  function PostAPICall(formId) {
+    const form = document.querySelector(`#${formId}`);
+    console.log('Form submitted:', formId);
+    const apiUrl = "https://connect.leadrat.com/api/v1/integration/Website";
+    const apiKey = "ZjE4NWE0YjktNDc2YS00ZDUwLTlmYzItOWEyNjFiMDlhNDdi";
+
+    const formData = new FormData(form);
+    const integrationData = {
+        name: formData.get("name"),
+        mobile: formData.get("mobile"),
+        email: formData.get("email"),
+        project: formData.get("project"),
+    };
+    const headers = {
+        "API-Key": apiKey,
+        "Content-Type": "application/json"
+    };
+
+    // Find the corresponding response element based on the form's ID
+    const responseDiv = document.querySelector(`#response-${formId}`);
+
+    fetch(apiUrl, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify([integrationData]) // Wrap the data in an array
+    })
+    .then(response => response.text())
+    .then(data => {
+        responseDiv.innerHTML = "API Response: " + data;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        responseDiv.innerHTML = "Error: " + error;
+    });
+}
+  </script>
+ <!-- LeadRat API End-->
+ <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var button = document.getElementById('rerabutton');
+    var popup = document.getElementById('ReraNo');
+    var closeButton = document.getElementById('closerera');
+
+    button.addEventListener('click', function() {
+        popup.style.display = 'block';
+    });
+
+    closeButton.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+});
+  </script>
+  <script>
+    var buttonContainer = document.getElementById("up1");
+    var neobutton = buttonContainer.getElementsByClassName("btnsss1");
+    for (var i = 0; i < neobutton.length; i++) {
+      neobutton[i].addEventListener("click", function () {
+        var neocurrent = document.getElementsByClassName("neonn");
+        neocurrent[0].className = neocurrent[0].className.replace(" neonn", "");
+        this.className += " neonn";
+      });
+    }
+  </script>
+  <script>
+    function formatMoney(money, elementId) {
+        money = parseFloat(money);
+    
+        if (isNaN(money) || money < 0) {
+            document.getElementById(elementId).innerText = 'Please enter a valid positive number.';
+            return;
+        }
+    
+        let formattedMoney = money.toLocaleString('en-US', { maximumFractionDigits: 2 });
+        let unit = '';
+    
+        if (money >= 1e9) {
+            formattedMoney = (money / 1e9).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' Billion';
+        } else if (money >= 1e7) {
+            formattedMoney = (money / 1e7).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' Cr.';
+        } else if (money >= 1e5) {
+            formattedMoney = (money / 1e5).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' Lakh';
+        } else if (money >= 1e6) {
+            formattedMoney = (money / 1e6).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' Million';
+        } else if (money >= 1e3) {
+            formattedMoney = (money / 1e3).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' Thousand';
+        }
+    
+        document.getElementById(elementId).innerText = `₹ ${formattedMoney}${unit}`;
+    }
+    // Example usage with predefined values
+    formatMoney('{{ user_post.property_price }}', 'property_price_current');
+    </script>
+
+{% endblock %}

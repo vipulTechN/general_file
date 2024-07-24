@@ -1,0 +1,791 @@
+{% extends "base(Home).html" %}
+{% load static %}
+{% block head_block %}
+<link rel="stylesheet" href="https://static.searchhomesindia.com/css/newsubmit.css">
+<style>
+    #header1 {top: 0px!important;}
+    .submitdetailwrap{margin-top: 65px;}
+    .active, .btnsss:hover {
+      background: transparent!important;
+    }
+    .hidden { 
+      display: none;
+    }
+
+    .error {
+     border: 1px solid red;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 0.9em;
+    }
+
+    .success-message {
+        color: green;
+        font-size: 0.9em;
+    }
+
+    .addrembtn{
+        display: flex;
+        align-items: center;
+    }
+
+    .addrembtn button{
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: 3px 20px;
+        margin-top: 12px;
+        font-size: 10px;
+    }
+
+    #add-button{
+        background-color: green;
+    }
+
+    #remove-button{
+        background-color: red;
+    }
+
+    .field{
+        margin-top: 20px;
+    }
+    #amountresult{font-size: 13px;}
+    @media (min-width: 1200px) {
+        .srpcontain {
+            max-width: 100% !important;
+        }
+    }
+</style>
+{% endblock %}
+{% block body_block %}
+    <div class="submitdetailwrap">
+        <div class="container srpcontain">
+            <div class="row">
+                <div class="col-lg-7" id="leftsubmit-dets">
+                    <form method="post" enctype="multipart/form-data" id="submit_propertyid">
+                        {% csrf_token %}
+
+                        <!-- detail section -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit" style="margin-top: 0px">
+                                <h5>Property details</h5>
+                            </div>
+                            <div class="fielddets">
+                                <div class="label labelselect">
+                                    I am <span class="req">*</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="owner" required id="id_u_property_type_1"
+                                        class="iamradio" checked>
+                                        <label for="id_u_property_type_1"> Owner</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="agent" required id="id_u_property_type_2"
+                                        class="iamradio">
+                                        <label for="id_u_property_type_2" id="fielabs">Agent</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="u_property_type" value="builder" required
+                                        id="id_u_property_type_3" class="iamradio">
+                                        <label for="id_u_property_type_3" id="fielabs">Builder</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fielddets">
+                                <div class="label labelselect">
+                                    Here To<span class="req">*</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <input type="radio" name="hereto" value="sell" class="iamradio"
+                                            style="cursor: no-drop" />
+                                        <label for="sell">Sell</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Rent/Lease" required class="iamradio"
+                                            checked />
+                                        <label for="Rent/Lease" id="fielabs">Rent/Lease</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="hereto" value="Pg/Colive" class="iamradio"
+                                            style="cursor: no-drop" />
+                                        <label for="Pg/Colive" id="fielabs">Pg/Co-live</label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="fielddets-type">
+                                <div class="label">
+                                    Property Type <span class="req">*</span>
+                                </div>
+                                <div class="formCom">
+                                        <select name="total_rooms" required id="id_total_rooms" onchange="hiddendatablocks(this.value)" class="cidrop-input">
+                                            <option value="" selected>Select Type</option>
+                                            <option value="1RK">1 RK</option>
+                                            <option value="1BHK">1 BHK</option>
+                                            <option value="2BHK">2 BHK</option>
+                                            <option value="3BHK">3 BHK</option>
+                                            <option value="4BHK">4 BHK</option>
+                                            <option value="5BHK">5 BHK</option>
+                                            <option value="villa">Villa</option>
+                                            <option value="commercialspace">Commercial Space</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- location section  -->
+                        <div class="datablock">
+                            <div class="sub-heading-submit">
+                                <h5>Property Location</h5>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">City <span class="req">*</span></div>
+                                <div class="cityinput">
+                                    <select name="project_city" id="id_project_city" required class="cidrop-input">
+                                        <option value="bengaluru">Bengaluru</option>
+                                        <option value="chennai">Chennai</option>
+                                        <option value="mumbai">Mumbai</option>
+                                        <option value="hyderabad">Hyderabad</option>
+                                        <option value="delhi">Delhi</option>
+                                        <option value="pune">Pune</option>
+                                        <option value="allindia" selected>All India</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">Locality <span class="req">*</span></div>
+                                <div class="locationinput">
+                                    <input type="text" placeholder="Enter Locality" name="landmark" id="id_landmark"
+                                        class="cidrop-input" required maxlength="100" />
+                                </div>
+                            </div>
+
+                            <div class="contentwrap">
+                                <div class="label">
+                                    Name of Project/Society <span class="req">*</span>
+                                </div>
+                                <div class="locationinput">
+                                    <input type="text" placeholder="Society name" name="r_property_name" maxlength="40"
+                                        required id="id_r_property_name" class="cidrop-input" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="hiddendatablock">
+                            <!-- property features -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Property Features</h5>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Available from <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="available_from" required id="id_available_from" class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="immediate">Immediate</option>
+                                                    <option value="within15days">With In 15 Days</option>
+                                                    <option value="within1month">With In 1 Month</option>
+                                                    <option value="morethan1month">More Than 1 Month</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Floor No. <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <input type="number" placeholder="Floor No." name="floor_number" maxlength="5"
+                                                    id="id_floor_number" required class="cidrop-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Furnished Status <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="furnished_status" id="id_furnished_status" required class="cidrop-input">
+                                                    <option value="furnished" selected> Furnished</option>
+                                                    <option value="semi-furnished">Semi-Furnished</option>
+                                                    <option value="unfurnished">Unfurnished</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Available for <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="available_for" required id="id_available_for" class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="family">Family</option>
+                                                    <option value="bachelors">Bachelors</option>
+                                                    <option value="familybachelors">Family/Bachelors</option>
+                                                    <option value="company-guests">Company Guests</option>
+                                                    <option value="commercial">Commercial</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Lifts <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="lifts" id="id_lifts" class="cidrop-input" required>
+                                                    <option value="" selected>Select</option>
+                                                    <option value="yes">YES</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Facing <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="facing" required id="id_facing" class="cidrop-input">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="north">North</option>
+                                                    <option value="east">East</option>
+                                                    <option value="south">South</option>
+                                                    <option value="west">West</option>
+                                                    <option value="northeast">NorthEast</option>
+                                                    <option value="southeast">SouthEast</option>
+                                                    <option value="southwest">SouthWest</option>
+                                                    <option value="northwest">NorthWest</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Ac Rooms <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="ac_rooms" required id="id_ac_rooms" class="cidrop-input">
+                                                    <option value="" selected>Select</option>
+                                                    <option value="yes">YES</option>
+                                                    <option value="no">NO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Power Backup <span class="req">*</span>
+                                            </div>
+                                            <div class="locationinput">
+                                                <select name="power_backup" required id="id_power_backup"
+                                                    class="cidrop-input">
+                                                    <option value="" selected>Select</option>
+                                                    <option value="yes">YES</option>
+                                                    <option value="no">NO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Property Availability -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Transaction Type, Property Availability</h5>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Age of Construction in Year
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="text" placeholder="Age of Construction" name="age_of_construction" maxlength="50" id="id_age_of_construction" class="cidrop-input"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price Details -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Price Details And Address</h5>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Min. Pricing(/month) <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Min. Pricing" name="min_price_filter"
+                                                id="id_min_price_filter" maxlength="10" class="cidrop-input" oninput="formatMoney()" required>
+                                                <p id="amountresult"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Max. Pricing(/month) <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Max. Pricing" name="max_price_filter"
+                                                    step="0.01" id="id_max_price_filter" class="cidrop-input" required maxlength="10"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Security Deposit <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" required placeholder="Security Deposit"
+                                                    name="security_deposit" step="0.01" id="id_security_deposit"
+                                                    class="cidrop-input" maxlength="10"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Maintenance Cost <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Security Deposit"
+                                                    name="maintenance_cost" step="0.01" id="id_maintenance_cost"
+                                                    maxlength="10" class="cidrop-input" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Notice Period in Days
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="number" placeholder="Notice Period" name="notice_period" min="0" id="id_notice_period" class="cidrop-input" maxlength="2">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap Pricingdets">
+                                            <div class="label">
+                                                Amenities
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="text" placeholder="Amenities" name="amenities"
+                                                    maxlength="300" id="id_amenities" class="cidrop-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">
+                                                Address <span class="req">*</span>
+                                            </div>
+                                            <div class="cityinput">
+                                                <input type="text" placeholder="Address & pincode" name="address"
+                                                    maxlength="255" required id="id_address" class="cidrop-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="contentwrap">
+                                            <div class="label">Description</div>
+                                            <div class="cityinput">
+                                                <textarea name="discription" placeholder="For Good Response describe" id="id_discription" class="cidrop-input" maxlength="300"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- images section -->
+                            <div class="datablock">
+                                <div class="sub-heading-submit">
+                                    <h5>Images</h5>
+                                </div>
+
+                                <div class="contentwrap">
+                                    <div class="label">
+                                        Cover Image
+                                    </div>
+                                    <div class="locationinput">
+                                        <input type="file" name="project_cover_img" accept="image/*"
+                                            id="id_project_cover_img" class="cidrop-input" />
+                                    </div>
+                                </div>
+
+                                <div class="field" id="upload-1">
+                                    <div class="label">
+                                        Image No.1
+                                        <input type="hidden" name="images-TOTAL_FORMS" value="5" id="id_images-TOTAL_FORMS" />
+                                        <input type="hidden" name="images-INITIAL_FORMS" value="0" id="id_images-INITIAL_FORMS"/>
+                                        <input type="hidden" name="images-MIN_NUM_FORMS" value="0"
+                                            id="id_images-MIN_NUM_FORMS" /><input type="hidden"
+                                            name="images-MAX_NUM_FORMS" value="5" id="id_images-MAX_NUM_FORMS" />
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select name="images-0-image_type" id="id_images-0-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="living_room">Living Room</option>
+                                                    <option value="bedroom">Bed Room</option>
+                                                    <option value="bathroom">Bathroom</option>
+                                                    <option value="kitchen">Kitchen</option>
+                                                    <option value="balcony">Balcony</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-0-image" accept="image/*"
+                                                    id="id_images-0-image" class="cidrop-input" />
+                                            </div>
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-0-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-0-DELETE"
+                                                    id="id_images-0-DELETE" /><input type="hidden" name="images-0-id"
+                                                    id="id_images-0-id" /><input type="hidden"
+                                                    name="images-0-property_rental" id="id_images-0-property_rental" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field hidden" id="upload-2">
+                                    <div class="label">Image No. 2</div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select name="images-1-image_type" id="id_images-1-image_type" class="cidrop-input">
+                                                    <option value="living_room">Living Room</option>
+                                                    <option value="bedroom">Bed Room</option>
+                                                    <option value="bathroom">Bathroom</option>
+                                                    <option value="kitchen">Kitchen</option>
+                                                    <option value="balcony">Balcony</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-1-image" accept="image/*"
+                                                    id="id_images-1-image" class="cidrop-input" />
+                                            </div>
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-1-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-1-DELETE"
+                                                    id="id_images-1-DELETE" /><input type="hidden" name="images-1-id"
+                                                    id="id_images-1-id" /><input type="hidden"
+                                                    name="images-1-property_rental" id="id_images-1-property_rental" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field hidden" id="upload-3">
+                                    <div class="label">Image No. 3</div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select name="images-2-image_type" id="id_images-2-image_type" class="cidrop-input">
+                                                    <option value="living_room">Living Room</option>
+                                                    <option value="bedroom">Bed Room</option>
+                                                    <option value="bathroom">Bathroom</option>
+                                                    <option value="kitchen">Kitchen</option>
+                                                    <option value="balcony">Balcony</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-2-image" accept="image/*"
+                                                    id="id_images-2-image" class="cidrop-input" />
+                                            </div>
+
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-2-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-2-DELETE"
+                                                    id="id_images-2-DELETE" /><input type="hidden" name="images-2-id"
+                                                    id="id_images-2-id" /><input type="hidden"
+                                                    name="images-2-property_rental" id="id_images-2-property_rental" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field hidden" id="upload-4">
+                                    <div class="label">
+                                        Image No.4
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select name="images-3-image_type" id="id_images-3-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="living_room">Living Room</option>
+                                                    <option value="bedroom">Bed Room</option>
+                                                    <option value="bathroom">Bathroom</option>
+                                                    <option value="kitchen">Kitchen</option>
+                                                    <option value="balcony">Balcony</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-3-image" accept="image/*"
+                                                    id="id_images-3-image" class="cidrop-input" />
+                                            </div>
+
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-3-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-3-DELETE"
+                                                    id="id_images-3-DELETE" /><input type="hidden" name="images-3-id"
+                                                    id="id_images-3-id" /><input type="hidden"
+                                                    name="images-3-property_rental" id="id_images-3-property_rental" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field hidden" id="upload-5">
+                                    <div class="label">
+                                        Image No.5
+                                    </div>
+                                    <div class="locationinput">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <select name="images-4-image_type" id="id_images-4-image_type"
+                                                    class="cidrop-input">
+                                                    <option value="living_room">Living Room</option>
+                                                    <option value="bedroom">Bed Room</option>
+                                                    <option value="bathroom">Bathroom</option>
+                                                    <option value="kitchen">Kitchen</option>
+                                                    <option value="balcony">Balcony</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <input type="file" name="images-4-image" accept="image/*"
+                                                    id="id_images-4-image" class="cidrop-input" />
+                                            </div>
+
+                                            <div class="col-lg-12 mt-2">
+                                                <label for="id_images-4-DELETE">Delete:</label>
+                                                <input type="checkbox" name="images-4-DELETE"
+                                                    id="id_images-4-DELETE" /><input type="hidden" name="images-4-id"
+                                                    id="id_images-4-id" /><input type="hidden"
+                                                    name="images-4-property_rental" id="id_images-4-property_rental" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="error-message hidden" id="error-message">Please check the image size or upload an image below 500KB.</p>
+                                <p class="success-message hidden" id="success-message">Looks Good</p>
+                                <div class="addrembtn">
+                                    <button id="add-button" type="button">+ Add image</button>
+                                    <button id="remove-button" class="hidden" type="button">- Remove image</button>
+                                    <!-- <button id="submit-button" type="button">Submit</button> -->
+                                </div>
+                            </div>
+
+                            <!-- submit section  -->
+                            <div class="datablock mt-4">
+                                <button type="submit" class="submitproperty" id="submit_buttonid">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-5" id="rightsubmit-dets">
+                    <div class="rightsubmitimg">
+                        <img src="https://static.searchhomesindia.com/images/pp-2.png" alt="propertyimage" style="width: 100%; height: 100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://static.searchhomesindia.com/js/newsubmit.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+      const addButton = document.getElementById("add-button");
+      const removeButton = document.getElementById("remove-button");
+    //   const submitButton = document.getElementById("submit-button");
+      const errorMessage = document.getElementById("error-message");
+      const successMessage = document.getElementById("success-message");
+      let currentUpload = 1;
+    
+      const handleFileChange = (event) => {
+        const fileInput = event.target;
+        document.querySelectorAll('.success').forEach(input => input.classList.remove("success"));
+    
+        if (fileInput.files[0].size <= 512000) {
+          fileInput.classList.remove("error");
+          errorMessage.classList.add("hidden");
+          successMessage.classList.remove("hidden");
+          fileInput.classList.add("success");
+        } else {
+          fileInput.classList.add("error");
+          errorMessage.classList.remove("hidden");
+          successMessage.classList.add("hidden");
+        }
+      };
+    
+      const addNextUploadField = () => {
+        const currentFileInput = document.getElementById(`id_images-${currentUpload - 1}-image`);
+    
+        if (currentFileInput.files.length > 0 && currentFileInput.files[0].size <= 512000) {
+          const nextUpload = currentUpload + 1;
+          if (nextUpload <= 5) {
+            document.getElementById(`upload-${nextUpload}`).classList.remove("hidden");
+            currentUpload = nextUpload;
+            removeButton.classList.remove("hidden");
+          }
+          toggleAddButton();
+          errorMessage.classList.add("hidden");
+          successMessage.classList.add("hidden");
+        } else {
+          currentFileInput.classList.add("error");
+          errorMessage.classList.remove("hidden");
+          successMessage.classList.add("hidden");
+        }
+      };
+    
+      const removeLastUploadField = () => {
+        if (currentUpload > 1) {
+          const lastUploadField = document.getElementById(`id_images-${currentUpload - 1}-image`);
+          lastUploadField.value = "";
+          lastUploadField.classList.remove("error");
+          lastUploadField.classList.remove("success");
+          currentUpload--;
+          document.getElementById(`upload-${currentUpload + 1}`).classList.add("hidden");
+          if (currentUpload === 1) {
+            removeButton.classList.add("hidden");
+          }
+          toggleAddButton();
+          errorMessage.classList.add("hidden");
+          successMessage.classList.add("hidden");
+        }
+      };
+    
+      const toggleAddButton = () => {
+        if (currentUpload < 5) {
+          addButton.classList.remove("hidden");
+        } else {
+          addButton.classList.add("hidden");
+        }
+      };
+    
+    //   const handleSubmit = () => {
+    //     let valid = true;
+    //     for (let i = 0; i < currentUpload; i++) {
+    //       const fileInput = document.getElementById(`id_images-${i}-image`);
+    //       if (fileInput.files.length === 0 || fileInput.files[0].size > 512000) {
+    //         fileInput.classList.add("error");
+    //         errorMessage.classList.remove("hidden");
+    //         successMessage.classList.add("hidden");
+    //         valid = false;
+    //       } else {
+    //         fileInput.classList.remove("error");
+    //         errorMessage.classList.add("hidden");
+    //         successMessage.classList.add("hidden");
+    //       }
+    //     }
+    //   };
+    
+      for (let i = 0; i < 5; i++) {
+        document.getElementById(`id_images-${i}-image`).addEventListener("change", handleFileChange);
+      }
+    
+      addButton.addEventListener("click", addNextUploadField);
+      removeButton.addEventListener("click", removeLastUploadField);
+    //   submitButton.addEventListener("click", handleSubmit);
+    });
+    
+      </script>
+    <script>
+        function hiddendatablocks(value) {
+            var hiddenblock = document.getElementById("hiddendatablock");
+            if (value) {
+                hiddenblock.style.display = "block";
+            } else {
+                hiddenblock.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        function formatMoney() {
+        let money = document.getElementById('id_min_price_filter').value;
+        money = parseFloat(money);
+    
+        if (isNaN(money) || money < 0) {
+            document.getElementById('amountresult').innerText = 'Please enter a valid positive number.';
+            return;
+        }
+    
+        let formattedMoney = money.toLocaleString('en-US', { maximumFractionDigits: 2 });
+        let unit = '';
+    
+        if (money >= 1e9) {
+            formattedMoney = (money / 1e9).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' billion';
+        } else if (money >= 1e7) {
+            formattedMoney = (money / 1e7).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' cr.';
+        } else if (money >= 1e5) {
+            formattedMoney = (money / 1e5).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' lakh';
+        } else if (money >= 1e6) {
+            formattedMoney = (money / 1e6).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' million';
+        } else if (money >= 1e3) {
+            formattedMoney = (money / 1e3).toLocaleString('en-US', { maximumFractionDigits: 2 });
+            unit = ' thousand';
+        }
+    
+        document.getElementById('amountresult').innerText = `Formatted amount: ${formattedMoney}${unit}`;
+    }
+    </script>
+
+  {% endblock %}

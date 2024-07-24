@@ -1,0 +1,396 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+  <title>Top Real Estate Projects in Bangalore | Search Homes India</title>
+  <meta name="description" content=" Experience high appreciation for a Luxurious lifestyle with the most-demanding projects in Bangalore.
+   Invest in your dream home and get the best deal now! ">
+  <meta name="keywords" content="Bangalore real estate, Exclusive project Bangalore, Luxury living Bangalore, Bangalore premium homes, Godrej Woodscape,
+   TVS emerald isle of trees, Prime location, Urbanrise, Prestige Somerville,  Real estate investment">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,900" rel="stylesheet">
+  <!-- Adding Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <!-- Adding Bootstrap CDN and external CSS -->
+  <!-- Adding CSS -->
+  <link rel="stylesheet" type="text/css" href="https://static.searchhomesindia.com/css/ads_style1.css">
+  <style>
+    #header1{top: 0px!important;}
+    #main {top: 65px;}
+    .pricing-title {
+    margin-bottom: 50px;
+    }
+    #pricing{
+    margin-top: 100px;
+    }
+  </style>
+{% endblock %}
+{% block body_block %}
+<section id="main">
+    <h1 class="header-info">Build Your Future - Explore Our Exclusive Projects</h1>
+</section>
+    <!-- Pricing Section -->
+    <section id="pricing">
+        <h2 class="text-center section-title pricing-title">Most Demanding Projects</h2>
+        <div class="products-area-wrapper gridView">
+            <!-- Popup Modal -->
+            <div id="propertyModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="modal-img">
+                                        <img src="" alt="product" id="modal-img">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="modal-details">
+                                        <h4 id="modal-title"></h4>
+                                        <div class="modal-info">
+                                            <div class="modal-info-row"><span class="modal-info-label">Category:</span> <span id="modal-category" class="smallcapt"></span></div>
+                                            <div class="modal-info-row"><span class="modal-info-label">Status:</span> <span id="modal-status" class="smallcapt"></span></div>
+                                            <div class="modal-info-row"><span class="modal-info-label">Sales:</span> <span id="modal-sales" class="smallcapt"></span></div>
+                                            <div class="modal-info-row"><span class="modal-info-label">Stock:</span> <span id="modal-stock" class="smallcapt"></span></div>
+                                            <div class="modal-info-row"><span class="modal-info-label">Price:</span> <span id="modal-price" class="smallcapt"></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="model-popupbtn">
+                                        <button type="button" onclick="showPopup()">Get Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="products-row">
+                <div class="product-cellimg leftbtn1">
+                    <img src="https://static.searchhomesindia.com/images/godrejwoodscapes.webp" loading="lazy" decoding="auto" alt="product">
+                </div>
+                <div class="product-head"><h4>Godrej Woodscape</h4></div>
+                <div class="product-cell category"><span class="cell-label">Price :</span>Starts From 2.63 Cr.*</div>
+                <div class="product-cell status-cell"><span class="cell-label">Location :</span>Whitefield - Budigere Cross</div>
+                <div class="product-cell sales"><span class="cell-label">BHK :</span>3.5 & 4.5 BHK</div>
+                <div class="product-cell stock"><span class="cell-label">Possession :</span>2028</div>
+                <div class="product-cell price"><span class="cell-label">SBA:</span>2435 - 3635 Sqft</div>
+                    <div class="productbtn d-flex justify-content-between align-items-center">
+                        <a href="https://www.searchhomesindia.com/viewproperty/godrej-woodscapes-budigere-bangalore/" class="rightpara" target="_blank"><p>View full details...</p></a> 
+                    <button class="leftbtn leftbtn1" type="button"> <span class="ml-1">View Property</span></button>
+                    </div>
+            </div>
+            <div class="products-row">
+                <div class="product-cellimg leftbtn1">
+                    <img src="https://static.searchhomesindia.com/images/urbanrisevilla.webp" loading="lazy" decoding="auto" alt="product">
+                </div>
+                <div class="product-head"><h4>Urbanrise Paradise On Earth</h4></div>
+                <div class="product-cell category"><span class="cell-label">Price :</span>Starts from 3.02 Cr.*</div>
+                <div class="product-cell status-cell"><span class="cell-label">Location :</span>Kanakapura Road, South Bangalore</div>
+                <div class="product-cell sales"><span class="cell-label">BHK :</span>4BHK Villa</div>
+                <div class="product-cell stock"><span class="cell-label">Possession :</span>2027</div>
+                <div class="product-cell price"><span class="cell-label">SBA:</span>2472-3009 SqFt</div>
+                    <div class="productbtn d-flex justify-content-between align-items-center">
+                        <a href="https://www.searchhomesindia.com/viewproperty/urbanrise-city-with-infinite-life-bangalore/" class="rightpara" target="_blank"><p>View full details...</p></a> 
+                    <button class="leftbtn leftbtn1" type="button"> <span class="ml-1">View Property</span></button>
+                    </div>
+            </div>
+            <div class="products-row">
+                <div class="product-cellimg leftbtn1">
+                    <img src="https://static.searchhomesindia.com/images/prestigesomerville.webp" loading="lazy" decoding="auto" alt="product">
+                </div>
+                <div class="product-head"><h4>Prestige Somerville</h4></div>
+                <div class="product-cell category"><span class="cell-label">Price :</span>Starts from 2.45 Cr.*</div>
+                <div class="product-cell status-cell"><span class="cell-label">Location :</span>Varthur Lake</div>
+                <div class="product-cell sales"><span class="cell-label">BHK :</span>3 & 4 BHK</div>
+                <div class="product-cell stock"><span class="cell-label">Possession :</span>2028</div>
+                <div class="product-cell price"><span class="cell-label">SBA:</span>1818 - 2616 SqFt</div>
+                    <div class="productbtn d-flex justify-content-between align-items-center">
+                        <a href="https://www.searchhomesindia.com/viewproperty/prestige-somerville-marathalli-whitefield-bangalore/" class="rightpara" target="_blank"><p>View full details...</p></a> 
+                    <button class="leftbtn leftbtn1" type="button"> <span class="ml-1">View Property</span></button>
+                    </div>
+            </div>
+            <div class="products-row">
+                <div class="product-cellimg leftbtn1">
+                    <img src="https://static.searchhomesindia.com/images/tvsrachenahalli.webp" loading="lazy" decoding="auto" alt="product">
+                </div>
+                <div class="product-head"><h4>TVS Rachenahalli</h4></div>
+                <div class="product-cell category"><span class="cell-label">Price :</span>Starts From 1.79 Cr.*</div>
+                <div class="product-cell status-cell"><span class="cell-label">Location :</span>Rachenahalli</div>
+                <div class="product-cell sales"><span class="cell-label">BHK :</span>3 & 4 BHK</div>
+                <div class="product-cell stock"><span class="cell-label">Possession :</span>2028 - Dec</div>
+                <div class="product-cell price"><span class="cell-label">SBA:</span>1499 - 2378 SqFt</div>
+                    <div class="productbtn d-flex justify-content-between align-items-center">
+                        <a href="https://www.searchhomesindia.com/viewproperty/tvs-emerald-isle-of-trees--rachenahalli-bangalore/" class="rightpara" target="_blank"><p>View full details...</p></a> 
+                    <button class="leftbtn leftbtn1" type="button"> <span class="ml-1">View Property</span></button>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview">
+        <h2 class="text-center section-title">Overview</h2>
+
+        <div class="container-fluid">
+        <div class="row overview-row">
+
+            <div class="col-md-3 text-center">
+            <div class="overviewimg">
+                <img src="https://static.searchhomesindia.com/images/expertguidace.png" alt="Expert Guidance">
+            </div>
+            <h4 class="overview-header">Expert Guidance - </h4>
+            <p class="info-width mx-auto">Navigate Your Home Journey with Ease</p>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <div class="overviewimg">
+                    <img src="https://static.searchhomesindia.com/images/zerobrokage.png" alt="Zero Brokerage">
+                </div>
+            <h4 class="overview-header">Zero Brokerage - </h4>
+            <p class="info-width mx-auto">Transparent Deals with No Hidden Charges</p>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <div class="overviewimg">
+                    <img src="https://static.searchhomesindia.com/images/homeloan.png" alt="Home Loan Assistance">
+                </div>
+            <h4 class="overview-header">Home Loan Assistance - </h4>
+            <p class="info-width mx-auto">Financing Made Simple</p>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <div class="overviewimg">
+                    <img src="https://static.searchhomesindia.com/images/easypayment.png" alt="Easy Payment Plan">
+                </div>
+            <h4 class="overview-header">Easy Payment Plan - </h4>
+            <p class="info-width mx-auto">Convenient and Stress-Free</p>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- interval time popup form Start -->
+        <div class="contactformwrap" id="popupFormcontact" style="display:none;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 popupformimg">
+                        <div class="contactimg">
+                            <img decoding="auto" fetchpriority="auto" class="shilazy-images" src="https://static.searchhomesindia.com/images/sideimgtranding.png" alt="contactsideimg">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="rightportion">
+                            <div class="text">
+                                Contact Us
+                            </div>
+                            <span class="close" onclick="hidePopup()">X</span>
+                            <form id="PropContactform2">
+                                <input type="hidden" name="project" id="Propdetail2" value="" style="border: none;">
+                                <input type="hidden" name="username" id="usercontact2" placeholder="Your name" tabindex="1" value="8147267372" required="">
+
+                                <div class="form-row">
+                                    <div class="input-data">
+                                        <input type="text" id="username2" name="name" required="">
+                                        <div class="underline"></div>
+                                        <label for="name">Name</label>
+                                        <div class="valid-feedback" id="isnamevalid2" style="color: green;font-size: 10px;">
+                                            Looks good!
+                                          </div>
+                                          <div class="invalid-feedback" id="isnameinvalid2" style="color: red;font-size: 10px;">
+                                            Please Enter a valid Name.
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="input-data">
+                                        <input type="tel" name="mobile" id="userphone2" required="">
+                                        <div class="underline"></div>
+                                        <label for="phone">Number</label>
+                                        <div class="valid-feedback" id="isphonevalid2" style="color: green;font-size: 10px;">
+                                            Looks good!
+                                          </div>
+                                          <div class="invalid-feedback" id="isphoneinvalid2" style="color: red;font-size: 10px;">
+                                            Please Enter a valid Name.
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="input-data">
+                                        <input type="email" id="useremail2" name="email" required="">
+                                        <div class="underline"></div>
+                                        <label for="email">Email Address</label>
+                                        <div class="valid-feedback" id="isemailvalid2" style="color: green;font-size: 10px;">
+                                            Looks good!
+                                          </div>
+                                          <div class="invalid-feedback" id="isemailinvalid2" style="color: red;font-size: 10px;">
+                                            Please Enter a valid Name.
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="input-data textarea">
+                                        <textarea rows="8" cols="80" name="message" id="usermessage2" required></textarea>
+                                        <div class="underline"></div>
+                                        <label for="message">Write your message</label>
+                                        <div class="valid-feedback" id="ismessagevalid2" style="color: green;font-size: 10px;">
+                                            Looks good!
+                                          </div>
+                                          <div class="invalid-feedback" id="ismessageinvalid2" style="color: red;font-size: 10px;">
+                                            Please Enter a valid Name.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-right: 0;
+                                        margin-left: 0; padding-bottom: 5px;">
+                                <!-- Alert blocks to show the alerts regarding the submission of the form -->
+                                <!-- success alert block -->
+                                <div class="alert alert-success alert-dismissible" role="alert" id="issuccess2"
+                                    style="margin-bottom:0;font-size: 10px;">
+                                    <strong>ThankYou for your response!</strong> Our team will get back to you soon.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <!-- failure alert block -->
+                                <div class="alert alert-danger alert-dismissible" role="alert" id="isfailure2"
+                                    style="margin-bottom:0;font-size: 10px;">
+                                    <strong>Something went wrong!</strong> Please fill the details properly.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                </div>
+                                <div class="form-row submit-btn">
+                                    <div class="input-data">
+                                        <button type="submit" class="submitinput" id="contactsubmit2" name="btn_submit">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="successMessageContact"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- interval time popup form end -->
+
+    <!-- Bootstrap's Javascript -->
+    <script src="https://static.searchhomesindia.com/js/PropContactcheck2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <!--only popup script  -->
+    <script>
+            function showPopup(){
+                var modalTitle = document.getElementById("modal-title").textContent;
+                document.getElementById("Propdetail2").value = modalTitle;
+                document.getElementById('popupFormcontact').style.display = 'block';
+                }
+    </script>
+    <!-- form timing script -->
+    <script>
+                $(document).ready(function() {
+                    // Function to check if the form has been submitted previously
+                    function checkFormSubmitted() {
+                        return localStorage.getItem('formSubmitted') === 'true';
+                    }
+
+                    // Function to display the popup
+                    function displayPopup() {
+                        $("#popupFormcontact").show();
+                    }
+
+                    // Function to hide the popup
+                    function hidePopup() {
+                        $("#popupFormcontact").hide();
+                    }
+
+                    // Function to periodically display the popup
+                    function schedulePopup() {
+                        if (!checkFormSubmitted()) {
+                            displayPopup();
+                            setTimeout(schedulePopup, 30000); // Schedule next popup in 30 seconds
+                        }
+                    }
+
+                    // Close button event handling
+                    $(".close").click(function() {
+                        hidePopup(); // Hide the popup when the close button is clicked
+                        if (!checkFormSubmitted()) {
+                            setTimeout(displayPopup, 40000); // Show the popup again after 40 seconds when closed manually
+                        }
+                    });
+
+                    // Form submission handling
+                    function handleFormSubmission(event) {
+                        event.preventDefault(); // Prevent default form submission
+
+                        // Your AJAX submission code here...
+                        var formData = $(this).serialize();
+                        $.ajax({
+                            type: "POST",
+                            url: "submit_contact.php", // Replace with your PHP script URL
+                            data: formData,
+                            success: function(response) {
+                                // Display success message or perform actions upon successful form submission
+                                localStorage.setItem('formSubmitted', 'true'); // Set a flag indicating form submission
+                                hidePopup(); // Hide the popup after successful submission
+                                // You can also handle the response data if needed
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle errors if the form submission fails
+                            }
+                        });
+                    }
+
+                    // Attach form submission handlers
+                    $("#contactForm1").submit(handleFormSubmission);
+
+                    // Start displaying the popup 30 seconds after page load if the form has not been submitted
+                    if (!checkFormSubmitted()) {
+                        setTimeout(schedulePopup, 30000); // Schedule first popup in 30 seconds
+                    }
+                });
+    </script>
+    <!-- property detail hosting script  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        const modal = document.getElementById("propertyModal");
+        const span = document.getElementsByClassName("close")[0];
+
+        document.querySelectorAll('.leftbtn1').forEach(button => {
+            button.onclick = function() {
+                const productCell = this.closest('.products-row');
+                const imgSrc = productCell.querySelector('.product-cellimg img').src;
+                const title = productCell.querySelector('.product-head h4').innerText;
+                const category = productCell.querySelector('.category').innerText.split(':')[1].trim();
+                const status = productCell.querySelector('.status-cell').innerText.split(':')[1].trim();
+                const sales = productCell.querySelector('.sales').innerText.split(':')[1].trim();
+                const stock = productCell.querySelector('.stock').innerText.split(':')[1].trim();
+                const price = productCell.querySelector('.price').innerText.split(':')[1].trim();
+
+                document.getElementById("modal-img").src = imgSrc;
+                document.getElementById("modal-title").innerText = title;
+                document.getElementById("modal-category").innerText = category;
+                document.getElementById("modal-status").innerText = status;
+                document.getElementById("modal-sales").innerText = sales;
+                document.getElementById("modal-stock").innerText = stock;
+                document.getElementById("modal-price").innerText = price;
+
+                modal.style.display = "block";
+            }
+        });
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        });
+
+    </script>
+{% endblock %}

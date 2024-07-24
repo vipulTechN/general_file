@@ -1,0 +1,192 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{% block head_block %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Home Decor Full Interior Service by Search Homes India</title>
+    <meta name="title" content="Explore Home Decor Full Interior Service by Search Homes India">
+    <meta name="description" content="Search Homes India offers a variety of home décor services, such as space planning and complete interior design options, to help you create your dream home">
+    <meta name="keywords" content="home decor, interior design, furniture, decor ideas, living room decor, bedroom decor, kitchen decor, bathroom decor">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://static.searchhomesindia.com/css/shiservices.css">
+    <style>
+        #header1 {top: 0px!important;}
+        #home_decore_main{margin-top: 65px;}
+    </style> 
+{% endblock %}
+{%block body_block%}
+    <main id="home_decore_main">
+        <div class="homebanner">
+            <img src="https://static.searchhomesindia.com/images/homedecorlap.jpg" alt="HomeDecor_LaptopImg" id="HomeDecor_LaptopImg">
+            <img src="https://static.searchhomesindia.com/images/homedecormob.png" alt="HomeDecor_MobileImg" id="HomeDecor_MobileImg">
+            <button type="button" class="Bannerbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">I'm
+                interested</button>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mt-3">
+                    <div class="topline">
+                        <h1>
+                            Our Complete Interior Design Services
+                        </h1>
+                        <h6>
+                            We understand that your home shows your style and uniqueness. That's why we provide a wide
+                            range of interior design services to help you create a home that is both useful and
+                            attractive.
+                        </h6>
+                    </div>
+                </div>
+                <div class="col-lg-12 mt-4">
+                    <div class="benefitbox">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="leftpara">
+                                    <h5>Our services include</h5>
+                                    <ul>
+                                        <li>
+                                            Consultant
+                                        </li>
+                                        <li>
+                                            Space Scheduling
+                                        </li>
+                                        <li>
+                                            Furniture Choices
+                                        </li>
+                                        <li>
+                                            Color Design and Material Choice
+                                        </li>
+                                        <li>
+                                            Project Planning
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="rightpara">
+                                    <h5>Benefits of choosing Search Homes India</h5>
+                                    <ul>
+                                        <li>
+                                            Experienced and Qualified Designers
+                                        </li>
+                                        <li>
+                                            Project Management Expertise
+                                        </li>
+                                        <li>
+                                            One-Stop Solution
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mt-5">
+                    <div class="row">
+                        <div class="col-lg-6 text-left">
+                            <div class="leftcontent">
+                                <h3>Ready to get started?</h3>
+                                <p>Fill out the form below to schedule a free consultation with one of our interior
+                                    design specialists</p>
+                                <button type="button" class="Bannerbtn1" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">I'm interested</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="rightcontentimg">
+                                <img src="https://static.searchhomesindia.com/images/interior-svg-img.svg" alt="Inteior-svg-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="homedecor_footer d-flex align-items-center justify-content-center">
+            <h2>Let's Design Your Dream Home Together!</h2>
+            <div class="homedecor_footer_line1"></div>
+            <div class="homedecor_footer_line2"></div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Reach Out To Us</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" id="form" method="post" enctype="multipart/form-data" action="{% url 'home_decor_view' %}">
+                            {% csrf_token %}
+                            <div class="form-input">
+                                <label>Name</label>
+                                <input type="text" class="input" name="name" required>
+                            </div>
+                            <div class="form-input">
+                                <label>Phone Number</label>
+                                <input type="number" class="input" name="phone_number" required>
+                            </div>
+                            <div class="form-input">
+                                <label>Email</label>
+                                <input type="email" class="input" name="email" required>
+                            </div>
+                            <div class="form-input">
+                                <label>Project Type</label>
+                                <select name="project_type" class="input" required>
+                                    <option value=""></option>
+                                    <option value="Full Home Design">Full Home Design</option>
+                                    <option value="Kitchen Design">Kitchen Design</option>
+                                    <option value="Bathroom Design">Bathroom Design</option>
+                                    <option value="Living Room Design">Living Room Design</option>
+                                    <option value="Other">Other (Please Specify)</option>
+                                </select>
+                            </div>
+                            <div class="form-input">
+                                <label>Describe your design style</label>
+                                <select name="design_style" class="input" required>
+                                    <option value=""></option>
+                                    <option value="Modern">Modern</option>
+                                    <option value="Traditional">Traditional</option>
+                                    <option value="Contemporary">Contemporary</option>
+                                </select>
+                            </div>
+                            <div class="form-input">
+                                <label>Type of Apartments</label>
+                                <select name="apartments_type" class="input" required>
+                                    <option value=""></option>
+                                    <option value="1BHK">1BHK</option>
+                                    <option value="2BHK">2BHK</option>
+                                    <option value="3BHK">3BHK</option>
+                                    <option value="4BHK">4BHK</option>
+                                    <option value="Villa">Villa/Independent house</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-input">
+                                <label>Do you have a specific Possession Time?</label>
+                                <select name="possession" class="input" required>
+                                    <option value=""></option>
+                                    <option value="0-3 Months">0-3 Months</option>
+                                    <option value="3-6 Months">3-6 Months</option>
+                                    <option value="More than 6 months">More than 6 months</option>
+                                    <option value="Already Moved In">Already Moved In</option>
+                                </select>
+                            </div>
+                            <div class="form-input">
+                                <label>What is your budget for this project?</label>
+                                <input type="text" class="input" name="project_budget" required>
+                            </div>
+                            <div class="textarea">
+                                <label>Is there anything else you would like to tell us about your project?</label>
+                                <textarea name="any_question"></textarea>
+                            </div>
+                            <button class="submit" type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %} 

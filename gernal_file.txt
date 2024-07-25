@@ -1,288 +1,550 @@
-/////////////////html form 2 //////////////
-<section>
-    <div class="col-md-4 careerform1" style="display: block;">
-      <div class="brand-logo" style="display: flow;"><img src="https://static.searchhomesindia.com/images/shi_logo_small.png" alt="shi_logo_small"></div>
-        <div class="crossbtns" onclick="closeForm()">x</div>
-        <form id="PropContactform2">
-          
-          <input type="hidden" name="project" id="Propdetail2" value="Prestige Kings County" style="border: none;">
-            <input type="hidden" name="username" id="usercontact2" placeholder="Your name" tabindex="1" value="8147267372" required="">
-          
-            <div class="form-group">
-                <label for="exampleInputName">Full Name</label>
-                <input type="text" id="username2" name="name" class="form-control" placeholder="Enter your name" required="">
-                <!-- Name valid or invalid checker div's -->
-                <div class="valid-feedback" id="isnamevalid2" style="color: green; font-size: 10px; display: none;">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback" id="isnameinvalid2" style="color: red; font-size: 10px; display: none;">
-                  Please Enter a valid Name.
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" id="useremail2" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email address" required="">
-                <!-- Email valid or invalid checker div's -->
-                <div class="valid-feedback" id="isemailvalid2" style="color: green; font-size: 10px; display: none;">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback" id="isemailinvalid2" style="color: red; font-size: 10px; display: none;">
-                  Please Enter a valid Name.
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="example-tel-input">Mobile No.</label>
-
-                <span id="sendotpdivone">
-                  <input type="tel" id="userphone2" name="mobile" class="form-control" placeholder="Enter Number*" required>
-                  <button type="button" class="sendotp" onclick="sendOtpone()">Send OTP</button>
-                </span>
-                <span id="verifyotpdivone" style="display: none;">
-                  <input type="text" id="otpinputone" name="otp" class="form-control" placeholder="Enter OTP*" required>
-                  <button type="button" class="verifyotp" onclick="verifyOtpone()">Verify OTP</button>
-                </span>
-
-                <div id="otpResultone" style="font-size: 10px;"></div>
-                <div id="phoneErrorone" style="color: red; font-size: 10px; display: none;"></div>
-                <div id="otpErrorone" style="color: red; font-size: 10px; display: none;"></div>
-                <div id="otpSuccessone" style="color: green; font-size: 10px; display: none;"></div>
-                <!-- Phone valid or invalid checker div's -->
-                <div class="valid-feedback" id="isphonevalid2" style="color: green; font-size: 10px; display: none;">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback" id="isphoneinvalid2" style="color: red; font-size: 10px; display: none;">
-                  Please Enter a valid Name.
-                </div>
-            </div>
-         
-                <div class="form-group">
-                  <label for="example-tel-input">Message</label>
-                  <textarea placeholder="Message" class="form-control" id="usermessage2" rows="2" required="" style="height: auto;"></textarea>
-                  <!-- Message valid or invalid checker div's -->
-                  <div class="valid-feedback" id="ismessagevalid2" style="color: green; font-size: 10px; display: none;">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback" id="ismessageinvalid2" style="color: red; font-size: 10px; display: none;">
-                    Please Enter a valid Name.
-                  </div>
-              </div>
-              <div class="row" style="margin-right: 0;
-                      margin-left: 0; padding-bottom: 5px;">
-                <!-- Alert blocks to show the alerts regarding the submission of the form -->
-                <!-- success alert block -->
-                <div class="alert alert-success alert-dismissible" role="alert" id="issuccess2" style="margin-bottom: 0px; font-size: 10px; display: none;">
-                  <strong>ThankYou for your response!</strong> Our team will get back to you soon.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <!-- failure alert block -->
-                <div class="alert alert-danger alert-dismissible" role="alert" id="isfailure2" style="margin-bottom: 0px; font-size: 10px; display: none;">
-                  <strong>Something went wrong!</strong> Please fill the details properly.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+{% if user_post.apartment_type == "apartment" or Prop_Data.SubPropType == "Apartment" %}
+          <div class="right-middle forselling">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Configurations</h6>
+                  {% if Prop_Data.BHK %}
+                  <p>{{ Prop_Data.BHK }}</p>
+                  {% elif user_post.apartment_type %}
+                  <p>{{ user_post.apartment_type }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Status</h6> 
+                  {% if Prop_Data.PropertyStatus %}
+                  <p>{{ Prop_Data.PropertyStatus }}</p>
+                  {% elif user_post.status %}
+                  <p>{{ user_post.status }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  {% if Prop_Data.super_area %}
+                  <h6>SBA/Plot Size</h6>
+                  <p>{{ Prop_Data.super_area }}</p>
+                  {% elif user_post.super_area %}
+                  <h6>SBA/Plot Size</h6>
+                  <p>{{ user_post.super_area }}</p>
+                  {% else %}
+                  <h6>SBA/Plot Size</h6>
+                  <p>On Request</p>
+                  {% endif %}
                 </div>
               </div>
-            <button type="submit" class="careersub" id="contactsubmit2" name="btn_submit">Submit</button>
-        </form>
-    </div>
-  </section>
-//////////////////// form 2script/////////////////////////
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>DevelopmentArea</h6>
+                  {% if Prop_Data.Project_Area %}
+                  <p>{{ Prop_Data.Project_Area }}</p>
+                  {% elif user_post.development_area %}
+                  <p>{{ user_post.development_area }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>PROJECT RERA ID</h6>
+                  <a href="#ReraNo" id="rerabutton">
+                      <div class="box button">
+                          RERA NUMBER
+                      </div>
+                  </a>
+                  <div id="ReraNo" class="overlay overlayx">
+                      <div class="popup">
+                          <a class="close" id="closerera">&times;</a>
+                          <div class="content">
+                              {% if Prop_Data.ReraNo %}
+                              <span>{{ Prop_Data.ReraNo }}</span>
+                              {% elif user_post.project_rera_id %}
+                              <span>{{ user_post.project_rera_id }}</span>
+                              {% else %}
+                              <span>On Request</span>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+              </div><span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Possession date</h6>
+                  {% if Prop_Data.PossessionDate %}
+                  <p>{{ Prop_Data.PossessionDate }}</p>
+                  {% elif user_post.possession_date %}
+                  <p>{{ user_post.possession_date }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Total floors</h6>
+                  {% if Prop_Data.No_of_Floor %}
+                  <p>{{ Prop_Data.No_of_Floor }} Floors</p>
+                  {% elif user_post.total_floors %}
+                  <p>{{ user_post.total_floors }} Floors</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total units</h6>
+                  {% if Prop_Data.NoOfUnits %}
+                  <p>{{ Prop_Data.NoOfUnits }} Units</p>
+                  {% elif user_post.total_units %}
+                  <p>{{ user_post.total_units }} Units</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>No.of Tower</h6>
+                  {% if Prop_Data.No_of_Tower %}
+                  <p>{{ Prop_Data.No_of_Tower }} Tower</p>
+                  {% elif user_post.no_of_tower %}
+                  <p>{{ user_post.no_of_tower }} Tower</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Floor Number</h6>
+                  {% if Prop_Data.Property_Type %}
+                  <p>{{ Prop_Data.Property_Type }} </p>
+                  {% elif user_post.floor_number %}
+                  <p>{{ user_post.floor_number }} </p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Furnished Status</h6>
+                  {% if Prop_Data.furnished_status %}
+                  <p>{{ Prop_Data.furnished_status }} </p>
+                  {% elif user_post.furnished_status %}
+                  <p>{{ user_post.furnished_status }} </p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <button onclick="myFunction()" id="myBtn">Read more</button>
+                </div>
+              </div>
+              <span id="dots"></span> <span id="more">
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Bedrooms</h6>
+                    {% if Prop_Data.bedrooms %}
+                    <p>{{ Prop_Data.bedrooms }} Beds</p>
+                    {% elif user_post.bedrooms %}
+                    <p>{{ user_post.bedrooms }} Beds</p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Bathrooms/Balcony</h6>
+                    {% if Prop_Data.bathrooms %}
+                    <p>{{ Prop_Data.bathrooms }} Bath / {{ Prop_Data.balconies }} Balc</p>
+                    {% elif user_post.bathrooms %}
+                    <p>{{ user_post.bathrooms }} Bath / {{ user_post.balconies }} Balc</p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Parking</h6>
+                    {% if Prop_Data.PropertyName %}
+                    <p>Yes</p>
+                    {% elif user_post.car_parking %}
+                    <p>{{ user_post.car_parking }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Lifts</h6>
+                    {% if Prop_Data.lifts %}
+                    <p>{{ Prop_Data.lifts }}</p>
+                    {% elif user_post.lifts %}
+                    <p>{{ user_post.lifts }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Facing</h6>
+                    {% if Prop_Data.facing %}
+                    <p>{{ Prop_Data.facing }}</p>
+                    {% elif user_post.facing %}
+                    <p>{{ user_post.facing }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Age of Construction </h6>
+                    {% if Prop_Data.age_of_construction %}
+                    <p>{{ Prop_Data.age_of_construction }}</p>
+                    {% elif user_post.age_of_construction %}
+                    <p>{{ user_post.age_of_construction }} </p>
+                    {% else %}
+                    <p>On Request</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div>
+          {% elif user_post.apartment_type == "plot" %}
+          <div class="right-middle forplot">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>No. of Sides</h6>
+                  <p>{{ user_post.bedrooms }} Sides</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Is in a gated colony</h6>
+                  <p>{{ user_post.lifts }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total Units</h6>
+                  <p>{{ user_post.total_units }} Units</p>
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Facing</h6>
+                  <p>{{ user_post.facing }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Width of road </h6>
+                  <p>{{ user_post.no_of_tower }} Tower</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Corner Plot</h6>
+                  <p>{{ user_post.car_parking }}</p>
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Status Type</h6>
+                  <p>{{ user_post.status }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Plot Size</h6>
+                  <p>{{ user_post.carpet_area }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Price/Sqft</h6>
+                  <p>{{ user_post.super_area }}</p>
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Total Area</h6>
+                  <p>{{ user_post.development_area }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Approval Status</h6>
+                  <p>{{ user_post.approval_status }}</p>
+                </div>
+                <span class="vermid">|</span>
+                <div class="rm-col">
+                  <button onclick="myFunction()" id="myBtn">Read more</button>
+                </div>
+              </div>
+              <span id="dots"></span> <span id="more">
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Project Rera Id</h6>
+                    <p>{{ user_post.project_rera_id }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Possession date</h6>
+                    <p>{{ user_post.possession_date }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div>
+          {% elif Prop_Data.SubPropType == "Plot" %}
+          <div class="right-middle forplot">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Configurations</h6>
+                  {% if Prop_Data.BHK %}
+                  <p>{{ Prop_Data.BHK }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Status</h6> 
+                  <!-- <p>Ready to move</p> -->
+                  {% if Prop_Data.PropertyStatus %}
+                  <p>{{ Prop_Data.PropertyStatus }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Plot Size</h6>
+                  {% if Prop_Data.super_area %}
+                  <p>{{ Prop_Data.super_area }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>DevelopmentArea</h6>
+                  <!-- <p>23 Acres</p> -->
+                  {% if Prop_Data.Project_Area %}
+                  <p>{{ Prop_Data.Project_Area }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>PROJECT RERA ID</h6>
+                  <a href="#ReraNo" id="rerabutton">
+                      <div class="box button">
+                          RERA NUMBER
+                      </div>
+                  </a>
+                  <div id="ReraNo" class="overlay overlayx">
+                      <div class="popup">
+                          <a class="close" id="closerera">&times;</a>
+                          <div class="content">
+                              {% if Prop_Data.ReraNo %}
+                              <span>{{ Prop_Data.ReraNo }}</span>
+                              {% else %}
+                              <span>On Request</span>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+              </div><span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Possession date</h6>
+                  <!-- <p>11/11/2023</p> -->
+                  {% if Prop_Data.PossessionDate %}
+                  <p>{{ Prop_Data.PossessionDate }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
 
-const Name2 = document.getElementById("username2"),
-    Email2 = document.getElementById("useremail2"),
-    Phone2 = document.getElementById("userphone2"),
-    Message2 = document.getElementById("usermessage2"),
-    Propdetail2 = document.getElementById("Propdetail2"),
-    usercontact2 = document.getElementById("usercontact2"),
-    Form2 = document.getElementById("PropContactform2"),
-    SubmitButton2 = document.getElementById("contactsubmit2"),
-    csrftoken2 = document.querySelector("[name=csrfmiddlewaretoken]").value,
-    Namevalid2 = document.getElementById("isnamevalid2"),
-    Nameinvalid2 = document.getElementById("isnameinvalid2"),
-    Emailvalid2 = document.getElementById("isemailvalid2"),
-    Emailinvalid2 = document.getElementById("isemailinvalid2"),
-    Phonevalid2 = document.getElementById("isphonevalid2"),
-    Phoneinvalid2 = document.getElementById("isphoneinvalid2"),
-    Messagevalid2 = document.getElementById("ismessagevalid2"),
-    Messageinvalid2 = document.getElementById("ismessageinvalid2"),
-    SuccessAlert2 = document.getElementById("issuccess2"),
-    FailureAlert2 = document.getElementById("isfailure2");
-    sendOtpDivone = document.getElementById("sendotpdivone"),
-    verifyOtpDivone = document.getElementById("verifyotpdivone"),
-    otpInputone = document.getElementById("otpinputone"),
-    otpResultone = document.getElementById("otpResultone"),
-    phoneErrorone = document.getElementById("phoneErrorone"),
-    otpErrorone = document.getElementById("otpErrorone"),
-    otpSuccessone = document.getElementById("otpSuccessone");
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Total units</h6>
+                  {% if Prop_Data.NoOfUnits %}
+                  <p>{{ Prop_Data.NoOfUnits }} Units</p>
+                  {% elif user_post.total_units %}
+                  <p>{{ user_post.total_units }} Units</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                </div>
+              </div>
+            </div>
+          </div>
+          {% elif Prop_Data.SubPropType == "Villa" %}
+          <div class="right-middle forvilla">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Configurations</h6>
+                  {% if Prop_Data.BHK %}
+                  <p>{{ Prop_Data.BHK }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>SBA/Plot Size</h6>
+                  {% if Prop_Data.super_area %}
+                  <p>{{ Prop_Data.super_area }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Parking</h6>
+                  {% if Prop_Data.PropertyName %}
+                  <p>Yes</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Status Type</h6>
+                  {% if Prop_Data.PropertyStatus %}
+                  <p>{{ Prop_Data.PropertyStatus }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total floors</h6>
+                  {% if Prop_Data.No_of_Floor %}
+                  <p>{{ Prop_Data.No_of_Floor }} Floors</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total units</h6>
+                  {% if Prop_Data.NoOfUnits %}
+                  <p>{{ Prop_Data.NoOfUnits }} Units</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>DevelopmentArea</h6>
+                  {% if Prop_Data.Project_Area %}
+                  <p>{{ Prop_Data.Project_Area }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Project Rera Id</h6>
+                  {% if Prop_Data.ReraNo %}
+                  <span>{{ Prop_Data.ReraNo }}</span>
+                  {% else %}
+                  <span>On Request</span>
+                  {% endif %}
+                </div>
+                <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Possession date</h6>
+                  {% if Prop_Data.PossessionDate %}
+                  <p>{{ Prop_Data.PossessionDate }}</p>
+                  {% else %}
+                  <p>On Request</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="right-middle forvilla">
+            <div class="rm-box" style="width:100%;">
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Apartment/BHk Type</h6>
+                  <p>{{ user_post.apartment_type }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Bedrooms</h6>
+                  <p>{{ user_post.bedrooms }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Bathrooms</h6>
+                  <p>{{ user_post.bathrooms }}</p>
+                </div>
+              </div>
 
-let validName2 = false,
-    validEmail2 = false,
-    validPhone2 = false,
-    validMessage2 = false,
-    otpSentone = false,
-    otpVerifiedone = false,
-    generatedOtpone = "";
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Balconies</h6>
+                  <p>{{ user_post.balconies }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Super BuildUp Area </h6>
+                  <p>{{ user_post.carpet_area }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Plot Area</h6>
+                  <p>{{ user_post.super_area }}</p>
+                </div>
+              </div>
 
-    function generateOtpone() {
-        return Math.floor(1000 + Math.random() * 9000).toString();
-      }
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Furnished Status</h6>
+                  <p>{{ user_post.furnished_status }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Facing</h6>
+                  <p>{{ user_post.facing }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Parking</h6>
+                  <p>{{ user_post.car_parking }}</p>
+                </div>
+              </div>
 
-      function sendOtpone() {
-        // console.log("Sending OTP...");
-        const userPhone = Phone2.value;
-      
-        if (userPhone === "") {
-          Phone2.style.borderBottom = '2px solid red';
-          phoneErrorone.innerText = 'Enter your phone number to send OTP';
-          phoneErrorone.style.display = 'block';
-        } else {
-          generatedOtpone = generateOtpone();
-          otpSentone = true;
-      
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              var response = this.responseText;
-              if (response.includes("success")) {
-                otpResultone.style.color = 'green';
-                otpResultone.innerText = 'OTP sent successfully!';
-                sendOtpDivone.style.display = 'none';
-                verifyOtpDivone.style.display = 'flex';
-              } else {
-                otpResultone.style.color = 'red';
-                otpResultone.innerText = 'Failed to send OTP.';
-                sendOtpDivone.style.display = 'flex';
-                verifyOtpDivone.style.display = 'none';
-              }
-            } else {
-              otpResultone.style.color = 'red';
-              otpResultone.innerText = 'Failed to send OTP.';
-              sendOtpDivone.style.display = 'flex';
-              verifyOtpDivone.style.display = 'none';
-            }
-          };
-      
-          var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values=" + generatedOtpone + "&route=otp&numbers=" + encodeURIComponent(userPhone);
-          xhttp.open("GET", url, true);
-          xhttp.send();
-      
-          phoneErrorone.style.display = 'none';
-        }
-      }
-      
-      function verifyOtpone() {
-        // console.log("Verifying OTP...");
-        const otpone = otpInputone.value;
-      
-        if (otpone === "") {
-          otpInputone.style.borderBottom = '2px solid red';
-          otpErrorone.innerText = 'Enter the OTP to verify';
-          otpErrorone.style.display = 'block';
-        } else if (otpone === generatedOtpone) {
-          otpVerifiedone = true;
-          otpErrorone.style.display = 'none';
-          otpInputone.style.borderBottom = '';
-          otpSuccessone.innerText = 'OTP verified successfully!';
-          otpSuccessone.style.display = 'block';
-          otpResultone.style.display = 'none';
-          otpInputone.setAttribute('readonly', true);
-        } else {
-          otpInputone.style.borderBottom = '2px solid red';
-          otpErrorone.innerText = 'Invalid OTP, please try again.';
-          otpErrorone.style.display = 'block';
-          otpSuccessone.style.display = 'none';
-        }
-      }
+              <div class="rm-row">
+                <div class="rm-col">
+                  <h6>Status Type</h6>
+                  <p>{{ user_post.status }}</p>
+                </div> <span class="vermid">|</span>
+                <div class="rm-col">
+                  <h6>Total floors</h6>
+                  <p>{{ user_post.total_floors }} Floors</p>
+                </div>
+                <span class="vermid">|</span>
+                <div class="rm-col">
+                  <button onclick="myFunction()" id="myBtn">Read more</button>
+                </div>
+              </div>
+              <span id="dots"></span> <span id="more">
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Approval Status</h6>
+                    <p>{{ user_post.approval_status }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Total units</h6>
+                    <p>{{ user_post.total_units }} Units</p>
+                  </div><span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Developement Area</h6>
+                    <p>{{ user_post.development_area }}</p>
+                  </div>
+                </div>
 
-    function Refresh() {
-        setTimeout(() => {
-            location.reload();
-        }, 3000);
-    }
-
-Name2.addEventListener("blur", () => {
-    let e = Name2.value;
-    /^[a-z\sA-z]{3,30}$/.test(e)
-        ? ((Namevalid2.style.display = "block"),
-            (Nameinvalid2.style.display = "none"),
-            (validName2 = true))
-        : ((Nameinvalid2.style.display = "block"),
-            (Namevalid2.style.display = "none"));
-}),
-    Email2.addEventListener("blur", () => {
-        let e = Email2.value;
-        /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/.test(
-            e
-        )
-            ? ((Emailvalid2.style.display = "block"),
-                (Emailinvalid2.style.display = "none"),
-                (validEmail2 = true))
-            : ((Emailvalid2.style.display = "none"),
-                (Emailinvalid2.style.display = "block"));
-    }),
-    Phone2.addEventListener("blur", () => {
-        let e = Phone2.value;
-        /^[0-9]{10}$/.test(e)
-            ? ((Phonevalid2.style.display = "block"),
-                (Phoneinvalid2.style.display = "none"),
-                (validPhone2 = true))
-            : ((Phonevalid2.style.display = "none"),
-                (Phoneinvalid2.style.display = "block"));
-    }),
-    Message2.addEventListener("blur", () => {
-        let e = Message2.value;
-        /[a-zA-Z]/.test(e)
-            ? ((Messagevalid2.style.display = "block"),
-                (Messageinvalid2.style.display = "none"),
-                (validMessage2 = true))
-            : ((Messagevalid2.style.display = "none"),
-                (Messageinvalid2.style.display = "block"));
-    }),
-    Form2.addEventListener("submit", (e) => {
-      console.log("form is validated",validName3)
-      console.log("form is validated",validPhone3)
-      console.log("form is validated",otpSentone)
-      console.log("form is validated",otpVerifiedone)
-      e.preventDefault();
-        if (validName2 && validEmail2 && otpSentone && otpVerifiedone) {
-            fetch("/propertycontactdata/", {
-                method: "POST",
-                body: JSON.stringify({
-                Name: Name2.value,
-                Email: Email2.value,
-                Phone: Phone2.value,
-                Message: Message2.value,
-                Propdetail: Propdetail2.value,
-                User: usercontact2.value,
-            }),
-             headers: {
-               "Content-Type": "application/json",
-               "X-CSRFToken": csrftoken2,
-             },
-          })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success
-            ) {
-                Form2.reset();
-                SuccessAlert2.style.display = "block";
-                FailureAlert2.style.display = "none";
-                Refresh();
-            } else {
-                Form2.reset();
-                FailureAlert2.style.display = "block";
-                SuccessAlert2.style.display = "none";
-                // console.log("Form submission failed: ", data.error);
-                // Refresh();
-              }
-            })
-            .catch(() => {
-                Form2.reset();
-                FailureAlert2.style.display = "block";
-                SuccessAlert2.style.display = "none";
-                console.error("Form submission error: ", error);
-                // Refresh();
-              });
-        }  else {
-            FailureAlert2.style.display = "block";
-            SuccessAlert2.style.display = "none";
-          }
-    });
+                <div class="rm-row">
+                  <div class="rm-col">
+                    <h6>Project Rera Id</h6>
+                    <p>{{ user_post.project_rera_id }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Possession date</h6>
+                    <p>{{ user_post.possession_date }}</p>
+                  </div> <span class="vermid">|</span>
+                  <div class="rm-col">
+                    <h6>Age of Construction </h6>
+                    <p>{{ user_post.age_of_construction }}</p>
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div>
+          {% endif %}

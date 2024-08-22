@@ -1,196 +1,125 @@
-const Name3 = document.getElementById("username3"),
-Email3 = document.getElementById("useremail3"),
-Phone3 = document.getElementById("userphone3"),
-Message3 = document.getElementById("usermessage3"),
-Propdetail3 = document.getElementById("Propdetail3"),
-usernumber3 = document.getElementById("usernumber3"),
-Form3 = document.getElementById("PropContactform3"),
-SubmitButton3 = document.getElementById("contactsubmit3"),
-csrftoken3 = document.querySelector("[name=csrfmiddlewaretoken]").value,
-Namevalid3 = document.getElementById("isnamevalid3"),
-Nameinvalid3 = document.getElementById("isnameinvalid3"),
-Emailvalid3 = document.getElementById("isemailvalid3"),
-Emailinvalid3 = document.getElementById("isemailinvalid3"),
-Phonevalid3 = document.getElementById("isphonevalid3"),
-Phoneinvalid3 = document.getElementById("isphoneinvalid3"),
-Messagevalid3 = document.getElementById("ismessagevalid3"),
-Messageinvalid3 = document.getElementById("ismessageinvalid3"),
-SuccessAlert3 = document.getElementById("issuccess3"),
-FailureAlert3 = document.getElementById("isfailure3");
-sendOtpDiv = document.getElementById("sendotpdiv"),
-verifyOtpDiv = document.getElementById("verifyotpdiv"),
-otpInput = document.getElementById("otpinput"),
-otpResult = document.getElementById("otpResult"),
-phoneError = document.getElementById("phoneError"),
-otpError = document.getElementById("otpError"),
-otpSuccess = document.getElementById("otpSuccess");
+<div class="modal" tabindex="-1" role="dialog" id="statusPopup">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <div class="modal-body">
+      <label for="statusSelect">Select Status:</label>
+      <select id="statusSelect">
+        <option value="Received">Received</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Processing">Processing</option>
+        <option value="Pending">Pending</option>
+      </select>
+    </div>
+      <div class="modal-footer">
+        <div class="col-lg-12 text-center">
+      <button id="saveStatus" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+ 
+ <table id="example" class="stripe row-border order-column display" cellspacing="0" style="width:100%">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Company name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>services</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pratham</td>
+                <td>Search homes india</td>
+                <td>abc@gmail.com</td>
+                <td>1122334455</td>
+                <td>TDS notice</td>
+                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
+                <td class="cfostatus">
+                <span class="Processing">Processing</span>
 
-let validName3 = false,
-    validEmail3 = false,
-    validPhone3 = false,
-    validMessage3 = false,
-    otpSent = false,
-    otpVerified = false,
-    generatedOtp = "";
+              </td>
+                <td>
+                  <button class="cfoedit">Edit</button>
+                  <button class="cfodelete">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+            
+            <tfoot>
+              <tr>
+                <td>Name</td>
+                <td>Company name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>services</td>
+                <td>Message</td>
+                <td>Status</td>
+                <td>Action</td>
+              </tr>
+            </tfoot>
+          </table>
+<script>
+const modal = document.getElementById("statusPopup");
+const closeModal = document.querySelector(".modal .close");
+const saveButton = document.getElementById("saveStatus");
+const statusSelect = document.getElementById("statusSelect");
 
-function generateOtp() {
-  return Math.floor(1000 + Math.random() * 9000).toString();
-}
+let currentRow;
 
-function sendOtp() {
-  // console.log("Sending OTP...");
-  const userPhone = Phone3.value;
-
-  if (userPhone === "") {
-    Phone3.style.borderBottom = '2px solid red';
-    phoneError.innerText = 'Enter your phone number to send OTP';
-    phoneError.style.display = 'block';
-  } else {
-    generatedOtp = generateOtp();
-    otpSent = true;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var response = this.responseText;
-        if (response.includes("success")) {
-          otpResult.style.color = 'green';
-          otpResult.innerText = 'OTP sent successfully!';
-          sendOtpDiv.style.display = 'none';
-          verifyOtpDiv.style.display = 'flex';
-        } else {
-          otpResult.style.color = 'red';
-          otpResult.innerText = 'Failed to send OTP.';
-          sendOtpDiv.style.display = 'flex';
-          verifyOtpDiv.style.display = 'none';
-        }
-      } else {
-        otpResult.style.color = 'red';
-        otpResult.innerText = 'Failed to send OTP.';
-        sendOtpDiv.style.display = 'flex';
-        verifyOtpDiv.style.display = 'none';
-      }
-    };
-
-    var url = "https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values=" + generatedOtp + "&route=otp&numbers=" + encodeURIComponent(userPhone);
-    xhttp.open("GET", url, true);
-    xhttp.send();
-
-    phoneError.style.display = 'none';
-  }
-}
-
-function verifyOtp() {
-  // console.log("Verifying OTP...");
-  const otp = otpInput.value;
-
-  if (otp === "") {
-    otpInput.style.borderBottom = '2px solid red';
-    otpError.innerText = 'Enter the OTP to verify';
-    otpError.style.display = 'block';
-  } else if (otp === generatedOtp) {
-    otpVerified = true;
-    otpError.style.display = 'none';
-    otpInput.style.borderBottom = '';
-    otpSuccess.innerText = 'OTP verified successfully!';
-    otpSuccess.style.display = 'block';
-    otpResult.style.display = 'none';
-    otpInput.setAttribute('readonly', true);
-  } else {
-    otpInput.style.borderBottom = '2px solid red';
-    otpError.innerText = 'Invalid OTP, please try again.';
-    otpError.style.display = 'block';
-    otpSuccess.style.display = 'none';
-  }
-}
-
-function Refresh() {
-  setTimeout(() => {
-    location.reload();
-  }, 3000);
-}
-Name3.addEventListener("blur", () => {
-  let e = Name3.value;
-  /^[a-z\sA-Z]{3,30}$/.test(e)
-    ? ((Namevalid3.style.display = "block"),
-      (Nameinvalid3.style.display = "none"),
-      (validName3 = true))
-    : ((Nameinvalid3.style.display = "block"),
-      (Namevalid3.style.display = "none"));
+document.querySelectorAll(".cfoedit").forEach(button => {
+  button.addEventListener("click", (event) => {
+    currentRow = event.target.closest("tr");
+    modal.style.display = "block";
+    const currentStatus = currentRow.querySelector(".cfostatus span").textContent.trim();
+    statusSelect.value = currentStatus;
+  });
 });
-Email3.addEventListener("blur", () => {
- let e = Email3.value;
- /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/.test(
-   e
- )
-   ? ((Emailvalid3.style.display = "block"),
-     (Emailinvalid3.style.display = "none"),
-     (validEmail3 = true))
-   : ((Emailvalid3.style.display = "none"),
-     (Emailinvalid3.style.display = "block"));
-}),
-Phone3.addEventListener("blur", () => {
-  let e = Phone3.value;
-  /^[0-9]{10}$/.test(e)
-    ? ((Phonevalid3.style.display = "block"),
-      (Phoneinvalid3.style.display = "none"),
-      (validPhone3 = true))
-    : ((Phonevalid3.style.display = "none"),
-      (Phoneinvalid3.style.display = "block"));
-});
-Message3.addEventListener("blur", () => {
- let e = Message3.value;
- /[a-zA-Z]/.test(e)
-   ? ((Messagevalid3.style.display = "block"),
-     (Messageinvalid3.style.display = "none"),
-     (validMessage3 = true))
-   : ((Messagevalid3.style.display = "none"),
-     (Messageinvalid3.style.display = "block"));
-}),
-Form3.addEventListener("submit", (e) => {
-  e.preventDefault();
 
-  if (validName3 && validPhone3 && otpSent && otpVerified) {
-    fetch("/propertycontactdata/", {
-      method: "POST",
-      body: JSON.stringify({
-        Name: Name3.value,
-        Email: Email3.value,
-        Phone: Phone3.value,
-        Message: Message3.value,
-        Propdetail: Propdetail3.value,
-        User: usernumber3.value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": csrftoken3,
-      },
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success
-      ) {
-        Form3.reset();
-        SuccessAlert3.style.display = "block";
-        FailureAlert3.style.display = "none";
-        Refresh();
-      } else {
-        Form3.reset();
-        FailureAlert3.style.display = "block";
-        SuccessAlert3.style.display = "none";
-        // console.log("Form submission failed: ", data.error);
-        // Refresh();
-      }
-    })
-    .catch(() => {
-      Form3.reset();
-      FailureAlert3.style.display = "block";
-      SuccessAlert3.style.display = "none";
-      console.error("Form submission error: ", error);
-      // Refresh();
-    });
-  } else {
-    FailureAlert3.style.display = "block";
-    SuccessAlert3.style.display = "none";
+saveButton.addEventListener("click", () => {
+  const newStatus = statusSelect.value;
+  const statusCell = currentRow.querySelector(".cfostatus span");
+  statusCell.textContent = newStatus;
+
+  statusCell.className = newStatus;
+  statusCell.style.color = getStatusColor(newStatus);
+
+  modal.style.display = "none";
+});
+
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
   }
 });
+
+function getStatusColor(status) {
+  switch (status) {
+    case 'Received':
+      return 'green';
+    case 'Cancelled':
+      return 'red';
+    case 'Processing':
+      return 'orange';
+    case 'Pending':
+      return 'yellowgreen';
+    default:
+      return 'black';
+  }
+}
+</script>

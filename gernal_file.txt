@@ -1,215 +1,30 @@
-////////////// css ////////////////////////
-                <style>
-                  .sendotpdiv,
-                  .verifyotpdiv{
-                      display: flex;
-                      align-items: center;
-                  }
+$relativeFilePaths = [];
+            // foreach ($_FILES["blogImages"]["tmp_name"] as $key => $tmp_name) {
+            //     $filename = $_FILES["blogImages"]["name"][$key];
+            //     $relativeFilePath = 'uploads/' . $filename;
+            //     $targetFile = $_SERVER['DOCUMENT_ROOT'] . "/$relativeFilePath";
+            //     if (move_uploaded_file($tmp_name, $targetFile)) {
+            //         $relativeFilePaths[] = $relativeFilePath;
+            //     } else {
+            //         echo "Sorry, there was an error uploading one of the files.";
+            //     }
+            // }
 
-                  .sendotp,
-                  .verifyotp {
-                      padding: 5px !important;
-                      border: none;
-                      height: 25px;
-                      margin: 6px !important;
-                      border-radius: 3px;
-                      margin-left: 0 !important;
-                      white-space: nowrap;
-                      color: white;
-                      font-weight: 600;
-                      font-size: 8px;
-                  }
-              </style>
-                 
+            // Prepare and insert data into the database using prepared statements to prevent SQL injection
+            $stmt = $conn->prepare("INSERT INTO intriorblogs (blog_name, blog_price, blog_location, about_blog, blog_type, blog_count, about_blogt, 				about_blogh, about_blogf, blog_name1, blog_name2, blog_name3, blog_price1, blog_price2, blog_price3)
+           		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            //  blog_imageo, blog_imaget, blog_imagett,blog_imagef,, ?, ?, ?, ?
+            // Bind parameters to the statement
+            $stmt->bind_param("sdsssssssssssssssss", $blogName, $blogPrice, $relativeFilePaths[0], $relativeFilePaths[1], $relativeFilePaths[2], 				$relativeFilePaths[3], $blogLocation, $blogAbout, $blogType, $blogcount, $blogAboutt, $blogAbouth, $blogAboutf, $blogName1, 				$blogName2, $blogName3, $blogPrice1, $blogPrice2, $blogPrice3);
 
-/////////////form1 ///////////////////////
- <form id="form1" action="mail.php" method="POST" class="form-side" data-form-id="1">
-        <input type="hidden" name="ipaddress" id="ipaddress-1" value="" />
-        <input type="hidden" name="mgh" value="PRP-P" />
-        <div class="form-group">
-          <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field" required
-            placeholder="Name" />
-        </div>
-        <div class="form-group">
-          <input type="hidden" name="fullMobileNo" value="" />
-          <span class="sendotpdiv" data-form-id="1">
-              <input type="tel" name="phone" class="form-control rounded-0 micro-form-field" placeholder="Enter Number*"
-                  maxlength="10" data-form-id="1">
-              <button type="button" class="sendotp effetGradient effectScale" data-form-id="1">Send OTP</button>
-          </span>
-          <span class="verifyotpdiv" data-form-id="1" style="display: none;">
-              <input type="number" name="otp" class="form-control rounded-0 micro-form-field" placeholder="Enter OTP*" data-form-id="1">
-              <button type="button" class="verifyotp effetGradient effectScale" data-form-id="1">Verify OTP</button>
-          </span>
-          <div class="otpResult" data-form-id="1" style="font-size: 10px;"></div>
-          <div class="phoneError" data-form-id="1" style="color: red; font-size: 10px; display: none;"></div>
-          <div class="otpError" data-form-id="1" style="color: red; font-size: 10px; display: none;"></div>
-          <div class="otpSuccess" data-form-id="1" style="color: green; font-size: 10px; display: none;"></div>
-      </div>
-        <div class="form-group">
-          <input type="email" name="email" class="form-control rounded-0 micro-form-field" required
-            placeholder="E-Mail Address" />
-        </div>
-       
-        <button type="submit" class="btn btn-info effetGradient effectScale" >Submit</button>
-      </form>
 
-//////////////form 2///////////////////////
-<form id="form2" action="mail.php" method="POST" class="form-side" data-form-id="2">
-        <input type="hidden" name="ipaddress" id="ipaddress-2" value="" />
-        <input type="hidden" name="mgh" value="PRP-P" />
-        <div class="form-group">
-          <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field"
-            placeholder="Name" required />
-        </div>
-        <div class="form-group">
-          <input type="hidden" name="fullMobileNo" value="" />
-          <span class="sendotpdiv" data-form-id="2">
-              <input type="tel" name="phone" class="form-control rounded-0 micro-form-field" placeholder="Enter Number*"
-                  maxlength="10" data-form-id="2">
-              <button type="button" class="sendotp effetGradient effectScale" data-form-id="2">Send OTP</button>
-          </span>
-          <span class="verifyotpdiv" data-form-id="2" style="display: none;">
-              <input type="number" name="otp" class="form-control rounded-0 micro-form-field" placeholder="Enter OTP*" data-form-id="2">
-              <button type="button" class="verifyotp effetGradient effectScale" data-form-id="2">Verify OTP</button>
-          </span>
-          <div class="otpResult" data-form-id="2" style="font-size: 10px;"></div>
-          <div class="phoneError" data-form-id="2" style="color: red; font-size: 10px; display: none;"></div>
-          <div class="otpError" data-form-id="2" style="color: red; font-size: 10px; display: none;"></div>
-          <div class="otpSuccess" data-form-id="2" style="color: green; font-size: 10px; display: none;"></div>
-      </div>
-        <div class="form-group">
-          <input type="email" name="email" class="form-control rounded-0 micro-form-field" placeholder="E-Mail Address"
-            required />
-        </div>
-        <button type="submit" class="btn btn-info effetGradient effectScale" >Submit</button>
-      </form>
 
-////////////// form 3//////////////////////
 
-<form id="form3" action="mail.php" method="POST" class="form-modal" data-form-id="3">
-                  <input type="hidden" name="ipaddress" id="ipaddress-3" value="" />
-                  <input type="hidden" name="mgh" value="PRP-P" />
-              
-                  <div class="form-group">
-                      <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field" required placeholder="Name" />
-                  </div>
-
-                  <div class="form-group">
-                    <input type="hidden" name="fullMobileNo" value="" />
-                    <span class="sendotpdiv" data-form-id="3">
-                        <input type="tel" name="phone" class="form-control rounded-0 micro-form-field" placeholder="Enter Number*"
-                            maxlength="10" data-form-id="3">
-                        <button type="button" class="sendotp effetGradient effectScale" data-form-id="3">Send OTP</button>
-                    </span>
-                    <span class="verifyotpdiv" data-form-id="3" style="display: none;">
-                        <input type="number" name="otp" class="form-control rounded-0 micro-form-field" placeholder="Enter OTP*" data-form-id="3">
-                        <button type="button" class="verifyotp effetGradient effectScale" data-form-id="3">Verify OTP</button>
-                    </span>
-                    <div class="otpResult" data-form-id="3" style="font-size: 10px;"></div>
-                    <div class="phoneError" data-form-id="3" style="color: red; font-size: 10px; display: none;"></div>
-                    <div class="otpError" data-form-id="3" style="color: red; font-size: 10px; display: none;"></div>
-                    <div class="otpSuccess" data-form-id="3" style="color: green; font-size: 10px; display: none;"></div>
-                </div>
-
-                  <div class="form-group form-md">
-                      <input type="email" name="email" class="form-control rounded-0 micro-form-field" required placeholder="E-Mail Address" />
-                  </div>
-              
-                  <div class="form-group form-lg d-none">
-                      <textarea name="message" col="5" class="form-control rounded-0 micro-form-field" placeholder="Comment"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-info effetGradient effectScale" >Submit</button>
-               </form>
-//////////////script///////////////////////
-<script>
-  document.querySelectorAll('form').forEach(function (form) {
-    const formId = form.getAttribute('data-form-id');
-    let otpSent = false;
-    let otpVerified = false;
-    let generatedOtp = "";
-
-    form.querySelector('.sendotp').addEventListener('click', function () {
-        sendOtp(formId);
-    });
-
-    form.querySelector('.verifyotp').addEventListener('click', function () {
-        verifyOtp(formId);
-    });
-
-    form.addEventListener('submit', function (event) {
-        const userPhone = form.querySelector(`input[name="phone"][data-form-id="${formId}"]`).value;
-        if (userPhone === "") {
-            form.querySelector(`.phoneError[data-form-id="${formId}"]`).innerText = "Verify your number";
-            form.querySelector(`.phoneError[data-form-id="${formId}"]`).style.display = "block";
-            event.preventDefault();
-        } else if (!otpSent) {
-            form.querySelector(`.phoneError[data-form-id="${formId}"]`).innerText = "Verify your number";
-            form.querySelector(`.phoneError[data-form-id="${formId}"]`).style.display = "block";
-            event.preventDefault();
-        } else if (!otpVerified) {
-            form.querySelector(`.otpError[data-form-id="${formId}"]`).innerText = "Verify OTP and submit";
-            form.querySelector(`.otpError[data-form-id="${formId}"]`).style.display = "block";
-            event.preventDefault();
-        }
-    });
-
-    function generateOtp() {
-        return Math.floor(1000 + Math.random() * 9000).toString();
-    }
-
-    function sendOtp(formId) {
-        const userPhone = document.querySelector(`input[name="phone"][data-form-id="${formId}"]`).value;
-        if (userPhone === "") {
-            form.querySelector(`.phoneError[data-form-id="${formId}"]`).innerText = "Enter your phone number to send OTP";
-            form.querySelector(`.phoneError[data-form-id="${formId}"]`).style.display = "block";
-        } else {
-            generatedOtp = generateOtp();
-            otpSent = true;
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var response = this.responseText;
-                    if (response.includes("success")) {
-                        form.querySelector(`.sendotpdiv[data-form-id="${formId}"]`).style.display = "none";
-                        form.querySelector(`.verifyotpdiv[data-form-id="${formId}"]`).style.display = "flex";
-                        form.querySelector(`.otpResult[data-form-id="${formId}"]`).innerText = "OTP sent successfully!";
-                        form.querySelector(`.otpResult[data-form-id="${formId}"]`).style.color = "green";
-                    } else {
-                        form.querySelector(`.otpResult[data-form-id="${formId}"]`).innerText = "Failed to send OTP.";
-                        form.querySelector(`.otpResult[data-form-id="${formId}"]`).style.color = "red";
-                    }
-                } else {
-                    form.querySelector(`.otpResult[data-form-id="${formId}"]`).innerText = "Failed to send OTP.";
-                    form.querySelector(`.otpResult[data-form-id="${formId}"]`).style.color = "red";
-                }
-            };
-
-            var url = `https://www.fast2sms.com/dev/bulkV2?authorization=E2SO3Qc7HLJc7foeIWZrM8CAGhMFVV07L5YU9ZpykVYCWQ4BhTEBocweBqy6&variables_values=${generatedOtp}&route=otp&numbers=${encodeURIComponent(userPhone)}`;
-            xhttp.open("GET", url, true);
-            xhttp.send();
-
-            form.querySelector(`.phoneError[data-form-id="${formId}"]`).style.display = "none";
-        }
-    }
-
-    function verifyOtp(formId) {
-        const otp = document.querySelector(`input[name="otp"][data-form-id="${formId}"]`).value;
-        if (otp === "") {
-            form.querySelector(`.otpError[data-form-id="${formId}"]`).innerText = "Enter the OTP to verify";
-            form.querySelector(`.otpError[data-form-id="${formId}"]`).style.display = "block";
-        } else if (otp === generatedOtp) {
-            otpVerified = true;
-            form.querySelector(`.otpError[data-form-id="${formId}"]`).style.display = "none";
-            form.querySelector(`.otpSuccess[data-form-id="${formId}"]`).innerText = "OTP verified successfully!";
-            form.querySelector(`.otpSuccess[data-form-id="${formId}"]`).style.display = "block";
-            form.querySelector(`input[name="otp"][data-form-id="${formId}"]`).setAttribute("readonly", true);
-        } else {
-            form.querySelector(`.otpError[data-form-id="${formId}"]`).innerText = "Invalid OTP, please try again.";
-            form.querySelector(`.otpError[data-form-id="${formId}"]`).style.display = "block";
-        }
-    }
-});
-
-</script>
+blog_form
+ <!--<div class="form-group">-->
+                <!--    <label for="blogImages">blog Images:</label>-->
+                <!--    <input type="file" class="form-control-file" id="blogImages" name="blogImages[]" accept="image/*" multiple required>-->
+                <!--</div>-->
+                <!--<div id="Blog_selectedImages"></div>-->
+                
+                <!--<button id="addImageFields" class="btn btn-primary">Add Image</button>-->

@@ -1,0 +1,87 @@
+<<<<<<< HEAD
+=======
+<?php include('htmlopen.php'); ?>
+<style>
+    .side-menu li.sideactive8{
+      background: var(--shicol);
+    position: relative
+  }
+  .side-menu li.sideactive8 a{
+      color: white
+  }
+  #togglerightsidebar{display:none}
+</style>
+<?php include('header.php'); ?>
+<div class="content">
+<h2>Upload Excel File</h2>
+<form action="upload.php" method="POST" enctype="multipart/form-data">
+<input type="file" name="file" accept=".xlsx, .xls, .csv" required>
+<button type="submit" name="submit">Upload</button>
+</form>
+
+    <h3>Uploaded Data</h3>
+    <?php
+        // Check if the status message is passed in the URL
+        if (isset($_GET['status'])) {
+            $statusMessage = htmlspecialchars($_GET['status']);
+            echo "<div id='status-message' style='color: green; background-color: lightyellow; padding: 10px; margin-bottom: 20px;'>
+                    $statusMessage
+                </div>";
+        }
+        ?>
+        <script>
+        // Hide the status message after 20 seconds
+        setTimeout(function() {
+            var statusMessageDiv = document.getElementById('status-message');
+            if (statusMessageDiv) {
+                statusMessageDiv.style.display = 'none';
+            }
+        }, 20000); // 20 seconds
+        </script>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Number</th>
+                <th>Location</th>
+                <th>Message</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                include 'config.php'; // Database connection
+
+                // Create an instance of Config class
+                $config = new Config();
+                $conn = $config->getConnection();
+
+                // Prepare and execute the query
+                $sql = "SELECT * FROM shi_upload_data ORDER BY id DESC";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if (count($result) > 0) {
+                    foreach ($result as $row) {
+                        echo "<tr>
+                                <td>{$row['id']}</td>
+                                <td>{$row['name']}</td>
+                                <td>{$row['email']}</td>
+                                <td>{$row['number']}</td>
+                                <td>{$row['location']}</td>
+                                <td>{$row['message']}</td>
+                                <td>{$row['created_at']}</td>
+                            </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7'>No data found</td></tr>";
+                }
+            ?>
+        </tbody>
+    </table>
+</div>
+<?php include('htmlclose.php'); ?>
+>>>>>>> d92b60541121a3fb67aa49cce6fdbb1a49f37a15

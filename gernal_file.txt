@@ -1,87 +1,357 @@
-<<<<<<< HEAD
-=======
-<?php include('htmlopen.php'); ?>
 <style>
-    .side-menu li.sideactive8{
-      background: var(--shicol);
-    position: relative
-  }
-  .side-menu li.sideactive8 a{
-      color: white
-  }
-  #togglerightsidebar{display:none}
+    .update-status-btn {
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 14px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+
+    .update-status-btn:hover {
+    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+    }
+
+    .main{
+    height:50px;
+    }
+    @media(max-width:34em){
+    .main{
+        min-width:150px;
+        width:auto;
+    }
+    }
+    .main select {
+        display: none !important;
+    }
+
+    .main .dropdown-select {
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#40FFFFFF', endColorstr='#00FFFFFF', GradientType=0);
+        background-color: #fff;
+        border-radius: 6px;
+        border: solid 1px #eee;
+        box-shadow: 0px 2px 5px 0px rgba(155, 155, 155, 0.5);
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        float: left;
+        font-size: 14px;
+        font-weight: normal;
+        height: 42px;
+        line-height: 40px;
+        outline: none;
+        padding-left: 18px;
+        padding-right: 30px;
+        position: relative;
+        text-align: left !important;
+        transition: all 0.2s ease-in-out;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        white-space: nowrap;
+        width: auto;
+
+    }
+
+    .main .dropdown-select:focus {
+        background-color: #fff;
+    }
+
+    .main .dropdown-select:hover {
+        background-color: #fff;
+    }
+
+    .main .dropdown-select:active,
+    .main .dropdown-select.open {
+        background-color: #fff !important;
+        border-color: #bbb;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) inset;
+    }
+
+    .main .dropdown-select:after {
+        height: 0;
+        width: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #777;
+        -webkit-transform: origin(50% 20%);
+        transform: origin(50% 20%);
+        transition: all 0.125s ease-in-out;
+        content: '';
+        display: block;
+        margin-top: -2px;
+        pointer-events: none;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+    }
+
+    .main .dropdown-select.open:after {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+
+    .main .dropdown-select.open .list {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .main .dropdown-select.open .option {
+        cursor: pointer;
+    }
+
+    .main .dropdown-select.wide {
+        width: 100%;
+    }
+
+    .main .dropdown-select.wide .list {
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    .main .dropdown-select .list {
+        box-sizing: border-box;
+        transition: all 0.15s cubic-bezier(0.25, 0, 0.25, 1.75), opacity 0.1s linear;
+        -webkit-transform: scale(0.75);
+        transform: scale(0.75);
+        -webkit-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.09);
+        background-color: #fff;
+        border-radius: 6px;
+        margin-top: 4px;
+        padding: 3px 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 999;
+        max-height: 250px;
+        overflow: auto;
+        border: 1px solid #ddd;
+    }
+
+    .main .dropdown-select .list:hover .option:not(:hover) {
+        background-color: transparent !important;
+    }
+    .main .dropdown-select .dd-search{
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0.5rem;
+    }
+
+    .main .dropdown-select .dd-searchbox{
+    width:90%;
+    border:1px solid #999;
+    border-color:#999;
+    border-radius:4px;
+    outline:none;
+    }
+    .main .dropdown-select .dd-searchbox:focus{
+    border-color:#12CBC4;
+    }
+
+    .main .dropdown-select .list ul {
+        padding: 0;
+    }
+
+    .main .dropdown-select .option {
+        cursor: default;
+        font-weight: 400;
+        line-height: 40px;
+        outline: none;
+        padding-left: 18px;
+        padding-right: 29px;
+        text-align: left;
+        transition: all 0.2s;
+        list-style: none;
+    }
+
+    .main .dropdown-select .option:hover,
+    .main .dropdown-select .option:focus {
+        background-color: #f6f6f6 !important;
+    }
+
+    .main .dropdown-select .option.selected {
+        font-weight: 600;
+        color: #12cbc4;
+    }
+
+    .main .dropdown-select .option.selected:focus {
+        background: #f6f6f6;
+    }
+
+    .main .dropdown-select a {
+        color: #aaa;
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .main .dropdown-select a:hover {
+        color: #666;
+    }
+
 </style>
-<?php include('header.php'); ?>
-<div class="content">
-<h2>Upload Excel File</h2>
-<form action="upload.php" method="POST" enctype="multipart/form-data">
-<input type="file" name="file" accept=".xlsx, .xls, .csv" required>
-<button type="submit" name="submit">Upload</button>
-</form>
 
-    <h3>Uploaded Data</h3>
-    <?php
-        // Check if the status message is passed in the URL
-        if (isset($_GET['status'])) {
-            $statusMessage = htmlspecialchars($_GET['status']);
-            echo "<div id='status-message' style='color: green; background-color: lightyellow; padding: 10px; margin-bottom: 20px;'>
-                    $statusMessage
-                </div>";
+ <div class="modal" tabindex="-1" role="dialog" id="statusModal" style="display:none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none; background:transparent;font-size:30px">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="updateStatusForm" method="POST" action="update_status.php">
+            <div class="modal-body">
+            <input type="hidden" id="rowId" name="rowId" value="">
+            <div class="main">
+            <select id="status" name="status" class="hidden" >
+                <option value="Pending">Pending</option>
+                <option value="Fake">Fake</option>
+                <option value="RNR">RNR</option>
+                <option value="Call Back">Call Back</option>
+                <option value="Already Booked">Already Booked</option>
+                <option value="Not Interested">Not Interested</option>
+                <option value="Interested">Interested</option>
+                <option value="Follow Up">Follow Up</option>
+            </select>
+        </div>
+        </div>
+            <div class="modal-footer">
+                <div class="col-lg-12 text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<script>
+    function create_custom_dropdowns() {
+    $('select').each(function (i, select) {
+        if (!$(this).next().hasClass('dropdown-select')) {
+            $(this).after('<div class="dropdown-select wide ' + ($(this).attr('class') || '') + '" tabindex="0"><span class="current"></span><div class="list"><ul></ul></div></div>');
+            var dropdown = $(this).next();
+            var options = $(select).find('option');
+            var selected = $(this).find('option:selected');
+            dropdown.find('.current').html(selected.data('display-text') || selected.text());
+            options.each(function (j, o) {
+                var display = $(o).data('display-text') || '';
+                dropdown.find('ul').append('<li class="option ' + ($(o).is(':selected') ? 'selected' : '') + '" data-value="' + $(o).val() + '" data-display-text="' + display + '">' + $(o).text() + '</li>');
+            });
         }
-        ?>
-        <script>
-        // Hide the status message after 20 seconds
-        setTimeout(function() {
-            var statusMessageDiv = document.getElementById('status-message');
-            if (statusMessageDiv) {
-                statusMessageDiv.style.display = 'none';
-            }
-        }, 20000); // 20 seconds
-        </script>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Number</th>
-                <th>Location</th>
-                <th>Message</th>
-                <th>Created At</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                include 'config.php'; // Database connection
+    });
 
-                // Create an instance of Config class
-                $config = new Config();
-                $conn = $config->getConnection();
+    $('.dropdown-select ul').before('<div class="dd-search"><input id="txtSearchValue" autocomplete="off" onkeyup="filter()" class="dd-searchbox" type="text"></div>');
+}
 
-                // Prepare and execute the query
-                $sql = "SELECT * FROM shi_upload_data ORDER BY id DESC";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Event listeners
 
-                if (count($result) > 0) {
-                    foreach ($result as $row) {
-                        echo "<tr>
-                                <td>{$row['id']}</td>
-                                <td>{$row['name']}</td>
-                                <td>{$row['email']}</td>
-                                <td>{$row['number']}</td>
-                                <td>{$row['location']}</td>
-                                <td>{$row['message']}</td>
-                                <td>{$row['created_at']}</td>
-                            </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='7'>No data found</td></tr>";
-                }
-            ?>
-        </tbody>
-    </table>
-</div>
-<?php include('htmlclose.php'); ?>
->>>>>>> d92b60541121a3fb67aa49cce6fdbb1a49f37a15
+// Open/close
+$(document).on('click', '.dropdown-select', function (event) {
+    if($(event.target).hasClass('dd-searchbox')){
+        return;
+    }
+    $('.dropdown-select').not($(this)).removeClass('open');
+    $(this).toggleClass('open');
+    if ($(this).hasClass('open')) {
+        $(this).find('.option').attr('tabindex', 0);
+        $(this).find('.selected').focus();
+    } else {
+        $(this).find('.option').removeAttr('tabindex');
+        $(this).focus();
+    }
+});
+
+// Close when clicking outside
+$(document).on('click', function (event) {
+    if ($(event.target).closest('.dropdown-select').length === 0) {
+        $('.dropdown-select').removeClass('open');
+        $('.dropdown-select .option').removeAttr('tabindex');
+    }
+    event.stopPropagation();
+});
+
+function filter(){
+    var valThis = $('#txtSearchValue').val();
+    $('.dropdown-select ul > li').each(function(){
+     var text = $(this).text();
+        (text.toLowerCase().indexOf(valThis.toLowerCase()) > -1) ? $(this).show() : $(this).hide();         
+   });
+};
+// Search
+
+// Option click
+$(document).on('click', '.dropdown-select .option', function (event) {
+    $(this).closest('.list').find('.selected').removeClass('selected');
+    $(this).addClass('selected');
+    var text = $(this).data('display-text') || $(this).text();
+    $(this).closest('.dropdown-select').find('.current').text(text);
+    $(this).closest('.dropdown-select').prev('select').val($(this).data('value')).trigger('change');
+});
+
+// Keyboard events
+$(document).on('keydown', '.dropdown-select', function (event) {
+    var focused_option = $($(this).find('.list .option:focus')[0] || $(this).find('.list .option.selected')[0]);
+    // Space or Enter
+    //if (event.keyCode == 32 || event.keyCode == 13) {
+    if (event.keyCode == 13) {
+        if ($(this).hasClass('open')) {
+            focused_option.trigger('click');
+        } else {
+            $(this).trigger('click');
+        }
+        return false;
+        // Down
+    } else if (event.keyCode == 40) {
+        if (!$(this).hasClass('open')) {
+            $(this).trigger('click');
+        } else {
+            focused_option.next().focus();
+        }
+        return false;
+        // Up
+    } else if (event.keyCode == 38) {
+        if (!$(this).hasClass('open')) {
+            $(this).trigger('click');
+        } else {
+            var focused_option = $($(this).find('.list .option:focus')[0] || $(this).find('.list .option.selected')[0]);
+            focused_option.prev().focus();
+        }
+        return false;
+        // Esc
+    } else if (event.keyCode == 27) {
+        if ($(this).hasClass('open')) {
+            $(this).trigger('click');
+        }
+        return false;
+    }
+});
+
+$(document).ready(function () {
+    create_custom_dropdowns();
+});
+</script>

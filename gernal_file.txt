@@ -1,4 +1,6 @@
 <?php include('htmlopen.php'); ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     .side-menu li.sideactive8{
       background: var(--shicol);
@@ -36,49 +38,149 @@
             }
         }, 20000); // 20 seconds
         </script>
+    <form id="bulkDeleteForm" method="POST" action="bulk_delete.php">
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th><input type="checkbox" id="select-all"></th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Number</th>
                 <th>Location</th>
                 <th>Message</th>
+                <th>Assigned User</th>
+                <th>Status</th>
                 <th>Created At</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-                include 'config.php'; // Database connection
+        <?php
+            include 'config.php';
 
-                // Create an instance of Config class
-                $config = new Config();
-                $conn = $config->getConnection();
+            // Create an instance of Config class
+            $config = new Config();
+            $conn = $config->getConnection();
 
-                // Prepare and execute the query
-                $sql = "SELECT * FROM shi_upload_data ORDER BY id DESC";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT * FROM shi_upload_data ORDER BY id DESC";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                if (count($result) > 0) {
-                    foreach ($result as $row) {
-                        echo "<tr>
-                                <td>{$row['id']}</td>
-                                <td>{$row['name']}</td>
-                                <td>{$row['email']}</td>
-                                <td>{$row['number']}</td>
-                                <td>{$row['location']}</td>
-                                <td>{$row['message']}</td>
-                                <td>{$row['created_at']}</td>
-                            </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='7'>No data found</td></tr>";
+            if (count($result) > 0) {
+                foreach ($result as $row) {
+                    echo "<tr>
+                            <td><input type='checkbox' class='select-row' name='row_ids[]' value='{$row['id']}'></td>
+                            <td>{$row['name']}</td>
+                            <td>{$row['email']}</td>
+                            <td>{$row['number']}</td>
+                            <td>{$row['location']}</td>
+                            <td>{$row['message']}</td>
+                            <td>{$row['assign_to_user']}</td>
+                            <td>{$row['status']}</td>
+                            <td>{$row['created_at']}</td>
+                          </tr>";
                 }
-            ?>
+            } else {
+                echo "<tr><td colspan='9'>No data found</td></tr>";
+            }
+        ?>
         </tbody>
     </table>
+    <button type="button" id="delete-selected-btn">Delete Selected</button>
+</form>
+    <button id="assign-button" disabled>Assign Users</button>
+    <div id="assignModal" style="display: none;">
+            <div class="modal-content">
+                <span id="close-modal">&times;</span>
+                <h2>Assign Users</h2>
+                <form id="assign-form" method="POST" action="assign_users.php">
+                    <input type="hidden" id="selected-ids" name="selected_ids">
+                    <label for="users">Select User(s):</label>
+                    <select id="users" name="users[]" multiple>
+                        <option value="">No User</option>
+                        <?php
+                        // Fetch users from the database
+                        $userQuery = "SELECT tablename FROM accounts"; // Assuming a users table
+                        $userStmt = $conn->prepare($userQuery);
+                        $userStmt->execute();
+                        $users = $userStmt->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        foreach ($users as $user) {
+                            echo "<option value='{$user['tablename']}'>{$user['tablename']}</option>";
+                        }
+                        ?>
+                    </select>
+                    <button type="submit">Assign</button>
+                </form>
+            </div>
+        </div>
 </div>
+<script>
+    // Handle the Select All checkbox functionality
+    document.getElementById('select-all').addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('.select-row');
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        toggleAssignButton();
+    });
+
+    // Enable the Assign button if at least one row is selected
+    const checkboxes = document.querySelectorAll('.select-row');
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', toggleAssignButton));
+
+    function toggleAssignButton() {
+        const selected = document.querySelectorAll('.select-row:checked');
+        document.getElementById('assign-button').disabled = selected.length === 0;
+    }
+
+    // Show modal popup when "Assign Users" is clicked
+    document.getElementById('assign-button').addEventListener('click', function() {
+        const selectedIds = Array.from(document.querySelectorAll('.select-row:checked'))
+            .map(checkbox => checkbox.value);
+        if (selectedIds.length > 0) {
+            // Open the modal and pass selected IDs
+            openAssignModal(selectedIds);
+        }
+    });
+
+    function openAssignModal(selectedIds) {
+        // You can use a library like Bootstrap for modals
+        const modal = document.getElementById('assignModal');
+        modal.style.display = 'block';
+
+        // Store the selected IDs in a hidden field inside the modal
+        document.getElementById('selected-ids').value = selectedIds.join(',');
+    }
+
+    // Close the modal
+    document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('assignModal').style.display = 'none';
+    });
+</script>
+<script>
+document.getElementById('delete-selected-btn').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const selectedCheckboxes = document.querySelectorAll('.select-row:checked');
+    const numSelected = selectedCheckboxes.length;
+    
+    if (numSelected > 0) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You are about to delete ${numSelected} selected row(s). This action cannot be undone.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete them!',
+            cancelButtonText: 'No, cancel!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If confirmed, submit the form
+                document.getElementById('bulkDeleteForm').submit();
+            }
+        });
+    } else {
+        Swal.fire('No rows selected', 'Please select at least one row to delete.', 'info');
+    }
+});
+</script>
+
 <?php include('htmlclose.php'); ?>

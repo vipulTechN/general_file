@@ -1,210 +1,346 @@
-/////////////////////css////////////////////
-<style>
-    .side-menu li.sideactive8{
-      background: var(--shicol);
-      position: relative
-    }
-    .side-menu li.sideactive8 a{
-        color: white
-    }
+<div class="modal fade" tabindex="-1" id="filterModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content custom-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">FILTER DATA</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="closeFilter"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div class="form-item">
+                                    <label for="filterCustumername">Customer Name</label>
+                                    <input type="text" class="form-control form-control-lg custom-input" id="filterCustumername">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-item">
+                                    <label for="filterEmail">Email Id</label>
+                                    <input type="text" class="form-control form-control-lg custom-input" id="filterEmail">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-item">
+                                    <label for="filterContactnumber">Contact No.</label>
+                                    <input type="text" class="form-control form-control-lg custom-input" id="filterContactnumber">
+                                </div>
+                            </div>
 
-    #togglerightsidebar{display:none}
-
-    #delete-selected-btn{
-        background-color: red;
-        color: white;
-    }
-
-    .btn {
-        border: none!important;
-    }
-
-    #assign-button{
-     background-color: blue;
-     color: white;
-    }
-
-    .uploadExcelPopup{
-        background-color: #109910;
-        color: white;
-    }
-
-    #download-excel-ex{
-        color: white;
-        background-color: grey;
-    }
-        .card {
-        border-radius: 10px;
-        box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3);
-        background-color: #ffffff;
-        padding: 10px 30px 40px;
-        }
-
-        .card h3 {
-        font-size: 22px;
-        font-weight: 600;
-        
-        }
-
-        .drop_box {
-        margin: 10px 0;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        border: 3px dotted #1b6c9f;
-        border-radius: 5px;
-        }
-
-        .drop_box h4 {
-        font-size: 16px;
-        font-weight: 400;
-        color: #2e2e2e;
-        }
-
-        .drop_box p {
-        margin-top: 10px;
-        margin-bottom: 20px;
-        font-size: 12px;
-        color: #a3a3a3;
-        }
-
-        .upload-wrap button{
-            border: 1px solid black;
-        }
-
-        .upload-input{
-            border-radius: 5px;
-            height: 50px;
-            line-height: normal;
-            color: #282828;
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-            user-select: auto;
-            font-size: 16px;
-            padding: 0 6px;
-            padding-left: 12px;
-        }
-        .upload-input:focus{
-            border: 3px solid #1b6c9f;
-        }
-
-</style>
-
-
-
-/////////////////////buttons/////////////////////////////
-<div class="col-lg-12" style="margin-bottom:30px">
-                <button type="button" class="btn btn-sm uploadExcelPopup"  data-toggle="modal" data-target="#uploadExcelPopup">Upload Excel</button> 
-                <button type="button" id="assign-button" class="btn btn-sm" disabled data-toggle="modal" data-target="#assignModal">Assign Users</button>
-                <button type="button" id="delete-selected-btn" class="btn btn-sm">Delete Selected</button> 
-                <button type="button" id="download-excel-ex" class="btn btn-sm">Excel Example</button> 
-            </div> 
-
-
-
-////////////////////download excel example script////////////
-
-	<script>
-                document.getElementById('download-excel-ex').addEventListener('click', function() {
-                    window.location.href = 'testexcle.xlsx';
-                });
-            </script>
-
-
-//////////////////update counter script//////////////////////
-<script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const selectAll = document.getElementById('select-all');
-                    const checkboxes = document.querySelectorAll('.select-row');
-                    const countDisplay = document.getElementById('selected-count');
-                    function updateCount() {
-                        const selectedCount = document.querySelectorAll('.select-row:checked').length;
-                        countDisplay.textContent = selectedCount;
-                    }
-                    selectAll.addEventListener('change', function() {
-                        checkboxes.forEach(function(checkbox) {
-                            checkbox.checked = selectAll.checked;
-                        });
-                        updateCount();
-                    });
-                    checkboxes.forEach(function(checkbox) {
-                        checkbox.addEventListener('change', function() {
-                            if (!checkbox.checked) {
-                                selectAll.checked = false; 
-                            }
-                            updateCount();
-                        });
-                    });
-                });
-            </script>
-
-
-            <!-- upload excel popup -->
-                <div class="modal fade" id="uploadExcelPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Upload Excel Files</h5>
-                        </div>
-                        <form action="upload.php" method="POST" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="card">
-                                        <h3>Upload Excel Files</h3>
-                                        <div class="drop_box">
-                                        <!-- <header>
-                                            <h4>Select File here</h4>
-                                        </header> -->
-                                        <p style="text-transform:uppercase">Files Supported: xlsx, xls, csv</p>
-                                            <div class="upload-wrap">
-                                                    <input type="file" name="file" accept=".xlsx, .xls, .csv" required class="upload-input">
-                                            </div>
-                                        </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-item">
+                                    <label for="LocationInput">Location</label>
+                                    <input type="text" id="LocationInput" class="form-control form-control-lg custom-input" placeholder="Select Location">
+                                    <div id="LocationDropdown" class="dropdown-menu" style="display: none;">
+                                        <!-- Options will be dynamically added here -->
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <div class="col-lg-12 text-center">
-                                    <button type="submit" name="submit" class="btn btn-sm btn-primary">Upload</button>
-                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-item">
+                                        <label for="AssigneduserInput">Assigned User</label>
+                                        <input type="text" id="AssigneduserInput" class="form-control form-control-lg custom-input" placeholder="Select Assigned User">
+                                        <div id="AssigneduserDropdown" class="dropdown-menu" style="display: none;">
+                                            <!-- Options will be dynamically added here -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="col-md-6 mb-2">
+                                <div class="form-item">
+                                    <label for="StatusInput">Status</label>
+                                    <input type="text" id="StatusInput" class="form-control form-control-lg custom-input" placeholder="Select Status">
+                                    <div id="StatusDropdown" class="dropdown-menu" style="display: none;">
+                                        <!-- Options will be dynamically added here -->
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+
+                            <div class="col-md-6 mb-2">
+                                <div class="form-item">
+                                    <label for="CreatedatInput">Created At</label>
+                                    <input type="text" id="CreatedatInput" class="form-control form-control-lg custom-input" placeholder="Select Created At">
+                                    <div id="CreatedatDropdown" class="dropdown-menu" style="display: none;">
+                                        <!-- Options will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-
-
-<!-- assign user popup -->
-            <div class="modal fade " id="assignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Assign Users</h5>
-                        </div>
-                        <form id="assign-form" method="POST" action="assign_users.php">
-                        <div class="modal-body">
-                        <p> <b>Total Leads</b>: <span id="selected-count"><b> 0</b></span></p>
-
-                                    <input type="hidden" id="selected-ids" name="selected_ids">
-                                    <label for="users"> Select User(s):</label>
-                                    <select id="users" name="users[]" multiple class="form-select">
-                                        <option value="">No User</option>
-                                        
-                                    </select>
-                        </div>
-                        <div class="modal-footer">
-                                <div class="col-lg-12 text-center">
-                                    <button type="submit" name="submit" class="btn btn-sm btn-primary">Assign</button>
-                                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
+                <div class="modal-footer" style="margin: 0 auto;">
+                    <!-- Close Modal button -->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
+                    <!-- Clear Filters button -->
+                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
+                    <!-- Apply Filters button -->
+                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+//////////////////////table td////////////////////////
+<td><div class="assignedusertd">pratham ,aman, vipul, prasad, nikhil, reema, etc,pratham</div> </td>
+
+
+///////////////////////css///////////////////////////
+ <style>
+        .custom-modal-content{
+            overflow: visible!important;
+        }
+
+        .dropdown-container {
+                position: relative;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .dropdown-menu{
+                width: 100%;
+                overflow: auto;
+            }
+
+            .dropdown-content ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+
+            .dropdown-content li {
+                padding: 8px;
+                cursor: pointer;
+            }
+
+            .dropdown-content li:hover {
+                background-color: #f1f1f1;
+            }
+
+            .dropdown-search {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+            }
+
+            .dropdown-container input[readonly] {
+                cursor: pointer;
+            }
+
+ 				.assignedusertd{
+                                        width: 100px;
+                                        overflow:auto ;
+                                    }
+                                    .assignedusertd::-webkit-scrollbar {
+                                        height: 5px;
+                                    }
+                                    
+                                    .assignedusertd::-webkit-scrollbar-track {
+                                        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+                                        border-radius: 10px;
+                                    }
+                                    
+                                    .assignedusertd::-webkit-scrollbar-thumb {
+                                        border-radius: 10px;
+                                        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+                                    }
+
+    </style>
+
+
+/////////////////js////////////////////////////
+<script> 
+    $(document).ready(function() {
+    // Function to populate dropdowns based on the table data
+    function populateDropdowns() {
+        var locations = new Set();
+        var assignedUsers = new Set();
+        var statuses = new Set();
+        var createdAtDates = new Set();
+
+        $("#uploaddata tr").each(function() {
+            var location = $(this).find("td:eq(4)").text().trim();
+            var assignedUser = $(this).find("td:eq(5)").text().trim();
+            var status = $(this).find("td:eq(6)").text().trim();
+            var createdAt = $(this).find("td:eq(8)").text().trim();
+
+            if (location) locations.add(location);
+            if (assignedUser) assignedUsers.add(assignedUser);
+            if (status) statuses.add(status);
+            if (createdAt) createdAtDates.add(createdAt);
+        });
+
+        // Populate Location dropdown
+        $("#LocationDropdown").empty().append('<a class="dropdown-item" data-value="">Select Location</a>');
+        locations.forEach(function(location) {
+            $("#LocationDropdown").append('<a class="dropdown-item" data-value="' + location + '">' + location + '</a>');
+            
+        });
+
+        // Populate Assigneduser dropdown
+        $("#AssigneduserDropdown").empty().append('<a class="dropdown-item" data-value="">Select Assigned User</a>');
+        assignedUsers.forEach(function(user) {
+            $("#AssigneduserDropdown").append('<a class="dropdown-item" data-value="' + user + '">' + user + '</a>');
+        });
+
+        // Populate Status dropdown
+        $("#StatusDropdown").empty().append('<a class="dropdown-item" data-value="">Select Status</a>');
+        statuses.forEach(function(status) {
+            $("#StatusDropdown").append('<a class="dropdown-item" data-value="' + status + '">' + status + '</a>');
+        });
+
+        // Populate Created At dropdown
+        $("#CreatedatDropdown").empty().append('<a class="dropdown-item" data-value="">Select Created At</a>');
+        createdAtDates.forEach(function(date) {
+            $("#CreatedatDropdown").append('<a class="dropdown-item" data-value="' + date + '">' + date + '</a>');
+        });
+    }
+
+    // Call the function to populate the dropdowns when the page loads
+    populateDropdowns();
+
+    // Searchable input field
+    function setUpSearchableDropdown(inputId, dropdownId) {
+        var $input = $("#" + inputId);
+        var $dropdown = $("#" + dropdownId);
+        
+        $input.on("focus", function() {
+            $dropdown.show();
+        });
+
+        $input.on("input", function() {
+            var query = $(this).val().toLowerCase();
+            $dropdown.find(".dropdown-item").each(function() {
+                var text = $(this).text().toLowerCase();
+                $(this).toggle(text.indexOf(query) !== -1);
+            });
+        });
+
+        $(document).on("click", function(event) {
+            if (!$(event.target).closest("#" + inputId + ", #" + dropdownId).length) {
+                $dropdown.hide();
+            }
+        });
+
+        $dropdown.on("click", ".dropdown-item", function() {
+            var value = $(this).data("value");
+            $input.val($(this).text());
+            $dropdown.hide();
+        });
+    }
+
+    // Set up searchable dropdowns
+    setUpSearchableDropdown("LocationInput", "LocationDropdown");
+    setUpSearchableDropdown("AssigneduserInput", "AssigneduserDropdown");
+    setUpSearchableDropdown("StatusInput", "StatusDropdown");
+    setUpSearchableDropdown("CreatedatInput", "CreatedatDropdown");
+});
+</script>
+
+<script>
+  function applyFilters() {
+    var filterInputs = [{
+        id: "filterCustumername",
+        columnIndex: 1
+      },
+      {
+        id: "filterEmail",
+        columnIndex: 2
+      },
+      {
+        id: "filterContactnumber",
+        columnIndex: 3
+      },
+      {
+        id: "LocationInput",
+        columnIndex: 4
+      },
+      {
+        id: "AssigneduserInput",
+        columnIndex: 5
+      },
+      {
+        id: "StatusInput",
+        columnIndex: 6
+      },
+      {
+        id: "CreatedatInput",
+        columnIndex: 8
+      },
+    ];
+    activeFilters = [];
+    $("#uploaddata tr").each(function() {
+      var row = $(this);
+      var showRow = true;
+      filterInputs.forEach(function(inputInfo) {
+        var input = $("#" + inputInfo.id);
+        var filterValue = input.val().toLowerCase();
+        var cellValue = row.find("td:eq(" + inputInfo.columnIndex + ")").text().toLowerCase();
+        if (cellValue.indexOf(filterValue) === -1) {
+          showRow = false;
+          return false;
+        }
+        if (filterValue.trim() !== "") {
+          activeFilters.push(filterValue);
+        }
+      });
+      if (showRow) {
+        row.addClass("custom-filtered-row");
+      } else {
+        row.removeClass("custom-filtered-row");
+      }
+    });
+
+    $("#uploaddata tr").hide();
+    applyCustomFilter();
+  };
+  applyCustomFilter();  
+
+  function applyCustomFilter() {
+    $(".custom-filtered-row").show();
+  }
+  $(".filterable .btn-filter1").click(function() {
+    $("#filterModal").modal("show");
+  });
+  $("#applyFiltersBtn").click(function() {
+    $("#filterModal").modal("hide");
+    applyFilters();
+  });
+  $("#filterModal").on("hidden.bs.modal", function() {
+    $(".filterable .filters input").val("");
+    applyFilters();
+  });
+  $("#closeFilter").click(function() {
+    applyFilters();
+    $("#filterModal").modal("hide");
+  });
+  $("#cancleFilter").click(function() {
+    applyFilters();
+    $("#filterModal").modal("hide");
+  });
+  $(document).ready(function() {
+    $("#clearFiltersBtn").click(function() {
+      $("#filterCustumername,#filterEmail,#filterContactnumber,#LocationInput,#AssigneduserInput,#StatusInput,#CreatedatInput").val("");
+    });
+  });
+  $("#clearFiltersBtn").click(function() {
+    applyFilters();
+    $("#filterModal").modal("hide");
+  });
+</script>

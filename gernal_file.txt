@@ -1,346 +1,288 @@
-<div class="modal fade" tabindex="-1" id="filterModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content custom-modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">FILTER DATA</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="closeFilter"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterCustumername">Customer Name</label>
-                                    <input type="text" class="form-control form-control-lg custom-input" id="filterCustumername">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterEmail">Email Id</label>
-                                    <input type="text" class="form-control form-control-lg custom-input" id="filterEmail">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="filterContactnumber">Contact No.</label>
-                                    <input type="text" class="form-control form-control-lg custom-input" id="filterContactnumber">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="LocationInput">Location</label>
-                                    <input type="text" id="LocationInput" class="form-control form-control-lg custom-input" placeholder="Select Location">
-                                    <div id="LocationDropdown" class="dropdown-menu" style="display: none;">
-                                        <!-- Options will be dynamically added here -->
-                                    </div>
-                                </div>
-                            </div>
-
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-item">
-                                        <label for="AssigneduserInput">Assigned User</label>
-                                        <input type="text" id="AssigneduserInput" class="form-control form-control-lg custom-input" placeholder="Select Assigned User">
-                                        <div id="AssigneduserDropdown" class="dropdown-menu" style="display: none;">
-                                            <!-- Options will be dynamically added here -->
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="StatusInput">Status</label>
-                                    <input type="text" id="StatusInput" class="form-control form-control-lg custom-input" placeholder="Select Status">
-                                    <div id="StatusDropdown" class="dropdown-menu" style="display: none;">
-                                        <!-- Options will be dynamically added here -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mb-2">
-                                <div class="form-item">
-                                    <label for="CreatedatInput">Created At</label>
-                                    <input type="text" id="CreatedatInput" class="form-control form-control-lg custom-input" placeholder="Select Created At">
-                                    <div id="CreatedatDropdown" class="dropdown-menu" style="display: none;">
-                                        <!-- Options will be dynamically added here -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="margin: 0 auto;">
-                    <!-- Close Modal button -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
-                    <!-- Clear Filters button -->
-                    <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
-                    <!-- Apply Filters button -->
-                    <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
-                </div>
-            </div>
+<form id="form1" action="mail.php" method="POST" class="form-side">
+        <input type="hidden" name="ipaddress" id="ipaddress-1" value="" />
+        <input type="hidden" name="mgh" value="PRP-P" />
+        <div class="form-group">
+          <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field" required
+            placeholder="Name" />
         </div>
+        <div class="form-group">
+        <input type="hidden" name="fullMobileNo" value="" />
+        <span id="sendotpdiv1" style="width: 100%;">
+            <input type="tel" id="intTelInput-mob1" pattern="[0-9]+" name="phone" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="Mobile No" />
+        </span>
+        <span id="verifyotpdiv1" style="display: none; width: 100%;">
+          <input type="number" id="otpinput1" class="intTelInput form-control rounded-0 micro-form-field"  name="otp">
+      </span>
     </div>
 
+    <div id="otpResult1" style="font-size: 10px;"></div>
+    <div id="phoneError1" style="color: red; font-size: 10px; display: none;"></div>
+    <div id="otpError1" style="color: red; font-size: 10px; display: none;"></div>
+    <div id="otpSuccess1" style="color: green; font-size: 10px; display: none;"></div>
+        <div class="form-group">
+          <input type="email" name="email" class="form-control rounded-0 micro-form-field" placeholder="E-Mail Address" />
+        </div>
+       
+      <span id="sendotpbutton1" class="sendotpbutton">
+        <button type="button" class="btn btn-info effetGradient effectScale" onclick="sendOtp(1)">Send OTP</button>
+    </span>
+    <span id="VerifyAndSubmit1" class="VerifyAndSubmit" style="display: none;">
+        <button type="button" class="btn btn-info micro-form-btn effetGradient effectScale" onclick="verifyOtp(1)">Verify OTP & Submit</button>
+    </span>
+      </form>
 
 
 
+<form id="form2" action="mail.php" method="POST" class="form-side">
+        <input type="hidden" name="ipaddress" id="ipaddress-2" value="" />
+        <input type="hidden" name="mgh" value="PRP-P" />
+        <div class="form-group">
+          <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field"
+            placeholder="Name" required />
+        </div>
+        <div class="form-group">
+        <input type="hidden" name="fullMobileNo" value="" />
+        <span id="sendotpdiv2" style="width: 100%;">
+          <input type="tel" id="intTelInput-mob2" pattern="[0-9]+" name="phone" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="Mobile No" />
+        </span>
+        <span id="verifyotpdiv2" style="display: none; width: 100%;">
+          <input type="number" id="otpinput2" class="intTelInput form-control rounded-0 micro-form-field" name="otp">
+      </span>
+    </div>
+    
+    <div id="otpResult2" style="font-size: 10px;"></div>
+    <div id="phoneError2" style="color: red; font-size: 10px; display: none;"></div>
+    <div id="otpError2" style="color: red; font-size: 10px; display: none;"></div>
+    <div id="otpSuccess2" style="color: green; font-size: 10px; display: none;"></div>
+        <div class="form-group">
+          <input type="email" name="email" class="form-control rounded-0 micro-form-field" placeholder="E-Mail Address" />
+        </div>
+        <span id="sendotpbutton2" class="sendotpbutton">
+          <button type="button" class="btn btn-info effetGradient effectScale" onclick="sendOtp(2)">Send OTP</button>
+      </span>
+      <span id="VerifyAndSubmit2" class="VerifyAndSubmit" style="display: none;">
+          <button type="button" class="btn btn-info micro-form-btn effetGradient effectScale" onclick="verifyOtp(2)">Verify OTP & Submit</button>
+      </span>
+      </form>
 
+<form id="form3" action="mail.php" method="POST" class="form-modal">
+                  <input type="hidden" name="ipaddress" id="ipaddress-3" value="" />
+                  <input type="hidden" name="mgh" value="PRP-P" />
+              
+                  <div class="form-group">
+                      <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field" required placeholder="Name" />
+                  </div>
+              
+                  <div class="form-group">
+                      <input type="hidden" name="fullMobileNo" value="" />
+                      <span id="sendotpdiv3" style="width: 100%;">
+                          <input type="tel" id="intTelInput-mob3" pattern="[0-9]+" name="phone" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="Mobile No" />
+                      </span>
+                      <span id="verifyotpdiv3" style="display: none; width: 100%;">
+                          <input type="number" id="otpinput3" name="otp" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="OTP">
+                      </span>
+                  </div>
+              
+                  <div id="otpResult3" style="font-size: 10px;"></div>
+                  <div id="phoneError3" style="color: red; font-size: 10px; display: none;"></div>
+                  <div id="otpError3" style="color: red; font-size: 10px; display: none;"></div>
+                  <div id="otpSuccess3" style="color: green; font-size: 10px; display: none;"></div>
+              
+                  <div class="form-group form-md">
+                      <input type="email" name="email" class="form-control rounded-0 micro-form-field" placeholder="E-Mail Address" />
+                  </div>
+              
+                  <div class="form-group form-lg d-none">
+                      <textarea name="message" col="5" class="form-control rounded-0 micro-form-field" placeholder="Comment"></textarea>
+                  </div>
+              
+                  <span id="sendotpbutton3" class="sendotpbutton">
+                      <button type="button" class="btn btn-info   effetGradient effectScale" onclick="sendOtp(3)">Send OTP</button>
+                  </span>
+                  <span id="VerifyAndSubmit3" class="VerifyAndSubmit" style="display: none;">
+                      <button type="button" class="btn btn-info micro-form-btn effetGradient effectScale" onclick="verifyOtp(3)">Verify OTP & Submit</button>
+                  </span>
+               </form>
 
-//////////////////////table td////////////////////////
-<td><div class="assignedusertd">pratham ,aman, vipul, prasad, nikhil, reema, etc,pratham</div> </td>
-
-
-///////////////////////css///////////////////////////
- <style>
-        .custom-modal-content{
-            overflow: visible!important;
-        }
-
-        .dropdown-container {
-                position: relative;
-            }
-
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-            }
-
-            .dropdown-menu{
-                width: 100%;
-                overflow: auto;
-            }
-
-            .dropdown-content ul {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-                max-height: 200px;
-                overflow-y: auto;
-            }
-
-            .dropdown-content li {
-                padding: 8px;
-                cursor: pointer;
-            }
-
-            .dropdown-content li:hover {
-                background-color: #f1f1f1;
-            }
-
-            .dropdown-search {
-                width: 100%;
-                padding: 8px;
-                box-sizing: border-box;
-            }
-
-            .dropdown-container input[readonly] {
-                cursor: pointer;
-            }
-
- 				.assignedusertd{
-                                        width: 100px;
-                                        overflow:auto ;
-                                    }
-                                    .assignedusertd::-webkit-scrollbar {
-                                        height: 5px;
-                                    }
-                                    
-                                    .assignedusertd::-webkit-scrollbar-track {
-                                        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-                                        border-radius: 10px;
-                                    }
-                                    
-                                    .assignedusertd::-webkit-scrollbar-thumb {
-                                        border-radius: 10px;
-                                        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-                                    }
-
-    </style>
-
-
-/////////////////js////////////////////////////
-<script> 
-    $(document).ready(function() {
-    // Function to populate dropdowns based on the table data
-    function populateDropdowns() {
-        var locations = new Set();
-        var assignedUsers = new Set();
-        var statuses = new Set();
-        var createdAtDates = new Set();
-
-        $("#uploaddata tr").each(function() {
-            var location = $(this).find("td:eq(4)").text().trim();
-            var assignedUser = $(this).find("td:eq(5)").text().trim();
-            var status = $(this).find("td:eq(6)").text().trim();
-            var createdAt = $(this).find("td:eq(8)").text().trim();
-
-            if (location) locations.add(location);
-            if (assignedUser) assignedUsers.add(assignedUser);
-            if (status) statuses.add(status);
-            if (createdAt) createdAtDates.add(createdAt);
-        });
-
-        // Populate Location dropdown
-        $("#LocationDropdown").empty().append('<a class="dropdown-item" data-value="">Select Location</a>');
-        locations.forEach(function(location) {
-            $("#LocationDropdown").append('<a class="dropdown-item" data-value="' + location + '">' + location + '</a>');
-            
-        });
-
-        // Populate Assigneduser dropdown
-        $("#AssigneduserDropdown").empty().append('<a class="dropdown-item" data-value="">Select Assigned User</a>');
-        assignedUsers.forEach(function(user) {
-            $("#AssigneduserDropdown").append('<a class="dropdown-item" data-value="' + user + '">' + user + '</a>');
-        });
-
-        // Populate Status dropdown
-        $("#StatusDropdown").empty().append('<a class="dropdown-item" data-value="">Select Status</a>');
-        statuses.forEach(function(status) {
-            $("#StatusDropdown").append('<a class="dropdown-item" data-value="' + status + '">' + status + '</a>');
-        });
-
-        // Populate Created At dropdown
-        $("#CreatedatDropdown").empty().append('<a class="dropdown-item" data-value="">Select Created At</a>');
-        createdAtDates.forEach(function(date) {
-            $("#CreatedatDropdown").append('<a class="dropdown-item" data-value="' + date + '">' + date + '</a>');
-        });
-    }
-
-    // Call the function to populate the dropdowns when the page loads
-    populateDropdowns();
-
-    // Searchable input field
-    function setUpSearchableDropdown(inputId, dropdownId) {
-        var $input = $("#" + inputId);
-        var $dropdown = $("#" + dropdownId);
-        
-        $input.on("focus", function() {
-            $dropdown.show();
-        });
-
-        $input.on("input", function() {
-            var query = $(this).val().toLowerCase();
-            $dropdown.find(".dropdown-item").each(function() {
-                var text = $(this).text().toLowerCase();
-                $(this).toggle(text.indexOf(query) !== -1);
-            });
-        });
-
-        $(document).on("click", function(event) {
-            if (!$(event.target).closest("#" + inputId + ", #" + dropdownId).length) {
-                $dropdown.hide();
-            }
-        });
-
-        $dropdown.on("click", ".dropdown-item", function() {
-            var value = $(this).data("value");
-            $input.val($(this).text());
-            $dropdown.hide();
-        });
-    }
-
-    // Set up searchable dropdowns
-    setUpSearchableDropdown("LocationInput", "LocationDropdown");
-    setUpSearchableDropdown("AssigneduserInput", "AssigneduserDropdown");
-    setUpSearchableDropdown("StatusInput", "StatusDropdown");
-    setUpSearchableDropdown("CreatedatInput", "CreatedatDropdown");
-});
-</script>
 
 <script>
-  function applyFilters() {
-    var filterInputs = [{
-        id: "filterCustumername",
-        columnIndex: 1
-      },
-      {
-        id: "filterEmail",
-        columnIndex: 2
-      },
-      {
-        id: "filterContactnumber",
-        columnIndex: 3
-      },
-      {
-        id: "LocationInput",
-        columnIndex: 4
-      },
-      {
-        id: "AssigneduserInput",
-        columnIndex: 5
-      },
-      {
-        id: "StatusInput",
-        columnIndex: 6
-      },
-      {
-        id: "CreatedatInput",
-        columnIndex: 8
-      },
-    ];
-    activeFilters = [];
-    $("#uploaddata tr").each(function() {
-      var row = $(this);
-      var showRow = true;
-      filterInputs.forEach(function(inputInfo) {
-        var input = $("#" + inputInfo.id);
-        var filterValue = input.val().toLowerCase();
-        var cellValue = row.find("td:eq(" + inputInfo.columnIndex + ")").text().toLowerCase();
-        if (cellValue.indexOf(filterValue) === -1) {
-          showRow = false;
-          return false;
-        }
-        if (filterValue.trim() !== "") {
-          activeFilters.push(filterValue);
-        }
-      });
-      if (showRow) {
-        row.addClass("custom-filtered-row");
-      } else {
-        row.removeClass("custom-filtered-row");
-      }
-    });
+  let otpSent = {};
+let otpVerified = {};
+let generatedOtp = {};
 
-    $("#uploaddata tr").hide();
-    applyCustomFilter();
-  };
-  applyCustomFilter();  
+function generateOtp() {
+    return Math.floor(1000 + Math.random() * 9000).toString();
+}
 
-  function applyCustomFilter() {
-    $(".custom-filtered-row").show();
-  }
-  $(".filterable .btn-filter1").click(function() {
-    $("#filterModal").modal("show");
-  });
-  $("#applyFiltersBtn").click(function() {
-    $("#filterModal").modal("hide");
-    applyFilters();
-  });
-  $("#filterModal").on("hidden.bs.modal", function() {
-    $(".filterable .filters input").val("");
-    applyFilters();
-  });
-  $("#closeFilter").click(function() {
-    applyFilters();
-    $("#filterModal").modal("hide");
-  });
-  $("#cancleFilter").click(function() {
-    applyFilters();
-    $("#filterModal").modal("hide");
-  });
-  $(document).ready(function() {
-    $("#clearFiltersBtn").click(function() {
-      $("#filterCustumername,#filterEmail,#filterContactnumber,#LocationInput,#AssigneduserInput,#StatusInput,#CreatedatInput").val("");
-    });
-  });
-  $("#clearFiltersBtn").click(function() {
-    applyFilters();
-    $("#filterModal").modal("hide");
-  });
+function sendOtp(formId) {
+    const userPhone = document.getElementById(`intTelInput-mob${formId}`).value;
+    if (userPhone === "") {
+        document.getElementById(`intTelInput-mob${formId}`).style.borderBottom = "2px solid red";
+        document.getElementById(`phoneError${formId}`).innerText = "Enter your phone number to send OTP";
+        document.getElementById(`phoneError${formId}`).style.display = "block";
+    } else {
+        generatedOtp[formId] = generateOtp();
+        otpSent[formId] = true;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = this.responseText;
+                if (response.includes("success")) {
+                    document.getElementById(`verifyotpdiv${formId}`).style.display = "flex";
+                    document.getElementById(`otpResult${formId}`).style.color = "green";
+                    document.getElementById(`otpResult${formId}`).innerText = "OTP sent successfully!";
+                    
+                    // Hide the mobile number input and display the OTP input
+                    document.getElementById(`sendotpdiv${formId}`).style.display = "none";
+                    document.getElementById(`verifyotpdiv${formId}`).style.display = "block";
+                    
+                    // Hide Send OTP button and show Verify & Submit button
+                    document.querySelector(`#sendotpbutton${formId}`).style.display = "none";
+                    document.querySelector(`#VerifyAndSubmit${formId}`).style.display = "inline-block";
+                } else {
+                    document.getElementById(`otpResult${formId}`).style.color = "red";
+                    document.getElementById(`otpResult${formId}`).innerText = "Failed to send OTP.";
+                    
+                    // Keep the Send OTP button visible
+                    document.querySelector(`#sendotpbutton${formId}`).style.display = "inline-block";
+                }
+            } else {
+                document.getElementById(`otpResult${formId}`).style.color = "red";
+                document.getElementById(`otpResult${formId}`).innerText = "Failed to send OTP.";
+                
+                // Keep the Send OTP button visible
+                document.querySelector(`#sendotpbutton${formId}`).style.display = "inline-block";
+            }
+        };
+
+        var url = "https://www.fast2sms.com/dev/bulkV2?authorization=RKnKg7po5EXg8lVwwYLYnZHFcoBBHEqWKfh4juLfSuuuZCCbPj4nFjzsSnGV&variables_values=" + generatedOtp[formId] + "&route=otp&numbers=" + encodeURIComponent(userPhone);
+        xhttp.open("GET", url, true);
+        xhttp.send();
+        document.getElementById(`phoneError${formId}`).style.display = "none";
+    }
+}
+
+function verifyOtp(formId) {
+    const otp = document.getElementById(`otpinput${formId}`).value;
+    if (otp === "") {
+        document.getElementById(`otpinput${formId}`).style.borderBottom = "2px solid red";
+        document.getElementById(`otpError${formId}`).innerText = "Enter the OTP to verify";
+        document.getElementById(`otpError${formId}`).style.display = "block";
+    } else if (otp === generatedOtp[formId]) {
+        otpVerified[formId] = true;
+        document.getElementById(`otpError${formId}`).style.display = "none";
+        document.getElementById(`otpSuccess${formId}`).innerText = "OTP verified successfully!";
+        document.getElementById(`otpSuccess${formId}`).style.display = "block";
+        // Submit the form after successful OTP verification
+        document.querySelector(`#form${formId}`).submit();
+    } else {
+        document.getElementById(`otpinput${formId}`).style.borderBottom = "2px solid red";
+        document.getElementById(`otpError${formId}`).innerText = "Invalid OTP, please try again.";
+        document.getElementById(`otpError${formId}`).style.display = "block";
+        document.getElementById(`otpSuccess${formId}`).style.display = "none";
+    }
+}
+
+function checkOtpVerification(formId) {
+    if (!otpVerified[formId]) {
+        document.getElementById(`otpError${formId}`).innerText = "Please verify your OTP before submitting.";
+        document.getElementById(`otpError${formId}`).style.display = "block";
+        return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+}
 </script>
+
+mail.php
+<?php 
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){ 
+      
+    $from = $_POST['email']; // this is the sender's Email address
+    $name = $_POST['name'];
+    $message ="";
+    $property = $_POST['mgh'];
+    $email = $_POST['email'];
+    $mobile = $_POST['phone'];
+    $ipaddress = $_POST['ipaddress'];
+    $enquiry = $_POST['message'];
+    $subject = "Soparnika Life On The Green New Upcoming Project Property Landing Page";
+    $message = "Name : ".$name ."\n"."Email : ". $email ."\n" . "Mobile : ".$mobile."\n" . "Message: ".$enquiry."\n"."property: ".$property."\n" . $_POST['message']."\n "."\n";
+    $message .= "This email is coming from Soparnika Life On The Green New Upcoming Project Property Landing Page Form Submission";
+     
+    // API CAll For CRM Leads
+    $apiUrl = "https://connect.leadrat.com/api/v1/integration/GoogleAds";
+    $apiKey = "N2EwNTllNzMtNmUxOS00OWQzLTg1YjgtMWIwMzNhNWEwNDU5";
+    $postData = array(
+        "name" => $name,
+        "email" => $email,
+        "mobile" => $mobile,
+        "location" => $ipaddress,
+        // Add all other fields here...
+    );
+    $headers = array(
+        "API-Key: " . $apiKey,
+        "Content-Type: application/json",
+    );
+    $ch = curl_init($apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    $response = curl_exec($ch);
+    // if ($response === false) {
+    //     echo "cURL Error: " . curl_error($ch);
+    // } else {
+    //     echo "API Response: " . $response;
+    // }
+    // API Call End For CRM Leads           
+                
+                                  $fields = array(
+    "sender_id" => "SHHOME",
+    "message" => "Property- .$property. Name- .$name., Mobile-.$mobile., Email- .$email. 
+Regards, SearchHomes india pvt ltd",
+    "template_id" => "1207163731895114985",
+    "entity_id" => "1201159178483176795",
+    "route" => "dlt_manual",
+    "numbers" => "9036611811",
+);
+// ,8638868550,6264159415,8951927450, 8147267372, 9036611811
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://www.fast2sms.com/dev/bulkV2",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_SSL_VERIFYHOST => 0,
+  CURLOPT_SSL_VERIFYPEER => 0,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => json_encode($fields),
+  CURLOPT_HTTPHEADER => array(
+    "authorization: RKnKg7po5EXg8lVwwYLYnZHFcoBBHEqWKfh4juLfSuuuZCCbPj4nFjzsSnGV",
+    "accept: */*",
+    "cache-control: no-cache",
+    "content-type: application/json"
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+// if ($err) {
+//   echo "cURL Error #:" . $err;
+// } else {
+//   echo $response;
+// }
+    
+					?>
+						<script>
+							window.location.href='thank_you.php';
+						</script>
+					<?php
+    }
+?>

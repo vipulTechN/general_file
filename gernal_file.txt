@@ -1,288 +1,291 @@
-<form id="form1" action="mail.php" method="POST" class="form-side">
-        <input type="hidden" name="ipaddress" id="ipaddress-1" value="" />
-        <input type="hidden" name="mgh" value="PRP-P" />
-        <div class="form-group">
-          <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field" required
-            placeholder="Name" />
-        </div>
-        <div class="form-group">
-        <input type="hidden" name="fullMobileNo" value="" />
-        <span id="sendotpdiv1" style="width: 100%;">
-            <input type="tel" id="intTelInput-mob1" pattern="[0-9]+" name="phone" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="Mobile No" />
-        </span>
-        <span id="verifyotpdiv1" style="display: none; width: 100%;">
-          <input type="number" id="otpinput1" class="intTelInput form-control rounded-0 micro-form-field"  name="otp">
-      </span>
-    </div>
+//This is filter table Script 
+var isFilterApplied = false; // Flag to track if filter is applied
+var activeFilters = [];
+function applyFilters() {
+  var filterInputs = [
+    { id: "filterID", columnIndex: 0 },
+    { id: "sourceTable", columnIndex: 1 },
+    {id: "filterBookingDateStart", columnIndex:2},
+    {id: "filterBookingDateEnd", columnIndex:2},
+    { id: "filterMonth", columnIndex: 3 },
+    { id: "filterBuilder", columnIndex: 4 },
+    { id: "filterProject", columnIndex: 5 },
+    { id: "filterCustumername", columnIndex: 6 },
+    { id: "filterContactnumber", columnIndex: 7 },
+    { id: "filterEmail", columnIndex: 8 },
+    { id: "filterType", columnIndex: 9 },
+    { id: "filterUnit", columnIndex: 10 },
+    { id: "filterSize", columnIndex: 11 },
+    { id: "filterAgreement", columnIndex: 12 },
+    { id: "filterCommission", columnIndex: 13 },
+    { id: "filterTrevenue", columnIndex: 14 },
+    { id: "filterCashBack", columnIndex: 15 },
+    { id: "filterActualRevenue", columnIndex: 16 },
+    { id: "filterStatus", columnIndex: 17 },
+    { id: "filterReceived", columnIndex: 18 },
+  ];
 
-    <div id="otpResult1" style="font-size: 10px;"></div>
-    <div id="phoneError1" style="color: red; font-size: 10px; display: none;"></div>
-    <div id="otpError1" style="color: red; font-size: 10px; display: none;"></div>
-    <div id="otpSuccess1" style="color: green; font-size: 10px; display: none;"></div>
-        <div class="form-group">
-          <input type="email" name="email" class="form-control rounded-0 micro-form-field" placeholder="E-Mail Address" />
-        </div>
-       
-      <span id="sendotpbutton1" class="sendotpbutton">
-        <button type="button" class="btn btn-info effetGradient effectScale" onclick="sendOtp(1)">Send OTP</button>
-    </span>
-    <span id="VerifyAndSubmit1" class="VerifyAndSubmit" style="display: none;">
-        <button type="button" class="btn btn-info micro-form-btn effetGradient effectScale" onclick="verifyOtp(1)">Verify OTP & Submit</button>
-    </span>
-      </form>
+  activeFilters = []; // Reset active filters
 
+  $("#filterdata tr").each(function() {
+      var row = $(this);
+      var showRow = true;
 
+      filterInputs.forEach(function(inputInfo) {
+          var input = $("#" + inputInfo.id);
+          var filterValue = input.val().toLowerCase();
+          var cellValue = row.find("td:eq(" + inputInfo.columnIndex + ")").text().toLowerCase();
 
-<form id="form2" action="mail.php" method="POST" class="form-side">
-        <input type="hidden" name="ipaddress" id="ipaddress-2" value="" />
-        <input type="hidden" name="mgh" value="PRP-P" />
-        <div class="form-group">
-          <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field"
-            placeholder="Name" required />
-        </div>
-        <div class="form-group">
-        <input type="hidden" name="fullMobileNo" value="" />
-        <span id="sendotpdiv2" style="width: 100%;">
-          <input type="tel" id="intTelInput-mob2" pattern="[0-9]+" name="phone" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="Mobile No" />
-        </span>
-        <span id="verifyotpdiv2" style="display: none; width: 100%;">
-          <input type="number" id="otpinput2" class="intTelInput form-control rounded-0 micro-form-field" name="otp">
-      </span>
-    </div>
-    
-    <div id="otpResult2" style="font-size: 10px;"></div>
-    <div id="phoneError2" style="color: red; font-size: 10px; display: none;"></div>
-    <div id="otpError2" style="color: red; font-size: 10px; display: none;"></div>
-    <div id="otpSuccess2" style="color: green; font-size: 10px; display: none;"></div>
-        <div class="form-group">
-          <input type="email" name="email" class="form-control rounded-0 micro-form-field" placeholder="E-Mail Address" />
-        </div>
-        <span id="sendotpbutton2" class="sendotpbutton">
-          <button type="button" class="btn btn-info effetGradient effectScale" onclick="sendOtp(2)">Send OTP</button>
-      </span>
-      <span id="VerifyAndSubmit2" class="VerifyAndSubmit" style="display: none;">
-          <button type="button" class="btn btn-info micro-form-btn effetGradient effectScale" onclick="verifyOtp(2)">Verify OTP & Submit</button>
-      </span>
-      </form>
+          // Handle date range filtering
+          if (inputInfo.id === "filterBookingDateStart" || inputInfo.id === "filterBookingDateEnd") {
+              var startDate = new Date($("#filterBookingDateStart").val());
+              var endDate = new Date($("#filterBookingDateEnd").val());
+              var bookingDate = new Date(cellValue);
 
-<form id="form3" action="mail.php" method="POST" class="form-modal">
-                  <input type="hidden" name="ipaddress" id="ipaddress-3" value="" />
-                  <input type="hidden" name="mgh" value="PRP-P" />
-              
-                  <div class="form-group">
-                      <input type="text" name="name" pattern="[a-zA-Z ]+" class="form-control rounded-0 micro-form-field" required placeholder="Name" />
-                  </div>
-              
-                  <div class="form-group">
-                      <input type="hidden" name="fullMobileNo" value="" />
-                      <span id="sendotpdiv3" style="width: 100%;">
-                          <input type="tel" id="intTelInput-mob3" pattern="[0-9]+" name="phone" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="Mobile No" />
-                      </span>
-                      <span id="verifyotpdiv3" style="display: none; width: 100%;">
-                          <input type="number" id="otpinput3" name="otp" class="intTelInput form-control rounded-0 micro-form-field" required placeholder="OTP">
-                      </span>
-                  </div>
-              
-                  <div id="otpResult3" style="font-size: 10px;"></div>
-                  <div id="phoneError3" style="color: red; font-size: 10px; display: none;"></div>
-                  <div id="otpError3" style="color: red; font-size: 10px; display: none;"></div>
-                  <div id="otpSuccess3" style="color: green; font-size: 10px; display: none;"></div>
-              
-                  <div class="form-group form-md">
-                      <input type="email" name="email" class="form-control rounded-0 micro-form-field" placeholder="E-Mail Address" />
-                  </div>
-              
-                  <div class="form-group form-lg d-none">
-                      <textarea name="message" col="5" class="form-control rounded-0 micro-form-field" placeholder="Comment"></textarea>
-                  </div>
-              
-                  <span id="sendotpbutton3" class="sendotpbutton">
-                      <button type="button" class="btn btn-info   effetGradient effectScale" onclick="sendOtp(3)">Send OTP</button>
-                  </span>
-                  <span id="VerifyAndSubmit3" class="VerifyAndSubmit" style="display: none;">
-                      <button type="button" class="btn btn-info micro-form-btn effetGradient effectScale" onclick="verifyOtp(3)">Verify OTP & Submit</button>
-                  </span>
-               </form>
-
-
-<script>
-  let otpSent = {};
-let otpVerified = {};
-let generatedOtp = {};
-
-function generateOtp() {
-    return Math.floor(1000 + Math.random() * 9000).toString();
-}
-
-function sendOtp(formId) {
-    const userPhone = document.getElementById(`intTelInput-mob${formId}`).value;
-    if (userPhone === "") {
-        document.getElementById(`intTelInput-mob${formId}`).style.borderBottom = "2px solid red";
-        document.getElementById(`phoneError${formId}`).innerText = "Enter your phone number to send OTP";
-        document.getElementById(`phoneError${formId}`).style.display = "block";
-    } else {
-        generatedOtp[formId] = generateOtp();
-        otpSent[formId] = true;
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = this.responseText;
-                if (response.includes("success")) {
-                    document.getElementById(`verifyotpdiv${formId}`).style.display = "flex";
-                    document.getElementById(`otpResult${formId}`).style.color = "green";
-                    document.getElementById(`otpResult${formId}`).innerText = "OTP sent successfully!";
-                    
-                    // Hide the mobile number input and display the OTP input
-                    document.getElementById(`sendotpdiv${formId}`).style.display = "none";
-                    document.getElementById(`verifyotpdiv${formId}`).style.display = "block";
-                    
-                    // Hide Send OTP button and show Verify & Submit button
-                    document.querySelector(`#sendotpbutton${formId}`).style.display = "none";
-                    document.querySelector(`#VerifyAndSubmit${formId}`).style.display = "inline-block";
-                } else {
-                    document.getElementById(`otpResult${formId}`).style.color = "red";
-                    document.getElementById(`otpResult${formId}`).innerText = "Failed to send OTP.";
-                    
-                    // Keep the Send OTP button visible
-                    document.querySelector(`#sendotpbutton${formId}`).style.display = "inline-block";
+              if (!isNaN(startDate) && !isNaN(endDate)) {
+                if (bookingDate < startDate || bookingDate > endDate) {
+                    showRow = false;
+                    return false; // Break out of forEach loop
                 }
-            } else {
-                document.getElementById(`otpResult${formId}`).style.color = "red";
-                document.getElementById(`otpResult${formId}`).innerText = "Failed to send OTP.";
-                
-                // Keep the Send OTP button visible
-                document.querySelector(`#sendotpbutton${formId}`).style.display = "inline-block";
-            }
-        };
+              }
+          } else {
+              if (cellValue.indexOf(filterValue) === -1) {
+                  showRow = false;
+                  return false; // Break out of forEach loop
+              }
+          }
 
-        var url = "https://www.fast2sms.com/dev/bulkV2?authorization=RKnKg7po5EXg8lVwwYLYnZHFcoBBHEqWKfh4juLfSuuuZCCbPj4nFjzsSnGV&variables_values=" + generatedOtp[formId] + "&route=otp&numbers=" + encodeURIComponent(userPhone);
-        xhttp.open("GET", url, true);
-        xhttp.send();
-        document.getElementById(`phoneError${formId}`).style.display = "none";
-    }
+          if (filterValue.trim() !== "") {
+              activeFilters.push(filterValue); // Add non-empty filters to activeFilters
+          }
+      });
+
+      if (showRow) {
+          row.addClass("custom-filtered-row");
+      } else {
+          row.removeClass("custom-filtered-row");
+      }
+  });
+
+  var totalTotalRevenue = 0;
+  var totalActualRevenue = 0;
+  var counterRow = 0;
+
+// Loop through visible rows and calculate totals
+$(".custom-filtered-row").each(function() {
+  var totalRevenue = parseFloat($(this).find("td:eq(13)").text());
+  var actualRevenue = parseFloat($(this).find("td:eq(15)").text());
+
+  if (!isNaN(totalRevenue)) {
+    totalTotalRevenue += totalRevenue;
+    counterRow += 1;
+  }
+
+  if (!isNaN(actualRevenue)) {
+    totalActualRevenue += actualRevenue;
+  }
+});
+
+// Update the totals in your UI (adjust the IDs accordingly)
+$("#counter").text(counterRow);
+$("#totalTotalRevenue").text(totalTotalRevenue.toLocaleString());
+$("#totalActualRevenue").text(totalActualRevenue.toLocaleString());
+
+  applyCustomFilter();
+}
+applyCustomFilter();
+// Function to apply custom filter based on active filters
+function applyCustomFilter() {
+  $("#filterdata tr").hide(); // Hide all rows
+  $(".custom-filtered-row").show(); // Show only the rows with the custom class
+
+  isFilterApplied = true; // Mark filter as applied
 }
 
-function verifyOtp(formId) {
-    const otp = document.getElementById(`otpinput${formId}`).value;
-    if (otp === "") {
-        document.getElementById(`otpinput${formId}`).style.borderBottom = "2px solid red";
-        document.getElementById(`otpError${formId}`).innerText = "Enter the OTP to verify";
-        document.getElementById(`otpError${formId}`).style.display = "block";
-    } else if (otp === generatedOtp[formId]) {
-        otpVerified[formId] = true;
-        document.getElementById(`otpError${formId}`).style.display = "none";
-        document.getElementById(`otpSuccess${formId}`).innerText = "OTP verified successfully!";
-        document.getElementById(`otpSuccess${formId}`).style.display = "block";
-        // Submit the form after successful OTP verification
-        document.querySelector(`#form${formId}`).submit();
-    } else {
-        document.getElementById(`otpinput${formId}`).style.borderBottom = "2px solid red";
-        document.getElementById(`otpError${formId}`).innerText = "Invalid OTP, please try again.";
-        document.getElementById(`otpError${formId}`).style.display = "block";
-        document.getElementById(`otpSuccess${formId}`).style.display = "none";
-    }
-}
+// Show filter modal when button is clicked
+$(".filterable .btn-filter1").click(function() {
+  $("#filterModal").modal("show");
+});
 
-function checkOtpVerification(formId) {
-    if (!otpVerified[formId]) {
-        document.getElementById(`otpError${formId}`).innerText = "Please verify your OTP before submitting.";
-        document.getElementById(`otpError${formId}`).style.display = "block";
-        return false; // Prevent form submission
-    }
-    return true; // Allow form submission
-}
-</script>
+// Apply filters and update the table
+$("#applyFiltersBtn").click(function() {
+  console.log("Apply Filters button clicked"); // Check if this message is logged
+  applyFilters();
+  $("#emptotaldata").css("display", "block");
+  filterModal.hide();
+});
 
-mail.php
-<?php 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){ 
-      
-    $from = $_POST['email']; // this is the sender's Email address
-    $name = $_POST['name'];
-    $message ="";
-    $property = $_POST['mgh'];
-    $email = $_POST['email'];
-    $mobile = $_POST['phone'];
-    $ipaddress = $_POST['ipaddress'];
-    $enquiry = $_POST['message'];
-    $subject = "Soparnika Life On The Green New Upcoming Project Property Landing Page";
-    $message = "Name : ".$name ."\n"."Email : ". $email ."\n" . "Mobile : ".$mobile."\n" . "Message: ".$enquiry."\n"."property: ".$property."\n" . $_POST['message']."\n "."\n";
-    $message .= "This email is coming from Soparnika Life On The Green New Upcoming Project Property Landing Page Form Submission";
-     
-    // API CAll For CRM Leads
-    $apiUrl = "https://connect.leadrat.com/api/v1/integration/GoogleAds";
-    $apiKey = "N2EwNTllNzMtNmUxOS00OWQzLTg1YjgtMWIwMzNhNWEwNDU5";
-    $postData = array(
-        "name" => $name,
-        "email" => $email,
-        "mobile" => $mobile,
-        "location" => $ipaddress,
-        // Add all other fields here...
-    );
-    $headers = array(
-        "API-Key: " . $apiKey,
-        "Content-Type: application/json",
-    );
-    $ch = curl_init($apiUrl);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    $response = curl_exec($ch);
-    // if ($response === false) {
-    //     echo "cURL Error: " . curl_error($ch);
-    // } else {
-    //     echo "API Response: " . $response;
-    // }
-    // API Call End For CRM Leads           
-                
-                                  $fields = array(
-    "sender_id" => "SHHOME",
-    "message" => "Property- .$property. Name- .$name., Mobile-.$mobile., Email- .$email. 
-Regards, SearchHomes india pvt ltd",
-    "template_id" => "1207163731895114985",
-    "entity_id" => "1201159178483176795",
-    "route" => "dlt_manual",
-    "numbers" => "9036611811",
-);
-// ,8638868550,6264159415,8951927450, 8147267372, 9036611811
-$curl = curl_init();
+// Clear filters and update the table when modal is closed
+$("#filterModal").on("hidden.bs.modal", function() {
+  $(".filterable .filters input").val("");
+  if (!isFilterApplied) {
+    $("#filterdata tr").show();
+  }
+  applyFilters(); // Reapply filters if they were applied
+});
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://www.fast2sms.com/dev/bulkV2",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_SSL_VERIFYHOST => 0,
-  CURLOPT_SSL_VERIFYPEER => 0,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => json_encode($fields),
-  CURLOPT_HTTPHEADER => array(
-    "authorization: RKnKg7po5EXg8lVwwYLYnZHFcoBBHEqWKfh4juLfSuuuZCCbPj4nFjzsSnGV",
-    "accept: */*",
-    "cache-control: no-cache",
-    "content-type: application/json"
-  ),
-));
+ // Close filters and update the table
+ $("#closeFilter").click(function() {
+  applyFilters();
+  $("#filterModal").modal("hide");
+});
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
 
-curl_close($curl);
+ // Cancle filters and update the table
+ $("#cancleFilter").click(function() {
+  applyFilters();
+  $("#filterModal").modal("hide");
+});
+// this script is for clear the filter which is applied
+$(document).ready(function () {
+  // Clear Filters button click event
+  $("#clearFiltersBtn").click(function () {
+      // Clear all filter inputs
+      $("#filterID, #sourceTable, #filterBookingDateStart, #filterBookingDateEnd, #filterMonth, #filterBuilder, #filterProject, #filterCustumername, #filterContactnumber, #filterEmail, #filterType, #filterUnit, #filterSize, #filterAgreement, #filterCommission, #filterTrevenue, #filterCashBack, #filterActualRevenue, #filterStatus, #filterReceived").val("");
+      $("#emptotaldata").css("display", "none");
+  });
+});
+$("#clearFiltersBtn").click(function() {
+applyFilters();
+$("#filterModal").modal("hide");
+});
+//This is filter table script end
+//////////////////////////////////////////////////////////
+<?php if ($Project_type === 'mandate'): ?>
+  <script>
+    var isFilterApplied=!1,activeFilters=[];function applyFilters(){var e=[{id:"filterID",columnIndex:0},{id:"sourceTable",columnIndex:1},{id:"filterBookingDateStart",columnIndex:2},{id:"filterBookingDateEnd",columnIndex:2},{id:"filterMonth",columnIndex:3},{id:"filterBuilder",columnIndex:4},{id:"filterProject",columnIndex:5},{id:"filterCustumername",columnIndex:6},{id:"filterContactnumber",columnIndex:7},{id:"filterEmail",columnIndex:8},{id:"filterType",columnIndex:9},{id:"filterUnit",columnIndex:10},{id:"filterSize",columnIndex:11},{id:"filterAgreement",columnIndex:12},{id:"filterCashBack",columnIndex:13},{id:"filterStatus",columnIndex:14},];activeFilters=[],$("#filterdata tr").each(function(){var t=$(this),i=!0;e.forEach(function(e){var l=$("#"+e.id).val().toLowerCase(),r=t.find("td:eq("+e.columnIndex+")").text().toLowerCase();if("filterBookingDateStart"===e.id||"filterBookingDateEnd"===e.id){var n=new Date($("#filterBookingDateStart").val()),o=new Date($("#filterBookingDateEnd").val()),a=new Date(r);if(!isNaN(n)&&!isNaN(o)&&(a<n||a>o))return i=!1,!1}else if(-1===r.indexOf(l))return i=!1,!1;""!==l.trim()&&activeFilters.push(l)}),i?t.addClass("custom-filtered-row"):t.removeClass("custom-filtered-row")});var t=0,i=0,l=0;$(".custom-filtered-row").each(function(){var e=parseFloat($(this).find("td:eq(13)").text()),r=parseFloat($(this).find("td:eq(15)").text());isNaN(e)||(t+=e,l+=1),isNaN(r)||(i+=r)}),$("#counter").text(l),$("#totalTotalRevenue").text(t.toLocaleString()),$("#totalActualRevenue").text(i.toLocaleString()),applyCustomFilter()}function applyCustomFilter(){$("#filterdata tr").hide(),$(".custom-filtered-row").show(),isFilterApplied=!0}applyCustomFilter(),$(".filterable .btn-filter1").click(function(){$("#filterModal").modal("show")}),$("#applyFiltersBtn").click(function(){console.log("Apply Filters button clicked"),applyFilters(),$("#emptotaldata").css("display","block"),filterModal.hide()}),$("#filterModal").on("hidden.bs.modal",function(){$(".filterable .filters input").val(""),isFilterApplied||$("#filterdata tr").show(),applyFilters()}),$("#closeFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$("#cancleFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$(document).ready(function(){$("#clearFiltersBtn").click(function(){$("#filterID, #sourceTable, #filterBookingDateStart, #filterBookingDateEnd, #filterMonth, #filterBuilder, #filterProject, #filterCustumername, #filterContactnumber, #filterEmail, #filterType, #filterUnit, #filterSize, #filterAgreement, #filterCashBack, #filterStatus").val(""),$("#emptotaldata").css("display","none")})}),$("#clearFiltersBtn").click(function(){applyFilters(),$("#filterModal").modal("hide")});
+  </script>
+ <?php else: ?>
+  <script>
+    var isFilterApplied=!1,activeFilters=[];function applyFilters(){var e=[{id:"filterID",columnIndex:0},{id:"sourceTable",columnIndex:1},{id:"filterBookingDateStart",columnIndex:2},{id:"filterBookingDateEnd",columnIndex:2},{id:"filterMonth",columnIndex:3},{id:"filterBuilder",columnIndex:4},{id:"filterProject",columnIndex:5},{id:"filterCustumername",columnIndex:6},{id:"filterContactnumber",columnIndex:7},{id:"filterEmail",columnIndex:8},{id:"filterType",columnIndex:9},{id:"filterUnit",columnIndex:10},{id:"filterSize",columnIndex:11},{id:"filterAgreement",columnIndex:12},{id:"filterCommission",columnIndex:13},{id:"filterTrevenue",columnIndex:14},{id:"filterCashBack",columnIndex:15},{id:"filterActualRevenue",columnIndex:16},{id:"filterStatus",columnIndex:17},{id:"filterReceived",columnIndex:18},];activeFilters=[],$("#filterdata tr").each(function(){var t=$(this),i=!0;e.forEach(function(e){var l=$("#"+e.id).val().toLowerCase(),r=t.find("td:eq("+e.columnIndex+")").text().toLowerCase();if("filterBookingDateStart"===e.id||"filterBookingDateEnd"===e.id){var n=new Date($("#filterBookingDateStart").val()),o=new Date($("#filterBookingDateEnd").val()),a=new Date(r);if(!isNaN(n)&&!isNaN(o)&&(a<n||a>o))return i=!1,!1}else if(-1===r.indexOf(l))return i=!1,!1;""!==l.trim()&&activeFilters.push(l)}),i?t.addClass("custom-filtered-row"):t.removeClass("custom-filtered-row")});var t=0,i=0,l=0;$(".custom-filtered-row").each(function(){var e=parseFloat($(this).find("td:eq(13)").text()),r=parseFloat($(this).find("td:eq(15)").text());isNaN(e)||(t+=e,l+=1),isNaN(r)||(i+=r)}),$("#counter").text(l),$("#totalTotalRevenue").text(t.toLocaleString()),$("#totalActualRevenue").text(i.toLocaleString()),applyCustomFilter()}function applyCustomFilter(){$("#filterdata tr").hide(),$(".custom-filtered-row").show(),isFilterApplied=!0}applyCustomFilter(),$(".filterable .btn-filter1").click(function(){$("#filterModal").modal("show")}),$("#applyFiltersBtn").click(function(){console.log("Apply Filters button clicked"),applyFilters(),$("#emptotaldata").css("display","block"),filterModal.hide()}),$("#filterModal").on("hidden.bs.modal",function(){$(".filterable .filters input").val(""),isFilterApplied||$("#filterdata tr").show(),applyFilters()}),$("#closeFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$("#cancleFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$(document).ready(function(){$("#clearFiltersBtn").click(function(){$("#filterID, #sourceTable, #filterBookingDateStart, #filterBookingDateEnd, #filterMonth, #filterBuilder, #filterProject, #filterCustumername, #filterContactnumber, #filterEmail, #filterType, #filterUnit, #filterSize, #filterAgreement, #filterCommission, #filterTrevenue, #filterCashBack, #filterActualRevenue, #filterStatus, #filterReceived").val(""),$("#emptotaldata").css("display","none")})}),$("#clearFiltersBtn").click(function(){applyFilters(),$("#filterModal").modal("hide")});
+  </script>
+<?php endif; ?>
+////////////////////////////////////////////// HTML MODEL
+<!-- Filter Rows Modal Start -->
+  <div class="modal fade" tabindex="-1" id="filterModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Filter Data</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="closeFilter"></button>
+            </div>
+            <div class="modal-body">
+              <div class="container p-0">
+                <div class="row">
+                <div class="col-md-6 mb-2">
+                      <div class="form-item">
+                          <label for="filterBookingDateStart">Booking Date Start</label>
+                          <input type="date" class="form-control form-control-lg custom-input"
+                              id="filterBookingDateStart">
+                      </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                      <div class="form-item">
+                          <label for="filterBookingDateEnd">Booking Date End</label>
+                          <input type="date" class="form-control form-control-lg custom-input"
+                              id="filterBookingDateEnd">
+                      </div>
+                  </div>
+                  <!-- Filter inputs -->
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterID" placeholder="ID">
+                    <!-- <input type="text" class="form-control mb-2" id="filterBookingDate" placeholder="Booking Date"> -->
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterMonth" placeholder="Month">
+                    <input type="text" class="form-control mb-2" id="filterBuilder" placeholder="Builder Name">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterProject" placeholder="Project Name">
+                    <input type="text" class="form-control mb-2" id="filterCustumername" placeholder="Customer Name">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterContactnumber" placeholder="Contact No.">
+                    <input type="text" class="form-control mb-2" id="filterEmail" placeholder="Email Id">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterType" placeholder="Unit Type">
+                    <input type="text" class="form-control mb-2" id="filterUnit" placeholder="Unit No.">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterSize" placeholder="Unit Size">
+                    <input type="text" class="form-control mb-2" id="filterAgreement" placeholder="Agreement Value">
+                  </div>
+                  <?php if ($Project_type === 'mandate'): ?>
+                    <!-- <td>Commission %</td> -->
+                  <?php else: ?>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control mb-2" id="filterCommission" placeholder="Commission %">
+                      <input type="text" class="form-control mb-2" id="filterTrevenue" placeholder="Total Revenue">
+                    </div>
+                  <?php endif; ?>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterCashBack" placeholder="CashBack %">
+                    <?php if ($Project_type === 'mandate'): ?>
+                      <!-- <td>Commission %</td> -->
+                    <?php else: ?>
+                      <input type="text" class="form-control mb-2" id="filterActualRevenue" placeholder="Actual Revenue">
+                    <?php endif; ?>
+                  </div>
+                  <?php if ($Project_type === 'mandate'): ?>
+                      <!-- <td>Commission %</td> -->
+                  <?php else: ?>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control mb-2" id="filterReceived" placeholder="Received Amt.">
+                    </div>
+                  <?php endif; ?>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" id="filterStatus" placeholder="Status">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- Close Modal button -->
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
+              <!-- Clear Filters button -->
+              <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
+              <!-- Apply Filters button -->
+              <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- filter rows Modal End -->
+/////////////////////////////////// Backend Respnonse
+foreach ($rows as $row) {
+          $output .= '<tr data-status="' . $row['astatus'] . '">
+          <td>' . $row['id'] . '</td>
+          <td>' . $row['source_table'] . '</td>
+          <td>' . $row['booking_date'] . '</td>
+          <td>' . $row['booking_month'] . '</td>
+          <td>' . $row['builder'] . '</td>
+          <td>' . $row['project'] . '</td>
+          <td>' . $row['customer_name'] . '</td>
+          <td>' . $row['contact_number'] . '</td>
+          <td>' . $row['email_id'] . '</td>
+          <td>' . $row['project_type'] . '</td>
+          <td>' . $row['unit_no'] . '</td>
+          <td>' . $row['size'] . '</td>
+          <td>' . $row['agreement_value'] . '</td>';
+  
+      if ($Project_type !== 'mandate') {
+          $output .= '<td>' . $row['cashback'] . '%</td>';
+      }
+  
+      if ($Project_type !== 'mandate') {
+          $output .= '<td>' . $row['revenue'] . '</td>';
+      }
+  
+      $output .= '<td>' . $row['ccashback'] . '%</td>';
+  
+      if ($Project_type !== 'mandate') {
+          $output .= '<td>' . $row['crevenue'] . '</td>';
+      }
+  
+      $output .= '<td><div class="' . $row['astatus'] . '"> ' . $row['astatus'] . '</div></td>';
+  
+      if ($Project_type !== 'mandate') {
+          $output .= '<td>' . $row['recived_amt'] . '</td>';
+      }
 
-// if ($err) {
-//   echo "cURL Error #:" . $err;
-// } else {
-//   echo $response;
-// }
-    
-					?>
-						<script>
-							window.location.href='thank_you.php';
-						</script>
-					<?php
-    }
-?>

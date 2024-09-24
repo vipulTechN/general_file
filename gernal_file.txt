@@ -1,167 +1,4 @@
-//This is filter table Script 
-var isFilterApplied = false; // Flag to track if filter is applied
-var activeFilters = [];
-function applyFilters() {
-  var filterInputs = [
-    { id: "filterID", columnIndex: 0 },
-    { id: "sourceTable", columnIndex: 1 },
-    {id: "filterBookingDateStart", columnIndex:2},
-    {id: "filterBookingDateEnd", columnIndex:2},
-    { id: "filterMonth", columnIndex: 3 },
-    { id: "filterBuilder", columnIndex: 4 },
-    { id: "filterProject", columnIndex: 5 },
-    { id: "filterCustumername", columnIndex: 6 },
-    { id: "filterContactnumber", columnIndex: 7 },
-    { id: "filterEmail", columnIndex: 8 },
-    { id: "filterType", columnIndex: 9 },
-    { id: "filterUnit", columnIndex: 10 },
-    { id: "filterSize", columnIndex: 11 },
-    { id: "filterAgreement", columnIndex: 12 },
-    { id: "filterCommission", columnIndex: 13 },
-    { id: "filterTrevenue", columnIndex: 14 },
-    { id: "filterCashBack", columnIndex: 15 },
-    { id: "filterActualRevenue", columnIndex: 16 },
-    { id: "filterStatus", columnIndex: 17 },
-    { id: "filterReceived", columnIndex: 18 },
-  ];
-
-  activeFilters = []; // Reset active filters
-
-  $("#filterdata tr").each(function() {
-      var row = $(this);
-      var showRow = true;
-
-      filterInputs.forEach(function(inputInfo) {
-          var input = $("#" + inputInfo.id);
-          var filterValue = input.val().toLowerCase();
-          var cellValue = row.find("td:eq(" + inputInfo.columnIndex + ")").text().toLowerCase();
-
-          // Handle date range filtering
-          if (inputInfo.id === "filterBookingDateStart" || inputInfo.id === "filterBookingDateEnd") {
-              var startDate = new Date($("#filterBookingDateStart").val());
-              var endDate = new Date($("#filterBookingDateEnd").val());
-              var bookingDate = new Date(cellValue);
-
-              if (!isNaN(startDate) && !isNaN(endDate)) {
-                if (bookingDate < startDate || bookingDate > endDate) {
-                    showRow = false;
-                    return false; // Break out of forEach loop
-                }
-              }
-          } else {
-              if (cellValue.indexOf(filterValue) === -1) {
-                  showRow = false;
-                  return false; // Break out of forEach loop
-              }
-          }
-
-          if (filterValue.trim() !== "") {
-              activeFilters.push(filterValue); // Add non-empty filters to activeFilters
-          }
-      });
-
-      if (showRow) {
-          row.addClass("custom-filtered-row");
-      } else {
-          row.removeClass("custom-filtered-row");
-      }
-  });
-
-  var totalTotalRevenue = 0;
-  var totalActualRevenue = 0;
-  var counterRow = 0;
-
-// Loop through visible rows and calculate totals
-$(".custom-filtered-row").each(function() {
-  var totalRevenue = parseFloat($(this).find("td:eq(13)").text());
-  var actualRevenue = parseFloat($(this).find("td:eq(15)").text());
-
-  if (!isNaN(totalRevenue)) {
-    totalTotalRevenue += totalRevenue;
-    counterRow += 1;
-  }
-
-  if (!isNaN(actualRevenue)) {
-    totalActualRevenue += actualRevenue;
-  }
-});
-
-// Update the totals in your UI (adjust the IDs accordingly)
-$("#counter").text(counterRow);
-$("#totalTotalRevenue").text(totalTotalRevenue.toLocaleString());
-$("#totalActualRevenue").text(totalActualRevenue.toLocaleString());
-
-  applyCustomFilter();
-}
-applyCustomFilter();
-// Function to apply custom filter based on active filters
-function applyCustomFilter() {
-  $("#filterdata tr").hide(); // Hide all rows
-  $(".custom-filtered-row").show(); // Show only the rows with the custom class
-
-  isFilterApplied = true; // Mark filter as applied
-}
-
-// Show filter modal when button is clicked
-$(".filterable .btn-filter1").click(function() {
-  $("#filterModal").modal("show");
-});
-
-// Apply filters and update the table
-$("#applyFiltersBtn").click(function() {
-  console.log("Apply Filters button clicked"); // Check if this message is logged
-  applyFilters();
-  $("#emptotaldata").css("display", "block");
-  filterModal.hide();
-});
-
-// Clear filters and update the table when modal is closed
-$("#filterModal").on("hidden.bs.modal", function() {
-  $(".filterable .filters input").val("");
-  if (!isFilterApplied) {
-    $("#filterdata tr").show();
-  }
-  applyFilters(); // Reapply filters if they were applied
-});
-
- // Close filters and update the table
- $("#closeFilter").click(function() {
-  applyFilters();
-  $("#filterModal").modal("hide");
-});
-
-
- // Cancle filters and update the table
- $("#cancleFilter").click(function() {
-  applyFilters();
-  $("#filterModal").modal("hide");
-});
-// this script is for clear the filter which is applied
-$(document).ready(function () {
-  // Clear Filters button click event
-  $("#clearFiltersBtn").click(function () {
-      // Clear all filter inputs
-      $("#filterID, #sourceTable, #filterBookingDateStart, #filterBookingDateEnd, #filterMonth, #filterBuilder, #filterProject, #filterCustumername, #filterContactnumber, #filterEmail, #filterType, #filterUnit, #filterSize, #filterAgreement, #filterCommission, #filterTrevenue, #filterCashBack, #filterActualRevenue, #filterStatus, #filterReceived").val("");
-      $("#emptotaldata").css("display", "none");
-  });
-});
-$("#clearFiltersBtn").click(function() {
-applyFilters();
-$("#filterModal").modal("hide");
-});
-//This is filter table script end
-//////////////////////////////////////////////////////////
-<?php if ($Project_type === 'mandate'): ?>
-  <script>
-    var isFilterApplied=!1,activeFilters=[];function applyFilters(){var e=[{id:"filterID",columnIndex:0},{id:"sourceTable",columnIndex:1},{id:"filterBookingDateStart",columnIndex:2},{id:"filterBookingDateEnd",columnIndex:2},{id:"filterMonth",columnIndex:3},{id:"filterBuilder",columnIndex:4},{id:"filterProject",columnIndex:5},{id:"filterCustumername",columnIndex:6},{id:"filterContactnumber",columnIndex:7},{id:"filterEmail",columnIndex:8},{id:"filterType",columnIndex:9},{id:"filterUnit",columnIndex:10},{id:"filterSize",columnIndex:11},{id:"filterAgreement",columnIndex:12},{id:"filterCashBack",columnIndex:13},{id:"filterStatus",columnIndex:14},];activeFilters=[],$("#filterdata tr").each(function(){var t=$(this),i=!0;e.forEach(function(e){var l=$("#"+e.id).val().toLowerCase(),r=t.find("td:eq("+e.columnIndex+")").text().toLowerCase();if("filterBookingDateStart"===e.id||"filterBookingDateEnd"===e.id){var n=new Date($("#filterBookingDateStart").val()),o=new Date($("#filterBookingDateEnd").val()),a=new Date(r);if(!isNaN(n)&&!isNaN(o)&&(a<n||a>o))return i=!1,!1}else if(-1===r.indexOf(l))return i=!1,!1;""!==l.trim()&&activeFilters.push(l)}),i?t.addClass("custom-filtered-row"):t.removeClass("custom-filtered-row")});var t=0,i=0,l=0;$(".custom-filtered-row").each(function(){var e=parseFloat($(this).find("td:eq(13)").text()),r=parseFloat($(this).find("td:eq(15)").text());isNaN(e)||(t+=e,l+=1),isNaN(r)||(i+=r)}),$("#counter").text(l),$("#totalTotalRevenue").text(t.toLocaleString()),$("#totalActualRevenue").text(i.toLocaleString()),applyCustomFilter()}function applyCustomFilter(){$("#filterdata tr").hide(),$(".custom-filtered-row").show(),isFilterApplied=!0}applyCustomFilter(),$(".filterable .btn-filter1").click(function(){$("#filterModal").modal("show")}),$("#applyFiltersBtn").click(function(){console.log("Apply Filters button clicked"),applyFilters(),$("#emptotaldata").css("display","block"),filterModal.hide()}),$("#filterModal").on("hidden.bs.modal",function(){$(".filterable .filters input").val(""),isFilterApplied||$("#filterdata tr").show(),applyFilters()}),$("#closeFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$("#cancleFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$(document).ready(function(){$("#clearFiltersBtn").click(function(){$("#filterID, #sourceTable, #filterBookingDateStart, #filterBookingDateEnd, #filterMonth, #filterBuilder, #filterProject, #filterCustumername, #filterContactnumber, #filterEmail, #filterType, #filterUnit, #filterSize, #filterAgreement, #filterCashBack, #filterStatus").val(""),$("#emptotaldata").css("display","none")})}),$("#clearFiltersBtn").click(function(){applyFilters(),$("#filterModal").modal("hide")});
-  </script>
- <?php else: ?>
-  <script>
-    var isFilterApplied=!1,activeFilters=[];function applyFilters(){var e=[{id:"filterID",columnIndex:0},{id:"sourceTable",columnIndex:1},{id:"filterBookingDateStart",columnIndex:2},{id:"filterBookingDateEnd",columnIndex:2},{id:"filterMonth",columnIndex:3},{id:"filterBuilder",columnIndex:4},{id:"filterProject",columnIndex:5},{id:"filterCustumername",columnIndex:6},{id:"filterContactnumber",columnIndex:7},{id:"filterEmail",columnIndex:8},{id:"filterType",columnIndex:9},{id:"filterUnit",columnIndex:10},{id:"filterSize",columnIndex:11},{id:"filterAgreement",columnIndex:12},{id:"filterCommission",columnIndex:13},{id:"filterTrevenue",columnIndex:14},{id:"filterCashBack",columnIndex:15},{id:"filterActualRevenue",columnIndex:16},{id:"filterStatus",columnIndex:17},{id:"filterReceived",columnIndex:18},];activeFilters=[],$("#filterdata tr").each(function(){var t=$(this),i=!0;e.forEach(function(e){var l=$("#"+e.id).val().toLowerCase(),r=t.find("td:eq("+e.columnIndex+")").text().toLowerCase();if("filterBookingDateStart"===e.id||"filterBookingDateEnd"===e.id){var n=new Date($("#filterBookingDateStart").val()),o=new Date($("#filterBookingDateEnd").val()),a=new Date(r);if(!isNaN(n)&&!isNaN(o)&&(a<n||a>o))return i=!1,!1}else if(-1===r.indexOf(l))return i=!1,!1;""!==l.trim()&&activeFilters.push(l)}),i?t.addClass("custom-filtered-row"):t.removeClass("custom-filtered-row")});var t=0,i=0,l=0;$(".custom-filtered-row").each(function(){var e=parseFloat($(this).find("td:eq(13)").text()),r=parseFloat($(this).find("td:eq(15)").text());isNaN(e)||(t+=e,l+=1),isNaN(r)||(i+=r)}),$("#counter").text(l),$("#totalTotalRevenue").text(t.toLocaleString()),$("#totalActualRevenue").text(i.toLocaleString()),applyCustomFilter()}function applyCustomFilter(){$("#filterdata tr").hide(),$(".custom-filtered-row").show(),isFilterApplied=!0}applyCustomFilter(),$(".filterable .btn-filter1").click(function(){$("#filterModal").modal("show")}),$("#applyFiltersBtn").click(function(){console.log("Apply Filters button clicked"),applyFilters(),$("#emptotaldata").css("display","block"),filterModal.hide()}),$("#filterModal").on("hidden.bs.modal",function(){$(".filterable .filters input").val(""),isFilterApplied||$("#filterdata tr").show(),applyFilters()}),$("#closeFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$("#cancleFilter").click(function(){applyFilters(),$("#filterModal").modal("hide")}),$(document).ready(function(){$("#clearFiltersBtn").click(function(){$("#filterID, #sourceTable, #filterBookingDateStart, #filterBookingDateEnd, #filterMonth, #filterBuilder, #filterProject, #filterCustumername, #filterContactnumber, #filterEmail, #filterType, #filterUnit, #filterSize, #filterAgreement, #filterCommission, #filterTrevenue, #filterCashBack, #filterActualRevenue, #filterStatus, #filterReceived").val(""),$("#emptotaldata").css("display","none")})}),$("#clearFiltersBtn").click(function(){applyFilters(),$("#filterModal").modal("hide")});
-  </script>
-<?php endif; ?>
-////////////////////////////////////////////// HTML MODEL
-<!-- Filter Rows Modal Start -->
+<!-- Filter Start -->
   <div class="modal fade" tabindex="-1" id="filterModal">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -187,60 +24,129 @@ $("#filterModal").modal("hide");
                       </div>
                   </div>
                   <!-- Filter inputs -->
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterID" placeholder="ID">
-                    <!-- <input type="text" class="form-control mb-2" id="filterBookingDate" placeholder="Booking Date"> -->
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="ID">ID</label>
+                      <input type="text" class="form-control form-control-lg" id="filterID">
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterMonth" placeholder="Month">
-                    <input type="text" class="form-control mb-2" id="filterBuilder" placeholder="Builder Name">
+
+                   <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                    <label for="Month">Month</label>
+                      <input type="text" class="form-control form-control-lg" id="filterMonth">
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterProject" placeholder="Project Name">
-                    <input type="text" class="form-control mb-2" id="filterCustumername" placeholder="Customer Name">
+
+                   <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                    <label for="Builder">Builder</label>
+                      <input type="text" class="form-control form-control-lg" id="filterBuilder">
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterContactnumber" placeholder="Contact No.">
-                    <input type="text" class="form-control mb-2" id="filterEmail" placeholder="Email Id">
+
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                       <label for="Project">Project</label>
+                       <input type="text" class="form-control form-control-lg" id="filterProject">
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterType" placeholder="Unit Type">
-                    <input type="text" class="form-control mb-2" id="filterUnit" placeholder="Unit No.">
+
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="Custumername">Custumer name</label>
+                      <input type="text" class="form-control form-control-lg" id="filterCustumername">
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterSize" placeholder="Unit Size">
-                    <input type="text" class="form-control mb-2" id="filterAgreement" placeholder="Agreement Value">
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="Contactnumber">Contact no.</label>
+                      <input type="text" class="form-control form-control-lg" id="filterContactnumber">
+                      </div>
+                  </div>
+
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="Email">Email</label>
+                      <input type="text" class="form-control form-control-lg" id="filterEmail" >
+                      </div>
+                  </div>
+
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="Type">Type</label>
+                      <input type="text" class="form-control form-control-lg" id="filterType">
+                      </div>
+                  </div>
+
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="Unit">Unit</label>
+                      <input type="text" class="form-control form-control-lg" id="filterUnit">
+                      </div>
+                  </div>
+
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="Size">Size</label>
+                      <input type="text" class="form-control form-control-lg" id="filterSize">
+                      </div>
+                  </div>
+
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                        <label for="Agreement">Agreement</label>
+                        <input type="text" class="form-control form-control-lg" id="filterAgreement">
+                      </div>
                   </div>
                   <?php if ($Project_type === 'mandate'): ?>
                     <!-- <td>Commission %</td> -->
                   <?php else: ?>
-                    <div class="col-md-6">
-                      <input type="text" class="form-control mb-2" id="filterCommission" placeholder="Commission %">
-                      <input type="text" class="form-control mb-2" id="filterTrevenue" placeholder="Total Revenue">
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                        <label for="Commission">Commission</label>
+                        <input type="text" class="form-control form-control-lg" id="filterCommission">
+                        </div>
+                  </div>
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                        <label for="revenue">Revenue</label>
+                        <input type="text" class="form-control form-control-lg" id="filterTrevenue">
                     </div>
+                  </div>
                   <?php endif; ?>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterCashBack" placeholder="CashBack %">
-                    <?php if ($Project_type === 'mandate'): ?>
-                      <!-- <td>Commission %</td> -->
-                    <?php else: ?>
-                      <input type="text" class="form-control mb-2" id="filterActualRevenue" placeholder="Actual Revenue">
-                    <?php endif; ?>
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                        <label for="CashBack">CashBack</label>
+                        <input type="text" class="form-control form-control-lg" id="filterCashBack" >
+                        <?php if ($Project_type === 'mandate'): ?>
+                          <!-- <td>Commission %</td> -->
+                        <?php else: ?>
+                          <label for="ActualRevenue">ActualRevenue</label>
+                          <input type="text" class="form-control form-control-lg" id="filterActualRevenue" >
+                        <?php endif; ?>
+                    </div>
                   </div>
                   <?php if ($Project_type === 'mandate'): ?>
                       <!-- <td>Commission %</td> -->
                   <?php else: ?>
-                    <div class="col-md-6">
-                      <input type="text" class="form-control mb-2" id="filterReceived" placeholder="Received Amt.">
-                    </div>
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                        <label for="Received">Received</label>
+                        <input type="text" class="form-control form-control-lg" id="filterReceived">
+                     </div>
+                  </div>
                   <?php endif; ?>
-                  <div class="col-md-6">
-                    <input type="text" class="form-control mb-2" id="filterStatus" placeholder="Status">
+                  <div class="col-lg-6 mb-2">
+                    <div class="form-item">
+                      <label for="Status">Status</label>
+                      <input type="text" class="form-control form-control-lg" id="filterStatus">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="margin: 0 auto;">
               <!-- Close Modal button -->
               <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
               <!-- Clear Filters button -->
@@ -251,41 +157,4 @@ $("#filterModal").modal("hide");
           </div>
         </div>
       </div>
-<!-- filter rows Modal End -->
-/////////////////////////////////// Backend Respnonse
-foreach ($rows as $row) {
-          $output .= '<tr data-status="' . $row['astatus'] . '">
-          <td>' . $row['id'] . '</td>
-          <td>' . $row['source_table'] . '</td>
-          <td>' . $row['booking_date'] . '</td>
-          <td>' . $row['booking_month'] . '</td>
-          <td>' . $row['builder'] . '</td>
-          <td>' . $row['project'] . '</td>
-          <td>' . $row['customer_name'] . '</td>
-          <td>' . $row['contact_number'] . '</td>
-          <td>' . $row['email_id'] . '</td>
-          <td>' . $row['project_type'] . '</td>
-          <td>' . $row['unit_no'] . '</td>
-          <td>' . $row['size'] . '</td>
-          <td>' . $row['agreement_value'] . '</td>';
-  
-      if ($Project_type !== 'mandate') {
-          $output .= '<td>' . $row['cashback'] . '%</td>';
-      }
-  
-      if ($Project_type !== 'mandate') {
-          $output .= '<td>' . $row['revenue'] . '</td>';
-      }
-  
-      $output .= '<td>' . $row['ccashback'] . '%</td>';
-  
-      if ($Project_type !== 'mandate') {
-          $output .= '<td>' . $row['crevenue'] . '</td>';
-      }
-  
-      $output .= '<td><div class="' . $row['astatus'] . '"> ' . $row['astatus'] . '</div></td>';
-  
-      if ($Project_type !== 'mandate') {
-          $output .= '<td>' . $row['recived_amt'] . '</td>';
-      }
-
+  <!-- Filter end -->

@@ -1,408 +1,471 @@
-////////this td button wil goes inside table to call the invoice////////////////
-
-<td><button class="generate-invoice">Generate invoice</button></td>
-
-/////////////css/////////////////////
- <style>
-        body a {
-            text-decoration: none;
-        }
-       #invoiceContent .table1,
-       #invoiceContent th,
-       #invoiceContent td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        #invoiceContent .tdF {
-            padding: 3px;
-            text-transform: capitalize;
-        }
-
-        #invoiceContent .center {
-            text-align: center;
-        }
-
-        #invoiceContent .BC {
-            background-color: #538cd5;
-            color: white;
-        }
-
-        .modal{
-          background:#00000069;
-        }
-
-        #invoiceModal{
-            z-index: 1100;
-        }
-
-        .companydets_form-group {
-            margin-bottom: 0px!important;
-        }
-
-        .companydets_form-group label {
-            font-size: 15px;
-            font-weight: 600;
-            margin: 10px 0px 0px 0px;
-        }
-
-        .companydets_form:focus {
-            box-shadow: none!important;
-            border: 1px solid grey!important;
-            border-radius: 3px!important;
-        }
-
-        .companydets_form {
-            border: none!important;
-            border-radius: 0px!important;
-            border-bottom: 1px solid grey!important;
-        }
-
-        .form-page .css-1ln7em7 {
-            font-size: 24px;
-            font-weight: 500;
-            color: rgb(51, 51, 51);
-            position: sticky;
-            top: -20px;
-            z-index: 2;
-            background-color: rgb(255, 255, 255);
-            margin-bottom: 10px;
-        }
-        
-        .generate-invoice{
-            border: none;
-            color: white;
-            font-size: 11px;
-            background: #09cfed;
-            font-weight: 500;
-            border-radius: 12px;
-        }
-
-        .tdfemail{
-            text-transform: lowercase!important;
-        }
-
-        @media only screen and (max-width:1000px){
-            #invoiceContent .tdF {
-                word-break: break-all!important;
-            }
-        }
-    </style>    
-
-<!-- popup modal in table template come start -->
-    <div class="modal fade show" id="invoiceModal">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="invoiceModalTitle">Preview Invoice</h5>
-                    <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="invoiceContent"></div>
-                    <div class="col-lg-12 text-center">
-                         <button class="btn btn-success" id="downloadPDFButton">Download PDF</button>
+ <!-- superadmin company expenses filter start-->
+          <div class="modal fade" tabindex="-1" id="filterModal">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Filter Data</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+                            id="closeFilter"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container p-0">
+                            <div class="row">
+                                <!-- Filter inputs -->
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="ID">ID</label>
+                                    <input type="text" class="form-control form-control-lg" id="filterID">
+                                </div>
+                            </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="Expenses Date">Expenses Date</label>
+                                    <input type="text" class="form-control form-control-lg " id="ExpensesDate">
+                                </div>
+                            </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="Expenses Month">Expenses Month</label>
+                                    <input type="text" class="form-control form-control-lg " id="ExpensesMonth">
+                                </div>
+                            </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="UserName">User Name</label>
+                                    <input type="text" class="form-control form-control-lg " id="UserName">
+                                </div>
+                            </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="ExpensesAmount">Expenses Amount</label>
+                                    <input type="text" class="form-control form-control-lg " id="ExpensesAmount">
+                                </div>
+                            </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="Expenses Source">Expenses Source</label>
+                                    <input type="text" class="form-control form-control-lg " id="ExpensesSource">
+                                </div>
+                            </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="Source Project">Source Project</label>
+                                    <input type="text" class="form-control form-control-lg " id="SourceProject">
+                                </div>
+                            </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                    <label for="Project Name">Project Name</label>
+                                    <input type="text" class="form-control form-control-lg " id="ProjectName">
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin: 0 auto;">
+                        <!-- Close Modal button -->
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="cancleFilter">Close</button>
+                        <!-- Clear Filters button -->
+                        <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
+                        <!-- Apply Filters button -->
+                        <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- popup modal in table template come end -->
+          </div>
+          <!-- superadmin company expenses filter end-->
 
-    <!--Popup Form to be shown start-->
-    <div class="modal fade rentagree_main">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Company Details</h5>
-                    <button type="button" class="btn-close close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- superadmin company expenses Add new start-->
+          <div class="modal fade" tabindex="-1" id="addNewUserModal">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">Add New Expenses</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <form id="add-user-form" name="myform" class="p-2" method="POST" enctype="multipart/form-data">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                      <label for="bdate">Booking date</label>
+                                      <input type="date" name="bdate" id="dateid" class="form-control form-control-lg"
+                                          required>
+                                      <div class="invalid-feedback">Date is required!</div>
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="bmonth">Booking month</label>
+                                      <input type="month" name="bmonth" id="monthid" class="form-control form-control-lg"
+                                          required>
+                                      <div class="invalid-feedback">Month is required!</div>
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="developer">Employee name</label>
+                                      <input type="text" name="developer" class="form-control form-control-lg" required>
+                                      <div class="invalid-feedback">Employee name is required!</div>
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="ExpensesValue">Expenses value</label>
+                                      <input type="number" name="cagreement" class="form-control form-control-lg" required>
+                                      <div class="invalid-feedback">Agreement Value is required!</div>
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="Project Name">Project name</label>
+                                      <input type="text" name="tproject" class="form-control form-control-lg" required>
+                                      <div class="invalid-feedback">Source Project is required!</div>
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="DeveloperName">Developer Name</label>
+                                      <input type="text" name="unitno" class="form-control form-control-lg" required>
+                                      <div class="invalid-feedback">Source Project Name is required!</div>
+                                  </div>
+                              </div>
+                              
+                              <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                    <label for="cname">Expenses name</label>
+                                    <select name="cname" class="form-control form-control-lg">
+                                        <option value="">Choose expense type</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Google">Google</option>
+                                        <option value="IT">Developer</option>
+                                        <option value="SHI">SearchHomesIndia</option>
+                                        <option value="Accounts">Accounts</option>
+                                        <option value="HR">HR</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    <div class="invalid-feedback">Expenses Source is required!</div>
+                                </div>
+                            </div>
+                                  <div class="col-lg-6 mb-2">
+                                  <div class="form-item">
+                                      <label for="Assign User">Assign User</label>
+                                      <select name="assign" id="assign" class="form-control form-control-lg">
+                                          <option value="">Choose User</option>
+                                          <option value="rakesh66088">Rakesh</option>
+                                          <option value="rahul00761">Rahul Prsad</option>
+                                          <option value="raghuc1053">Pratham Raja</option>
+                                      </select>
+                                      <div class="invalid-feedback">Assign User is required!</div>
+                                  </div>
+                              </div>
+                              <div class="col-md-12 mb-2">
+                                  <!-- <div class="form-item"> -->
+                                    <label for="Upload Invoice">Upload Invoice</label>
+                                    <input type="file" name="bproject" class="form-control form-control-lg" required>
+                                    <div class="invalid-feedback">Upload Invoice is required!</div>
+                                <!-- </div> -->
+                            </div>
+                                  <div class="col-lg-12">
+                                      <div class="Ubsubmitbtn">
+                                          <input type="submit" name="add" value="Add Expenses"
+                                              class="btn btn-primary btn-block" id="add-user-btn">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          <!-- superadmin company expenses Add new end-->
+
+          <!-- superadmin Incentive tracker Filter start -->
+          <div class="modal fade" tabindex="-1" id="filterModal">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">Filter Data</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+                              id="closeFilter"></button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="container">
+                              <div class="row">
+                                  <!-- Filter inputs -->
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="ID">ID</label>
+                                      <input type="text" class="form-control form-control-lg" id="filterID">
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="Month">Month</label>
+                                      <input type="text" class="form-control form-control-lg" id="Month">
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="Generated Revenue">Generated revenue</label>
+                                      <input type="text" class="form-control form-control-lg" id="generatedamt">
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="Recent Pay">Recent pay</label>
+                                      <input type="text" class="form-control form-control-lg" id="RecentPay">
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="Remaining amount">Remaining amount</label>
+                                      <input type="text" class="form-control form-control-lg" id="Remainingamt">
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="User name">User name</label>
+                                      <input type="text" class="form-control form-control-lg" id="Username">
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="Booking number">Booking number</label>
+                                      <input type="text" class="form-control form-control-lg" id="Bookingno">
+                                  </div>
+                              </div>
+                                  <div class="col-md-4 mb-2">
+                                  <div class="form-item">
+                                      <label for="Sent amount">Sent amount</label>
+                                      <input type="text" class="form-control form-control-lg" id="Sentamount">
+                                  </div>
+                              </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer" style="margin: 0 auto;">
+                          <!-- Close Modal button -->
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancleFilter">Close</button>
+                          <!-- Clear Filters button -->
+                          <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
+                          <!-- Apply Filters button -->
+                          <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- superadmin Incentive tracker Filter end -->
+
+          <!-- superadmin Payment tracker Filter start -->
+          <div class="modal fade" tabindex="-1" id="filterModal">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Filter Data</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+                                id="closeFilter"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Filter inputs -->
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="ID">ID</label>
+                                        <input type="text" class="form-control form-control-lg" id="filterID">
+                                    </div>
+                                </div>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Overallearn">Overall earn</label>
+                                        <input type="text" class="form-control form-control-lg" id="Overallearn">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Overallpaid">Overall paid</label>
+                                        <input type="text" class="form-control form-control-lg" id="Overallpaid">
+                                    </div>
+                                </div>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Advancepay">Advance pay</label>
+                                        <input type="text" class="form-control form-control-lg" id="Advancepay">
+                                    </div>
+                                </div>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Remaningpayment">Remaning payment</label>
+                                        <input type="text" class="form-control form-control-lg" id="Remaningpay">
+                                    </div>
+                                </div>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Username">User name</label>
+                                        <input type="text" class="form-control form-control-lg" id="Username">
+                                    </div>
+                                </div>
+                                    <div class="col-md-12 mb-2">
+                                    <div class="form-item">
+                                        <label for="Bookingnumber">Booking number</label>
+                                        <input type="text" class="form-control form-control-lg" id="Bookingno">
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="margin: 0 auto;">
+                            <!-- Close Modal button -->
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                id="cancleFilter">Close</button>
+                            <!-- Clear Filters button -->
+                            <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
+                            <!-- Apply Filters button -->
+                            <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form id="rentalForm">
-                        <input type="hidden" id="bookingDate">
-                        <input type="hidden" id="towerBlock">
-                        <input type="hidden" id="projectName">
-                        <input type="hidden" id="buyerName">
-                        <input type="hidden" id="unitNumber">
-                        <input type="hidden" id="brokrageCharges">
-                        <div class="form-page" id="Basicdetails">
-                            <div class="form-group companydets_form-group">
-                                <label for="companyName">Company Name:</label>
-                                <input type="text" class="form-control companydets_form" id="IcompanyName" name="companyName" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="address">Address:</label>
-                                <input type="text" class="form-control companydets_form" id="Iaddress" name="address" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="gstin">GSTIN:</label>
-                                <input type="text" class="form-control companydets_form" id="Igstin" name="gstin" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="state">City:</label>
-                                <input type="text" class="form-control companydets_form" id="Icity" name="city" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="state">State:</label>
-                                <select class="form-control companydets_form" id="Istate" name="state" required>
-                                    <option value="" selected disabled>Select state</option>
-                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                    <option value="Assam">Assam</option>
-                                    <option value="Bihar">Bihar</option>
-                                    <option value="Chhattisgarh">Chhattisgarh</option>
-                                    <option value="Gujarat">Gujarat</option>
-                                    <option value="Haryana">Haryana</option>
-                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                    <option value="Goa">Goa</option>
-                                    <option value="Jharkhand">Jharkhand</option>
-                                    <option value="Karnataka">Karnataka</option>
-                                    <option value="Kerala">Kerala</option>
-                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                    <option value="Maharashtra">Maharashtra</option>
-                                    <option value="Manipur">Manipur</option>
-                                    <option value="Meghalaya">Meghalaya</option>
-                                    <option value="Mizoram">Mizoram</option>
-                                    <option value="Nagaland">Nagaland</option>
-                                    <option value="Odisha">Odisha</option>
-                                    <option value="Punjab">Punjab</option>
-                                    <option value="Rajasthan">Rajasthan</option>
-                                    <option value="Sikkim">Sikkim</option>
-                                    <option value="Tamil Nadu">Tamil Nadu</option>
-                                    <option value="Telangana">Telangana</option>
-                                    <option value="Tripura">Tripura</option>
-                                    <option value="Uttarakhand">Uttarakhand</option>
-                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                    <option value="West Bengal">West Bengal</option>
-                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                    <option value="Chandigarh">Chandigarh</option>
-                                    <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                                    <option value="Daman and Diu">Daman and Diu</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="Lakshadweep">Lakshadweep</option>
-                                    <option value="Puducherry">Puducherry</option>
-                                </select>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="code">Code:</label>
-                                <input type="text" class="form-control companydets_form" id="Icode" name="code" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="rera">Rera No:</label>
-                                <input type="text" class="form-control companydets_form" id="Irera" name="rera" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="invoiceNo">Invoice No./Ref:</label>
-                                <input type="text" class="form-control companydets_form" id="IinvoiceNo" name="invoiceNo" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="invoiceDate">Invoice Date:</label>
-                                <input type="date" class="form-control companydets_form" id="IinvoiceDate" name="invoiceDate" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="sacCode">SAC Code:</label>
-                                <input type="text" class="form-control companydets_form" id="IsacCode" name="sacCode" required>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="vendorId">Vendor Id:</label>
-                                <input type="text" class="form-control companydets_form" id="IvendorId" name="vendorId" required>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-6">
-                                    <label for="agreementValue">Agreement Value:</label>
-                                    <input type="number" class="form-control companydets_form" id="agreementValue" name="agreementValue" readonly>
+          </div>
+          <!-- superadmin Payment tracker Filter end -->
+
+          <!-- superadmin company assets] Filter start -->
+          <div class="modal fade" tabindex="-1" id="filterModal">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Filter Data</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+                                id="closeFilter"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Filter inputs -->
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="ID">ID</label>
+                                        <input type="text" class="form-control form-control-lg" id="filterID">
+                                    </div>
                                 </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="totalrevenue">Total Revenue:</label>
-                                    <input type="number" class="form-control companydets_form" id="totalrevenue" name="totalrevenue" readonly>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Employeename">Employee name</label>
+                                        <input type="text" class="form-control form-control-lg" id="Employeename">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-6">
-                                    <label for="cgstpercent">CGST %:</label>
-                                    <input type="number" class="form-control companydets_form" id="Icgstpercent" name="Icgstpercent" required>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Employeeid">Employee id</label>
+                                        <input type="text" class="form-control form-control-lg" id="Employeeid">
+                                    </div>
                                 </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="cgstamount">CGST Amount:</label>
-                                    <input type="number" class="form-control companydets_form" id="Icgstamount" name="Icgstamount" readonly>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Phonenumber">Phone number</label>
+                                        <input type="text" class="form-control form-control-lg" id="Phoneno">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-6">
-                                    <label for="sgstpercent">SGST %:</label>
-                                    <input type="number" class="form-control companydets_form" id="Isgstpercent" name="Isgstpercent" required>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Laptopid">Laptop id</label>
+                                        <input type="text" class="form-control form-control-lg" id="Laptopid">
+                                    </div>
                                 </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="sgstamount">SGST Amount:</label>
-                                    <input type="number" class="form-control companydets_form" id="Isgstamount" name="Isgstamount" readonly>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Officelocation">Office location</label>
+                                        <input type="text" class="form-control form-control-lg" id="location">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-6">
-                                    <label for="igstpercent">IGST %:</label>
-                                    <input type="number" class="form-control companydets_form" id="Iigstpercent" name="Iigstpercent" required>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Simcard">Sim card</label>
+                                        <input type="text" class="form-control form-control-lg" id="Simcard">
+                                    </div>
                                 </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="igstamount">IGST Amount:</label>
-                                    <input type="number" class="form-control companydets_form" id="Iigstamount" name="Iigstamount" readonly>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Companylaptop">Company laptop</label>
+                                        <input type="text" class="form-control form-control-lg" id="Companylap">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="taxwithamount">Tax With Amount:</label>
-                                <input type="number" class="form-control companydets_form" id="taxwithamount" name="taxwithamount" readonly>
-                            </div>
-                            <div class="form-group companydets_form-group">
-                                <label for="taxwithamountinword">Tax With Amount In Words:</label>
-                                <input type="text" class="form-control companydets_form" id="taxwithamountinword" name="taxwithamountinword" readonly>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Laptopcharger">Laptop charger</label>
+                                        <input type="text" class="form-control form-control-lg" id="Laptopcharger">
+                                    </div>
+                                </div>
+                                    <div class="col-md-4 mb-2">
+                                    <div class="form-item">
+                                        <label for="Companymouse">Company mouse</label>
+                                        <input type="text" class="form-control form-control-lg" id="Companymouse">
+                                    </div>
+                                </div>
+                                    <div class="col-md-12 mb-2">
+                                    <div class="form-item">
+                                        <label for="Datesignature">Date signature</label>
+                                        <input type="text" class="form-control form-control-lg" id="Datesignature">
+                                    </div>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 text-center">
-                            <button type="button" class="btn btn-primary mt-3" id="previewAgreementBtn">Preview Agreement</button>
+                        <div class="modal-footer" style="margin: 0 auto;">
+                            <!-- Close Modal button -->
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                id="cancleFilter">Close</button>
+                            <!-- Clear Filters button -->
+                            <button type="button" class="btn btn-danger" id="clearFiltersBtn">Clear Filters</button>
+                            <!-- Apply Filters button -->
+                            <button type="button" class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
                         </div>
-                    </form>
-                </div>       
-            </div>       
-        </div>
-    </div>
-    <!--Popup Form to be shown end-->
+                    </div>
+                </div>
+          </div>
+          <!-- superadmin company assets Filter end -->
 
-
-	 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <!-- Include html2canvas JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Include jsPDF JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- Include html2pdf JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-
- <!-- cgst and sgst script start  -->
-    <script>
-     document.addEventListener("DOMContentLoaded",function(){let e=document.getElementById("totalrevenue"),t=document.getElementById("Icgstpercent"),n=document.getElementById("Icgstamount"),$=document.getElementById("Isgstpercent"),i=document.getElementById("Isgstamount"),r=document.getElementById("Iigstpercent"),o=document.getElementById("Iigstamount"),l=document.getElementById("taxwithamount"),u=document.getElementById("taxwithamountinword"),a=document.getElementById("Istate"),d;function v(){let d=parseFloat(e.value)||0,v=parseFloat(t.value)||0,g=parseFloat($.value)||0,f=parseFloat(r.value)||0,E=a.value;if(d<0||v<0||g<0||f<0){console.error("Inputs must be non-negative");return}let y=0===v?0:(d*v/100).toFixed(2),I=0===g?0:(d*g/100).toFixed(2),m=0===f?0:(d*f/100).toFixed(2),s;s="Karnataka"===E?(parseFloat(d)+parseFloat(y)+parseFloat(I)).toFixed(2):(parseFloat(d)+parseFloat(m)).toFixed(2);let _=function e(t){let n=["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"],$=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];function i(e){let t="";return e>99&&(t+=n[Math.floor(e/100)]+" Hundred ",e%=100),e>19&&(t+=$[Math.floor(e/10)]+" ",e%=10),e>0&&(t+=n[e]+" "),t}let r=Math.floor(t),o=function e(t){let n="";if(0===t)return"Zero";if(t>999999999)throw Error("Number too large");if(t>=1e7){let $=Math.floor(t/1e7);n+=i($)+"Crore ",t%=1e7}if(t>=1e5){let r=Math.floor(t/1e5);n+=i(r)+"Lakh ",t%=1e5}if(t>=1e3){let o=Math.floor(t/1e3);n+=i(o)+"Thousand ",t%=1e3}return(n+=i(t)).trim()}(r);return"Indian Rupee "+(o+=" Only")}(parseFloat(s));n.value=y,i.value=I,o.value=m,l.value=s,u.value=_}function g(){clearTimeout(d),d=setTimeout(v,300)}e.addEventListener("input",g),t.addEventListener("input",g),$.addEventListener("input",g),r.addEventListener("input",g),a.addEventListener("change",v)});
-    </script>
-    <!-- cgst and sgst script end  -->
-
-    <!-- html template code  for hosting script start  -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.generate-invoice').forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-
-                const bookingDate = row.cells[1].innerText.trim();
-                const towerBlock = row.cells[4].innerText.trim(); 
-                const projectName = row.cells[3].innerText.trim(); 
-                const buyerName = row.cells[5].innerText.trim(); 
-                const unitNumber = row.cells[8].innerText.trim(); 
-                const agreementValue = row.cells[11].innerText.trim(); 
-                const brokrageCharges = row.cells[12].innerText.trim(); 
-                const totalrevenue = row.cells[13].innerText.trim(); 
-
-                document.getElementById('bookingDate').value = bookingDate;
-                document.getElementById('towerBlock').value = towerBlock;
-                document.getElementById('projectName').value = projectName;
-                document.getElementById('buyerName').value = buyerName;
-                document.getElementById('unitNumber').value = unitNumber;
-                document.getElementById('agreementValue').value = agreementValue;
-                document.getElementById('brokrageCharges').value = brokrageCharges;
-                document.getElementById('totalrevenue').value = totalrevenue;
-                document.querySelector('.rentagree_main').style.display = 'block';
-            });
-        });
-
-        document.querySelector('.close-btn').addEventListener('click', function() {
-            document.querySelectorAll('#rentalForm input').forEach(input => {
-                input.value = '';
-            });
-            document.querySelector('.rentagree_main').style.display = 'none';
-        });
-
-        document.getElementById('previewAgreementBtn').addEventListener('click', function() {
-            const requiredFields = document.querySelectorAll('#rentalForm .form-control[required]');
-            let isValid = true;
-
-            // Clear previous error messages and highlights
-            requiredFields.forEach(input => {
-                input.classList.remove('is-invalid');
-                const errorMessage = input.nextElementSibling;
-                if (errorMessage) {
-                    errorMessage.textContent = '';
-                }
-            });
-
-            // Validate form fields
-            requiredFields.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.classList.add('is-invalid');
-                    const errorMessage = input.nextElementSibling;
-                }
-            });
-
-            if (isValid) {
-                // Gather form data
-                const bookingDate = document.getElementById('bookingDate').value;
-                const towerBlock = document.getElementById('towerBlock').value;
-                const projectName = document.getElementById('projectName').value;
-                const buyerName = document.getElementById('buyerName').value;
-                const unitNumber = document.getElementById('unitNumber').value;
-                const agreementValue = document.getElementById('agreementValue').value;
-                const brokrageCharges = document.getElementById('brokrageCharges').value;
-                const totalrevenue = document.getElementById('totalrevenue').value;
-
-                const IcompanyName = document.getElementById('IcompanyName').value;
-                const Iaddress = document.getElementById('Iaddress').value;
-                const Igstin = document.getElementById('Igstin').value;
-                const Icity = document.getElementById('Icity').value;
-                const Istate = document.getElementById('Istate').value;
-                const Icode = document.getElementById('Icode').value;
-                const Irera = document.getElementById('Irera').value;
-                const IinvoiceNo = document.getElementById('IinvoiceNo').value;
-                const IinvoiceDate = document.getElementById('IinvoiceDate').value;
-                const IsacCode = document.getElementById('IsacCode').value;
-                const IvendorId = document.getElementById('IvendorId').value;
-                const Icgstpercent = document.getElementById('Icgstpercent').value;
-                const Isgstpercent = document.getElementById('Isgstpercent').value;
-                const Iigstpercent = document.getElementById('Iigstpercent').value;
-                const Icgstamount = document.getElementById('Icgstamount').value;
-                const Isgstamount = document.getElementById('Isgstamount').value;
-                const Iigstamount = document.getElementById('Iigstamount').value;
-                const Itaxwithamount = document.getElementById('taxwithamount').value;
-                const Itaxwithamountinword = document.getElementById('taxwithamountinword').value;
-            
-                // Populate modal content
-                document.querySelector('#invoiceContent').innerHTML = `
-                <div class=pcs-template><div class="pcs-header-content pcs-template-header"id=header></div><div class=pcs-template-body><blockquote style="margin:0 0 0 40px;border:none;padding:0;margin-left:-1.5%"><div class=a4div size=A4 style=padding:20px><div class=pcs-template><div class=pcs-template-body><p class=center style=margin-top:0;margin-bottom:0><font size=5><b><br></b></font><p class=center style=margin-top:0;margin-bottom:0><font size=5><b><br></b></font><p class=center style=margin-top:0;margin-bottom:0><font size=5><b><br></b></font><p class=center style=margin-top:0;margin-bottom:0><font size=5><b><br></b></font><p class=center style=margin-top:0;margin-bottom:0><span style=font-size:x-large><b>TAX INVOICE</b></span></div></div><div class=pcs-template><div class=pcs-template-body><table class="CardTabel table1"height=50 style=width:100%><tr><td class=tdF colspan=2 rowspan=4 style=width:30%><b><font size=2>Company: ${IcompanyName}</font></b><hr style=height:2px;background-color:#000><b><font size=2>${Iaddress}<br>${Icity}, ${Istate}<br>${Icode}</font></b><td class=center><font size=2><b>Invoice No./Ref:</b></font><td class=tdF><font size=2><b>${IinvoiceNo}</b></font><tr><td class=center><font size=2><b>Invoice Date:</b></font><td class=tdF><font size=2><b>${IinvoiceDate}</b></font><tr><td class=center><font size=2><b>PAN Number:</b></font><td class=tdF><font size=2><b>AAWCS6824M</b></font><tr><td class=center><font size=2><b>GSTIN:</b></font><td class=tdF><font size=2><b>29AAWCS6824M1Z9</b></font><tr><td class=tdF><font size=2><b>GSTIN:</b></font><td class=tdF><font size=2><b>${Igstin}</b></font><td class=center><font size=2><b>State:</b></font><td class=tdF><font size=2><b>${Istate}</b></font><tr><td class=tdF><font size=2><b>State:</b></font><td class=tdF><font size=2><b>Karnataka</b></font><td class=center><font size=2><b>Code:</b></font><td class=tdF><font size=2><b>29</b></font><tr><td class=tdF><font size=2><b>Code:</b></font><td class=tdF><font size=2><b>${Icode}</b></font><td class=center><font size=2><b>SAC Code:</b></font><td class=tdF id=tmp_item_qty><font size=2><b>${IsacCode}</b></font><tr><td class=tdF><font size=2><b>RERA no</b></font><td class=tdF><font size=2><b>${Irera}</b></font><td class=center><font size=2><b>RERA no:</b></font><td class=tdF><font size=2><b>PRM/KA/RERA/1251/446/AG/171007/001088</b></font><tr><td class=tdF><td class=tdF><font size=2><b> </b></font><td class=center><b><font size=2>VendorID<br>(mandatory)</font></b><td class=tdF><font size=2><b>${IvendorId}</b></font></table></div></div><div class=pcs-template><div class=pcs-template-body><b><font size=2><br></font></b></div></div><div class=pcs-template><div class=pcs-template-body><table class="CardTabel table1"height=50 style=width:100%><tbody id=lineitem><tr><td class=tdF style=width:5%><font size=2><b>Sl. No.</b></font><td class=center colspan=3><font size=2><b>Description of Service</b></font><tr><td class=tdF rowspan=5><font size=2><b>01</b></font><td class=tdF><font size=2><b>Buyer Name</b></font><td class=tdF colspan=2><font size=2><b>${buyerName}</b></font><tr><td class=tdF><font size=2><b>Project Name</b></font><td class=tdF colspan=2><font size=2><b>${projectName}</b></font><tr><td class=tdF><font size=2><b>Unit Number</b></font><td class=tdF colspan=2><font size=2><b>${unitNumber}</b></font><tr><td class=tdF><font size=2><b>Tower / Block</b></font><td class=tdF colspan=2 id=tmp_item_qty><font size=2><b>${towerBlock}</b></font><tr><td class=tdF><font size=2><b>Booking Date</b></font><td class=tdF colspan=2><font size=2><b>${bookingDate}</b></font><tr><td class=tdF rowspan=5><font size=2><b>02</b></font><td class=center colspan=2><font size=2><b>Agreement Value:</b></font><td class=tdF id=tmp_item_qty><font size=2><b>${agreementValue}</b></font><tr><td class=center colspan=2 id=tmp_item_rate><font size=2><b>Brokerage Charges @ ${brokrageCharges} on the Agreement Value</b></font><td class=tdF id=tmp_item_amount><font size=2><b>${totalrevenue}</b></font><tr><td class=center colspan=2><font size=2><b>Add : CGST @ ${Icgstpercent}%</b></font><td class=tdF id=tmp_item_tax_amount><font size=2><b>${Icgstamount}</b></font><tr><td class=center colspan=2><font size=2><b>SGST @ ${Isgstpercent}% or</b></font><td class=tdF id=tmp_item_tax_amount><font size=2><b>${Isgstamount}</b></font><tr><td class=center colspan=2><font size=2><b>IGST @ ${Iigstpercent}%</b></font><td class=tdF id=tmp_item_tax_amount><font size=2><b>${Iigstamount}</b></font><tr><td class=tdF><td class=tdF colspan=2 id=tmp_item_rate><b><span style=font-size:small>Total Amount Due (in INR) (@ </span><font size=2>${brokrageCharges} on agreement value + GST)</font></b><td class=tdF><font size=2><b>${Itaxwithamount}</b></font><br><tr><td class=tdF colspan=4><font size=2><b>Total in Words: </b></font><b><font size=2>${Itaxwithamountinword}</font></b></table></div></div><div class=pcs-template><div class=pcs-template-body><b><font size=2><br></font></b></div></div><div class=pcs-template><div class=pcs-template-body><table class="CardTabel table1"height=50 style=width:100%><tr class=BC><td class=tdF colspan=2 rowspan=2><font size=2><b>Remarks (Please mention the scheme name and total number of bookings done under the scheme for special brokerage if applicable )</b></font><td class=tdF><font size=2><b>Scheme</b></font><td class=tdF><font size=2><b>Total number of bookings done in the scheme</b></font><tr class=BC><td class=tdF><b><font size=2></font></b><td class=tdF><b><font size=2></font></b><tr><td class=center colspan=4><font size=2><b>ACCOUNT DETAILS</b></font><tr><td class=tdF style=width:15%><font size=2><b>Account Name :</b></font><td class=tdF colspan=3><font size=2><b>SEARCH HOMES INDIA PVT.LTD.</b></font><tr><td class=tdF><font size=2><b>Account No :</b></font><td class=tdF colspan=3><font size=2><b>035705003798</b></font><tr><td class=tdF><font size=2><b>IFSC Code:</b></font><td class=tdF colspan=3><font size=2><b>ICIC000357</b></font><tr><td class=tdF><font size=2><b>Bank Name:</b></font><td class=tdF colspan=3><font size=2><b>ICICI BANK</b></font><tr><td class=tdF><font size=2><b>Branch Code:</b></font><td class=tdF colspan=3><font size=2><b>000357</b></font><tr><td class=tdF><font size=2><b>Branch Address:</b></font><td class=tdF colspan=3><font size=2><b>HSR LAYOUT, SECTOR-1, BENGALURU-560102, KARNATAKA</b></font><tr><td class=tdF><font size=2><b>Mobile No./Email ID (Mandatory)</b></font><td class=tdF colspan=3><font size=2><b>9036611811/pankaj@searchhomesindia.com </b></font></table></div></div></div></blockquote></div></div>
-                `;
-
-                document.getElementById('invoiceModal').style.display = 'block';
-            }
-        });
-
-        document.querySelector('.modal .close').addEventListener('click', function() {
-            document.getElementById('invoiceModal').style.display = 'none';
-        });
-
-        document.getElementById('downloadPDFButton').addEventListener('click', generatePDF);
-
-        function generatePDF() {
-            const opt = {
-                margin: [0.5, 0.5, 0.5, 0.5],
-                filename: 'invoice.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'in', format: 'a3', orientation: 'portrait' },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-            };
-
-            const invoiceElement = document.getElementById('invoiceContent');
-            html2pdf().set(opt).from(invoiceElement).save().then(() => {
-                console.log('PDF generated successfully');
-            }).catch(error => {
-                console.error('Error generating PDF:', error);
-            });
-        }
-    });
-    </script>
-    <!-- html template code  for hosting script end  -->
-
+          <!-- superadmin Calculator Filter start -->
+          <div class="modal fade" id="calculatorModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Incentive Calculator</h5>
+                        <button type="button" class="btn-close close" data-dismiss="modal" aria-label="Close"
+                            id="closeFilter"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form id="calculator-form">
+                                <div class="col-lg-12 mb-4">
+                                    <div class="form-item">
+                                    <label for="d1">Current Salary :</label>
+                                    <input type="number" class="form-control form-control-lg" id="d1" required>
+                                </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-item">
+                                    <label for="d2">Generated Revenue :</label>
+                                    <input type="number" class="form-control form-control-lg" id="d2" required>
+                                </div>
+                            </div>
+                            </form>
+                            <div class="col-lg-12">
+                                <div class="Ubsubmitbtn">
+                                <div class="border p-2 m-1 bg-success text-white amountbtn">
+                                    Amount: ₹<span id="result">0.00</span></div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer" style="margin: 0 auto;">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" form="calculator-form" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- superadmin Calculator Filter end -->

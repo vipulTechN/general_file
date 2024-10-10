@@ -1,223 +1,102 @@
-<<<<<<< HEAD
-filterID
-Employeename
-Employeeid
-Phoneno
-Project
-location
-CompanyLaptop
-LaptopBrand
-Laptopid
-Laptopcharger
-Companymouse
-Simcard
-Datesignature
-=======
-// Load Google Charts library for other charts
-google.charts.load("current", { packages: ["corechart", "bar"] });
-
-// Declare chart variables outside the function scope
-var pieChart;
-var barChart;
-var profitLossChart;
-
-// Function to populate dropdown and draw charts
-function populateDropdown() {
-    var dropdown = $('#year_select');
-    dropdown.empty(); // Clear previous options
-
-    // Extract years from either pieChartData or barChartData
-    var years = pieChartData.map(item => item.year);
-    years.sort(); // Sort in ascending order
-    years.reverse(); // Reverse to have most recent year first
-
-    // Populate dropdown with years
-    years.forEach(function(year) {
-        dropdown.append($('<option>').val(year).text(year));
+<!-- Status Modal -->
+    <div class="modal fade" id="viewStatusModal" tabindex="-1" role="dialog" aria-labelledby="viewStatusModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewStatusModalLabel">View Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User Unique ID</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statusModalData">
+                            <!-- Data from AJAX will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Status Modal End-->
+<!-- Remarks Modal -->
+    <div class="modal fade" id="viewRemarksModal" tabindex="-1" role="dialog" aria-labelledby="viewRemarksModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewRemarksModalLabel">View Remarks</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User Unique ID</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="remarksModalData">
+                            <!-- Data from AJAX will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Remarks Modal End -->
+<script>
+    $(document).ready(function() {
+    // Handle click event for 'View Status' button
+    $('.view-status').on('click', function(event) {
+        event.preventDefault(); // Prevent the default action (page refresh)
+        var uploadDataId = $(this).data('id');
+        fetchData(uploadDataId, 'status');
     });
 
-    // Set the default year to the most recent year
-    var defaultYear = years[0];
-    dropdown.val(defaultYear);
-
-    // Event listener for dropdown change
-    dropdown.on('change', function() {
-        var selectedYear = $(this).val();
-        fetchDataAndDrawCharts(selectedYear);
+    // Handle click event for 'View Remarks' button
+    $('.view-remarks').on('click', function(event) {
+        event.preventDefault(); // Prevent the default action (page refresh)
+        var uploadDataId = $(this).data('id');
+        fetchData(uploadDataId, 'remarks');
     });
 
-    // Initial chart drawing
-    fetchDataAndDrawCharts(defaultYear);
-}
-
-// Function to fetch data for selected year and draw charts
-function fetchDataAndDrawCharts(selectedYear) {
-    // Find data for the selected year from both datasets
-    var pieChartSelectedData = pieChartData.find(item => item.year === selectedYear);
-    var barChartSelectedData = barChartData.find(item => item.year === selectedYear);
-    var profitLossSelectedData = profitLossData.find(item => item.year === selectedYear);
-
-    // Draw pie chart
-    drawPieChart(pieChartSelectedData);
-
-    // Draw bar chart
-    drawBarChart(barChartSelectedData);
-
-    // Draw profit and loss chart using Chart.js
-    drawProfitLossChart(profitLossSelectedData);
-}
-
-// Function to draw pie chart
-function drawPieChart(data) {
-    var chartData = [
-        ['Task', 'Count'],
-        ['Received', parseInt(data.received_count)],
-        ['Canceled', parseInt(data.canceled_count)],
-        ['Processing', parseInt(data.processing_count)]
-    ];
-    var chartOptions = {
-        title: 'Status Distribution for Year: ' + data.year,
-        is3D: true,
-        colors: ['#28a745', '#dc3545', '#FFAE42'] // Customize colors for each slice
-    };
-    var dataTable = google.visualization.arrayToDataTable(chartData);
-    if (!pieChart) {
-        pieChart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-    }
-    pieChart.draw(dataTable, chartOptions);
-}
-// Function to draw Bar CHart
-function drawBarChart(data) {
-    var chartData = [
-        ['Year', 'Actual Revenue', 'Invoice Include', 'Received Revenue'],
-        [data.year, parseInt(data.actual_revenue), parseInt(data.invoice_include), parseInt(data.received_revenue)]
-    ];
-    var chartOptions = {
-        title: 'Company Performance for Year: ' + data.year,
-        bars: 'vertical', // Ensure bars are displayed vertically
-        colors: ['#28a745', '#B5FF33', '#007bff'],
-        border: ['1px solid black'],
-        bar: { groupWidth: '40%' } // Make the bar lines thinner
-    };
-    var dataTable = google.visualization.arrayToDataTable(chartData);
-    if (!barChart) {
-        barChart = new google.visualization.BarChart(document.getElementById('barchart_material'));
-    }
-    barChart.draw(dataTable, chartOptions);
-}
-
-// Function to draw profit and loss chart using Chart.js
-function drawProfitLossChart(data) {
-    var ctx = document.getElementById('line_top_x'); // Ensure 'line_top_x' is a canvas element
-
-    if (!ctx) {
-        console.error("Canvas element 'line_top_x' not found.");
-        return;
-    }
-
-    var chartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // Correct month order
-        datasets: [
-            {
-                label: 'Actual Revenue',
-                data: data.actual_revenue,
-                borderColor: '#28a745',
-                fill: false
+    // Function to fetch data for either status or remarks
+    function fetchData(uploadDataId, type) {
+        $.ajax({
+            url: './get_user_updates.php',
+            method: 'GET',
+            data: { upload_data_id: uploadDataId, type: type },
+            success: function(response) {
+                if (type === 'status') {
+                    $('#statusModalData').html(response); // Inject data into the modal body
+                    $('#viewStatusModal').modal('show'); // Show the Status modal
+                } else if (type === 'remarks') {
+                    $('#remarksModalData').html(response); // Inject data into the modal body
+                    $('#viewRemarksModal').modal('show'); // Show the Remarks modal
+                }
             },
-            {
-                label: 'Expenses',
-                data: data.expenses,
-                borderColor: '#dc3545',
-                fill: false
-            },
-            {
-                label: 'Profit',
-                data: data.profit,
-                borderColor: '#007bff',
-                fill: false
+            error: function(xhr, status, error) {
+                alert('Error fetching data. Please try again.');
+                console.error('AJAX Error: ', error); // Log any error
             }
-        ]
-    };
-
-    if (profitLossChart) {
-        profitLossChart.destroy(); // Destroy the existing chart if it exists
+        });
     }
-
-    profitLossChart = new Chart(ctx, {
-        type: 'line',
-        data: chartData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Profit and Loss Summary for Financial Year: ' + data.year,
-                    font: {
-                        size: 13,
-                        family: 'Arial',
-                        weight: 'bold'
-                    },
-                    color: '#333'
-                }
-            },
-            scales: {
-                x: {
-                    type: 'category',
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // Correct month order
-                    ticks: {
-                        color: '#333' // X-axis label color
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#333' // Y-axis label color
-                    }
-                }
-            },
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 10
-                }
-            },
-            legend: {
-                labels: {
-                    color: '#333' // Legend label color
-                }
-            }
-        }
-    });
-
-    // Set white background for the chart
-    ctx.parentNode.style.backgroundColor = '#fff';
-}
-// When Google Charts library is loaded, execute the code inside the callback function
-google.charts.setOnLoadCallback(function() {
-    // Fetch data from API and populate dropdown
-    $.ajax({
-        url: 'action.php?read_chart=1',
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            console.log("Parsed Data:", data);
-            if (!data || !data.pie_chart_data || !data.bar_chart_data || !data.profit_loss_data) {
-                console.error("Invalid data received from API");
-                return;
-            }
-
-            pieChartData = data.pie_chart_data;
-            barChartData = data.bar_chart_data;
-            profitLossData = data.profit_loss_data;
-
-            populateDropdown();
-        },
-        error: function(xhr, status, error) {
-            console.error("Error fetching chart data:", error);
-        }
-    });
 });
->>>>>>> b53d6859641badaaf9a8cfd68c091cd3a5deb35e
+</script>
+API PASS Data 
+  echo "<tr>
+                    <td>{$remark['user_unique_id']}</td>";
+            if ($type == 'status') {
+                echo "<td>{$remark['status']}</td>";
+            } elseif ($type == 'remarks') {
+                echo "<td>{$remark['remarks']}</td>";
+            }
+            echo "</tr>";

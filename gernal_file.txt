@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-filterID
-Employeename
-Employeeid
-Phoneno
-Project
-location
-CompanyLaptop
-LaptopBrand
-Laptopid
-Laptopcharger
-Companymouse
-Simcard
-Datesignature
 =======
 // Load Google Charts library for other charts
 google.charts.load("current", { packages: ["corechart", "bar"] });

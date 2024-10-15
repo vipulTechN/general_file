@@ -1,209 +1,167 @@
-=======
-// Load Google Charts library for other charts
-google.charts.load("current", { packages: ["corechart", "bar"] });
-
-// Declare chart variables outside the function scope
-var pieChart;
-var barChart;
-var profitLossChart;
-
-// Function to populate dropdown and draw charts
-function populateDropdown() {
-    var dropdown = $('#year_select');
-    dropdown.empty(); // Clear previous options
-
-    // Extract years from either pieChartData or barChartData
-    var years = pieChartData.map(item => item.year);
-    years.sort(); // Sort in ascending order
-    years.reverse(); // Reverse to have most recent year first
-
-    // Populate dropdown with years
-    years.forEach(function(year) {
-        dropdown.append($('<option>').val(year).text(year));
-    });
-
-    // Set the default year to the most recent year
-    var defaultYear = years[0];
-    dropdown.val(defaultYear);
-
-    // Event listener for dropdown change
-    dropdown.on('change', function() {
-        var selectedYear = $(this).val();
-        fetchDataAndDrawCharts(selectedYear);
-    });
-
-    // Initial chart drawing
-    fetchDataAndDrawCharts(defaultYear);
-}
-
-// Function to fetch data for selected year and draw charts
-function fetchDataAndDrawCharts(selectedYear) {
-    // Find data for the selected year from both datasets
-    var pieChartSelectedData = pieChartData.find(item => item.year === selectedYear);
-    var barChartSelectedData = barChartData.find(item => item.year === selectedYear);
-    var profitLossSelectedData = profitLossData.find(item => item.year === selectedYear);
-
-    // Draw pie chart
-    drawPieChart(pieChartSelectedData);
-
-    // Draw bar chart
-    drawBarChart(barChartSelectedData);
-
-    // Draw profit and loss chart using Chart.js
-    drawProfitLossChart(profitLossSelectedData);
-}
-
-// Function to draw pie chart
-function drawPieChart(data) {
-    var chartData = [
-        ['Task', 'Count'],
-        ['Received', parseInt(data.received_count)],
-        ['Canceled', parseInt(data.canceled_count)],
-        ['Processing', parseInt(data.processing_count)]
-    ];
-    var chartOptions = {
-        title: 'Status Distribution for Year: ' + data.year,
-        is3D: true,
-        colors: ['#28a745', '#dc3545', '#FFAE42'] // Customize colors for each slice
-    };
-    var dataTable = google.visualization.arrayToDataTable(chartData);
-    if (!pieChart) {
-        pieChart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-    }
-    pieChart.draw(dataTable, chartOptions);
-}
-// Function to draw Bar CHart
-function drawBarChart(data) {
-    var chartData = [
-        ['Year', 'Actual Revenue', 'Invoice Include', 'Received Revenue'],
-        [data.year, parseInt(data.actual_revenue), parseInt(data.invoice_include), parseInt(data.received_revenue)]
-    ];
-    var chartOptions = {
-        title: 'Company Performance for Year: ' + data.year,
-        bars: 'vertical', // Ensure bars are displayed vertically
-        colors: ['#28a745', '#B5FF33', '#007bff'],
-        border: ['1px solid black'],
-        bar: { groupWidth: '40%' } // Make the bar lines thinner
-    };
-    var dataTable = google.visualization.arrayToDataTable(chartData);
-    if (!barChart) {
-        barChart = new google.visualization.BarChart(document.getElementById('barchart_material'));
-    }
-    barChart.draw(dataTable, chartOptions);
-}
-
-// Function to draw profit and loss chart using Chart.js
-function drawProfitLossChart(data) {
-    var ctx = document.getElementById('line_top_x'); // Ensure 'line_top_x' is a canvas element
-
-    if (!ctx) {
-        console.error("Canvas element 'line_top_x' not found.");
-        return;
-    }
-
-    var chartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // Correct month order
-        datasets: [
-            {
-                label: 'Actual Revenue',
-                data: data.actual_revenue,
-                borderColor: '#28a745',
-                fill: false
-            },
-            {
-                label: 'Expenses',
-                data: data.expenses,
-                borderColor: '#dc3545',
-                fill: false
-            },
-            {
-                label: 'Profit',
-                data: data.profit,
-                borderColor: '#007bff',
-                fill: false
-            }
-        ]
-    };
-
-    if (profitLossChart) {
-        profitLossChart.destroy(); // Destroy the existing chart if it exists
-    }
-
-    profitLossChart = new Chart(ctx, {
-        type: 'line',
-        data: chartData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Profit and Loss Summary for Financial Year: ' + data.year,
-                    font: {
-                        size: 13,
-                        family: 'Arial',
-                        weight: 'bold'
-                    },
-                    color: '#333'
+ <!-- pagination and jump script for table start-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const rowSelector = document.getElementById('rowSelector');
+            const rows = document.querySelectorAll('#myTable tbody tr');
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            const pageNumbersContainer = document.getElementById('pageNumbers');
+            const jumpToPageInput = document.getElementById('jumpToPageInput');
+            const jumpButton = document.getElementById('jumpButton');
+            const rowInfo = document.getElementById('rowInfo');
+            const searchInput = document.getElementById('searchInput');
+            let currentPage = 1;
+            let rowsPerPage = parseInt(rowSelector.value, 10);
+            let totalPages;
+    
+            // Function to display rows based on selected rows per page and filtered rows
+            function displayRows(filteredRows = rows) {
+                const totalRows = filteredRows.length; // Get the total number of filtered rows
+                totalPages = Math.ceil(totalRows / rowsPerPage);
+    
+                // Hide all rows
+                rows.forEach(row => {
+                    row.style.display = 'none';
+                });
+    
+                // Calculate the starting and ending index for the current page
+                const start = (currentPage - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+    
+                // Show rows for the current page
+                for (let i = start; i < end && i < totalRows; i++) {
+                    filteredRows[i].style.display = ''; // Show each row based on the selection
                 }
-            },
-            scales: {
-                x: {
-                    type: 'category',
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // Correct month order
-                    ticks: {
-                        color: '#333' // X-axis label color
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#333' // Y-axis label color
+    
+                // Show the row info (Showing X to Y of Z entries, filtered)
+                const showingStart = start + 1;
+                const showingEnd = Math.min(end, totalRows);
+                const totalOriginalRows = rows.length;
+                rowInfo.innerText = `Showing ${showingStart} to ${showingEnd} of ${totalRows} ${totalRows === totalOriginalRows ? 'entries' : `(filtered from ${totalOriginalRows} total entries)`}`;
+    
+                // Update pagination buttons and jump input limits
+                updatePagination(totalPages);
+            }
+    
+            // Function to filter table rows based on search input
+            function filterTable() {
+                const filter = searchInput.value.toLowerCase();
+                const filteredRows = Array.from(rows).filter(row => {
+                    return row.innerText.toLowerCase().includes(filter);
+                });
+    
+                currentPage = 1; // Reset to first page when filtering
+                displayRows(filteredRows); // Display the filtered rows
+            }
+    
+            // Function to update pagination buttons
+            function updatePagination(totalPages) {
+                pageNumbersContainer.innerHTML = ''; // Clear existing page numbers
+    
+                // Enable/disable buttons
+                prevButton.disabled = currentPage === 1;
+                nextButton.disabled = currentPage === totalPages || totalPages === 0;
+    
+                // Display page numbers
+                const maxVisiblePages = 3;
+                let startPage, endPage;
+    
+                if (totalPages <= maxVisiblePages) {
+                    startPage = 1;
+                    endPage = totalPages;
+                } else {
+                    if (currentPage <= 3) {
+                        startPage = 1;
+                        endPage = maxVisiblePages;
+                    } else if (currentPage + 1 >= totalPages) {
+                        startPage = totalPages - maxVisiblePages + 1;
+                        endPage = totalPages;
+                    } else {
+                        startPage = currentPage - 2;
+                        endPage = currentPage + 2;
                     }
                 }
-            },
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 10
-                }
-            },
-            legend: {
-                labels: {
-                    color: '#333' // Legend label color
+    
+                // Add page buttons
+                for (let i = startPage; i <= endPage; i++) {
+                    const button = document.createElement('button');
+                    button.innerText = i;
+                    button.className = i === currentPage ? 'active' : '';
+                    button.addEventListener('click', function () {
+                        currentPage = i;
+                        displayRows(); // Display the filtered rows (pass them again)
+                    });
+                    pageNumbersContainer.appendChild(button);
                 }
             }
-        }
-    });
+    
+            // Event listener for rows per page selector
+            rowSelector.addEventListener('change', function () {
+                rowsPerPage = parseInt(this.value, 10);
+                currentPage = 1; // Reset to first page
+                displayRows(); // Redisplay rows with the new rows per page setting
+            });
+    
+            // Event listener for previous button
+            prevButton.addEventListener('click', function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayRows(); // Redisplay rows for the new page
+                }
+            });
+    
+            // Event listener for next button
+            nextButton.addEventListener('click', function () {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayRows(); // Redisplay rows for the new page
+                }
+            });
+    
+            // Event listener for Jump to Page button
+            jumpButton.addEventListener('click', function () {
+                const pageNumber = parseInt(jumpToPageInput.value, 10);
+                if (pageNumber >= 1 && pageNumber <= totalPages) {
+                    currentPage = pageNumber;
+                    displayRows(); // Redisplay rows for the new page
+                } else {
+                    alert('Please enter a valid page number.');
+                }
+            });
+    
+            // Event listener for search input
+            searchInput.addEventListener('keyup', filterTable);
+    
+            // Initial display of rows
+            displayRows();
+        });
+    </script>
 
-    // Set white background for the chart
-    ctx.parentNode.style.backgroundColor = '#fff';
-}
-// When Google Charts library is loaded, execute the code inside the callback function
-google.charts.setOnLoadCallback(function() {
-    // Fetch data from API and populate dropdown
-    $.ajax({
-        url: 'action.php?read_chart=1',
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            console.log("Parsed Data:", data);
-            if (!data || !data.pie_chart_data || !data.bar_chart_data || !data.profit_loss_data) {
-                console.error("Invalid data received from API");
-                return;
-            }
+    <!-- row selector script for table start-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const rowSelector = document.getElementById('rowSelector');
+            const rows = document.querySelectorAll('#myTable tbody tr');
 
-            pieChartData = data.pie_chart_data;
-            barChartData = data.bar_chart_data;
-            profitLossData = data.profit_loss_data;
+            rowSelector.addEventListener('change', function () {
+                const selectedValue = rowSelector.value;
+                let visibleCount;
 
-            populateDropdown();
-        },
-        error: function(xhr, status, error) {
-            console.error("Error fetching chart data:", error);
-        }
-    });
-});
->>>>>>> b53d6859641badaaf9a8cfd68c091cd3a5deb35e
+                if (selectedValue === 'all') {
+                    visibleCount = rows.length;
+                } else {
+                    visibleCount = parseInt(selectedValue, 10);
+                }
+
+                rows.forEach(row => {
+                    row.style.display = 'none';
+                });
+
+                for (let i = 0; i < visibleCount && i < rows.length; i++) {
+                    rows[i].style.display = ''; 
+                }
+            });
+
+            rowSelector.dispatchEvent(new Event('change'));
+        });
+    </script>

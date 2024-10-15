@@ -1,167 +1,104 @@
- <!-- pagination and jump script for table start-->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const rowSelector = document.getElementById('rowSelector');
-            const rows = document.querySelectorAll('#myTable tbody tr');
-            const prevButton = document.getElementById('prevButton');
-            const nextButton = document.getElementById('nextButton');
-            const pageNumbersContainer = document.getElementById('pageNumbers');
-            const jumpToPageInput = document.getElementById('jumpToPageInput');
-            const jumpButton = document.getElementById('jumpButton');
-            const rowInfo = document.getElementById('rowInfo');
-            const searchInput = document.getElementById('searchInput');
-            let currentPage = 1;
-            let rowsPerPage = parseInt(rowSelector.value, 10);
-            let totalPages;
-    
-            // Function to display rows based on selected rows per page and filtered rows
-            function displayRows(filteredRows = rows) {
-                const totalRows = filteredRows.length; // Get the total number of filtered rows
-                totalPages = Math.ceil(totalRows / rowsPerPage);
-    
-                // Hide all rows
-                rows.forEach(row => {
-                    row.style.display = 'none';
-                });
-    
-                // Calculate the starting and ending index for the current page
-                const start = (currentPage - 1) * rowsPerPage;
-                const end = start + rowsPerPage;
-    
-                // Show rows for the current page
-                for (let i = start; i < end && i < totalRows; i++) {
-                    filteredRows[i].style.display = ''; // Show each row based on the selection
-                }
-    
-                // Show the row info (Showing X to Y of Z entries, filtered)
-                const showingStart = start + 1;
-                const showingEnd = Math.min(end, totalRows);
-                const totalOriginalRows = rows.length;
-                rowInfo.innerText = `Showing ${showingStart} to ${showingEnd} of ${totalRows} ${totalRows === totalOriginalRows ? 'entries' : `(filtered from ${totalOriginalRows} total entries)`}`;
-    
-                // Update pagination buttons and jump input limits
-                updatePagination(totalPages);
-            }
-    
-            // Function to filter table rows based on search input
-            function filterTable() {
-                const filter = searchInput.value.toLowerCase();
-                const filteredRows = Array.from(rows).filter(row => {
-                    return row.innerText.toLowerCase().includes(filter);
-                });
-    
-                currentPage = 1; // Reset to first page when filtering
-                displayRows(filteredRows); // Display the filtered rows
-            }
-    
-            // Function to update pagination buttons
-            function updatePagination(totalPages) {
-                pageNumbersContainer.innerHTML = ''; // Clear existing page numbers
-    
-                // Enable/disable buttons
-                prevButton.disabled = currentPage === 1;
-                nextButton.disabled = currentPage === totalPages || totalPages === 0;
-    
-                // Display page numbers
-                const maxVisiblePages = 3;
-                let startPage, endPage;
-    
-                if (totalPages <= maxVisiblePages) {
-                    startPage = 1;
-                    endPage = totalPages;
-                } else {
-                    if (currentPage <= 3) {
-                        startPage = 1;
-                        endPage = maxVisiblePages;
-                    } else if (currentPage + 1 >= totalPages) {
-                        startPage = totalPages - maxVisiblePages + 1;
-                        endPage = totalPages;
-                    } else {
-                        startPage = currentPage - 2;
-                        endPage = currentPage + 2;
-                    }
-                }
-    
-                // Add page buttons
-                for (let i = startPage; i <= endPage; i++) {
-                    const button = document.createElement('button');
-                    button.innerText = i;
-                    button.className = i === currentPage ? 'active' : '';
-                    button.addEventListener('click', function () {
-                        currentPage = i;
-                        displayRows(); // Display the filtered rows (pass them again)
-                    });
-                    pageNumbersContainer.appendChild(button);
-                }
-            }
-    
-            // Event listener for rows per page selector
-            rowSelector.addEventListener('change', function () {
-                rowsPerPage = parseInt(this.value, 10);
-                currentPage = 1; // Reset to first page
-                displayRows(); // Redisplay rows with the new rows per page setting
+/* styling for Assigned Users */
+    .assigned-users-list{display:flex;flex-wrap:wrap;padding:10px;border:1px solid #ddd;border-radius:4px;max-height:150px;overflow-y:auto}.assigned-user{display:flex;align-items:center;margin:5px;padding:5px 10px;background-color:#f8f9fa;border-radius:15px;font-size:14px}.assigned-user span{margin-right:10px}.remove-btn{background:#dc3545;border:none;color:#fff;font-size:12px;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;cursor:pointer}.remarks_project{border-radius:3px;background-color:#cdffd9;font-size:9px;font-weight:700;color:#00008b}
+    /* styling for Assigned Users End */
+<!-- Assign User Popup -->
+<div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Assign Users</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="assign-form" method="POST" action="assign_users.php">
+                <div class="modal-body">
+                    <p><b>Total Leads</b>: <span id="selected-count"><b> 0</b></span></p>
+                    <input type="hidden" id="selected-ids" name="selected_ids">
+                    <!-- Hidden input to store selected users -->
+                    <input type="hidden" name="users" id="hidden-users">
+
+                    <div class="dropdown-container" class="assigned-users-list">
+                        <label for="assignprojectname">Project Name:</label>
+                        <input type="text" id="assignprojectname" name="assignprojectname" class="form-control search-box" placeholder="Enter Project Name...">
+                    </div>
+
+                    <label for="selected-users">Assigned Users:</label>
+                    <div id="assigned-users-container" class="assigned-users-list"></div>
+
+                    <!-- Search for Users Dropdown -->
+                    <label for="users">Select User(s):</label>
+                    <div class="dropdown-container">
+                        <input type="text" id="user-search" class="form-control search-box" placeholder="Search users...">
+                        <select id="users" multiple class="form-select">
+                            <!-- Options populated dynamically from PHP -->
+                            <?php
+                                $userQuery = "SELECT tablename FROM accounts WHERE is_active = 1";
+                                $userStmt = $conn->prepare($userQuery);
+                                $userStmt->execute();
+                                $users = $userStmt->fetchAll(PDO::FETCH_ASSOC);
+                                
+                                foreach ($users as $user) {
+                                    echo "<option value='{$user['tablename']}'>{$user['tablename']}</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-lg-12 text-center">
+                        <button type="submit" name="submit" class="btn btn-sm btn-primary">Assign</button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Assign User PopUp model End -->
+<!-- this script is for assign users  -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const userSelect = document.getElementById('users');
+    const assignedUsersContainer = document.getElementById('assigned-users-container');
+    const hiddenUsersInput = document.getElementById('hidden-users');
+
+    let selectedUsers = [];
+
+    // Add selected users to list
+    userSelect.addEventListener('change', function () {
+        const selectedOptions = Array.from(userSelect.selectedOptions);
+        assignedUsersContainer.innerHTML = ''; // Clear container
+        selectedUsers = [];
+
+        selectedOptions.forEach(option => {
+            const userValue = option.value;
+            const userText = option.text;
+            selectedUsers.push(userValue);
+
+            const userDiv = document.createElement('div');
+            userDiv.classList.add('assigned-user');
+            userDiv.textContent = userText;
+
+            const removeButton = document.createElement('button');
+            removeButton.classList.add('remove-user');
+            removeButton.textContent = 'x';
+            removeButton.addEventListener('click', function () {
+                // Remove user and update list
+                selectedUsers = selectedUsers.filter(u => u !== userValue);
+                updateHiddenInput();
+                userDiv.remove();
             });
-    
-            // Event listener for previous button
-            prevButton.addEventListener('click', function () {
-                if (currentPage > 1) {
-                    currentPage--;
-                    displayRows(); // Redisplay rows for the new page
-                }
-            });
-    
-            // Event listener for next button
-            nextButton.addEventListener('click', function () {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    displayRows(); // Redisplay rows for the new page
-                }
-            });
-    
-            // Event listener for Jump to Page button
-            jumpButton.addEventListener('click', function () {
-                const pageNumber = parseInt(jumpToPageInput.value, 10);
-                if (pageNumber >= 1 && pageNumber <= totalPages) {
-                    currentPage = pageNumber;
-                    displayRows(); // Redisplay rows for the new page
-                } else {
-                    alert('Please enter a valid page number.');
-                }
-            });
-    
-            // Event listener for search input
-            searchInput.addEventListener('keyup', filterTable);
-    
-            // Initial display of rows
-            displayRows();
+
+            userDiv.appendChild(removeButton);
+            assignedUsersContainer.appendChild(userDiv);
         });
-    </script>
+        updateHiddenInput();
+    });
 
-    <!-- row selector script for table start-->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const rowSelector = document.getElementById('rowSelector');
-            const rows = document.querySelectorAll('#myTable tbody tr');
-
-            rowSelector.addEventListener('change', function () {
-                const selectedValue = rowSelector.value;
-                let visibleCount;
-
-                if (selectedValue === 'all') {
-                    visibleCount = rows.length;
-                } else {
-                    visibleCount = parseInt(selectedValue, 10);
-                }
-
-                rows.forEach(row => {
-                    row.style.display = 'none';
-                });
-
-                for (let i = 0; i < visibleCount && i < rows.length; i++) {
-                    rows[i].style.display = ''; 
-                }
-            });
-
-            rowSelector.dispatchEvent(new Event('change'));
-        });
-    </script>
+    function updateHiddenInput() {
+        hiddenUsersInput.value = selectedUsers.join(','); // Update hidden input
+    }
+});
+</script>
+<!-- this script is for assign users End-->

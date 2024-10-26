@@ -1,394 +1,318 @@
-//////////////////////////////////////////////////////
-
 document.addEventListener('DOMContentLoaded', function () {
-// Initialize variables
-  const rowSelector = document.getElementById('rowSelector');
-  const prevButton = document.getElementById('prevButton');
-  const nextButton = document.getElementById('nextButton');
-  const pageNumbersContainer = document.getElementById('pageNumbers');
-  const jumpToPageInput = document.getElementById('jumpToPageInput');
-  const jumpButton = document.getElementById('jumpButton');
-  const rowInfo = document.getElementById('rowInfo');
-  const searchInput = document.getElementById('searchInput');
-  const uploaddata = document.getElementById('uploaddata'); // Table body
-  const selectAllCheckbox = document.getElementById('select-all');
-  const deleteSelectedBtn = document.getElementById('delete-selected-btn');
-
-  let currentPage = 1;
-  let rowsPerPage = parseInt(rowSelector.value, 10);
-  let totalPages;
-
-  // Fetch data function
-  function fetchData(page = 1, rowsPerPage = 10, searchQuery = '', filter = '') {
-      const url = `upload.php?page=${page}&rowsPerPage=${rowsPerPage}&searchQuery=${encodeURIComponent(searchQuery)}&filter=${encodeURIComponent(filter)}`;
-      console.log('Fetching data from URL:', url); // Add this line for debugging
-      fetch(url)
-          .then(response => response.json())
-          .then(data => {
-              updateTable(data.data);
-              updatePagination(data.totalRows, data.currentPage, data.rowsPerPage);
-              // Call the user cell processing after the table is updated
-              processUserCells();
-          })
-          .catch(error => console.error('Error fetching data:', error));
-  }
-
-  // Update the table
-  function updateTable(rows) {
-      uploaddata.innerHTML = ''; // Clear the table body
-
-      rows.forEach(row => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-              <td><input type="checkbox" class="select-row" value="${row.id}"></td>
-              <td>
-                <div class="user-info">
-                    <img src="./assets/images/avatar.jpeg" alt="${row.name} Images">${row.name}
-                </div>
-              </td>
-              <td>${row.email}</td>
-              <td>${row.number}</td>
-              <td>${row.location}</td>
-              <td>${row.project}</td>
-              <td class="user-cell">${row.assign_to_user}</td>
-              <td><button type="button" class="status-modal-cls-cmmn view-status" data-bs-toggle="modal" data-bs-target="#viewStatusModal" data-id="${row.id}"><i class="bi bi-eye"></i> View Status</button></td>
-              <td><button type="button" class="viewremarks-btn view-remarks" data-bs-toggle="modal" data-bs-target="#viewRemarksModal" data-id="${row.id}"><i class="bi bi-card-text"></i> View Remark</button></td>
-              <td>${row.created_at}</td>
-          `;
-          uploaddata.appendChild(tr);
-      });
-  }
-
-  // Update pagination
-  function updatePagination(totalRows, currentPage, rowsPerPage) {
-    totalPages = Math.ceil(totalRows / rowsPerPage); // Calculate total pages
-
-    const start = (currentPage - 1) * rowsPerPage + 1;
-    const end = Math.min(currentPage * rowsPerPage, totalRows);
-    rowInfo.innerText = `Showing ${start} to ${end} of ${totalRows} entries`;
-
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === totalPages;
-
-    pageNumbersContainer.innerHTML = '';
-
-    const createPageButton = (pageNumber) => {
-        const button = document.createElement('button');
-        button.innerText = pageNumber;
-        button.className = pageNumber === currentPage ? 'active' : '';
-        button.addEventListener('click', function () {
-            fetchData(pageNumber, rowsPerPage);
-        });
-        return button;
-    };
-
-    const addEllipsis = () => {
-        const ellipsis = document.createElement('span');
-        ellipsis.innerText = '...';
-        pageNumbersContainer.appendChild(ellipsis);
-    };
-
-    // Always show the first page only if currentPage is 1
-    if (currentPage === 1) {
-        pageNumbersContainer.appendChild(createPageButton(1));
-        if (totalPages > 2) addEllipsis();
-        if (totalPages > 1) pageNumbersContainer.appendChild(createPageButton(totalPages));
-    } 
-    else {
-        // Show the first page and add ellipsis
-        pageNumbersContainer.appendChild(createPageButton(1));
-        addEllipsis();
-
-        // Show the current page and one neighbor on each side if possible
-        if (currentPage > 2) {
-            pageNumbersContainer.appendChild(createPageButton(currentPage - 1));
-        }
-        
-        pageNumbersContainer.appendChild(createPageButton(currentPage));
-
-        if (currentPage < totalPages - 1) {
-            pageNumbersContainer.appendChild(createPageButton(currentPage + 1));
-        }
-
-        // Add ellipsis before the last page if currentPage is not near the end
-        if (currentPage < totalPages - 2) {
-            addEllipsis();
-        }
-
-        // Always show the last page
-        pageNumbersContainer.appendChild(createPageButton(totalPages));
-    }
-}
-
-// Event listeners for pagination
-rowSelector.addEventListener('change', function () {
-    rowsPerPage = parseInt(this.value, 10);
-    currentPage = 1;
-    fetchData(currentPage, rowsPerPage);
-});
-
-searchInput.addEventListener('keyup', function () {
-    const searchQuery = this.value;
-    currentPage = 1;
-    fetchData(currentPage, rowsPerPage, searchQuery);
-});
-
-prevButton.addEventListener('click', function () {
-    if (currentPage > 1) {
-        currentPage--;
-        fetchData(currentPage, rowsPerPage);
-    }
-});
-
-nextButton.addEventListener('click', function () {
-    if (currentPage < totalPages) {
-        currentPage++;
-        fetchData(currentPage, rowsPerPage);
-    }
-});
-
-jumpButton.addEventListener('click', function () {
-    const pageNumber = parseInt(jumpToPageInput.value, 10);
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
-        currentPage = pageNumber;
-        fetchData(currentPage, rowsPerPage);
-    } else {
-        alert('Please enter a valid page number.');
-    }
-});
-
-document.getElementById('totalUnassigned').addEventListener('click', function() {
-  currentPage = 1; // Reset to first page
-  fetchData(currentPage, rowsPerPage, '', 'unassigned');
-});
-
-document.getElementById('myLeads').addEventListener('click', function() {
-  currentPage = 1; // Reset to first page
-  fetchData(currentPage, rowsPerPage, '', 'myLeads');
-});
-
-document.getElementById('freshLeads').addEventListener('click', function() {
-  currentPage = 1; // Reset to first page
-  fetchData(currentPage, rowsPerPage, '', 'freshLeads');
-});
-
-document.getElementById('totalLeads').addEventListener('click', function() {
-  currentPage = 1; // Reset to first page
-  fetchData(currentPage, rowsPerPage, '', 'total');
-});
-
-  // Handle row selection (individual and bulk)
-  selectAllCheckbox.addEventListener('change', function () {
-    const allRowCheckboxes = document.querySelectorAll('.select-row');
-    selectedIds = []; // Reset selected IDs array
-
-    allRowCheckboxes.forEach(checkbox => {
-        checkbox.checked = this.checked; // Check/uncheck all rows
-        if (this.checked) {
-            selectedIds.push(checkbox.value); // Add all row IDs to selectedIds array
-        }
-    });
-
-    selectedIdsInput.value = selectedIds.join(','); // Update hidden input
-    toggleAssignButton(); // Recheck button state
-});
-
-uploaddata.addEventListener('change', function (event) {
-      if (event.target.classList.contains('select-row')) {
-          if (!event.target.checked) {
-              selectAllCheckbox.checked = false; // Uncheck "Select All" if any row is unchecked
-          } else {
-              const allRowCheckboxes = document.querySelectorAll('.select-row');
-              const allChecked = Array.from(allRowCheckboxes).every(checkbox => checkbox.checked);
-              selectAllCheckbox.checked = allChecked;
-          }
-      }
-  });
-// Function to process user cells (run this after table is updated)
-function processUserCells() {
-  const userCells = document.querySelectorAll('.user-cell');
-  userCells.forEach(cell => {
-      // Get the full list of users from the td content
-      const userList = cell.innerText.trim().split(',');
-
-      // Display only the first name followed by "more..." if there are multiple names
-      if (userList.length > 1) {
-          cell.innerHTML = `${userList[0]} ...more`;
-      }
-
-      // Add a click event listener to the cell
-      cell.addEventListener('click', function() {
-          // Set the full list of users in the modal
-          document.getElementById('assignUserList').innerText = userList.join(', ');
-
-          // Trigger the modal to show
-          const assignUserModal = new bootstrap.Modal(document.getElementById('assignUserModal'));
-          assignUserModal.show();
-      });
-  });
-}
-// this javascript is for trim the assign user ENd
-// Initial fetch of data
-  fetchData(currentPage, rowsPerPage);
-});
-
-
-
-///////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', () => {
-    const tableBody = document.getElementById('table-body');
+    // Initialize variables
+    const rowSelector = document.getElementById('rowSelector');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const pageNumbersContainer = document.getElementById('pageNumbers');
+    const jumpToPageInput = document.getElementById('jumpToPageInput');
+    const jumpButton = document.getElementById('jumpButton');
+    const rowInfo = document.getElementById('rowInfo');
+    const searchInput = document.getElementById('searchInput');
+    const uploaddata = document.getElementById('table-body'); // Table body
     const updateForm = document.getElementById('updateStatusForm');
     const updateModal = new bootstrap.Modal(document.getElementById('statusModal')); // Initialize Bootstrap modal
+    //   const selectAllCheckbox = document.getElementById('select-all');
+    //   const deleteSelectedBtn = document.getElementById('delete-selected-btn');
+    
+      let currentPage = 1;
+      let rowsPerPage = parseInt(rowSelector.value, 10);
+      let totalPages;
+    
+      // Fetch data function
+      function fetchData(page = 1, rowsPerPage = 10, searchQuery = '', filter = '') {
+          const url = `update_status.php?page=${page}&rowsPerPage=${rowsPerPage}&searchQuery=${encodeURIComponent(searchQuery)}&filter=${encodeURIComponent(filter)}`;
+          console.log('Fetching data from URL:', url); // Add this line for debugging
+          fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                  updateTable(data.data);
+                  updatePagination(data.totalRows, data.currentPage, data.rowsPerPage);
+                  // Call the user cell processing after the table is updated
+                  processUserCells();
+                  hideAllNumbers();
+                  editUserTable();
+              })
+              .catch(error => console.error('Error fetching data:', error));
+      }
+      // Update the table
+        function updateTable(rows) {
+            uploaddata.innerHTML = ''; // Clear the table body
 
-    // Function to hide all numbers
-    function hideAllNumbers() {
-        document.querySelectorAll('.masked-number').forEach(span => {
-            span.textContent = 'XXXXXXXXXX'; // Mask all numbers
-        });
-    }
-
-    // Event Delegation for hiding and showing phone numbers
-    tableBody.addEventListener('click', function (e) {
-        const clickedRow = e.target.closest('.reveal-number-row');
-        
-        // Only proceed if a row with class `reveal-number-row` was clicked
-        if (clickedRow) {
-            // Hide all numbers first
-            hideAllNumbers();
-
-            // Find the masked-number span in the clicked row and reveal the number
-            const numberSpan = clickedRow.querySelector('.masked-number');
-            if (numberSpan) {
-                numberSpan.textContent = numberSpan.getAttribute('data-number');
-            }
-        }
-    });
-
-    // Optionally, hide the number again if clicked outside any row
-    document.addEventListener('click', function(event) {
-        // Check if the click was outside any of the reveal-number-row rows
-        if (!event.target.closest('.reveal-number-row')) {
-            hideAllNumbers();  // Hide all numbers
-        }
-    });
-
-    // Fetch All Users and Populate Table
-    const fetchAllUsers = async () => {
-        const userData = document.getElementById("table-body");
-        try {
-            const response = await fetch('update_status.php?readrow=1', { method: 'GET' });
-            const options = await response.text();
-            userData.innerHTML = options;  // Populate the <select> element with options
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
-    };
-
-    // Fetch and Populate Edit Form
-    const editUser = async (id) => {
-        try {
-            const response = await fetch(`update_status.php?editrow=1&id=${id}`, { method: 'GET' });
-            const user = await response.json();
-            document.getElementById('rowId').value = user.id;
-            document.getElementById('status').value = user.status;
-            document.getElementById('notes').value = user.message;
-            updateModal.show(); // Show the modal
-        } catch (error) {
-            console.error('Error fetching user data for editing:', error);
-        }
-    };
-
-    // Handle Form Submission for Update
-    updateForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(updateForm);
-        formData.append('update', 1);
-
-        try {
-            const response = await fetch('update_status.php', {
-                method: 'POST',
-                body: formData
+            rows.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><input type="checkbox" class="select-row" value="${row.id}"></td>
+                    <td>
+                    <div class="user-info">
+                        <img src="./assets/images/avatar.jpeg" alt="${row.name} Images">${row.name}
+                    </div>
+                    </td>
+                    <td>${row.email}</td>
+                    <td>${row.number}</td>
+                    <td>${row.location}</td>
+                    <td>${row.project}</td>
+                    <td class="user-cell">${row.assign_to_user}</td>
+                    <td><button type="button" class="status-modal-cls-cmmn view-status" data-bs-toggle="modal" data-bs-target="#viewStatusModal" data-id="${row.id}"><i class="bi bi-eye"></i> View Status</button></td>
+                    <td><button type="button" class="viewremarks-btn view-remarks" data-bs-toggle="modal" data-bs-target="#viewRemarksModal" data-id="${row.id}"><i class="bi bi-card-text"></i> View Remark</button></td>
+                    <td>${row.created_at}</td>
+                `;
+                uploaddata.appendChild(tr);
             });
-            const result = await response.json();
-            
-            if (result.status === 'success') {
-                // Update the specific row in the table
-                fetchAllUsers(); // Fetch and update the table content
-                updateModal.hide(); // Hide the modal
-            } else {
-                console.error('Failed to update row');
+        }
+        
+        // Update pagination
+        function updatePagination(totalRows, currentPage, rowsPerPage) {
+            totalPages = Math.ceil(totalRows / rowsPerPage); // Calculate total pages
+        
+            const start = (currentPage - 1) * rowsPerPage + 1;
+            const end = Math.min(currentPage * rowsPerPage, totalRows);
+            rowInfo.innerText = `Showing ${start} to ${end} of ${totalRows} entries`;
+        
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+        
+            pageNumbersContainer.innerHTML = '';
+        
+            const createPageButton = (pageNumber) => {
+                const button = document.createElement('button');
+                button.innerText = pageNumber;
+                button.className = pageNumber === currentPage ? 'active' : '';
+                button.addEventListener('click', function () {
+                    fetchData(pageNumber, rowsPerPage);
+                });
+                return button;
+            };
+        
+            const addEllipsis = () => {
+                const ellipsis = document.createElement('span');
+                ellipsis.innerText = '...';
+                pageNumbersContainer.appendChild(ellipsis);
+            };
+        
+            // Always show the first page only if currentPage is 1
+            if (currentPage === 1) {
+                pageNumbersContainer.appendChild(createPageButton(1));
+                if (totalPages > 2) addEllipsis();
+                if (totalPages > 1) pageNumbersContainer.appendChild(createPageButton(totalPages));
+            } 
+            else {
+                // Show the first page and add ellipsis
+                pageNumbersContainer.appendChild(createPageButton(1));
+                addEllipsis();
+        
+                // Show the current page and one neighbor on each side if possible
+                if (currentPage > 2) {
+                    pageNumbersContainer.appendChild(createPageButton(currentPage - 1));
+                }
+                
+                pageNumbersContainer.appendChild(createPageButton(currentPage));
+        
+                if (currentPage < totalPages - 1) {
+                    pageNumbersContainer.appendChild(createPageButton(currentPage + 1));
+                }
+        
+                // Add ellipsis before the last page if currentPage is not near the end
+                if (currentPage < totalPages - 2) {
+                    addEllipsis();
+                }
+        
+                // Always show the last page
+                pageNumbersContainer.appendChild(createPageButton(totalPages));
             }
-        } catch (error) {
-            console.error('Error updating row:', error);
         }
-    });
+        
+        // Event listeners for pagination
+        rowSelector.addEventListener('change', function () {
+            rowsPerPage = parseInt(this.value, 10);
+            currentPage = 1;
+            fetchData(currentPage, rowsPerPage);
+        });
+        
+        searchInput.addEventListener('keyup', function () {
+            const searchQuery = this.value;
+            currentPage = 1;
+            fetchData(currentPage, rowsPerPage, searchQuery);
+        });
+        
+        prevButton.addEventListener('click', function () {
+            if (currentPage > 1) {
+                currentPage--;
+                fetchData(currentPage, rowsPerPage);
+            }
+        });
+        
+        nextButton.addEventListener('click', function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                fetchData(currentPage, rowsPerPage);
+            }
+        });
+        
+        jumpButton.addEventListener('click', function () {
+            const pageNumber = parseInt(jumpToPageInput.value, 10);
+            if (pageNumber >= 1 && pageNumber <= totalPages) {
+                currentPage = pageNumber;
+                fetchData(currentPage, rowsPerPage);
+            } else {
+                alert('Please enter a valid page number.');
+            }
+        });
+        
+        // document.getElementById('totalUnassigned').addEventListener('click', function() {
+        //   currentPage = 1; // Reset to first page
+        //   fetchData(currentPage, rowsPerPage, '', 'unassigned');
+        // });
+        
+        // document.getElementById('myLeads').addEventListener('click', function() {
+        //   currentPage = 1; // Reset to first page
+        //   fetchData(currentPage, rowsPerPage, '', 'myLeads');
+        // });
+        
+        // document.getElementById('freshLeads').addEventListener('click', function() {
+        //   currentPage = 1; // Reset to first page
+        //   fetchData(currentPage, rowsPerPage, '', 'freshLeads');
+        // });
+        
+        // document.getElementById('totalLeads').addEventListener('click', function() {
+        //   currentPage = 1; // Reset to first page
+        //   fetchData(currentPage, rowsPerPage, '', 'total');
+        // });
+        
+        // Handle row selection (individual and bulk)
+        //   selectAllCheckbox.addEventListener('change', function () {
+        //     const allRowCheckboxes = document.querySelectorAll('.select-row');
+        //     selectedIds = []; // Reset selected IDs array
+        
+        //     allRowCheckboxes.forEach(checkbox => {
+        //         checkbox.checked = this.checked; // Check/uncheck all rows
+        //         if (this.checked) {
+        //             selectedIds.push(checkbox.value); // Add all row IDs to selectedIds array
+        //         }
+        //     });
+        
+        //     selectedIdsInput.value = selectedIds.join(','); // Update hidden input
+        //     toggleAssignButton(); // Recheck button state
+        // });
+        
+        // uploaddata.addEventListener('change', function (event) {
+        //       if (event.target.classList.contains('select-row')) {
+        //           if (!event.target.checked) {
+        //               selectAllCheckbox.checked = false; // Uncheck "Select All" if any row is unchecked
+        //           } else {
+        //               const allRowCheckboxes = document.querySelectorAll('.select-row');
+        //               const allChecked = Array.from(allRowCheckboxes).every(checkbox => checkbox.checked);
+        //               selectAllCheckbox.checked = allChecked;
+        //           }
+        //       }
+        //   });
 
-    // Event Delegation for Edit Button
-    tableBody.addEventListener('click', (e) => {
-        if (e.target && e.target.matches('button.update-status-btn')) {
-            const id = e.target.getAttribute('data-id');
-            editUser(id);
+        // Function to hide all numbers
+        function hideAllNumbers() {
+            document.querySelectorAll('.masked-number').forEach(span => {
+                span.textContent = 'XXXXXXXXXX'; // Mask all numbers
+            });
         }
-    });
 
-    // Popover functionality
-    function positionPopover(popover, trigger) {
-        const tableContainer = document.querySelector('.dataTables_scrollBody'); // The table's scrollable container
-        const tableContainerRect = tableContainer.getBoundingClientRect();
-        const triggerRect = trigger.getBoundingClientRect();
-        const popoverHeight = popover.offsetHeight;
-        const popoverWidth = popover.offsetWidth;
-    
-        // Calculate top position relative to the scrollable table container
-        const top = triggerRect.top - tableContainerRect.top + tableContainer.scrollTop + triggerRect.height + 5;
-    
-        // Calculate left position relative to the trigger element within the container
-        const left = triggerRect.left - tableContainerRect.left + tableContainer.scrollLeft + (triggerRect.width / 2) - (popoverWidth / 2);
-    
-        // Adjust left position to prevent overflow outside the table container
-        const maxLeft = tableContainerRect.width - popoverWidth - 10;
-        const adjustedLeft = Math.max(10, Math.min(left, maxLeft));
-    
-        // Apply calculated top and left positions
-        popover.style.top = `${top}px`;
-        popover.style.left = `${adjustedLeft}px`;
-        popover.style.position = 'absolute'; // Make sure it's absolutely positioned within the container
-    }
+        // Event Delegation for hiding and showing phone numbers
+        uploaddata.addEventListener('click', function (e) {
+            const clickedRow = e.target.closest('.reveal-number-row');
+            
+            // Only proceed if a row with class `reveal-number-row` was clicked
+            if (clickedRow) {
+                // Hide all numbers first
+                hideAllNumbers();
 
-    tableBody.addEventListener('click', (e) => {
-        if (e.target && e.target.matches('.message-popover')) {
-            e.preventDefault();
-            const popoverId = `custom-popover-${e.target.getAttribute('data-id')}`;
-            const popover = document.getElementById(popoverId);
-
-            if (popover) {
-                // Toggle visibility using inline display style
-                if (popover.style.display === 'block') {
-                    popover.style.display = 'none';
-                } else {
-                    // Hide any other visible popovers
-                    document.querySelectorAll('.custom-popover').forEach((p) => {
-                        p.style.display = 'none';
-                    });
-
-                    // Show the clicked popover and position it
-                    popover.style.display = 'block';
-                    positionPopover(popover, e.target);
+                // Find the masked-number span in the clicked row and reveal the number
+                const numberSpan = clickedRow.querySelector('.masked-number');
+                if (numberSpan) {
+                    numberSpan.textContent = numberSpan.getAttribute('data-number');
                 }
             }
-        }
-    });
+        });
 
-    // Close popover if clicked outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.message-popover') && !e.target.closest('.custom-popover')) {
-            document.querySelectorAll('.custom-popover').forEach((p) => {
-                p.style.display = 'none';
+        // Optionally, hide the number again if clicked outside any row
+        document.addEventListener('click', function(event) {
+            // Check if the click was outside any of the reveal-number-row rows
+            if (!event.target.closest('.reveal-number-row')) {
+                hideAllNumbers();  // Hide all numbers
+            }
+        });
+
+        // Fetch and Populate Edit Form
+        function editUserTable() {
+            const editUser = async (id) => {
+                try {
+                    const response = await fetch(`update_status.php?editrow=1&id=${id}`, { method: 'GET' });
+                    const user = await response.json();
+                    document.getElementById('rowId').value = user.id;
+                    document.getElementById('status').value = user.status;
+                    document.getElementById('notes').value = user.message;
+                    updateModal.show(); // Show the modal
+                } catch (error) {
+                    console.error('Error fetching user data for editing:', error);
+                }
+            };
+            // Event Delegation for Edit Button
+        uploaddata.addEventListener('click', (e) => {
+            if (e.target && e.target.matches('button.update-status-btn')) {
+                const id = e.target.getAttribute('data-id');
+                editUser(id);
+            }
+        });
+        };
+
+      // Handle Form Submission for Update
+        updateForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(updateForm);
+            formData.append('update', 1);
+
+            try {
+                const response = await fetch('update_status.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    // Update the specific row in the table
+                    updateModal.hide(); // Hide the modal
+                    fetchData(currentPage, rowsPerPage);
+                } else {
+                    console.error('Failed to update row');
+                }
+            } catch (error) {
+                console.error('Error updating row:', error);
+            }
+        });
+
+        // Function to process user cells (run this after table is updated)
+        function processUserCells() {
+            const userCells = document.querySelectorAll('.user-cell');
+            userCells.forEach(cell => {
+                // Get the full list of users from the td content
+                const userList = cell.innerText.trim().split(',');
+            
+                // Display only the first name followed by "more..." if there are multiple names
+                if (userList.length > 1) {
+                    cell.innerHTML = `${userList[0]} ...more`;
+                }
+            
+                // Add a click event listener to the cell
+                cell.addEventListener('click', function() {
+                    // Set the full list of users in the modal
+                    document.getElementById('assignUserList').innerText = userList.join(', ');
+            
+                    // Trigger the modal to show
+                    const assignUserModal = new bootstrap.Modal(document.getElementById('assignUserModal'));
+                    assignUserModal.show();
+                });
             });
         }
+    // this javascript is for trim the assign user ENd
+    // Initial fetch of data
+      fetchData(currentPage, rowsPerPage);
     });
-
-    // Initial Fetch
-    fetchAllUsers();
-});
+    
+    
